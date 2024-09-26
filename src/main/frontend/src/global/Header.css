@@ -1,9 +1,8 @@
 .header {
     background-color: #003B54;
     text-align: center;
-    padding: 20px 0;
     height: 140px;
-    position: relative;
+    position: sticky;
   }
   
   .logo-container {

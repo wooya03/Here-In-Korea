@@ -1,18 +1,9 @@
-body {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 100px;
-}
-
 /* 로그인 폼 전체를 감싸는 div */
 .login-container {
-    width: 300px;
-    padding: 40px;
+    padding: 50px;
     background-color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    text-align: center;
 }
 /* 로그인 제목 */
 h2 {
@@ -21,6 +12,7 @@ h2 {
     color: #333;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
+    text-align: left;
 }
 
 /* 입력 필드 스타일 */

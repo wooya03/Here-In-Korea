@@ -18,10 +18,10 @@ class AdminLogin extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='login-container'> 
                 <form>
                     <h2 id='login_title'> 로그인</h2>
-                    <div className='admin_login'>
+                    <div>
                         <div>
                             {/* 아이디 */}
                             <div>
