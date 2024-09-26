@@ -1,13 +1,17 @@
-import logo from './logo.svg';
-import Login from './admin/js/AdminLogin.js';
+import {Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
+import AdminLogin from './admin/js/AdminLogin.js';
+import Main from './Main.js';
 
 function App() {
   return (
-    <div className="App">
-      <Login></Login>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/admin" element={<AdminLogin />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
