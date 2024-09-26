@@ -1,6 +1,7 @@
 import {Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import AdminLogin from './admin/js/AdminLogin.js';
+import AdminMain from './admin/js/AdminMain.js';
 import Main from './Main.js';
 
 function App() {
@@ -8,7 +9,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/admin" element={<AdminLogin />} />
+
+        {/* 어드민 페이지 */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminMain />} />
       </Routes>
     </BrowserRouter>
   )
