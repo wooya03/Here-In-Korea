@@ -2,9 +2,9 @@ import {Routes, Route } from 'react-router-dom';
 import AdminLogin from './admin/js/AdminLogin.js';
 import AdminMain from './admin/js/AdminMain.js';
 import MemInfo from './admin/js/MemInfo.js';
-import Main from './global/Main.js';
-import LoginMain from "./user/js/LoginMain";
 import './App.css';
+import Main from './Main.js';
+import LoginMain from "./user/js/LoginMain";
 
 function App() {
   return (
