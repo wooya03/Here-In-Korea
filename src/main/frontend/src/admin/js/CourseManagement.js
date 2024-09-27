@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../css/CourseManagement.css";
+import "../css/Common.css";
 
 class CourseManagement extends Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class CourseManagement extends Component {
     return (
       <div className="app-container">
         <h1>코스게시판관리</h1>
-        <div className="search-container">
+        <div className="search-course">
           <input
             type="text"
             placeholder="코스 이름"
@@ -87,8 +88,7 @@ class CourseManagement extends Component {
             <option value="서울">서울</option>
             <option value="대구">대구</option>
           </select>
-          <input type="date" />
-          <input type="date" />
+          <input type="date" />~<input type="date" />
           <button onClick={this.handleSearch}>조회</button>
         </div>
 

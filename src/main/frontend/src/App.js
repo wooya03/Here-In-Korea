@@ -8,7 +8,7 @@ import LoginMain from "./user/js/LoginMain";
 import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
 import CourseMenagement from './admin/js/CourseManagement.js';
-
+import ReviewManagement from './admin/js/ReviewManagement.js';
 function App() {
   return (
     <main>
@@ -20,6 +20,7 @@ function App() {
         <Route path="/admin/login" element={<><AdminHeader/><AdminLogin /></>} />
         <Route path="/admin/user" element={<><AdminHeader/><UserManagement /></>} />
         <Route path="/admin/course" element={<><AdminHeader/><CourseMenagement /></>} />
+        <Route path="/admin/review" element={<><AdminHeader/><ReviewManagement /></>} />
 
       {/* Page Login */}
           <Route path="/user/js/LoginMain" element={<><Header/><LoginMain/></>}/>
