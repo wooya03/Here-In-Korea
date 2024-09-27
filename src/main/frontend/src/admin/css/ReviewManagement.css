@@ -1,0 +1,26 @@
+  .search-review {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+   
+  .search-review input[type="date"]{
+    padding: 5px;
+    margin-right: 20px;
+    width: 250px;
+    height: 30px;
+  }
+
+  .search-review input[type="text"] {
+    padding: 5px;
+    margin-right: 20px;
+    width: 400px;
+    height: 40px;
+  }
+
+  .search-review button {
+    padding: 5px;
+    margin-right: 20px;
+    width: 200px;
+    height: 43px;
+  }
