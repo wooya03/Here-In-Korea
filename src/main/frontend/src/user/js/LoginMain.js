@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../layout/Header";
 
 class LoginMain extends React.Component {
     render() {
