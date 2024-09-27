@@ -1,9 +1,15 @@
 import React from "react";
+import Header from "../../layout/Header";
 
 class LoginMain extends React.Component {
     render() {
         return (
-                <h1>test</h1>
+            <div>
+                <br/>
+                <h1>testing</h1>
+            </div>
+
+
         )
     }
 }

@@ -4,24 +4,26 @@ import AdminMain from './admin/js/AdminMain.js';
 import MemInfo from './admin/js/MemInfo.js';
 import Main from './Main.js';
 import LoginMain from "./user/js/LoginMain";
+import Layout from "./layout/Layout";
+import Header from "./layout/Header";
+import React from "react";
+import Routers from "./Routers";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={ <><Main /></>} />
+      <main>
+          <Routes>
+              <Route path="/" element={<><Header/><Main/></>}/>
 
-        {/* 어드민 페이지 */}
-        <Route path="/admin/login" element={<><AdminLogin /></>} />
-        <Route path="/admin" element={<><AdminMain /></>} />
-        <Route path="/admin/meminfo" element={<><MemInfo /></>} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminMain />} />
+              {/* 어드민 페이지 */}
+              <Route path="/admin" element={<><AdminHeader/><AdminMain/></>}/>
+              <Route path="/admin/login" element={<><AdminHeader/><AdminLogin/></>}/>
+              <Route path="/admin/meminfo" element={<><AdminHeader/><MemInfo/></>}/>
 
-      {/* 로그인 페이지 */}
-          <Route path={"/login"} element={<LoginMain/>}/>
-      </Routes>
-    </BrowserRouter>
+              {/* Page Login */}
+              <Route path="/user/js/LoginMain" element={<><Header/><LoginMain/></>}/>
+          </Routes>
+      </main>
   )
 }
 
