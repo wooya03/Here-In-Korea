@@ -1,7 +1,7 @@
 import {Routes, Route } from 'react-router-dom';
 import AdminLogin from './admin/js/AdminLogin.js';
 import AdminMain from './admin/js/AdminMain.js';
-import MemInfo from './admin/js/MemInfo.js';
+import MemInfo from './admin/js/UserManagement.js';
 import './App.css';
 import Main from './main/Main.js';
 import LoginMain from "./user/js/LoginMain";
@@ -20,7 +20,7 @@ function App() {
         <Route path="/admin/meminfo" element={<><AdminHeader/><MemInfo /></>} />
 
       {/* Page Login */}
-          <Route path="/user/js/LoginMain" element={<><Header/><LoginMain/></>}/>
+          <Route path="/login" element={<><Header/><LoginMain/></>}/>
       </Routes>
       </main>
   )
