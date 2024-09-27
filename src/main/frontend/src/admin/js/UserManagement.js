@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../css/UserManagement.css";
+import "../css/Common.css";
 
 class UserManagement extends Component {
   constructor(props) {
@@ -77,9 +78,9 @@ class UserManagement extends Component {
     const { filteredData, searchText, selectedItems } = this.state;
 
     return (
-      <div className="container">
+      <div className="app-container">
         <h1>회원정보조회</h1>
-        <div className="search-container">
+        <div className="search-user">
           <input
             type="text"
             placeholder="아이디 검색"
@@ -87,11 +88,10 @@ class UserManagement extends Component {
             onChange={this.handleSearchTextChange}
           />
           <input type="text" placeholder="닉네임 검색" />
-          남<input type="radio" name="gender" value="male" />
-          여<input type="radio" name="gender" value="female" />
-          휴면<input type="checkbox" name="dormancy" value="dormancy_yes" />
-          <input type="date" />
-          <input type="date" />
+          <p>남</p><input type="radio" name="gender" value="male" />
+          <p>여</p><input type="radio" name="gender" value="female" />
+          <p>휴면</p><input type="checkbox" name="dormancy" value="dormancy_yes" />
+          <p>가입</p><input type="date"/>~<input type="date" />
           <button onClick={this.handleSearch}>조회</button>
         </div>
 
