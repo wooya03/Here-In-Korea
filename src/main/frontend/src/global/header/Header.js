@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Link 추가
 import "./Header.css";
+import image from '../../img/logo.png';
 
 function Header() {
   return (
     <header className="header">
       <div className="logoimage">
         <Link to="/"> {/* 로고 클릭 시 메인 화면으로 이동 */}
-          <img className="logo" alt="logo_1" src={`${process.env.PUBLIC_URL}/Image/logo_1.png`} />
+        <img  src={image} className="logo" alt="logo_1" />
         </Link>
 
         <div className="menu">
