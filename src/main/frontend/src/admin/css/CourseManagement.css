@@ -1,0 +1,68 @@
+.app-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    text-align: left;
+}
+  
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .search-container input, .search-container select {
+    padding: 10px;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .delete-button {
+    padding: 10px 20px;
+    width: 100px;
+    background-color: #1b257c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;    
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination span {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .pagination span:hover {
+    background-color: #ddd;
+  }
+

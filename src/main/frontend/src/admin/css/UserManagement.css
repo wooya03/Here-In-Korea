@@ -21,10 +21,14 @@
   }
 
   
-  .delete {
+  .delete-button {
+    padding: 10px 20px;
     width: 100px;
     background-color: #1b257c;
-    margin-bottom: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;    
   }
 
   table {
