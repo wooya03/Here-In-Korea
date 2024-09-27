@@ -18,9 +18,9 @@ class AdminHeader extends React.Component {
               <li className="menu-item first-item"><Link to="/admin/user">회원정보조회</Link></li>
               <li className="menu-item"><Link to="/admin/course">코스게시판관리</Link></li>
               <li className="menu-item"><Link to="/admin/review">리뷰게시판관리</Link></li>
-              <li className="menu-item"><Link to="#">댓글관리</Link></li>
-              <li className="menu-item"><Link to="#">Q&A</Link></li>
-              <li className="menu-item last-item"><Link to="#">LOGOUT</Link></li>
+              <li className="menu-item"><Link to="/admin/comment">댓글관리</Link></li>
+              <li className="menu-item"><Link to="/admin/qna">Q&A</Link></li>
+              <li className="menu-item last-item"><Link to="/admin/logout">LOGOUT</Link></li>
             </ul>
           </nav>
         </div>

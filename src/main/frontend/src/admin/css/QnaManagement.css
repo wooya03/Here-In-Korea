@@ -1,0 +1,47 @@
+.search-qna {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+   
+  .search-qna input[type="date"]{
+    padding: 5px;
+    margin-right: 20px;
+    width: 250px;
+    height: 30px;
+  }
+
+  .search-qna input[type="text"] {
+    padding: 5px;
+    margin-right: 20px;
+    width: 400px;
+    height: 40px;
+  }
+
+  .search-qna input[type="date"]{
+    padding: 5px;
+    margin-right: 20px;
+    width: 250px;
+    height: 30px;
+  }
+
+  .search-qna input[type="checkbox"]{
+    margin-right: 20px;
+    height: 30px;
+  }
+
+  .search-qna select {
+    height: 40px;
+    margin-right: 20px;
+  }
+
+  .search-qna p {
+    width: 80px;
+  }
+
+  .search-qna button {
+    padding: 5px;
+    margin-right: 20px;
+    width: 200px;
+    height: 43px;
+  }

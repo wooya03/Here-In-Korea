@@ -1,25 +1,25 @@
 import React, { Component } from "react";
-import "../css/ReviewManagement.css";
+import "../css/QnaManagement.css";
 import "../css/Common.css";
 
-class ReviewManagement extends Component {
+class QnaManagement extends Component {
     constructor(props) {
         super(props);
         this.state = {
           searchText: "",
           filteredData: [
-            { id: 1, title: "대전이 보유한 최고의 놀이터 심성당 리뷰", userId: "ync2024", date:"2024-04-21 15:44", views: 410230, likes: 21404 },
-            { id: 2, title: "전라도 맛집 추천", userId: "ync2024", date:"2024-04-21 15:44", views: 130, likes: 42 },
-            { id: 3, title: "애니 오타쿠를 위한 덕질 투어", userId: "ync2024", date:"2024-04-21 15:44", views: 180, likes: 32 },
-            { id: 4, title: "도미는 여기가 맛있어요", userId: "test012", date:"2024-04-21 15:44", views: 1230, likes: 242 },
-            { id: 5, title: "서울에서 가까운 꽃 축제 탐방", userId: "test789", date:"2024-04-21 15:44", views: 302, likes: 30 },
+            { id: 1, title: "코스 등록 문의", userId: "ync2024", group:"코스문의", date:"2024-04-21 15:44", status:"답변대기" },
+            { id: 2, title: "나무호텔 문의 드립니다", userId: "test2", group:"숙소문의", date:"2024-04-21 15:44", status:"답변대기"},
+            { id: 3, title: "한강 서래섬 유채꽃 축제 주차공간", userId: "ync2024", group:"행사문의", date:"2024-04-21 15:44", status:"답변완료"},
+            { id: 4, title: "5월 행사 관련 문의", userId: "test012", group:"행사문의", date:"2024-04-21 15:44", status:"답변완료"},
+            { id: 5, title: "리뷰 관련 문의", userId: "test789", group:"리뷰문의", date:"2024-04-21 15:44", status:"답변완료"},
           ],
           data: [
-            { id: 1, title: "대전이 보유한 최고의 놀이터 심성당 리뷰", userId: "ync2024", date:"2024-04-21 15:44", views: 410230, likes: 21404 },
-            { id: 2, title: "전라도 맛집 추천", userId: "ync2024", date:"2024-04-21 15:44", views: 130, likes: 42 },
-            { id: 3, title: "애니 오타쿠를 위한 덕질 투어", userId: "ync2024", date:"2024-04-21 15:44", views: 180, likes: 32 },
-            { id: 4, title: "도미는 여기가 맛있어요", userId: "test012", date:"2024-04-21 15:44", views: 1230, likes: 242 },
-            { id: 5, title: "서울에서 가까운 꽃 축제 탐방", userId: "test789", date:"2024-04-21 15:44", views: 302, likes: 30 },
+            { id: 1, title: "코스 등록 문의", userId: "ync2024", group:"코스문의", date:"2024-04-21 15:44", status:"답변대기" },
+            { id: 2, title: "나무호텔 문의 드립니다", userId: "test2", group:"숙소문의", date:"2024-04-21 15:44", status:"답변대기"},
+            { id: 3, title: "한강 서래섬 유채꽃 축제 주차공간", userId: "ync2024", group:"행사문의", date:"2024-04-21 15:44", status:"답변완료"},
+            { id: 4, title: "5월 행사 관련 문의", userId: "test012", group:"행사문의", date:"2024-04-21 15:44", status:"답변완료"},
+            { id: 5, title: "리뷰 관련 문의", userId: "test789", group:"리뷰문의", date:"2024-04-21 15:44", status:"답변완료"},
           ],
           selectedItems: [], // 선택된 항목을 저장
         };
@@ -74,15 +74,23 @@ class ReviewManagement extends Component {
     
         return (
           <div className="app-container">
-            <h1>리뷰게시판관리</h1>
-            <div className="search-review">
+            <h1>QNA</h1>
+            <div className="search-qna">
               <input
                 type="text"
-                placeholder="게시글 이름"
+                placeholder="문의 제목"
                 value={searchText}
                 onChange={this.handleSearchTextChange}
               />
               <input type="text" placeholder="아이디 검색" />
+              <select>
+                <option value="">문의구분</option>
+                <option value="숙소문의">숙소문의</option>
+                <option value="행사문의">행사문의</option>
+                <option value="코스문의">코스문의</option>
+                <option value="기타문의">기타문의</option>
+              </select>
+              <p>답변대기</p><input type="checkbox" value="answer"/>
               <input type="date" />~<input type="date" />
               <button onClick={this.handleSearch}>조회</button>
             </div>
@@ -95,9 +103,9 @@ class ReviewManagement extends Component {
                   <th></th>
                   <th>제목</th>
                   <th>아이디</th>
+                  <th>문의구분</th>
                   <th>작성일</th>
-                  <th>조회수</th>
-                  <th>추천</th>
+                  <th>답변상태</th>
                 </tr>
               </thead>
               <tbody>
@@ -112,9 +120,9 @@ class ReviewManagement extends Component {
                     </td>
                     <td>{item.title}</td>
                     <td>{item.userId}</td>
+                    <td>{item.group}</td>
                     <td>{item.date}</td>
-                    <td>{item.views}</td>
-                    <td>{item.likes}</td>
+                    <td>{item.status}</td>
                   </tr>
                 ))}
               </tbody>
@@ -132,4 +140,4 @@ class ReviewManagement extends Component {
     }
 }
 
-export default ReviewManagement;
+export default QnaManagement;
