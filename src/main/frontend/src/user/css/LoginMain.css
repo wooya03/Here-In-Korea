@@ -1,11 +1,19 @@
 .content{
-    width: 700px;
-
+    width: 100%;
+    weight : 850px;
     margin: 0 auto;
     padding: 0;
 }
-.li{
-    list-style: none;
+.login_wrap{
+    width : 50%;
+    weight: 800px;
+    margin:0 auto;
+    position : relative;
+    top:25px;
+    bottom:25px;
+}
+.panel_item{
+    list-style:none;
 }
 
 .panel_item{
