@@ -1,0 +1,18 @@
+.carousel-slide {
+  display: flex; /* Flexbox를 사용하여 이미지를 가로로 배치 */
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.banner-image {
+  width: 500px; /* 이미지 너비 조정 */
+  height: 200px; /* 이미지 높이 조정 */
+  margin: 0 5px; /* 이미지 간격 조정 */
+  object-fit: cover; /* 이미지 비율 유지 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  transition: transform 0.3s ease; /* 호버 시 애니메이션 효과 */
+}
+
+.banner-image:hover {
+  transform: scale(1.05); /* 호버 시 약간 확대 */
+}
