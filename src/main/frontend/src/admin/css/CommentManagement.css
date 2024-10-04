@@ -1,32 +1,28 @@
- .search-user {
+.search-comment {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
   }
    
-  .search-user input {
+  .search-comment input {
     padding: 10px;
     margin-right: 20px;
     height: 40px;
   }
-
-  .search-user p {
-    width: 50px;
-  }
-
-  .search-user input[type="date"] {
+  
+  .search-comment input[type="date"] {
     margin-right: 20px;
     width: 200px;
     height: 20px;
   }
 
 
-  .search-user input[type="text"] {
+  .search-comment input[type="text"] {
     width: 500px;
     margin-right: 20px;
   }
 
-  .search-user button {
+  .search-comment button {
     padding: 5px;
     margin-right: 20px;
     width: 200px;

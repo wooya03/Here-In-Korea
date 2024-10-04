@@ -1,12 +1,13 @@
 import {Routes, Route } from 'react-router-dom';
 import AdminLogin from './admin/js/AdminLogin.js';
 import AdminMain from './admin/js/AdminMain.js';
-import MemInfo from './admin/js/UserManagement.js';
+import UserManagement from './admin/js/UserManagement.js';
 import './App.css';
 import Main from './main/Main.js';
 import LoginMain from "./user/js/LoginMain";
 import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
+import CourseMenagement from './admin/js/CourseManagement.js';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader/><AdminMain /></>} />
         <Route path="/admin/login" element={<><AdminHeader/><AdminLogin /></>} />
-        <Route path="/admin/meminfo" element={<><AdminHeader/><MemInfo /></>} />
+        <Route path="/admin/user" element={<><AdminHeader/><UserManagement /></>} />
+        <Route path="/admin/course" element={<><AdminHeader/><CourseMenagement /></>} />
 
       {/* Page Login */}
-          <Route path="/login" element={<><Header/><LoginMain/></>}/>
+          <Route path="/login element={<><Header/><LoginMain/></>}/>
       </Routes>
       </main>
   )

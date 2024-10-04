@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../css/CourseManagement.css";
+import "../css/Common.css";
 
 class CourseManagement extends Component {
   constructor(props) {
@@ -7,18 +8,18 @@ class CourseManagement extends Component {
     this.state = {
       searchText: "",
       filteredData: [
-        { id: 1, title: "대구 투어!", userId: "test123", views: 1400, likes: 2 },
-        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "test456", views: 130, likes: 5 },
-        { id: 3, title: "서울 당일치기 코스", userId: "test789", views: 1800, likes: 3 },
-        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "test789", views: 123, likes: 10 },
-        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "test012", views: 2302, likes: 33 },
+        { id: 1, title: "대구 투어!", userId: "test123", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
+        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "test456", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
+        { id: 3, title: "서울 당일치기 코스", userId: "test789", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
+        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "test789", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
+        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "test012", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
       ],
       data: [
-        { id: 1, title: "대구 투어!", userId: "test123", views: 1400, likes: 2 },
-        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "test456", views: 130, likes: 5 },
-        { id: 3, title: "서울 당일치기 코스", userId: "test789", views: 1800, likes: 3 },
-        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "test789", views: 123, likes: 10 },
-        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "test012", views: 2302, likes: 33 },
+        { id: 1, title: "대구 투어!", userId: "test123", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
+        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "test456", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
+        { id: 3, title: "서울 당일치기 코스", userId: "test789", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
+        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "test789", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
+        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "test012", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
       ],
       selectedItems: [], // 선택된 항목을 저장
     };
@@ -74,7 +75,7 @@ class CourseManagement extends Component {
     return (
       <div className="app-container">
         <h1>코스게시판관리</h1>
-        <div className="search-container">
+        <div className="search-course">
           <input
             type="text"
             placeholder="코스 이름"
@@ -85,10 +86,24 @@ class CourseManagement extends Component {
           <select>
             <option value="">지역</option>
             <option value="서울">서울</option>
+            <option value="부산">부산</option>
             <option value="대구">대구</option>
+            <option value="인천">인천</option>
+            <option value="광주">광주</option>
+            <option value="대전">대전</option>
+            <option value="울산">울산</option>
+            <option value="세종">세종</option>
+            <option value="경기도">경기도</option>
+            <option value="강원도">강원도</option>
+            <option value="충청북도">충청북도</option>
+            <option value="충청남도">충청남도</option>
+            <option value="전라북도">전라북도</option>
+            <option value="전라남도">전라남도</option>
+            <option value="경상북도">경상북도</option>
+            <option value="경상남도">경상남도</option>
+            <option value="제주도">제주도</option>
           </select>
-          <input type="date" />
-          <input type="date" />
+          <input type="date" />~<input type="date" />
           <button onClick={this.handleSearch}>조회</button>
         </div>
 
@@ -100,6 +115,7 @@ class CourseManagement extends Component {
               <th></th>
               <th>제목</th>
               <th>아이디</th>
+              <th>작성일</th>
               <th>조회수</th>
               <th>추천</th>
             </tr>
@@ -116,6 +132,7 @@ class CourseManagement extends Component {
                 </td>
                 <td>{item.title}</td>
                 <td>{item.userId}</td>
+                <td>{item.courseDate}</td>
                 <td>{item.views}</td>
                 <td>{item.likes}</td>
               </tr>
