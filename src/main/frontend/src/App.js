@@ -22,7 +22,7 @@ function App() {
         <Route path="/admin/course" element={<><AdminHeader/><CourseMenagement /></>} />
 
       {/* Page Login */}
-          <Route path="/login element={<><Header/><LoginMain/></>}/>
+          <Route path="/login" element={<><Header/><LoginMain/></>}/>
       </Routes>
       </main>
   )
