@@ -11,15 +11,17 @@ import CourseMenagement from './admin/js/CourseManagement.js';
 import ReviewManagement from './admin/js/ReviewManagement.js';
 import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
+import AdminLogout from './admin/js/AdminLogout.js';
 function App() {
   return (
     <main>
       <Routes>
         <Route path="/" element={ <><Header/><Main /></>} />
-
+        
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader/><AdminMain /></>} />
         <Route path="/admin/login" element={<><AdminHeader/><AdminLogin /></>} />
+        <Route path="/admin/logout" element={<><AdminHeader/><AdminLogout /></>} />
         <Route path="/admin/user" element={<><AdminHeader/><UserManagement /></>} />
         <Route path="/admin/course" element={<><AdminHeader/><CourseMenagement /></>} />
         <Route path="/admin/review" element={<><AdminHeader/><ReviewManagement /></>} />
