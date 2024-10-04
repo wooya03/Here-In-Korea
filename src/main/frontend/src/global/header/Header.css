@@ -1,87 +1,137 @@
 .header {
-    background-color: #003B54;
-    text-align: center;
-    height: 140px;
-    position: sticky;
-  }
-  
-  .logo-container {
-    margin-bottom: 20px;
-  }
-  
-  .logo {
-    width: 120px;
-  }
-  
-  .nav {
-    margin-bottom: 20px;
-  }
-  
-  .menu {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    justify-content: center;
-  }
-  
-  .menu-item {
-    position: relative;
-    margin: 0 10px;
-    padding: 0 10px;
-  }
-  
-  .menu-item a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .menu-item a:hover {
-    text-decoration: underline;
-  }
-  
-  .menu-item::before,
-  .menu-item::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 1px;
-    background-color: white;
-  }
-  
-  .first-item::before {
-    left: -120px;
-    width: 100px;
-  }
-  
-  .last-item::after {
-    right: -120px;
-    width: 100px;
-  }
-  
-  .search-container {
-    margin-top: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .search-icon {
-    position: absolute;
-    left: 620px;
-    color: #003B54;
-    font-size: 20px;
-  }
-  
-  .search-input {
-    width: 700px;
-    padding: 10px 10px 10px 40px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-  
+  position: relative; /* 헤더의 상대 위치 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #003B54; /* 헤더 배경색 */
+  text-align: center;
+  padding: 20px 0; /* 상하 패딩 조정 (헤더 높이 조정) */
+  min-height: 150px; /* 최소 높이 설정 */
+}
+
+.login-container {
+  position: absolute; /* 절대 위치 설정 */
+  right: 20px; /* 헤더 오른쪽 끝에서 20px 떨어진 위치 */
+  bottom: 20px; /* 헤더 아래쪽 끝에서 20px 떨어진 위치 */
+  display: flex;
+  align-items: center;
+  background-color: #003B54;
+}
+
+.logo {
+  width: 120px;
+}
+
+.menu-and-search {
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  align-items: center; /* 중앙 정렬 */
+  width: 100%; /* 전체 너비 차지 */
+}
+
+.nav {
+  margin-bottom: 5px; /* 메뉴와 검색창 간격 조정 */
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px; /* 메뉴와 검색창 사이 간격 추가 */
+}
+
+.menu-item {
+  position: relative;
+  margin: 0 10px;
+  padding: 0 10px;
+}
+
+.menu-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu-item a:hover {
+  text-decoration: underline;
+}
+
+.search-container {
+  display: flex; /* Flexbox를 사용하여 수평 배치 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center; /* 중앙 정렬 */
+  margin-bottom: 10px; /* 검색창과 로그인 버튼 사이 간격 추가 */
+  margin-top: -5px; /* 검색창과 버튼을 살짝 위로 이동 */
+}
+
+.search-input {
+  width: 500px !important; /* 검색창 너비 조정 */
+  padding: 10px 10px 10px 40px; /* 패딩 수정 */
+  border: none;
+  border-radius: 25px !important; /* 모서리를 둥글게 설정 */
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: -5px; /* 검색창을 위로 이동 */
+}
+
+.search-button {
+  padding: 5px 10px; /* 패딩 유지 */
+  margin-left: 10px; /* 검색 버튼과 검색창 간격 유지 */
+  margin-top: -25px; /* 버튼을 위로 이동 */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px; /* 버튼 글자 크기 조정 */
+  transition: background-color 0.3s;
+  width: 60px; /* 버튼 너비 설정 */
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* hover 시 색상 유지 */
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  margin-top: 10px; /* 로그인 버튼의 상단 여백 조정 */
+}
+
+.guest-image {
+  width: 40px; /* 원하는 크기로 조정 */
+  height: 40px; /* 원하는 크기로 조정 */
+  border-radius: 50%; /* 둥글게 만들기 */
+  overflow: hidden; /* 이미지가 원 안에서 잘리도록 */
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  border: 2px solid white; /* 원형 테두리 추가 */
+  margin-right: 20px; /* 로그인 버튼과의 간격 추가 */
+  background-color: aliceblue;
+}
+
+.guest-image img {
+  width: 100%; /* 컨테이너에 맞게 조정 */
+  height: 100%; /* 컨테이너에 맞게 조정 */
+  object-fit: cover; /* 비율 유지하면서 잘리도록 설정 */
+}
+
+.login-button button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-button button:hover {
+  background-color: #0056b3;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
