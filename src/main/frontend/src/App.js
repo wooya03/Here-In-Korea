@@ -1,4 +1,4 @@
-import {Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import AdminLogin from './admin/js/AdminLogin.js';
 import AdminMain from './admin/js/AdminMain.js';
 import UserManagement from './admin/js/UserManagement.js';
@@ -12,11 +12,16 @@ import ReviewManagement from './admin/js/ReviewManagement.js';
 import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
+import Banner from './global/banner/Banner';  // 배너 컴포넌트 추가
+
 function App() {
   return (
     <main>
       <Routes>
-        <Route path="/" element={ <><Header/><Main /></>} />
+        <Route path="/" element={ <>
+        <Header/>
+        <Banner/>
+        <Main /></>} />  {/* 헤더 밑에 배너 추가 */}
         
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader/><AdminMain /></>} />
@@ -28,11 +33,11 @@ function App() {
         <Route path="/admin/comment" element={<><AdminHeader/><CommentManagement /></>} />
         <Route path="/admin/qna" element={<><AdminHeader/><QnaManagement /></>} />
 
-      {/* Page Login */}
-          <Route path="/user/js/LoginMain" element={<><Header/><LoginMain/></>}/>
+        {/* Page Login */}
+        <Route path="/user/js/LoginMain" element={<><Header/><LoginMain/></>}/>
       </Routes>
-      </main>
-  )
+    </main>
+  );
 }
 
 export default App;
