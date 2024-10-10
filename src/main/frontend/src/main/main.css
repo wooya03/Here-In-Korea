@@ -1,0 +1,56 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 수직 정렬을 위쪽으로 조정 */
+    height: 100vh; /* 전체 화면 높이 사용 */
+}
+
+.left-section {
+    width: 50%; /* 왼쪽 영역 너비 */
+    padding: 20px; /* 패딩 추가 */
+    display: flex; /* flexbox 사용 */
+    flex-direction: column; /* 수직 방향으로 정렬 */
+    justify-content: flex-start; /* 위쪽 정렬 */
+    text-align: left; /* 왼쪽 정렬 */
+}
+
+.left-section h2 {
+    font-size: 20px; /* 작은 글씨 크기 */
+    margin: 0; /* 기본 여백 제거 */
+    text-decoration: none; /* 밑줄 제거 */
+    color: pink;
+}
+
+.left-section p {
+    font-size: 25px; /* 보통 글씨 크기 */
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.right-section {
+    width: 50%; /* 오른쪽 영역 너비 */
+    padding: 20px; /* 패딩 추가 */
+    display: flex; /* flexbox 사용 */
+    flex-direction: column; /* 수직 방향으로 정렬 */
+    justify-content: flex-start; /* 위쪽 정렬 */
+    text-align: left; /* 왼쪽 정렬 */
+}
+
+.right-section h2 {
+    font-size: 20px; /* 왼쪽과 동일한 작은 글씨 크기 */
+    margin: 0; /* 기본 여백 제거 */
+    text-decoration: none; /* 밑줄 제거 */
+    color: pink; /* 색상 조정 (원하는 색으로 변경 가능) */
+}
+
+.right-section p {
+    font-size: 25px; /* 왼쪽과 동일한 보통 글씨 크기 */
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.divider {
+    width: 2px; /* 구분선 너비 */
+    background-color: rgba(128, 128, 128, 0.5); /* 회색으로 불투명도 적용 */
+    height: 100%; /* 전체 높이 사용 */
+    align-self: stretch; /* 왼쪽과 오른쪽 영역의 높이에 맞게 늘어나도록 설정 */
+}
+
