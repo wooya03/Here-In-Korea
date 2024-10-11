@@ -1,6 +1,7 @@
 import React from "react";
 import "./main.css";
 import LeftBanner from "../global/left_banner/left_banner"; // 경로 수정
+import RightBanner from "../global/right_banner/right_banner";
 
 class Main extends React.Component {
     render() {
@@ -15,6 +16,8 @@ class Main extends React.Component {
                 <div className="right-section">
                     <h2 className="small-heading">특별한 추억!</h2>
                     <p className="normal-heading">각종 행사에 참여해 보시는건 어떨까요?</p>
+                    <RightBanner />
+
                 
                 </div>
             </div>

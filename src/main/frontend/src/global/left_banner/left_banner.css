@@ -1,9 +1,9 @@
 .left-banner {
     position: relative; /* 배너를 상대 위치로 설정 */
     width: 100%; /* 배너의 너비를 100%로 설정 */
-    height: 400px; /* 배너의 높이 설정 */
+    height: 500px; /* 배너의 높이 설정 */
     overflow: hidden; /* 이미지가 배너 영역을 벗어나는 것을 숨김 */
-    margin-top: 50px; /* 아래로 내리기 - 원하는 만큼 값 조정*/
+    margin-top: 130px; /* 아래로 내리기 - 원하는 만큼 값 조정*/
 }
 
 .left-carousel {

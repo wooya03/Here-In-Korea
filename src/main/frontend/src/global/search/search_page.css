@@ -1,0 +1,187 @@
+/* 전체 페이지 스타일 */
+.search-page {
+    background-color: #f0f0f0; /* 페이지 전체 배경 색상 설정 */
+    padding: 20px; /* 페이지 전체 패딩 추가 */
+    min-height: 100vh; /* 페이지 최소 높이 설정 */
+}
+
+/* 검색 결과 제목 스타일 */
+.search-results-title {
+    font-size: 24px; /* 제목 크기 조정 */
+    font-weight: bold; /* 제목 두께 조정 */
+    margin-bottom: 20px; /* 제목과 내용 간 간격 조정 */
+    text-align: center; /* 제목 중앙 정렬 */
+    width: 100%; /* 폭을 100%로 설정 */
+}
+
+/* 최근 검색어 컨테이너 스타일 */
+.recent-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 가운데 정렬 추가 */
+    margin-top: 10px; /* 위쪽 여백 조절 */
+}
+
+/* 최근 검색어 레이블 스타일 */
+.recent-search-label {
+    margin-right: 10px; /* "최근 검색어:"와 검색어 사이 여백 */
+    font-weight: bold;
+}
+
+/* 최근 검색어 리스트 스타일 */
+.recent-search-list {
+    display: flex;
+    gap: 10px; /* 검색어들 사이의 간격 */
+}
+
+/* 검색 입력창 스타일 */
+.search-input-container {
+    display: flex; /* 가로로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    margin: 10px 0; /* 간격 조정 */
+    width: 100%; /* 전체 너비 사용 */
+}
+
+/* 드롭다운 스타일 */
+.dropdown {
+    margin-left: 10px; /* 검색 입력 박스와 간격 조정 */
+    padding: 10px; /* 드롭다운 패딩 */
+    border-radius: 5px; /* 드롭다운 모서리 둥글게 설정 */
+    border: 1px solid #ccc; /* 드롭다운 테두리 설정 */
+    background-color: #fff; /* 드롭다운 배경색 설정 */
+    z-index: 10; /* 드롭다운이 다른 요소 위에 표시되도록 설정 */
+}
+
+/* 드롭다운 컨테이너 스타일 */
+.dropdown-container {
+    display: flex; /* 드롭다운을 가로로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+}
+
+/* 리셋 버튼 스타일 */
+.reset-button {
+    padding: 5px 10px; /* 상하, 좌우 패딩 조정 */
+    font-size: 12px; /* 글자 크기 조정 */
+    border-radius: 4px; /* 모서리 둥글게 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    background-color: #0080FF; /* 배경색 설정 */
+    cursor: pointer; /* 커서 스타일 */
+    width: 80px; /* 원하는 가로 길이 설정 */
+    margin-left: 10px; /* 드롭다운과의 간격 설정 */
+}
+
+/* 드롭다운 목록의 스타일 추가 */
+.dropdown option {
+    padding: 10px; /* 옵션 패딩 */
+}
+
+/* 검색 결과 내용 스타일 */
+.search-content {
+    padding: 20px; /* 내용 패딩 추가 */
+    background-color: #ffffff; /* 내용 배경 색상 추가 */
+    border-radius: 8px; /* 모서리 둥글게 설정 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+/* 섹션 그룹 스타일 */
+.section-group {
+    display: flex; /* 수평 정렬을 위한 Flexbox 사용 */
+    flex-wrap: wrap; /* 줄 바꿈을 허용 */
+    gap: 20px; /* 섹션 간의 간격을 추가 */
+}
+
+/* 각 섹션 스타일 */
+.section {
+    flex: 0 0 calc(50% - 10px); /* 각 섹션의 너비를 50%로 설정, 간격을 고려 */
+    box-sizing: border-box; /* 패딩과 경계 두께가 너비에 포함되도록 설정 */
+    padding: 10px; /* 섹션 패딩 추가 */
+    background-color: #f9f9f9; /* 배경 색상 추가 */
+    border-radius: 8px; /* 모서리 둥글게 설정 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    min-height: 300px; /* 섹션의 최소 높이를 설정 (필요에 따라 조정) */
+}
+
+/* 코스 리스트 스타일 */
+.course-list {
+    display: flex; /* 수평 정렬을 위한 Flexbox 사용 */
+    flex-direction: column; /* 세로 방향 정렬 */
+    gap: 15px; /* 각 코스 박스 간의 간격 추가 */
+}
+
+/* 각 코스 박스 아이템 스타일 */
+.course-box-item {
+    display: flex; /* 수평 정렬을 위한 Flexbox 사용 */
+    background-color: #ffffff; /* 배경 색상 추가 */
+    border-radius: 5px; /* 모서리 둥글게 설정 */
+    overflow: hidden; /* 오버플로우 숨기기 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+/* 이미지 영역 스타일 */
+.course-box {
+    flex: 0 0 150px; /* 이미지 영역 고정 너비 설정 */
+}
+
+/* 이미지 스타일 */
+.course-box img {
+    width: 100%; /* 이미지 너비 100%로 설정 */
+    height: auto; /* 자동 높이 설정 */
+    border-radius: 8px; /* 이미지 모서리를 둥글게 설정 */
+}
+
+/* 코스 정보 영역 스타일 */
+.course-info {
+    padding: 10px; /* 정보 패딩 추가 */
+    flex-grow: 1; /* 남은 공간 채우기 */
+}
+
+/* 코스 제목 스타일 */
+.course-title {
+    font-size: 16px; /* 제목 글꼴 크기 설정 */
+    font-weight: bold; /* 제목 두껍게 설정 */
+}
+
+/* 코스 태그 스타일 */
+.course-tag {
+    color: #777; /* 태그 색상 설정 */
+    font-size: 14px; /* 태그 글꼴 크기 설정 */
+}
+
+/* 코스 날짜 스타일 */
+.course-date {
+    font-size: 12px; /* 날짜 글꼴 크기 설정 */
+    color: #aaa; /* 날짜 색상 설정 */
+}
+
+/* 회색 박스 스타일 */
+.rounded-box {
+    background-color: #f7f7f7; /* 배경 색상 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 10px; /* 패딩 추가 */
+    height: 93px; /* 회색 박스의 높이를 고정 (필요에 따라 조정) */
+}
+
+/* 더보기 링크 컨테이너 스타일 */
+.more-link-container {
+    display: flex; /* Flexbox 사용 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-top: 20px; /* 위쪽 마진 추가 */
+}
+
+/* 더보기 링크 스타일 */
+.more-link {
+    font-size: 16px; /* 글꼴 크기 */
+    color: #0080FF; /* 글자 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    padding: 5px 10px; /* 패딩 추가 */
+    border: 1px solid #0080FF; /* 테두리 설정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+/* 더보기 링크 호버 시 스타일 */
+.more-link:hover {
+    background-color: #0080FF; /* 호버 시 배경색 변경 */
+    color: white; /* 호버 시 글자 색상 변경 */
+}
