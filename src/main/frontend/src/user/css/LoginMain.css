@@ -91,14 +91,16 @@ a{
 .find_wrap{
     position: absolute;
     width:100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    bottom:30%;
 }
 .find_wrap>li{
     margin: 0;
     padding: 0 10px 0 10px;
-    float: left;
+    display: inline-block;
+    text-align: center;
 }
 
 .btn_login_wrap{
