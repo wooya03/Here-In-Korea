@@ -1,19 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Link 추가
+import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import "./Header.css";
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
-  const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`); // 초기 이미지를 guest1.png로 설정
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`);
+  const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleLoginLogout = () => {
     if (isLoggedIn) {
-      setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`); // 게스트 이미지로 변경
-      setIsLoggedIn(false); // 로그인 상태를 false로 변경
+      setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`);
+      setIsLoggedIn(false);
     } else {
-      setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`); // 사용자 이미지로 변경
-      setIsLoggedIn(true); // 로그인 상태를 true로 변경
+      setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
+      setIsLoggedIn(true);
     }
+  };
+
+  const handleSearch = () => {
+    // 검색 페이지로 이동
+    navigate(`/search`); 
   };
 
   return (
@@ -39,8 +46,14 @@ function Header() {
       </div>
 
       <div className="search-container">
-        <input type="text" className="search-input" placeholder="검색어를 입력하세요." />
-        <button className="search-button">검색</button>
+        <input 
+          type="text" 
+          className="search-input" 
+          placeholder="검색어를 입력하세요." 
+          value={searchQuery} 
+          onChange={(e) => setSearchQuery(e.target.value)} // 검색어 입력 상태 업데이트
+        />
+        <button className="search-button" onClick={handleSearch}>검색</button>
       </div>
 
       <div className="login-container">
