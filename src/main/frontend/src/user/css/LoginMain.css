@@ -87,7 +87,6 @@ a{
     height: 50px;
 }
 
-/* 위치 재배치 중*/
 .find_wrap{
     position: absolute;
     width:100%;
@@ -98,9 +97,15 @@ a{
 }
 .find_wrap>li{
     margin: 0;
-    padding: 0 10px 0 10px;
+    padding: 0 20px 0 20px;
     display: inline-block;
     text-align: center;
+}
+.find_wrap>li:nth-child(2){
+    border-left: 1px solid black;
+}
+.find_wrap>li:nth-child(2){
+    border-right: 1px solid black;
 }
 
 .btn_login_wrap{
