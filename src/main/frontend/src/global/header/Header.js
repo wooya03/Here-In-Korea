@@ -17,43 +17,43 @@ function Header() {
   };
 
   return (
-      <header className="header">
-        <div className="logo-container">
-          <Link to="/">
-            <img className="logo" alt="logo_1" src={`${process.env.PUBLIC_URL}/Image/logo_1.png`} />
-          </Link>
-        </div>
+    <header className="header">
+      <div className="logo-container">
+        <Link to="/">
+          <img className="logo" alt="logo_1" src={`${process.env.PUBLIC_URL}/Image/logo_1.png`} />
+        </Link>
+      </div>
 
-        <div className="menu">
-          <nav className="nav">
-            <ul className="menu">
-              <li className="menu-item first-item"><Link to="/">메인</Link></li>
-              <li className="menu-item"><Link to="#festival">행사</Link></li>
-              <li className="menu-item"><Link to="#review">리뷰</Link></li>
-              <li className="menu-item"><Link to="#corse">여행코스</Link></li>
-              <li className="menu-item"><Link to="#accommodation">숙박</Link></li>
-              <li className="menu-item"><Link to="#map">지도</Link></li>
-              <li className="menu-item last-item"><Link to="#question">Q&A</Link></li>
-            </ul>
-          </nav>
-        </div>
+      <div className="menu">
+        <nav className="nav">
+          <ul className="menu">
+            <li className="menu-item first-item"><Link to="/">메인</Link></li>
+            <li className="menu-item"><Link to="#festival">행사</Link></li>
+            <li className="menu-item"><Link to="#review">리뷰</Link></li>
+            <li className="menu-item"><Link to="#corse">여행코스</Link></li>
+            <li className="menu-item"><Link to="#accommodation">숙박</Link></li>
+            <li className="menu-item"><Link to="#map">지도</Link></li>
+            <li className="menu-item last-item"><Link to="#question">Q&A</Link></li>
+          </ul>
+        </nav>
+      </div>
 
-        <div className="search-container">
-          <input type="text" className="search-input" placeholder="검색어를 입력하세요." />
-          <button className="search-button">검색</button>
-        </div>
+      <div className="search-container">
+        <input type="text" className="search-input" placeholder="검색어를 입력하세요." />
+        <button className="search-button">검색</button>
+      </div>
 
-        <div className="login-container">
-          <div className="guest-image">
-            <img alt="guest" src={guestImage} style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
-          </div>
-          <div className="login-button">
-            <button onClick={handleLoginLogout}>
-              {isLoggedIn ? "로그아웃" : "로그인"}
-            </button>
-          </div>
+      <div className="login-container">
+        <div className="guest-image">
+          <img alt="guest" src={guestImage} style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
         </div>
-      </header>
+        <div className="login-button">
+          <button onClick={handleLoginLogout}>
+            {isLoggedIn ? "로그아웃" : "로그인"}
+          </button>
+        </div>
+      </div>
+    </header>
   );
 }
 

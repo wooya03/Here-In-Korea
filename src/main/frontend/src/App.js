@@ -8,21 +8,28 @@ import LoginMain from "./user/js/LoginMain";
 import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
 import CourseMenagement from './admin/js/CourseManagement.js';
-
+import ReviewManagement from './admin/js/ReviewManagement.js';
+import CommentManagement from './admin/js/CommentManagement.js';
+import QnaManagement from './admin/js/QnaManagement.js';
+import AdminLogout from './admin/js/AdminLogout.js';
 function App() {
   return (
     <main>
       <Routes>
         <Route path="/" element={ <><Header/><Main /></>} />
-
+        
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader/><AdminMain /></>} />
         <Route path="/admin/login" element={<><AdminHeader/><AdminLogin /></>} />
+        <Route path="/admin/logout" element={<><AdminHeader/><AdminLogout /></>} />
         <Route path="/admin/user" element={<><AdminHeader/><UserManagement /></>} />
         <Route path="/admin/course" element={<><AdminHeader/><CourseMenagement /></>} />
+        <Route path="/admin/review" element={<><AdminHeader/><ReviewManagement /></>} />
+        <Route path="/admin/comment" element={<><AdminHeader/><CommentManagement /></>} />
+        <Route path="/admin/qna" element={<><AdminHeader/><QnaManagement /></>} />
 
       {/* Page Login */}
-          <Route path="/login" element={<><Header/><LoginMain/></>}/>
+          <Route path="/user/js/LoginMain" element={<><Header/><LoginMain/></>}/>
       </Routes>
       </main>
   )
