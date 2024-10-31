@@ -12,6 +12,8 @@ import ReviewManagement from './admin/js/ReviewManagement.js';
 import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
+import Register from './user/js/Register.js'
+
 function App() {
   return (
     <main>
@@ -29,7 +31,10 @@ function App() {
         <Route path="/admin/qna" element={<><AdminHeader/><QnaManagement /></>} />
 
       {/* Page Login */}
-          <Route path="/user/js/LoginMain" element={<><Header/><LoginMain/></>}/>
+          <Route path="/LoginMain" element={<><Header/><LoginMain/></>}/>
+      {/*  Page register*/}
+          <Route path="/register" element={<><Header/><Register/></>}/>
+
       </Routes>
       </main>
   )
