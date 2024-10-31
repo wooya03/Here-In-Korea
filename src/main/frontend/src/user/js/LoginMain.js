@@ -47,24 +47,26 @@ const LoginMain = () => {
                 <form className="fm_login" id="fm_login">
                     <ul className="panel_wrap">
                     <li className="panel_item">
-                            <div className="panel_inner">
-                                <div className="login_form_box">
-                                    <div className="login_box">
-                                        <div className="input_item_id" name="item_id">
-                                            <input type="text" className="input_id" name="id"  placeholder="ID"/>
-                                        </div>
-                                        <div className="input_item_id" name="item_pw">
-                                            <input type="password" className="input_pw" name="pw" placeholder="PassWord"/>
-                                        </div>
+                        <div className="panel_inner">
+                            <div className="login_form_box">
+                                <div className="login_box">
+                                    <div className="input_item_id" name="item_id">
+                                        <input type="text" className="input_id" name="id" placeholder="ID"/>
+                                    </div>
+                                    <div className="input_item_id" name="item_pw">
+                                        <input type="password" className="input_pw" name="pw" placeholder="PassWord"/>
                                     </div>
                                 </div>
-                                {/* 아이디/비밀번호 찾기 */}
+                            </div>
+                            {/* 아이디/비밀번호 찾기 */}
+                            <nav role="navigation" aria-label="find or signUp">
                                 <div className="find_wrap">
                                     <li><a href="#none" className="find_text">아이디 찾기</a></li>
                                     <li><a href="#none" className="find_text">비밀번호 찾기</a></li>
-                                    <li><a onClick={moveRegister} className="find_text">회원 가입</a></li>
+                                    <li><a href="/register" className="find_text">회원 가입</a></li>
                                 </div>
-                                {/* 로그인 버튼*/}
+                            </nav>
+                        {/* 로그인 버튼*/}
                                 <div className="btn_login_wrap">
                                     <button type="button" className="btn_login" name="btn_login" onClick={checkLogin}>
                                         <span className="btn_text">로그인</span>
