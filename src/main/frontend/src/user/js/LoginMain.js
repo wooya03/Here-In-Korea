@@ -4,7 +4,11 @@ import {useNavigate} from "react-router-dom";
 
 const LoginMain = () => {
     const navigate = useNavigate();
-    
+
+    const moveRegister = () =>{
+        navigate('/register');
+    }
+
     const checkLogin = () => {
         const idValue= document.getElementsByName('id')[0].value;
         const pwValue = document.getElementsByName('pw')[0].value;
@@ -58,7 +62,7 @@ const LoginMain = () => {
                                 <div className="find_wrap">
                                     <li><a href="#none" className="find_text">아이디 찾기</a></li>
                                     <li><a href="#none" className="find_text">비밀번호 찾기</a></li>
-                                    <li><a href="#none" className="find_text">회원 가입</a></li>
+                                    <li><a onClick={moveRegister} className="find_text">회원 가입</a></li>
                                 </div>
                                 {/* 로그인 버튼*/}
                                 <div className="btn_login_wrap">
