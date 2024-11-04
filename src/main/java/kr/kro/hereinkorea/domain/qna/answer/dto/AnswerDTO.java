@@ -1,7 +1,7 @@
 package kr.kro.hereinkorea.domain.qna.answer.dto;
 
 import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
-import kr.kro.hereinkorea.domain.user.UserEntity;
+import kr.kro.hereinkorea.domain.user.Entity.UserEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
