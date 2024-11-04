@@ -16,17 +16,23 @@
     bottom:25px;
 }
 
+.form_content{
+    position: relative;
+    height: 100%;
+    box-shadow: none;
+}
+
 .form_list{
     position:relative;
+    margin-top:30px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    overflow: hidden;
+
 }
 
 .form_list div input{
     margin-bottom: 0px;
-}
-
-.form_list:first-of-type{
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
 }
 
 .form_item{
@@ -35,13 +41,23 @@
     box-sizing: border-box;
 }
 
+.form_item:first-of-type{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
 .form_item>input:focus{
     z-index: 10;
-    outline: 2px solid #007bff;
+    outline: 1px solid #007bff;
     margin-top: -2px;
 }
 
 .form_item+.form_item {
     margin-top: -1px;
 }
+
+.form_item email{
+
+}
+
 
