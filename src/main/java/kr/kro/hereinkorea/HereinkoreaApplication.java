@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HereinkoreaApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(HereinkoreaApplication.class, args);
+
+
 	}
 
 }
