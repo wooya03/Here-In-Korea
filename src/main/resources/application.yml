@@ -2,13 +2,13 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/hereinkorea
-    username: hereuser
-    password: hereuser123!@#
+    username: testing
+    password: asdqwe123!@#
 
   jpa:
     hibernate:
       ddl-auto: update
-      properties:
-        hibernate:
-          format_sql: true
-      show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true

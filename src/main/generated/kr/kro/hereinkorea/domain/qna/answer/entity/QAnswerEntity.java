@@ -36,7 +36,7 @@ public class QAnswerEntity extends EntityPathBase<AnswerEntity> {
 
     public final kr.kro.hereinkorea.domain.qna.question.entity.QQuestionEntity question;
 
-    public final kr.kro.hereinkorea.domain.user.QUserEntity user;
+    public final kr.kro.hereinkorea.domain.user.Entity.QUserEntity user;
 
     public QAnswerEntity(String variable) {
         this(AnswerEntity.class, forVariable(variable), INITS);
@@ -57,7 +57,7 @@ public class QAnswerEntity extends EntityPathBase<AnswerEntity> {
     public QAnswerEntity(Class<? extends AnswerEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.question = inits.isInitialized("question") ? new kr.kro.hereinkorea.domain.qna.question.entity.QQuestionEntity(forProperty("question"), inits.get("question")) : null;
-        this.user = inits.isInitialized("user") ? new kr.kro.hereinkorea.domain.user.QUserEntity(forProperty("user")) : null;
+        this.user = inits.isInitialized("user") ? new kr.kro.hereinkorea.domain.user.Entity.QUserEntity(forProperty("user")) : null;
     }
 
 }
