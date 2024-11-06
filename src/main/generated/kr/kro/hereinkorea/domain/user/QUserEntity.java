@@ -21,13 +21,29 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);
 
+    public final StringPath birth = createString("birth");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final NumberPath<Long> mem_id = createNumber("mem_id", Long.class);
+    public final StringPath email = createString("email");
+
+    public final StringPath gender = createString("gender");
+
+    public final DateTimePath<java.util.Date> loginDate = createDateTime("loginDate", java.util.Date.class);
+
+    public final StringPath memId = createString("memId");
+
+    public final StringPath memName = createString("memName");
+
+    public final StringPath memPass = createString("memPass");
+
+    public final StringPath memTel = createString("memTel");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+
+    public final DateTimePath<java.util.Date> signDate = createDateTime("signDate", java.util.Date.class);
 
     public QUserEntity(String variable) {
         super(UserEntity.class, forVariable(variable));

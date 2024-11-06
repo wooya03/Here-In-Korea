@@ -11,12 +11,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class QuestionDTO {
-    private Long q_id;
+    private Long qId;
     private String title;
-    private String q_category;
-    private String q_contents;
-    private Boolean q_status;
-    private UserEntity user;
+    private String qCategory;
+    private String qContents;
+    private Boolean qStatus;
+    private String userId;
+    private String userName;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 }

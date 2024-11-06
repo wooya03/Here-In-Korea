@@ -9,6 +9,10 @@ public interface QuestionService {
     QuestionDTO get(Long id);
 
     default QuestionDTO entityToDTO(QuestionEntity entity, UserEntity user, Long replyCount){
+        return QuestionDTO.builder().build();
+    }
+
+    default QuestionEntity dtoToEntity(QuestionDTO dto){
         return null;
     }
 }
