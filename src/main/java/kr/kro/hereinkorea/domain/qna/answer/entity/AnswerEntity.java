@@ -1,8 +1,8 @@
 package kr.kro.hereinkorea.domain.qna.answer.entity;
 
 import jakarta.persistence.*;
+import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
-import kr.kro.hereinkorea.domain.user.Entity.UserEntity;
 import kr.kro.hereinkorea.global.entity.BaseEntity;
 import lombok.*;
 
@@ -21,7 +21,7 @@ public class AnswerEntity extends BaseEntity {
     private String q_contents;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private UserEntity user;
+    private MemberEntity user;
 
     @OneToOne(fetch = FetchType.LAZY) // 지연
     private QuestionEntity question; // 1 : 1

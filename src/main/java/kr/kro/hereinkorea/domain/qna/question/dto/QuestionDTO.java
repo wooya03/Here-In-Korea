@@ -1,6 +1,6 @@
 package kr.kro.hereinkorea.domain.qna.question.dto;
 
-import kr.kro.hereinkorea.domain.user.Entity.UserEntity;
+import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ public class QuestionDTO {
     private String q_category;
     private String q_contents;
     private Boolean q_status;
-    private UserEntity user;
+    private MemberEntity user;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 }

@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.domain.user;
+package kr.kro.hereinkorea.domain.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -7,14 +7,14 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import kr.kro.hereinkorea.domain.user.Entity.UserEntity;
+import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 
 
 /**
  * QUserEntity is a Querydsl query type for UserEntity
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QUserEntity extends EntityPathBase<UserEntity> {
+public class QUserEntity extends EntityPathBase<MemberEntity> {
 
     private static final long serialVersionUID = -1546980339L;
 
@@ -31,15 +31,15 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
     public QUserEntity(String variable) {
-        super(UserEntity.class, forVariable(variable));
+        super(MemberEntity.class, forVariable(variable));
     }
 
-    public QUserEntity(Path<? extends UserEntity> path) {
+    public QUserEntity(Path<? extends MemberEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QUserEntity(PathMetadata metadata) {
-        super(UserEntity.class, metadata);
+        super(MemberEntity.class, metadata);
     }
 
 }

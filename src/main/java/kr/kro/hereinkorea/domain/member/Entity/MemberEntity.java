@@ -1,19 +1,18 @@
-package kr.kro.hereinkorea.domain.user.Entity;
+package kr.kro.hereinkorea.domain.member.Entity;
 
 import jakarta.persistence.*;
 import kr.kro.hereinkorea.global.entity.BaseEntity;
 import lombok.*;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "member")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class UserEntity extends BaseEntity {
+public class MemberEntity extends BaseEntity {
     @Id
     @Column(length = 30)
     private String memId;

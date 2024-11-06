@@ -1,7 +1,7 @@
 package kr.kro.hereinkorea.domain.qna.question.entity;
 
 import jakarta.persistence.*;
-import kr.kro.hereinkorea.domain.user.Entity.UserEntity;
+import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.global.entity.BaseEntity;
 import lombok.*;
 
@@ -29,6 +29,6 @@ public class QuestionEntity extends BaseEntity {
     private Boolean q_status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private UserEntity user;
+    private MemberEntity user;
 
 }

@@ -40,7 +40,7 @@ public class QQuestionEntity extends EntityPathBase<QuestionEntity> {
 
     public final StringPath q_title = createString("q_title");
 
-    public final kr.kro.hereinkorea.domain.user.Entity.QUserEntity user;
+    public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity user;
 
     public QQuestionEntity(String variable) {
         this(QuestionEntity.class, forVariable(variable), INITS);
@@ -60,7 +60,7 @@ public class QQuestionEntity extends EntityPathBase<QuestionEntity> {
 
     public QQuestionEntity(Class<? extends QuestionEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.user = inits.isInitialized("user") ? new kr.kro.hereinkorea.domain.user.Entity.QUserEntity(forProperty("user")) : null;
+        this.user = inits.isInitialized("user") ? new kr.kro.hereinkorea.domain.member.Entity.QMemberEntity(forProperty("user")) : null;
     }
 
 }
