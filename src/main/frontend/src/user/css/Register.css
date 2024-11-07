@@ -24,21 +24,21 @@
 
 .form_list{
     position:relative;
-    margin-top:30px;
+    margin-top:50px;
     border: 1px solid #000000;
     border-radius: 8px;
     overflow: hidden;
-
 }
 
 .form_list div input{
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .form_item{
     display: flex;
     position:relative;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 .form_item:first-of-type{
@@ -46,18 +46,17 @@
     border-top-right-radius: 8px;
 }
 
-.form_item>input:focus{
-    z-index: 10;
-    outline: 1px solid #007bff;
-    margin-top: -2px;
+.login_form_input:focus{
+    outline: none;
+    background: lightsteelblue;
 }
 
 .form_item+.form_item {
     margin-top: -1px;
 }
 
-.form_item email{
-
+.register_btn > button{
+    position: relative;
+    margin-top: 10%;
 }
-
 
