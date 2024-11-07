@@ -13,6 +13,7 @@ import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js'
+import QuestionList from './qna/js/QuestionList.js';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <><Header/><Main /></>} />
         
-        {/* 어드민 페이지 */}
+        {/* Admin Page */}
         <Route path="/admin" element={<><AdminHeader/><AdminMain /></>} />
         <Route path="/admin/login" element={<><AdminHeader/><AdminLogin /></>} />
         <Route path="/admin/logout" element={<><AdminHeader/><AdminLogout /></>} />
@@ -35,6 +36,9 @@ function App() {
       {/*  Page register*/}
           <Route path="/register" element={<><Header/><Register/></>}/>
 
+      {/* Question Page*/}
+          <Route path="/question" element={<><Header/><QuestionList/></>}/>
+          
       </Routes>
       </main>
   )
