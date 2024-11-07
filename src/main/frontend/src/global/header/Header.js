@@ -1,26 +1,27 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`);
-  const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
   const handleLoginLogout = () => {
     if (isLoggedIn) {
       setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`);
       setIsLoggedIn(false);
+      navigate("/");
     } else {
       setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
       setIsLoggedIn(true);
+      navigate("/loginMain");
     }
   };
 
-  const handleSearch = () => {
-    // 검색 페이지로 이동
-    navigate(`/search`); 
+  const handleSearchClick = () => {
+    console.log("Search button clicked"); // 클릭 여부 확인
+    navigate("/search_page");
   };
 
   return (
@@ -46,14 +47,8 @@ function Header() {
       </div>
 
       <div className="search-container">
-        <input 
-          type="text" 
-          className="search-input" 
-          placeholder="검색어를 입력하세요." 
-          value={searchQuery} 
-          onChange={(e) => setSearchQuery(e.target.value)} // 검색어 입력 상태 업데이트
-        />
-        <button className="search-button" onClick={handleSearch}>검색</button>
+        <input type="text" className="search-input" placeholder="검색어를 입력하세요." />
+        <button className="search-button" onClick={handleSearchClick}>검색</button>
       </div>
 
       <div className="login-container">
