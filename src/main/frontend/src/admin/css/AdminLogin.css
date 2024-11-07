@@ -1,5 +1,5 @@
 /* 로그인 폼 전체를 감싸는 div */
-.login-container {
+.admin-login-container {
     padding: 50px;
     background-color: #fff;
     border-radius: 8px;
@@ -16,7 +16,7 @@ h2 {
 }
 
 /* 입력 필드 스타일 */
-input[type="text"], input[type="password"] {
+.admin-login-input > input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;

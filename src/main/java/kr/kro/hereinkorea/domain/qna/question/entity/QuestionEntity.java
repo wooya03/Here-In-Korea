@@ -1,7 +1,7 @@
 package kr.kro.hereinkorea.domain.qna.question.entity;
 
 import jakarta.persistence.*;
-import kr.kro.hereinkorea.domain.user.Entity.UserEntity;
+import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.global.entity.BaseEntity;
 import lombok.*;
 
@@ -14,21 +14,21 @@ import lombok.*;
 public class QuestionEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long q_id;
+    private Long qId;
 
     @Column(nullable = false, length = 20)
-    private String q_title;
+    private String qTitle;
 
     @Column(nullable = false, length = 4)
-    private String q_category;
+    private String qCategory;
 
     @Column(nullable = false, length = 255)
-    private String q_contents;
+    private String qContents;
 
     @Column(nullable = false)
-    private Boolean q_status;
+    private Boolean qStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private UserEntity user;
+    private MemberEntity member;
 
 }
