@@ -17,7 +17,7 @@ function Header() {
     } else {
       setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`); // 사용자 이미지로 변경
       setIsLoggedIn(true); // 로그인 상태를 true로 변경
-      navigate("/loginMain"); //로그인 페이지로 이동
+      navigate("/login"); //로그인 페이지로 이동
     }
   };
 

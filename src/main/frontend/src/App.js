@@ -31,7 +31,7 @@ function App() {
         <Route path="/admin/qna" element={<><AdminHeader/><QnaManagement /></>} />
 
       {/* Page Login */}
-          <Route path="/LoginMain" element={<><Header/><LoginMain/></>}/>
+          <Route path="/login" element={<><Header/><LoginMain/></>}/>
       {/*  Page register*/}
           <Route path="/register" element={<><Header/><Register/></>}/>
 
