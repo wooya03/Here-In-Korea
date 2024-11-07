@@ -6,6 +6,8 @@ import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 
 public interface QuestionService {
 
+    public void register(QuestionDTO dto);
+
     default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user, Long replyCount){
         return QuestionDTO.builder()
                 .qId(entity.getQId())
