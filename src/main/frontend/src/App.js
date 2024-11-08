@@ -13,6 +13,7 @@ import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js'
+import RegisterAuth from './user/js/RegisterAuth'
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
           <Route path="/login" element={<><Header/><LoginMain/></>}/>
       {/*  Page register*/}
           <Route path="/register" element={<><Header/><Register/></>}/>
+        <Route path="/registerAuth" element={<><Header/><RegisterAuth/></>}/>
+
 
       </Routes>
       </main>
