@@ -13,7 +13,7 @@ import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js'
-import RegisterAuth from './user/js/RegisterAuth'
+import RegisterAuth from './user/js/RegisterAuth.js'
 
 function App() {
   return (
