@@ -20,6 +20,7 @@
     position: relative;
     height: 100%;
     box-shadow: none;
+
 }
 
 .form_list{
@@ -31,7 +32,13 @@
 }
 
 .form_list div input{
+    width: 100%;
+    padding: 10px;
     margin-bottom: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
 .form_item{

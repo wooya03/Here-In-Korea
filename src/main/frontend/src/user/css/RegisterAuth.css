@@ -15,19 +15,33 @@
     top:30%;
     bottom:50%;
 }
-.form_item{
+.auth_form{
     display: block;
+    width:70%;
+    margin:0 auto;
 }
 
-form_item > input{
-    border : 1px solid #003B54;
+.auth_form > input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
-.register_btn {
-    width: 50%;
+.auth_form > input:focus{
+    outline: none;
+    background: lightsteelblue;
+}
+
+.register_btn_form {
+    width: 70%;
     margin-top: 120px;
+
 }
 
-.auth_request_btn{
-
+.register_btn{
+    margin-left: 21%;
 }
