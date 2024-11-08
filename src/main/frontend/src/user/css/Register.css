@@ -55,7 +55,7 @@
     margin-top: -1px;
 }
 
-.register_btn > button{
+.auth_request_btn > button{
     position: relative;
     margin-top: 10%;
 }
