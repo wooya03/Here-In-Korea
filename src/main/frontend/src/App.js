@@ -15,6 +15,8 @@ import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
 import Footer from "./global/footer/Footer.js";
 import SearchPage from "./global/search/search_page";
+import GoogleTranslate from './global/translate/Translate_api.js';
+
 
 
 function App() {
@@ -23,6 +25,11 @@ function App() {
       <Routes>
         {/* 메인 페이지 */}
         <Route path="/" element={<><Header /><Main /></>} />
+
+
+          {/* 검색 API*/}
+          <Route path="/" element={<><GoogleTranslate /></>}/>
+
 
         {/* 검색 페이지 */}
         <Route path="/search_page" element={<><Header /><SearchPage /></>} />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
+import TranslateApi from '../translate/Translate_api';  // 수정된 경로와 파일명
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,6 +27,9 @@ function Header() {
 
   return (
     <header className="header">
+      {/* Google 번역 위젯을 헤더 상단에 추가 */}
+      <TranslateApi />
+
       <div className="logo-container">
         <Link to="/">
           <img className="logo" alt="logo_1" src={`${process.env.PUBLIC_URL}/Image/logo_1.png`} />
