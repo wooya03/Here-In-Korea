@@ -8,6 +8,8 @@ import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 
 public interface QuestionService {
 
+    void register(QuestionDTO dto);
+
     PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
     default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user, Long replyCount){
