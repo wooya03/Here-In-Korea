@@ -14,6 +14,7 @@ import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js'
 import QuestionList from './qna/js/QuestionList.js';
+import QuestionAdd from './qna/js/QuestionAdd.js';
 
 function App() {
   return (
@@ -37,8 +38,8 @@ function App() {
           <Route path="/register" element={<><Header/><Register/></>}/>
 
       {/* Question Page*/}
-          <Route path="/question" element={<><Header/><QuestionList/></>}/>
-          
+          <Route path="/question/list" element={<><Header/><QuestionList/></>}/>
+          <Route path="/question/write" element={<><Header/><QuestionAdd/></>} />
       </Routes>
       </main>
   )
