@@ -1,64 +1,73 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../css/QuestionAdd.css';
+import { useNavigate } from 'react-router-dom';
 
-class QuestionAdd extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questionType: '행사 문의',
-      questionTitle: '',
-      questionContent: ''
-    };
-  }
+const QuestionAdd = () => {
+  const [questions, setQuestions] = useState({
+    questionType: '',
+    questionTitle: '',
+    questionContent: ''
+  });
 
-  handleTypeChange = (event) => {
-    this.setState({ questionType: event.target.value });
+  const navigate = useNavigate();
+
+  const handleTypeChange = (event) => {
+    setQuestions((prev) => ({ ...prev, questionType: event.target.value }));
   };
 
-  handleTitleChange = (event) => {
-    this.setState({ questionTitle: event.target.value });
+  const handleTitleChange = (event) => {
+    setQuestions((prev) => ({ ...prev, questionTitle: event.target.value }));
   };
 
-  handleContentChange = (event) => {
-    this.setState({ questionContent: event.target.value });
+  const handleContentChange = (event) => {
+    setQuestions((prev) => ({ ...prev, questionContent: event.target.value }));
   };
 
-  handleSubmit = () => {
-    // 질문 등록 로직 추가 (예: 상태 업데이트, 서버 전송 등)
+  const handleSubmit = () => {
+    if (questions.questionTitle.trim() === '') {
+      alert('제목을 입력해주세요');
+      return;
+    }
+    if (questions.questionContent.trim() === '') {
+      alert('내용을 입력해주세요');
+      return;
+    }
+
     alert('질문이 등록되었습니다!');
+    navigate('/question/list');
   };
 
-  render() {
-    return (
-      <div className="question-add-container">
-        <div className="question-add-header">
-          <input
-            type="text"
-            value={this.state.questionTitle}
-            onChange={this.handleTitleChange}
-            placeholder="제목을 입력하세요"
-            className="question-title-input"
-          />
-          <button className="submit-button" onClick={this.handleSubmit}>
-            등록
-          </button>
-        </div>
-        <div className="question-type">
-          <select value={this.state.questionType} onChange={this.handleTypeChange}>
-            <option value="행사 문의">행사 문의</option>
-            <option value="숙소 문의">숙소 문의</option>
-            <option value="기타">기타</option>
-          </select>
-        </div>
-        <textarea
-          className="question-content"
-          value={this.state.questionContent}
-          onChange={this.handleContentChange}
-          placeholder="질문 내용을 입력하세요"
+  return (
+    <div className="question-add-container">
+      <div className="question-add-header">
+        <input
+          type="text"
+          value={questions.questionTitle}
+          onChange={handleTitleChange}
+          placeholder="제목을 입력하세요"
+          className="question-title-input"
         />
+        <button className="submit-button" onClick={handleSubmit}>
+          등록
+        </button>
       </div>
-    );
-  }
-}
+      <div className="question-type">
+        <select value={questions.questionType} onChange={handleTypeChange}>
+        <option value="숙소 문의">숙소 문의</option>
+            <option value="행사 문의">행사 문의</option>
+            <option value="리뷰 문의">리뷰 문의</option>
+            <option value="코스 문의">코스 문의</option>
+            <option value="기타 문의">기타 문의</option>
+        </select>
+      </div>
+      <textarea
+        className="question-content"
+        value={questions.questionContent}
+        onChange={handleContentChange}
+        placeholder="질문 내용을 입력하세요"
+      />
+    </div>
+  );
+};
 
 export default QuestionAdd;

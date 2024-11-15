@@ -6,13 +6,15 @@ import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 
+import java.util.List;
+
 public interface QuestionService {
 
     void register(QuestionDTO dto);
 
     PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
-    default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user, Long replyCount){
+    default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user){
         return QuestionDTO.builder()
                 .qId(entity.getQId())
                 .qTitle(entity.getQTitle())

@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
@@ -27,11 +29,11 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-        Page<Object[]> result = questionRepository.getQuestionWithReplyCount(
+        Page<Object[]> result = questionRepository.getQuestionCount(
                 pageRequestDTO.getPageable(Sort.by("id").descending())
         );
         return new PageResultDTO<QuestionDTO, Object[]>(result,
-                en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1], (Long) en[2])
+                en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1])
 
         );
     }
