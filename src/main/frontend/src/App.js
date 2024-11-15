@@ -14,6 +14,7 @@ import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js'
 import RegisterAuth from './user/js/RegisterAuth.js'
+import IdFind from "./user/js/IdFind";
 
 function App() {
   return (
@@ -32,12 +33,12 @@ function App() {
         <Route path="/admin/qna" element={<><AdminHeader/><QnaManagement /></>} />
 
       {/* Page Login */}
-          <Route path="/login" element={<><Header/><LoginMain/></>}/>
-      {/*  Page register*/}
-          <Route path="/register" element={<><Header/><Register/></>}/>
+        <Route path="/login" element={<><Header/><LoginMain/></>}/>
+      {/*  Page register */}
+        <Route path="/register" element={<><Header/><Register/></>}/>
         <Route path="/registerAuth" element={<><Header/><RegisterAuth/></>}/>
-
-
+      {/* page Find user ID/PW */}
+        <Route path="/idFind" element={<><Header/><IdFind/></>}/>
       </Routes>
       </main>
   )
