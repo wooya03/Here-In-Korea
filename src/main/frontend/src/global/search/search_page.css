@@ -43,6 +43,22 @@
     width: 100%; /* 전체 너비 사용 */
 }
 
+.search-page-button{
+
+    padding: 5px 10px;
+    margin-left: 10px;
+    margin-top: -5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 60px;
+}
+
+
+
 /* 드롭다운 스타일 */
 .dropdown {
     margin-left: 10px; /* 검색 입력 박스와 간격 조정 */

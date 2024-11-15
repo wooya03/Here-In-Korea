@@ -28,7 +28,7 @@ const SearchPage = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className="search-button">검색</button>
+        <button className="search-page-button">검색</button>
       </div>
 
       {/* 최근 검색어 표시 */}
