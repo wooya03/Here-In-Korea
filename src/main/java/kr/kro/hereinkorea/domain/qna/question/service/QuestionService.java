@@ -3,10 +3,14 @@ package kr.kro.hereinkorea.domain.qna.question.service;
 import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
+import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 
 public interface QuestionService {
 
     public void register(QuestionDTO dto);
+
+    PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
     default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user, Long replyCount){
         return QuestionDTO.builder()
