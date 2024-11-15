@@ -4,7 +4,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <p>© 2024 Team Project. U H P N.</p>
+      <p>© 2024 Team Project. W H P N.</p>
     </footer>
   );
 }

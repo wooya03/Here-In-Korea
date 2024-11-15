@@ -1,2 +1,5 @@
-package kr.kro.hereinkorea.global.config;public class OpenApiManager {
+package kr.kro.hereinkorea.global.config;
+
+public class OpenApiManager {
+
 }

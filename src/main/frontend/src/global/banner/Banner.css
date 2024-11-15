@@ -1,6 +1,6 @@
 
 .carousel {
-  position: relative; /* Carousel에 위치 속성을 추가 */
+  position: absolute; /* Carousel에 위치 속성을 추가 */
 }
 
 /* 좌우 네비게이션 버튼을 배너의 아래쪽 중간에 배치 */

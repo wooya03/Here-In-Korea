@@ -1,7 +1,5 @@
 package kr.kro.hereinkorea.domain.qna.answer.dto;
 
-import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
-import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,10 +10,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class AnswerDTO {
-    private Long a_id;
-    private String q_contents;
-    private MemberEntity user;
-    private QuestionEntity question;
+    private Long aId;
+    private String aContents;
+    private String memId;
+    private Long qId;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 }

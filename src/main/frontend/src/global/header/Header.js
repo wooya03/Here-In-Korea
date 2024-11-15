@@ -1,28 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Link 추가
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
-import {useNavigate} from "react-router-dom";
+import TranslateApi from '../translate/Translate_api';  // 수정된 경로와 파일명
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
-  const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`); // 초기 이미지를 guest1.png로 설정
-  const navigate = useNavigate(); // 라우터 네비게이트 이동을 위한 생성
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`);
+  const navigate = useNavigate();
 
   const handleLoginLogout = () => {
     if (isLoggedIn) {
-      setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`); // 게스트 이미지로 변경
-      setIsLoggedIn(false); // 로그인 상태를 false로 변경
-      navigate("/");  //로그아웃이후 메인페이지로 이동
-
+      setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`);
+      setIsLoggedIn(false);
+      navigate("/");
     } else {
-      setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`); // 사용자 이미지로 변경
-      setIsLoggedIn(true); // 로그인 상태를 true로 변경
-      navigate("/login"); //로그인 페이지로 이동
+      setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
+      setIsLoggedIn(true);
+      navigate("/loginMain");
     }
+  };
+
+  const handleSearchClick = () => {
+    console.log("Search button clicked"); // 클릭 여부 확인
+    navigate("/search_page");
   };
 
   return (
     <header className="header">
+      {/* Google 번역 위젯을 헤더 상단에 추가 */}
+      <TranslateApi />
+
       <div className="logo-container">
         <Link to="/">
           <img className="logo" alt="logo_1" src={`${process.env.PUBLIC_URL}/Image/logo_1.png`} />
@@ -33,19 +40,19 @@ function Header() {
         <nav className="nav">
           <ul className="menu">
             <li className="menu-item first-item"><Link to="/">메인</Link></li>
-            <li className="menu-item"><Link to="#festival">행사</Link></li>
-            <li className="menu-item"><Link to="#review">리뷰</Link></li>
-            <li className="menu-item"><Link to="#corse">여행코스</Link></li>
-            <li className="menu-item"><Link to="#accommodation">숙박</Link></li>
-            <li className="menu-item"><Link to="#map">지도</Link></li>
-            <li className="menu-item last-item"><Link to="#question">Q&A</Link></li>
+            <li className="menu-item"><Link to="/festival">행사</Link></li>
+            <li className="menu-item"><Link to="/review">리뷰</Link></li>
+            <li className="menu-item"><Link to="/corse">여행코스</Link></li>
+            <li className="menu-item"><Link to="/accommodation">숙박</Link></li>
+            <li className="menu-item"><Link to="/map">지도</Link></li>
+            <li className="menu-item last-item"><Link to="/question/list">Q&A</Link></li>
           </ul>
         </nav>
       </div>
 
       <div className="search-container">
         <input type="text" className="search-input" placeholder="검색어를 입력하세요." />
-        <button className="search-button">검색</button>
+        <button className="search-button" onClick={handleSearchClick}>검색</button>
       </div>
 
       <div className="login-container">

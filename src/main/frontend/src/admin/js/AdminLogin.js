@@ -18,19 +18,19 @@ class AdminLogin extends React.Component {
 
     render() {
         return (
-            <div className='login-container'> 
+            <div className='admin-login-container'> 
                 <form>
                     <h2 id='login_title'> 로그인</h2>
                     <div>
                         <div>
                             {/* 아이디 */}
-                            <div>
+                            <div className='admin-login-input'>
                                 <input type='text' className="input-field" maxLength='20' name='admin_id'
                                     placeholder="ID" />
                             </div>
 
                             {/* 비밀번호 */}
-                            <div>
+                            <div className='admin-login-input'>
                                 <input type='password' className="input-field" maxLength='15' name='admin_password' 
                                     placeholder="PASSWORD" />
                             </div>

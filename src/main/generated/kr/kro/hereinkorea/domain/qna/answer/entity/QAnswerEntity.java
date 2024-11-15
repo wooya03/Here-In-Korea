@@ -24,19 +24,19 @@ public class QAnswerEntity extends EntityPathBase<AnswerEntity> {
 
     public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);
 
-    public final NumberPath<Long> a_id = createNumber("a_id", Long.class);
+    public final StringPath aContents = createString("aContents");
+
+    public final NumberPath<Long> aId = createNumber("aId", Long.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
+    public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity member;
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
-    public final StringPath q_contents = createString("q_contents");
-
     public final kr.kro.hereinkorea.domain.qna.question.entity.QQuestionEntity question;
-
-    public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity user;
 
     public QAnswerEntity(String variable) {
         this(AnswerEntity.class, forVariable(variable), INITS);
@@ -56,8 +56,8 @@ public class QAnswerEntity extends EntityPathBase<AnswerEntity> {
 
     public QAnswerEntity(Class<? extends AnswerEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.member = inits.isInitialized("member") ? new kr.kro.hereinkorea.domain.member.Entity.QMemberEntity(forProperty("member")) : null;
         this.question = inits.isInitialized("question") ? new kr.kro.hereinkorea.domain.qna.question.entity.QQuestionEntity(forProperty("question"), inits.get("question")) : null;
-        this.user = inits.isInitialized("user") ? new kr.kro.hereinkorea.domain.member.Entity.QMemberEntity(forProperty("user")) : null;
     }
 
 }

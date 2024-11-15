@@ -27,20 +27,20 @@ public class QQuestionEntity extends EntityPathBase<QuestionEntity> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
+    public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity member;
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
-    public final StringPath q_category = createString("q_category");
+    public final StringPath qCategory = createString("qCategory");
 
-    public final StringPath q_contents = createString("q_contents");
+    public final StringPath qContents = createString("qContents");
 
-    public final NumberPath<Long> q_id = createNumber("q_id", Long.class);
+    public final NumberPath<Long> qId = createNumber("qId", Long.class);
 
-    public final BooleanPath q_status = createBoolean("q_status");
+    public final BooleanPath qStatus = createBoolean("qStatus");
 
-    public final StringPath q_title = createString("q_title");
-
-    public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity user;
+    public final StringPath qTitle = createString("qTitle");
 
     public QQuestionEntity(String variable) {
         this(QuestionEntity.class, forVariable(variable), INITS);
@@ -60,7 +60,7 @@ public class QQuestionEntity extends EntityPathBase<QuestionEntity> {
 
     public QQuestionEntity(Class<? extends QuestionEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.user = inits.isInitialized("user") ? new kr.kro.hereinkorea.domain.member.Entity.QMemberEntity(forProperty("user")) : null;
+        this.member = inits.isInitialized("member") ? new kr.kro.hereinkorea.domain.member.Entity.QMemberEntity(forProperty("member")) : null;
     }
 
 }
