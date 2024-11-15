@@ -30,3 +30,9 @@ const IdFindKakaoLogin = () => {
 }
 
 export default IdFindKakaoLogin
+
+// 카카오 로그인 jwt 인증여부 판별
+// 기록이 남아있다면 있는 기록으로 연결할지 질문
+// 남아있지 않다면 자체 페이지로 이동
+
+//메인 페이지를 제외한 다른 api 페이지는 각 페이지의 아이디 찾기 페이지로 이동

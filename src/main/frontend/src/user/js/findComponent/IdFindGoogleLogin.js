@@ -9,11 +9,14 @@ const IdFindGoogleLogin = () => {
     const handleClickButton = e => {
         const classNames = e.target.className.split(" ");
         const secondClass = classNames[1];
-        if(secondClass == "move_google"){
+        if(secondClass === "move_google"){
+            //이후 로그인 jwt 구현시 연결 루트 수정 - 구글
             navigate("/login");
-        }else if(secondClass == "move_kakao"){
+        }else if(secondClass === "move_kakao"){
+            //이후 로그인 jwt 구현시 연결 루트 수정 - 카카오
             navigate("/login");
         }else{
+            //이후 로그인 jwt 구현시 연결 루트 수정 - 잘못된 접근 처리
             navigate("/")
         }
         console.log(secondClass);
