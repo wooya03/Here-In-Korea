@@ -61,7 +61,7 @@ const LoginMain = () => {
                             {/* 아이디/비밀번호 찾기 */}
                             <nav role="navigation" aria-label="find or signUp">
                                 <div className="find_wrap">
-                                    <li><a href="/IdFind" className="find_text">아이디 찾기</a></li>
+                                    <li><a href="/idFind" className="find_text">아이디 찾기</a></li>
                                     <li><a href="#none" className="find_text">비밀번호 찾기</a></li>
                                     <li><a href="/register" className="find_text">회원 가입</a></li>
                                 </div>

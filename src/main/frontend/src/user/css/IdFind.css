@@ -1,11 +1,12 @@
-.content{
+.content_find{
     width: 100%;
     height : 500px;
     margin: 0 auto;
     padding: 0;
+    position : relative;
 }
 
-.join_form{
+.form_wrap{
     width : 40%;
     min-width:500px;
     height: 100%;
@@ -14,4 +15,26 @@
     position : relative;
     top:25px;
     bottom:25px;
+}
+
+.move_find_page{
+    border: 2px solid lightsteelblue;
+    background-color: white;
+    color:black;
+    margin-top : 30px;
+}
+
+.move_find_page:hover{
+    background-color: steelblue;
+}
+
+.info_text{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.back_btn{
+    margin-left: 16%;
+    width: 350px;
 }

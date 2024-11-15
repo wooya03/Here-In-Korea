@@ -18,6 +18,7 @@ import SearchPage from "./global/search/search_page";
 import GoogleTranslate from './global/translate/Translate_api.js';
 import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
+import IdFind from "./user/js/IdFind";
 
 function App() {
   return (
@@ -43,10 +44,13 @@ function App() {
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
 
         {/* 로그인 페이지 */}
-        <Route path="/LoginMain" element={<><Header /><LoginMain /></>} />
+        <Route path="/login" element={<><Header /><LoginMain /></>} />
 
         {/* 회원가입 페이지 */}
         <Route path="/register" element={<><Header /><Register /></>} />
+        {/* 아이디/비밀번호 찾기 페이지*/}
+        <Route path="/idfind" element={<><Header /><IdFind /></>} />
+
 
         {/* 질문 페이지 */}
         <Route path="/question/list" element={<><Header /><QuestionList /></>} />
