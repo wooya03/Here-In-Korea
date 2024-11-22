@@ -13,11 +13,11 @@ import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
-import Footer from "./global/footer/Footer.js";
 import SearchPage from "./global/search/search_page";
 import GoogleTranslate from './global/translate/Translate_api.js';
 import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
+import QuestionDetails from './qna/js/QuestionDetails.js';
 
 function App() {
   return (
@@ -51,6 +51,7 @@ function App() {
         {/* 질문 페이지 */}
         <Route path="/question/list" element={<><Header /><QuestionList /></>} />
         <Route path="/question/write" element={<><Header /><QuestionAdd /></>} />
+        <Route path="/question/:id" element={<><Header /><QuestionDetails /></>} />
       </Routes>
     </main>
   );
