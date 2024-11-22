@@ -20,18 +20,29 @@ public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
 
     @Override
-    public void register(QuestionDTO dto) {
+    public void write(QuestionDTO dto) {
+        if (dto.getQContents() == null || dto.getQContents().trim().isEmpty()) {
+            throw new IllegalArgumentException("문의 내용을 입력해주세요.");
+        }
+        if (dto.getQCategory() == null || dto.getQCategory().trim().isEmpty()) {
+            throw new IllegalArgumentException("카테고리 내용을 입력해주세요.");
+        }
+
+        if (dto.getQTitle() == null || dto.getQTitle().trim().isEmpty()) {
+            throw new IllegalArgumentException("제목을 입력해주세요.");
+        }
+        
         QuestionEntity questionEntity = dtoToEntity(dto);
         questionRepository.save(questionEntity);
     }
 
     @Override
     public PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-        Page<Object[]> result = questionRepository.getQuestionWithReplyCount(
+        Page<Object[]> result = questionRepository.getQuestionCount(
                 pageRequestDTO.getPageable(Sort.by("id").descending())
         );
         return new PageResultDTO<QuestionDTO, Object[]>(result,
-                en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1], (Long) en[2])
+                en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1])
 
         );
     }
