@@ -14,11 +14,11 @@ public interface QuestionService {
 
     default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user){
         return QuestionDTO.builder()
-                .qId(entity.getQId())
-                .qTitle(entity.getQTitle())
-                .qCategory(entity.getQCategory())
-                .qContents(entity.getQContents())
-                .qStatus(entity.getQStatus())
+                .id(entity.getQId())
+                .title(entity.getQTitle())
+                .category(entity.getQCategory())
+                .contents(entity.getQContents())
+                .status(entity.getQStatus())
                 .memId(user.getMemId())
                 .memName(user.getMemName())
                 .createdDate(entity.getCreatedDate())
@@ -30,12 +30,16 @@ public interface QuestionService {
         MemberEntity memberEntity = MemberEntity.builder().memId(dto.getMemId()).build();
 
         return QuestionEntity.builder()
-                .qId(dto.getQId())
-                .qTitle(dto.getQTitle())
-                .qCategory(dto.getQCategory())
-                .qContents(dto.getQContents())
-                .qStatus(dto.getQStatus())
+                .qId(dto.getId())
+                .qTitle(dto.getTitle())
+                .qCategory(dto.getCategory())
+                .qContents(dto.getContents())
+                .qStatus(dto.getStatus())
                 .member(memberEntity)
                 .build();
     }
+
+    void delete(Long id);
+
+    QuestionDTO get(Long id);
 }

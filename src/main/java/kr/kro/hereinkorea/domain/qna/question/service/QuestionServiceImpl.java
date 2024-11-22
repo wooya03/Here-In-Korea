@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 @RequiredArgsConstructor
@@ -20,15 +21,15 @@ public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
 
     @Override
-    public void write(QuestionDTO dto) {
-        if (dto.getQContents() == null || dto.getQContents().trim().isEmpty()) {
+    public void write(@RequestBody QuestionDTO dto) {
+        if (dto.getContents() == null || dto.getContents().trim().isEmpty()) {
             throw new IllegalArgumentException("문의 내용을 입력해주세요.");
         }
-        if (dto.getQCategory() == null || dto.getQCategory().trim().isEmpty()) {
+        if (dto.getCategory() == null || dto.getCategory().trim().isEmpty()) {
             throw new IllegalArgumentException("카테고리 내용을 입력해주세요.");
         }
 
-        if (dto.getQTitle() == null || dto.getQTitle().trim().isEmpty()) {
+        if (dto.getTitle() == null || dto.getTitle().trim().isEmpty()) {
             throw new IllegalArgumentException("제목을 입력해주세요.");
         }
         
@@ -45,5 +46,17 @@ public class QuestionServiceImpl implements QuestionService {
                 en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1])
 
         );
+    }
+
+    @Override
+    public void delete(Long id) {
+        questionRepository.deleteById(id);
+    }
+
+    @Override
+    public QuestionDTO get(Long id) {
+        Object result = questionRepository.getQuestionById(id);
+        Object[] arr = (Object[]) result;
+        return entityToDTO((QuestionEntity) arr[0], (MemberEntity) arr[1]);
     }
 }
