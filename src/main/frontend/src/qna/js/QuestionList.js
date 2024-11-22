@@ -23,12 +23,12 @@ function QuestionList() {
         // dtoList에서 데이터를 가져오도록 수정
         const transformedData = res.data.dtoList ? res.data.dtoList.map(item => {
           return {
-            qId: item.qid,  // 질문 ID
-            qTitle: item.qtitle,  // 질문 제목
-            qCategory: item.qcategory,  // 문의 구분
+            id: item.id,  // 질문 ID
+            title: item.title,  // 질문 제목
+            category: item.category,  // 문의 구분
             createdDate: item.createdDate,  // 생성일
-            qStatus: item.qstatus,  // 상태
-            answered: item.qstatus  // 질문의 답변 여부
+            status: item.status,  // 상태
+            answered: item.sstatus  // 질문의 답변 여부
           };
         }) : [];
         setData(transformedData);  // 변환된 데이터를 상태로 설정
@@ -43,6 +43,11 @@ function QuestionList() {
   const handleClick = () => {
     navigate('/question/write');  // 버튼 클릭 시 해당 경로로 이동
   };
+
+  const detailsClick = (id) => {
+    navigate(`/question/${id}`);
+};
+
 
   return (
     <div className="container">
@@ -64,12 +69,12 @@ function QuestionList() {
 
       <div className="question-list">
         {data && data.length > 0 ? data.map((datas) => (
-          <div key={datas.qId} className="question-card">
+          <div key={datas.id} className="question-card">
             <div className="question-header">
-              <span className="question-id">No {datas.qId} {datas.qCategory}</span>
+              <span className="question-id">No {datas.id} {datas.category}</span>
               <span className="question-date">{formatTime(datas.createdDate)}</span> {/* 포맷팅된 시간 표시 */}
             </div>
-            <h3 className="question-title">{datas.qTitle}</h3>
+            <h3 className="question-title" key={datas.id} onClick={() => detailsClick(datas.id)}>{datas.title}</h3>
             <div className="question-status">
               {datas.answered ? (
                 <span className="status answered">✔ 답변완료</span>
