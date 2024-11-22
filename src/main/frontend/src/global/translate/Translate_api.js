@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './Translate_api.css';
 
 const GoogleTranslate = () => {
   useEffect(() => {
@@ -28,7 +27,7 @@ const GoogleTranslate = () => {
         'google_translate_element'
       );
     };
-
+    
     addGoogleTranslateScript();
   }, []);
 
