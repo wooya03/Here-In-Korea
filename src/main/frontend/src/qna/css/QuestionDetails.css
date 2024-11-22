@@ -1,0 +1,53 @@
+/* 기본 스타일 */
+.question-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+/* 제목 영역 스타일 */
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+/* 작성자, 작성일, 문의구분을 일자로 배치 */
+.question-header .info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* 문의사항 스타일 */
+.question-style {
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* 질문 문구 스타일 */
+.question-text {
+    font-size: 1em;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* 답변 스타일 */
+.answer {
+    background-color: #e6ffee;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 5px solid #4caf50;
+    font-size: 0.9em;
+    color: #333;
+    margin-top: 15px;
+}

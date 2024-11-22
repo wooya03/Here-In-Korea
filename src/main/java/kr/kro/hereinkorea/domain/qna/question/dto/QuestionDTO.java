@@ -10,13 +10,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class QuestionDTO {
-    private Long qId;
-    private String qTitle;
-    private String qCategory;
-    private String qContents;
-    private Boolean qStatus;
+    private Long id;
+    private String title;
+    private String category;
+    private String contents;
+    private Boolean status;
     private String memId;
     private String memName;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
+
 }
