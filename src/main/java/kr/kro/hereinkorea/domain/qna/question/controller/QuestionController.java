@@ -6,13 +6,13 @@ import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 
 @RestController
 @RequestMapping("/question")
-@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class QuestionController {
 
@@ -21,6 +21,13 @@ public class QuestionController {
     @GetMapping("/list")
     public PageResultDTO<QuestionDTO, Object[]> list(PageRequestDTO requestDTO){
         return questionService.getList(requestDTO);
+    }
+
+    @GetMapping("/{qId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity findQuestionById(@PathVariable("qId") Long id){
+        QuestionDTO questionDTO = questionService.get(id);
+        return ResponseEntity.ok(questionDTO);
     }
 
     @PostMapping("/write")
@@ -33,6 +40,11 @@ public class QuestionController {
             e.printStackTrace();  // 로그에 에러 출력
             return "문제 발생: " + e.getMessage();
         }
+    }
+
+    @DeleteMapping("/delete/{qId}")
+    public void delete(@PathVariable("qId") Long id){
+        questionService.delete(id);
     }
 
 }
