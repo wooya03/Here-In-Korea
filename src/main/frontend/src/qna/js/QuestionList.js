@@ -1,42 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/QuestionList.css';
 import { useNavigate } from 'react-router-dom';
-import { format } from 'date-fns';
-import axios from 'axios';
 
-function formatTime(dateString) {
-  const date = new Date(dateString);
-  return format(date, 'yyyy-MM-dd h:mm:ss a');
-}
-
-function QuestionList() {
-  const baseUrl = "http://localhost:8080";
-  const [data, setData] = useState([]);  // 빈 배열로 초기화
-
-  useEffect(() => {
-    putSpringData();
-  }, []);
-
-  async function putSpringData() {
-    await axios.get(baseUrl + "/question/list")
-      .then((res) => {
-        // dtoList에서 데이터를 가져오도록 수정
-        const transformedData = res.data.dtoList ? res.data.dtoList.map(item => {
-          return {
-            qId: item.qid,  // 질문 ID
-            qTitle: item.qtitle,  // 질문 제목
-            qCategory: item.qcategory,  // 문의 구분
-            createdDate: item.createdDate,  // 생성일
-            qStatus: item.qstatus,  // 상태
-            answered: item.qstatus  // 질문의 답변 여부
-          };
-        }) : [];
-        setData(transformedData);  // 변환된 데이터를 상태로 설정
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+const QuestionList = () => {
+  const [questions] = useState([
+    {
+      id: 4,
+      type: '숙소 문의',
+      title: '나무호텔 문의 드립니다.',
+      status: '문의 확인중입니다.',
+      answered: false,
+      date: '2024.06.13 18:31'
+    },
+    {
+      id: 3,
+      type: '행사 문의',
+      title: '한강 서래섬 유채꽃 축제 주차공간',
+      status: '답변 완료',
+      answered: true,
+      date: '2024.06.04 22:54'
+    }
+  ]);
 
   const navigate = useNavigate();  // useNavigate 훅 사용
 
@@ -63,25 +47,25 @@ function QuestionList() {
       </div>
 
       <div className="question-list">
-        {data && data.length > 0 ? data.map((datas) => (
-          <div key={datas.qId} className="question-card">
+        {questions.map((question) => (
+          <div key={question.id} className="question-card">
             <div className="question-header">
-              <span className="question-id">No {datas.qId} {datas.qCategory}</span>
-              <span className="question-date">{formatTime(datas.createdDate)}</span> {/* 포맷팅된 시간 표시 */}
+              <span className="question-id">No {question.id}</span>
+              <span className="question-date">{question.date}</span>
             </div>
-            <h3 className="question-title">{datas.qTitle}</h3>
+            <h3 className="question-title">{question.title}</h3>
             <div className="question-status">
-              {datas.answered ? (
-                <span className="status answered">✔ 답변완료</span>
+              {question.answered ? (
+                <span className="status answered">✔ {question.status}</span>
               ) : (
-                <span className="status pending">✖ 답변대기중</span>
+                <span className="status pending">✖ {question.status}</span>
               )}
             </div>
           </div>
-        )) : <p>No data available.</p>}
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default QuestionList;

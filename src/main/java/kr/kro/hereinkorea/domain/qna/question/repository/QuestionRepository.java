@@ -8,14 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> {
 
-    @Query(
-            value = "SELECT q, m " +
-                    "FROM QuestionEntity q " +
-                    "LEFT JOIN q.member m " +
-                    "GROUP BY q ",
-            countQuery = "SELECT COUNT(q) " +
-                    "FROM QuestionEntity q ")
-    Page<Object[]> getQuestionCount(Pageable pageable);
-
+    @Query()
+    Page<Object[]> getQuestionWithReplyCount(Pageable id);
 
 }
