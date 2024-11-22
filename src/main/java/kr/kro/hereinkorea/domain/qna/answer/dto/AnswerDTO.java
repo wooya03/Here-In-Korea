@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class AnswerDTO {
-    private Long aId;
+    private Long id;
     private String aContents;
     private String memId;
-    private Long qId;
+    private Long questionId;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 }
