@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Translate_api.css'
+import './Translate_api.css';
 
 const GoogleTranslate = () => {
   useEffect(() => {
@@ -8,6 +8,12 @@ const GoogleTranslate = () => {
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.onload = () => {
+        console.log("Google Translate script loaded successfully");
+      };
+      script.onerror = (error) => {
+        console.error("Error loading Google Translate script", error);
+      };
       document.body.appendChild(script);
     };
 
@@ -16,7 +22,7 @@ const GoogleTranslate = () => {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: 'ko', // 원래 페이지 언어
-          includedLanguages: 'en,ja,ko', // 일본어 'ja'로 수정
+          includedLanguages: 'en,ja,ko', 
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE // 번역 버튼 레이아웃
         },
         'google_translate_element'
