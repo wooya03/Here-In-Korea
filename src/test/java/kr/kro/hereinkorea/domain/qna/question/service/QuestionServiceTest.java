@@ -18,14 +18,14 @@ class QuestionServiceTest {
     private QuestionRepository questionRepository;
     @Test
     void testInsert() {
-        MemberEntity memberEntity = MemberEntity.builder().memId("user001").build();
+        MemberEntity memberEntity = MemberEntity.builder().memId("user003").build();
 
 
         QuestionEntity questionEntity = QuestionEntity.builder()
-                .qCategory("기타문의")
-                .qTitle("test1")
-                .qStatus(true)
-                .qContents("test111")
+                .qCategory("숙소문의")
+                .qTitle("test4")
+                .qStatus(false)
+                .qContents("test444")
                 .member(memberEntity)
                 .build();
 
