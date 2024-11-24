@@ -18,6 +18,8 @@ import GoogleTranslate from './global/translate/Translate_api.js';
 import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
 import QuestionDetails from './qna/js/QuestionDetails.js';
+import Review from './review/js/Review.js';
+import Course from './course/js/Course.js';
 
 function App() {
   return (
@@ -52,6 +54,13 @@ function App() {
         <Route path="/question/list" element={<><Header /><QuestionList /></>} />
         <Route path="/question/write" element={<><Header /><QuestionAdd /></>} />
         <Route path="/question/:id" element={<><Header /><QuestionDetails /></>} />
+
+        {/* 리뷰 페이지 */}
+        <Route path="/review" element={<><Review /></>} />
+
+        {/* 코스 페이지 */}
+        <Route path="/course" element={<><Course /></>} />
+
       </Routes>
     </main>
   );
