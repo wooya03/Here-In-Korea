@@ -1,0 +1,71 @@
+  .review-write-title {
+    text-align: center;
+    font-size: 24px;
+    color: #003B54;
+    margin-bottom: 20px;
+  }
+  
+  .review-write-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .input-group textarea {
+    resize: vertical;
+    height: 150px;
+  }
+  
+  .input-group input[type="file"] {
+    padding: 5px;
+  }
+  
+  .uploaded-images {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .image-preview {
+    font-size: 12px;
+    color: #555;
+    padding: 5px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+  }
+  
+  .submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  

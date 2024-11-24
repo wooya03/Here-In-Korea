@@ -19,7 +19,9 @@ import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
 import QuestionDetails from './qna/js/QuestionDetails.js';
 import Review from './review/js/Review.js';
+import ReviewWrite from './review/js/ReviewWrite.js'
 import Course from './course/js/Course.js';
+
 
 function App() {
   return (
@@ -57,6 +59,7 @@ function App() {
 
         {/* 리뷰 페이지 */}
         <Route path="/review" element={<><Review /></>} />
+        <Route path="/review/write" element={<><ReviewWrite /></>} />
 
         {/* 코스 페이지 */}
         <Route path="/course" element={<><Course /></>} />

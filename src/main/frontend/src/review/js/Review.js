@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../global/header/Header"; // Header 컴포넌트 불러오기
+import { Link } from "react-router-dom"; 
 import "../css/Review.css"; // Review 컴포넌트 스타일
 
 class Review extends Component {
@@ -40,7 +41,9 @@ class Review extends Component {
                     <h1 className="review-title">
                         리뷰 게시판
                     </h1>
-                    <button className="review-create-btn">작성하기</button> {/* 작성하기 버튼 */}
+                    <Link to="/review/write">
+                        <button className="review-create-btn">등록</button>
+                    </Link>
 
                     {/* 게시글 테이블 */}
                     <table className="review-table">
