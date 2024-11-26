@@ -13,6 +13,7 @@ import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
+import RegisterAuth from "./user/js/RegisterAuth";
 import Footer from "./global/footer/Footer.js";
 import SearchPage from "./global/search/search_page";
 import GoogleTranslate from './global/translate/Translate_api.js';
@@ -48,6 +49,8 @@ function App() {
 
         {/* 회원가입 페이지 */}
         <Route path="/register" element={<><Header /><Register /></>} />
+        <Route path="/registerauth" element={<><Header /><RegisterAuth /></>} />
+
         {/* 아이디/비밀번호 찾기 페이지*/}
         <Route path="/idfind" element={<><Header /><IdFind /></>} />
 

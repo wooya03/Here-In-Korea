@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "../css/Register.css";
 import {useNavigate} from "react-router-dom";
+import registerauth from "./RegisterAuth";
 
 const Register = () =>{
     const navigate = useNavigate();
@@ -56,7 +57,8 @@ const Register = () =>{
     // 인증 버튼 클릭 시 호출
     const handleRegister = () => {
         alert("인증요청되었습니다.")
-        navigate("/registerAuth")
+        navigate("/registerauth")
+
         // if (validate()) {
         //     console.log("유효성 검사를 통과했습니다.");
         //     navigate("/");  // 예시로 '/next' 페이지로 이동

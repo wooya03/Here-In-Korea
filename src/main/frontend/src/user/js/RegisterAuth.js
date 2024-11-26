@@ -8,6 +8,7 @@ const RegisterAuth = () =>{
     const handleRegister = () => {
         alert("회원가입이 완료 되었습니다.");
         navigate("/");
+        // 컴포넌트 간의 state 공유 해서 값을 받아와서 함께 바뀌도록 해야함
     };
 
     return(
