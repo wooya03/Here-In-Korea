@@ -40,7 +40,9 @@
 }
 
 .component_wrap>button{
-    width:30%;
+    width:50%;
     display: grid;
     place-items: center;
+    margin-top: 30px;
+    margin-left: 25%;
 }
