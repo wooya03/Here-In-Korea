@@ -18,6 +18,12 @@ import SearchPage from "./global/search/search_page";
 import GoogleTranslate from './global/translate/Translate_api.js';
 import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
+import RegisterAuth from "./user/js/RegisterAuth";
+import IdFind from "./user/js/IdFind";
+import QuestionDetails from "./qna/js/QuestionDetails";
+import Review from "./review/js/Review";
+import ReviewWrite from "./review/js/ReviewWrite";
+import Course from "./course/js/Course";
 
 function App() {
   return (

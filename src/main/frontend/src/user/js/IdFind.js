@@ -3,8 +3,11 @@ import "../css/IdFind.css";
 import IdFindMainLogin from "../js/findComponent/IdFindMainLogin"
 import IdFindGoogleLogin from "../js/findComponent/IdFindGoogleLogin"
 import IdFindKakaoLogin from "../js/findComponent/IdFindKakaoLogin"
+import {useNavigate} from "react-router-dom";
 
 const IdFind = () => {
+    const navigate = useNavigate();
+
     const selectComponent = {
         hik_log:<IdFindMainLogin/>,
         google_log:<IdFindGoogleLogin/>,
@@ -21,6 +24,10 @@ const IdFind = () => {
     const handleBack = () => {
         setContent(null); // content를 null로 설정해 기본 화면으로 돌아가기
     };
+
+    const handleNext = () => {
+        navigate("/")
+    }
 
     return(
         <div className="content_find">
@@ -42,6 +49,9 @@ const IdFind = () => {
                     {content && selectComponent[content]}
                     {content && <button onClick={handleBack} className="back_btn">
                         뒤로 가기
+                    </button>}
+                    {content === 'hik_log' && <button onClick={handleNext} className="next_btn">
+                        다음
                     </button>}
                 </div>
             </div>
