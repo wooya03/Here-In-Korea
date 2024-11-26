@@ -22,7 +22,7 @@ public class QuestionEntity extends BaseEntity {
     @Column(nullable = false, length = 4)
     private String qCategory;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String qContents;
 
     @Column(nullable = false)

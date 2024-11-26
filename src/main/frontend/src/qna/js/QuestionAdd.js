@@ -1,64 +1,96 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../css/QuestionAdd.css';
 
-class QuestionAdd extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questionType: '행사 문의',
-      questionTitle: '',
-      questionContent: ''
-    };
-  }
+const QuestionAdd = () => {
+  const [questions, setQuestions] = useState({
+    title: '',
+    category: '', 
+    contents: '',
+    status: false,
+    memId: 'user002',
+    memName: '함황여',
+    createdDate: new Date().toISOString(),
+    modifiedDate: new Date().toISOString()
+  });
 
-  handleTypeChange = (event) => {
-    this.setState({ questionType: event.target.value });
+  const navigate = useNavigate();
+
+
+  const handleTitleChange = (event) => {
+    setQuestions((prev) => ({ ...prev, title: event.target.value }));
   };
 
-  handleTitleChange = (event) => {
-    this.setState({ questionTitle: event.target.value });
+  const handleCategoryChange = (event) => {
+    console.log('Selected Category:', event.target.value); // 카테고리 값 확인
+    setQuestions((prev) => ({ ...prev, category: event.target.value }));
+  };
+  
+  const handleContentChange = (event) => {
+    console.log('Content:', event.target.value); // 내용 값 확인
+    setQuestions((prev) => ({ ...prev, contents: event.target.value }));
   };
 
-  handleContentChange = (event) => {
-    this.setState({ questionContent: event.target.value });
+  const handleSubmit = async () => {
+    if (questions.contents.trim() === '') {
+      alert('문의 유형을 선택해주세요');
+      return;
+    }
+    if (questions.title.trim() === '') {
+      alert('제목을 입력해주세요');
+      return;
+    }
+    
+    if (questions.contents.trim() === '') {
+      alert('내용을 입력해주세요');
+      return;
+    }
+
+    try {
+      console.log(questions);
+      // Spring Boot로 데이터 전송
+      const response = await axios.post('http://localhost:8080/question/write', questions);
+      if (response.status === 201) {
+        alert('질문이 등록되었습니다!');
+        navigate('/question/list');
+      }
+    } catch (error) {
+      console.error('질문 등록 중 오류 발생:', error);
+      alert('질문 등록에 실패했습니다.');
+    }
   };
 
-  handleSubmit = () => {
-    // 질문 등록 로직 추가 (예: 상태 업데이트, 서버 전송 등)
-    alert('질문이 등록되었습니다!');
-  };
-
-  render() {
-    return (
-      <div className="question-add-container">
-        <div className="question-add-header">
-          <input
-            type="text"
-            value={this.state.questionTitle}
-            onChange={this.handleTitleChange}
-            placeholder="제목을 입력하세요"
-            className="question-title-input"
-          />
-          <button className="submit-button" onClick={this.handleSubmit}>
-            등록
-          </button>
-        </div>
-        <div className="question-type">
-          <select value={this.state.questionType} onChange={this.handleTypeChange}>
-            <option value="행사 문의">행사 문의</option>
-            <option value="숙소 문의">숙소 문의</option>
-            <option value="기타">기타</option>
-          </select>
-        </div>
-        <textarea
-          className="question-content"
-          value={this.state.questionContent}
-          onChange={this.handleContentChange}
-          placeholder="질문 내용을 입력하세요"
+  return (
+    <div className="question-add-container">
+      <div className="question-add-header">
+        <input
+          type="text"
+          value={questions.title}
+          onChange={handleTitleChange}
+          placeholder="제목을 입력하세요"
+          className="question-title-input"
         />
+        <button className="submit-button" onClick={handleSubmit}>등록</button>
       </div>
-    );
-  }
-}
+      <div className="question-type">
+        <select value={questions.category} onChange={handleCategoryChange}>
+          <option value="">문의 유형 선택</option>
+          <option value="숙소문의">숙소문의</option>
+          <option value="행사문의">행사문의</option>
+          <option value="리뷰문의">리뷰문의</option>
+          <option value="코스문의">코스문의</option>
+          <option value="기타문의">기타문의</option>
+        </select>
+      </div>
+      <textarea
+        className="question-content"
+        value={questions.contents}
+        onChange={handleContentChange}
+        placeholder="질문 내용을 입력하세요"
+      />
+    </div>
+  );
+};
 
 export default QuestionAdd;

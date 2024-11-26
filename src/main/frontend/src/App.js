@@ -13,13 +13,11 @@ import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
-import RegisterAuth from "./user/js/RegisterAuth";
 import Footer from "./global/footer/Footer.js";
 import SearchPage from "./global/search/search_page";
 import GoogleTranslate from './global/translate/Translate_api.js';
 import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
-import IdFind from "./user/js/IdFind";
 
 function App() {
   return (
@@ -58,6 +56,15 @@ function App() {
         {/* 질문 페이지 */}
         <Route path="/question/list" element={<><Header /><QuestionList /></>} />
         <Route path="/question/write" element={<><Header /><QuestionAdd /></>} />
+        <Route path="/question/:id" element={<><Header /><QuestionDetails /></>} />
+
+        {/* 리뷰 페이지 */}
+        <Route path="/review" element={<><Review /></>} />
+        <Route path="/review/write" element={<><ReviewWrite /></>} />
+
+        {/* 코스 페이지 */}
+        <Route path="/course" element={<><Course /></>} />
+
       </Routes>
     </main>
   );
