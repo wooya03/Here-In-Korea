@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 import AdminLogin from './admin/js/AdminLogin.js';
 import AdminMain from './admin/js/AdminMain.js';
 import UserManagement from './admin/js/UserManagement.js';
@@ -7,7 +7,7 @@ import Main from './main/Main.js';
 import LoginMain from "./user/js/LoginMain";
 import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
-import CourseMenagement from './admin/js/CourseManagement.js';
+import CourseManagement from './admin/js/CourseManagement.js';
 import ReviewManagement from './admin/js/ReviewManagement.js';
 import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
@@ -19,20 +19,18 @@ import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
 import QuestionDetails from './qna/js/QuestionDetails.js';
 import Review from './review/js/Review.js';
-import ReviewWrite from './review/js/ReviewWrite.js'
+import ReviewWrite from './review/js/ReviewWrite.js';
 import Course from './course/js/Course.js';
-
 
 function App() {
   return (
-    <main>
       <Routes>
         {/* 메인 페이지 */}
         <Route path="/" element={<><Header /><Main /></>} />
-        
+
         {/* 검색 API */}
-        <Route path="/" element={<><GoogleTranslate /></>}/>
-        
+        <Route path="/translate" element={<GoogleTranslate />} />
+
         {/* 검색 페이지 */}
         <Route path="/search_page" element={<><Header /><SearchPage /></>} />
 
@@ -41,13 +39,13 @@ function App() {
         <Route path="/admin/login" element={<><AdminHeader /><AdminLogin /></>} />
         <Route path="/admin/logout" element={<><AdminHeader /><AdminLogout /></>} />
         <Route path="/admin/user" element={<><AdminHeader /><UserManagement /></>} />
-        <Route path="/admin/course" element={<><AdminHeader /><CourseMenagement /></>} />
+        <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
         <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
         <Route path="/admin/comment" element={<><AdminHeader /><CommentManagement /></>} />
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
 
         {/* 로그인 페이지 */}
-        <Route path="/LoginMain" element={<><Header /><LoginMain /></>} />
+        <Route path="/login" element={<><Header /><LoginMain /></>} />
 
         {/* 회원가입 페이지 */}
         <Route path="/register" element={<><Header /><Register /></>} />
@@ -63,9 +61,7 @@ function App() {
 
         {/* 코스 페이지 */}
         <Route path="/course" element={<><Course /></>} />
-
       </Routes>
-    </main>
   );
 }
 
