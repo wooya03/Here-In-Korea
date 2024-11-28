@@ -24,6 +24,7 @@ import QuestionDetails from "./qna/js/QuestionDetails";
 import Review from "./review/js/Review";
 import ReviewWrite from "./review/js/ReviewWrite";
 import Course from "./course/js/Course";
+import PwFind from "./user/js/PwFind";
 
 function App() {
   return (
@@ -56,7 +57,9 @@ function App() {
         <Route path="/registerauth" element={<><Header /><RegisterAuth /></>} />
 
         {/* 아이디/비밀번호 찾기 페이지*/}
-        <Route path="/idfind" element={<><Header /><IdFind /></>} />
+        <Route path="/find/id" element={<><Header /><IdFind /></>} />
+        {/* 비밀번호 찾기 경로 수정 예정*/}
+        <Route path="/find/pw" element={<><Header /><PwFind /></>} />
 
 
         {/* 질문 페이지 */}
