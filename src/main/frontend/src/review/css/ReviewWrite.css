@@ -1,71 +1,57 @@
+  .review-write-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
   .review-write-title {
-    text-align: center;
     font-size: 24px;
-    color: #003B54;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .review-input-group {
     margin-bottom: 20px;
   }
   
-  .review-write-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input-group label {
-    font-size: 14px;
+  .review-input-group label {
+    display: block;
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   }
   
-  .input-group input,
-  .input-group textarea {
+  .review-hashtag-input,
+  .review-title-input {
+    width: 100%;
     padding: 10px;
+    font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 14px;
   }
   
-  .input-group textarea {
-    resize: vertical;
-    height: 150px;
+  .review-editor {
+    margin-bottom: 20px;
   }
   
-  .input-group input[type="file"] {
-    padding: 5px;
-  }
-  
-  .uploaded-images {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .image-preview {
-    font-size: 12px;
-    color: #555;
-    padding: 5px;
-    border: 1px dashed #ccc;
-    border-radius: 4px;
-  }
-  
-  .submit-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .review-submit-btn-container {
     text-align: center;
   }
   
-  .submit-btn:hover {
+  .review-submit-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .review-submit-btn:hover {
     background-color: #0056b3;
   }
   

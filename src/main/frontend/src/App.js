@@ -13,18 +13,15 @@ import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
-import Footer from "./global/footer/Footer.js";
 import SearchPage from "./global/search/search_page";
 import GoogleTranslate from './global/translate/Translate_api.js';
 import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
-import RegisterAuth from "./user/js/RegisterAuth";
-import IdFind from "./user/js/IdFind";
-import QuestionDetails from "./qna/js/QuestionDetails";
-import Review from "./review/js/Review";
-import ReviewWrite from "./review/js/ReviewWrite";
-import Course from "./course/js/Course";
-import PwFind from "./user/js/PwFind";
+import QuestionDetails from './qna/js/QuestionDetails.js';
+import Review from './review/js/Review.js';
+import ReviewWrite from './review/js/ReviewWrite.js'
+import Course from './course/js/Course.js';
+
 
 function App() {
   return (
@@ -34,8 +31,8 @@ function App() {
         <Route path="/" element={<><Header /><Main /></>} />
         
         {/* 검색 API */}
-        <Route path="/" element={<><GoogleTranslate /></>}/>
-        
+        <Route path="/translate" element={<GoogleTranslate />} />
+
         {/* 검색 페이지 */}
         <Route path="/search_page" element={<><Header /><SearchPage /></>} />
 
@@ -44,7 +41,7 @@ function App() {
         <Route path="/admin/login" element={<><AdminHeader /><AdminLogin /></>} />
         <Route path="/admin/logout" element={<><AdminHeader /><AdminLogout /></>} />
         <Route path="/admin/user" element={<><AdminHeader /><UserManagement /></>} />
-        <Route path="/admin/course" element={<><AdminHeader /><CourseMenagement /></>} />
+        <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
         <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
         <Route path="/admin/comment" element={<><AdminHeader /><CommentManagement /></>} />
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
