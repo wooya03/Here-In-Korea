@@ -26,6 +26,7 @@ import RegisterAuth from "./user/js/RegisterAuth";
 import IdFind from "./user/js/IdFind";
 import PwFind from "./user/js/PwFind";
 import Profile from "./user/js/Profile";
+import Festival from "./festival/js/Festival";
 
 
 function App() {
@@ -78,6 +79,9 @@ function App() {
 
         {/* 코스 페이지 */}
         <Route path="/course" element={<><Course /></>} />
+
+        {/* 행사 페이지 */}
+        <Route path="/festival" element={<><Festival /></>} />
 
       </Routes>
     </main>
