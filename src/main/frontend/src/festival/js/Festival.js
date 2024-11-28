@@ -8,7 +8,8 @@ const Festival = () => {
     <div>
         <Header/>
         <div>이벤트 페이지</div>
-    </div>)
+    </div>
+    )
 }
 
 export default Festival
