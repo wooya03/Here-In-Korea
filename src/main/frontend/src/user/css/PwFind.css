@@ -35,7 +35,7 @@
     border-radius: 8px;
 }
 
-.btn_wrap{
+.content_find_pw_main>.btn_wrap{
     position: relative;
     width:12.5%;
     margin:0 auto;
