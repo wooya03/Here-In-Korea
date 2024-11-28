@@ -25,6 +25,14 @@ function Header() {
     navigate("/search_page");
   };
 
+  const handleMoveProfile = () => {
+    if(isLoggedIn){
+      console.log(isLoggedIn);
+      console.log("act1");
+      navigate("/profile");
+    }
+  };
+
   return (
     <header className="header">
       {/* Google 번역 위젯을 헤더 상단에 추가 */}
@@ -57,7 +65,7 @@ function Header() {
 
       <div className="login-container">
         <div className="guest-image">
-          <img alt="guest" src={guestImage} style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
+            <img alt="guest" src={guestImage} style={{ width: '40px', height: '40px', borderRadius: '50%' }} onClick={handleMoveProfile}/>
         </div>
         <div className="login-button">
           <button onClick={handleLoginLogout}>

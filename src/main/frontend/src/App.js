@@ -21,6 +21,11 @@ import QuestionDetails from './qna/js/QuestionDetails.js';
 import Review from './review/js/Review.js';
 import ReviewWrite from './review/js/ReviewWrite.js'
 import Course from './course/js/Course.js';
+import CourseManagement from "./admin/js/CourseManagement.js";
+import RegisterAuth from "./user/js/RegisterAuth";
+import IdFind from "./user/js/IdFind";
+import PwFind from "./user/js/PwFind";
+import Profile from "./user/js/Profile";
 
 
 function App() {
@@ -57,6 +62,9 @@ function App() {
         <Route path="/find/id" element={<><Header /><IdFind /></>} />
         {/* 비밀번호 찾기 경로 수정 예정*/}
         <Route path="/find/pw" element={<><Header /><PwFind /></>} />
+
+        {/* 프로필 */}
+        <Route path="/profile" element={<><Header /><Profile /></>} />
 
 
         {/* 질문 페이지 */}
