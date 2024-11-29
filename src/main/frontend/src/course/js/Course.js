@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Header from "../../global/header/Header";
 import "../css/Course.css";
+import { Link } from "react-router-dom";
 
 class Course extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      courseData: [
+      courseData: [ 
         { id: 1, title: "서울 예술 투어", description: "서울의 전통과 예술을 체험해요", date: "2024-06-16", participants: 4 },
         { id: 2, title: "충남 문화 투어", description: "충남의 역사와 문화를 배워봐요", date: "2024-03-23", participants: 14 },
         { id: 3, title: "성심당 투어", description: "대전의 인기 있는 소문난 빵집!", date: "2024-05-28", participants: 23 },
@@ -41,7 +42,10 @@ class Course extends Component {
         <Header />
         <div className="course-content">
           <h1 className="course-title">추천 여행 코스</h1>
+          
+          <Link to="/course/write">
           <button className="course-create-btn">등록</button>
+          </Link>
 
           {/* 코스 목록 */}
           <div className="course-list">
