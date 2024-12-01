@@ -16,13 +16,21 @@ function Header() {
     } else {
       setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
       setIsLoggedIn(true);
-      navigate("/loginMain");
+      navigate("/login");
     }
   };
 
   const handleSearchClick = () => {
     console.log("Search button clicked"); // 클릭 여부 확인
     navigate("/search_page");
+  };
+
+  const handleMoveProfile = () => {
+    if(isLoggedIn){
+      console.log(isLoggedIn);
+      console.log("act1");
+      navigate("/profile");
+    }
   };
 
   return (
@@ -57,7 +65,7 @@ function Header() {
 
       <div className="login-container">
         <div className="guest-image">
-          <img alt="guest" src={guestImage} style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
+            <img alt="guest" src={guestImage} style={{ width: '40px', height: '40px', borderRadius: '50%' }} onClick={handleMoveProfile}/>
         </div>
         <div className="login-button">
           <button onClick={handleLoginLogout}>
