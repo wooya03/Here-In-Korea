@@ -19,10 +19,9 @@ public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> 
     Page<Object[]> getQuestionCount(Pageable pageable);
 
 
-    @Query("SELECT q, m, a " +
+    @Query("SELECT q, m " +
             "FROM QuestionEntity q " +
             "LEFT JOIN q.member m " +
-            "LEFT JOIN q.id = a.questionId " +
             "WHERE q.qId = :id " +
             "GROUP BY q ")
     Object getQuestionById(@Param("id") Long id);
