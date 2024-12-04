@@ -15,10 +15,10 @@ import lombok.*;
 public class AnswerEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long aId;
+    private Long id;
 
     @Column(nullable = false, length = 255)
-    private String aContents;
+    private String contents;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private MemberEntity member;
