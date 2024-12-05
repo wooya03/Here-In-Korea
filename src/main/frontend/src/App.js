@@ -21,12 +21,14 @@ import QuestionDetails from './qna/js/QuestionDetails.js';
 import Review from './review/js/Review.js';
 import ReviewWrite from './review/js/ReviewWrite.js'
 import Course from './course/js/Course.js';
+import CourseWrite from "./course/js/CourseWrite.js";
 import CourseManagement from "./admin/js/CourseManagement.js";
 import RegisterAuth from "./user/js/RegisterAuth";
 import IdFind from "./user/js/IdFind";
 import PwFind from "./user/js/PwFind";
 import Profile from "./user/js/Profile";
 import Festival from "./festival/js/Festival";
+
 
 
 function App() {
@@ -79,6 +81,8 @@ function App() {
 
         {/* 코스 페이지 */}
         <Route path="/course" element={<><Course /></>} />
+        <Route path="/course/write" element={<><CourseWrite /></>} />
+
 
         {/* 행사 페이지 */}
         <Route path="/festival" element={<><Festival /></>} />

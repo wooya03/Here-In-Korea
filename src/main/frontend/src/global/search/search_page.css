@@ -156,19 +156,19 @@
 }
 
 /* 코스 제목 스타일 */
-.course-title {
+.s_course-title {
     font-size: 16px; /* 제목 글꼴 크기 설정 */
     font-weight: bold; /* 제목 두껍게 설정 */
 }
 
 /* 코스 태그 스타일 */
-.course-tag {
+.s_course-tag {
     color: #777; /* 태그 색상 설정 */
     font-size: 14px; /* 태그 글꼴 크기 설정 */
 }
 
 /* 코스 날짜 스타일 */
-.course-date {
+.s_course-date {
     font-size: 12px; /* 날짜 글꼴 크기 설정 */
     color: #aaa; /* 날짜 색상 설정 */
 }

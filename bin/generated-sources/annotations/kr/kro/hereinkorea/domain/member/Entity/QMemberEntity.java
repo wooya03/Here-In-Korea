@@ -38,8 +38,6 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final StringPath memPass = createString("memPass");
 
-    public final StringPath memTel = createString("memTel");
-
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 

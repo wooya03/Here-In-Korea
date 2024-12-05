@@ -24,9 +24,9 @@ function QnaManagement() {
         // dtoList에서 데이터를 가져오도록 수정
         const transformedData = res.data.dtoList ? res.data.dtoList.map(item => {
           return {
-            qId: item.qid,  // 질문 ID
-            qTitle: item.qtitle,  // 질문 제목
-            qCategory: item.qcategory,  // 문의 구분
+            id: item.id,  // 질문 ID
+            title: item.title,  // 질문 제목
+            category: item.category,  // 문의 구분
             createdDate: item.createdDate,  // 생성일
             answered: item.qstatus,  // 질문의 답변 여부
             memId : item.memId
@@ -100,10 +100,10 @@ function QnaManagement() {
           <tbody>
           {data && data.length > 0 ? data.map((datas) => (
               <tr key={datas.qId}>
-                <td><input type="checkbox" onChange={(e) => handleCheckboxChange(e, datas.qId)} /></td>
-                <td>{datas.qTitle}</td>
+                <td><input type="checkbox" onChange={(e) => handleCheckboxChange(e, datas.id)} /></td>
+                <td>{datas.title}</td>
                 <td>{datas.memId}</td>
-                <td>{datas.qCategory}</td>
+                <td>{datas.category}</td>
                 <td>{formatTime(datas.createdDate)}</td>
                 {datas.answered ? (
                 <td>✔ 답변완료</td>

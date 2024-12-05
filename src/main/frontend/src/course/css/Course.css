@@ -8,7 +8,7 @@
 
 .course-title {
     text-align: center;
-    right: 700px;
+    right: 600px;
     font-size: 24px;
     color: #003B54;
     margin-bottom: 20px;
@@ -44,7 +44,7 @@
 .course-image-placeholder {
     width: 120px;
     height: 120px;
-    background-color: #d9d9d9; /* 회색 사각형 */
+    background-color: aliceblue; /* 회색 사각형 */
     flex-shrink: 0;
     margin: 10px; /* 이미지와 텍스트 간격 */
     border-radius: 6px; /* 이미지 모서리 둥글게 */
@@ -86,7 +86,7 @@
     position: relative;
     width: 95px;
     height: 40px;
-    transform: translateX(1500%);
+    transform: translateX(1510%);
     background-color: #007bff;
     color: white;
     border: none;
