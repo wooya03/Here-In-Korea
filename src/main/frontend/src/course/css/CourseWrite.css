@@ -1,5 +1,15 @@
+.course-write-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 300px; /* 전체 양옆에 20px 여백 추가 */
+    background: #f9f9f9;
+}
+
 .course-write-content {
     background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .main-image-section {
@@ -22,7 +32,7 @@
     position: relative;
     width: 95px;
     height: 40px;
-    transform: translateX(1690%);
+    transform: translateX(1120%);
     background-color: #6b6b6b;
     color: white;
     border: none;
@@ -38,7 +48,7 @@
     position: relative;
     width: 95px;
     height: 40px;
-    transform: translateX(1700%);
+    transform: translateX(1130%);
     background-color: #e98181;
     color: white;
     border: none;
@@ -47,4 +57,9 @@
     font-size: 13px; /* 글자 크기 조정 */
     transition: background-color 0.3s;
     margin-bottom: 20px;
+}
+
+.course-save-btn:hover,
+.course-cancel-btn:hover {
+  background-color: #ddd;
 }
