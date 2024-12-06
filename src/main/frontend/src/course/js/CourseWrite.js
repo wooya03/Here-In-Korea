@@ -58,9 +58,10 @@ function CourseWrite() {
   };
 
   return (
-    <div className="course-write-container">
+    <div className="course-write-header">
       <Header />
-      <header className="course-write-content">
+    <div className="course-write-container">
+      <div className="course-write-content">
         <h1 className="course-write-title">여행코스 글쓰기</h1>
         <div>
           <button className="course-save-btn" onClick={handleCourseSave}>
@@ -70,7 +71,6 @@ function CourseWrite() {
             취소
           </button>
         </div>
-      </header>
       <main>
         <section className="main-image-section">
           <label className="image-upload">
@@ -135,6 +135,8 @@ function CourseWrite() {
           </button>
         </div>
       </main>
+      </div>
+    </div>
     </div>
   );
 }
