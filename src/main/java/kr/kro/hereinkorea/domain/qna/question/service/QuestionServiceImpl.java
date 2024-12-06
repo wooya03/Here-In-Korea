@@ -1,6 +1,9 @@
 package kr.kro.hereinkorea.domain.qna.question.service;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
+import kr.kro.hereinkorea.domain.qna.answer.entity.AnswerEntity;
+import kr.kro.hereinkorea.domain.qna.answer.repository.AnswerRepository;
 import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
 import kr.kro.hereinkorea.domain.qna.question.repository.QuestionRepository;
@@ -12,6 +15,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.webjars.NotFoundException;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final AnswerRepository answerRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public void write(@RequestBody QuestionDTO dto) {
@@ -50,6 +58,11 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void delete(Long id) {
+        Optional<AnswerEntity> optionalAnswer = answerRepository.findByQuestionId(id);
+
+        optionalAnswer.ifPresent(answerRepository::delete);
+
+        // 질문 삭제
         questionRepository.deleteById(id);
     }
 
@@ -59,4 +72,6 @@ public class QuestionServiceImpl implements QuestionService {
         Object[] arr = (Object[]) result;
         return entityToDTO((QuestionEntity) arr[0], (MemberEntity) arr[1]);
     }
+
+
 }
