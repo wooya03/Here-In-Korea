@@ -1,3 +1,10 @@
+  .review-write-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 300px; /* 전체 양옆에 20px 여백 추가 */
+    background: #f9f9f9;
+  }
+
   .review-write-content {
     background: #fff;
     padding: 20px;
@@ -18,7 +25,7 @@
     position: relative;
     width: 95px;
     height: 40px;
-    transform: translateX(1690%);
+    transform: translateX(1100%);
     background-color: #6b6b6b;
     color: white;
     border: none;
@@ -34,7 +41,7 @@
     position: relative;
     width: 95px;
     height: 40px;
-    transform: translateX(1700%);
+    transform: translateX(1110%);
     background-color: #e98181;
     color: white;
     border: none;

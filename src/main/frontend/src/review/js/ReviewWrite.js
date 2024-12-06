@@ -34,8 +34,9 @@ function ReviewWrite() {
   };
 
   return (
-    <div className="review-write-container">
+    <div className="review-write-header">
       <Header />
+    <div className="review-write-container">
       <div className="review-write-content">
         <h1 className="review-write-title">리뷰 글쓰기</h1>
         <div>
@@ -86,6 +87,7 @@ function ReviewWrite() {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 }
