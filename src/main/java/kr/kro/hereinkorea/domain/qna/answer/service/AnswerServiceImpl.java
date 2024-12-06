@@ -5,10 +5,9 @@ import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
 import kr.kro.hereinkorea.domain.qna.answer.dto.AnswerDTO;
 import kr.kro.hereinkorea.domain.qna.answer.entity.AnswerEntity;
 import kr.kro.hereinkorea.domain.qna.answer.repository.AnswerRepository;
-import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
 import kr.kro.hereinkorea.domain.qna.question.repository.QuestionRepository;
-import kr.kro.hereinkorea.domain.qna.question.service.QuestionService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
