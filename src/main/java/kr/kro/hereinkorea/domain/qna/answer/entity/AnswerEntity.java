@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 public class AnswerEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +26,8 @@ public class AnswerEntity extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY) // 지연
     private QuestionEntity question; // 1 : 1
+
+    public void changeQuestion(QuestionEntity question){
+        this.question = question;
+    }
 }
