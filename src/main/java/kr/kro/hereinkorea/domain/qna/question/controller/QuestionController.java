@@ -23,9 +23,9 @@ public class QuestionController {
         return questionService.getList(requestDTO);
     }
 
-    @GetMapping("/{qId}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity findQuestionById(@PathVariable("qId") Long id){
+    public ResponseEntity findQuestionById(@PathVariable("id") Long id){
         QuestionDTO questionDTO = questionService.get(id);
         return ResponseEntity.ok(questionDTO);
     }
@@ -42,8 +42,8 @@ public class QuestionController {
         }
     }
 
-    @DeleteMapping("/delete/{qId}")
-    public void delete(@PathVariable("qId") Long id){
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Long id){
         questionService.delete(id);
     }
 

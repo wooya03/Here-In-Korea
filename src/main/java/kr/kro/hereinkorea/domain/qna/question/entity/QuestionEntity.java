@@ -11,24 +11,26 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 public class QuestionEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long qId;
+    private Long id;
 
     @Column(nullable = false, length = 20)
-    private String qTitle;
+    private String title;
 
     @Column(nullable = false, length = 4)
-    private String qCategory;
+    private String category;
 
     @Column(nullable = false)
-    private String qContents;
+    private String contents;
 
     @Column(nullable = false)
-    private Boolean qStatus;
+    private Boolean status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private MemberEntity member;
 
+    public void okStatus(){this.status = true;}
 }

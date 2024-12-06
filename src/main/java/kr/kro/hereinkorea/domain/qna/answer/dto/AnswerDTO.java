@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 public class AnswerDTO {
     private Long id;
-    private String aContents;
+    private String contents;
     private String memId;
     private Long questionId;
     private LocalDateTime createdDate;

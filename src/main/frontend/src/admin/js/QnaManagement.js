@@ -3,6 +3,7 @@ import "../css/QnaManagement.css";
 import "../css/Common.css";
 import { format } from 'date-fns';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 function formatTime(dateString) {
@@ -48,6 +49,13 @@ function QnaManagement() {
       setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
     }
   }
+
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate(`/question/${id}/answer/write`); // 버튼 클릭 시 해당 경로로 이동
+  };
+  
 
   async function handleDelete() {
     if (selectedIds.length === 0) {
@@ -99,7 +107,7 @@ function QnaManagement() {
           </thead>
           <tbody>
           {data && data.length > 0 ? data.map((datas) => (
-              <tr key={datas.qId}>
+              <tr key={datas.id}>
                 <td><input type="checkbox" onChange={(e) => handleCheckboxChange(e, datas.id)} /></td>
                 <td>{datas.title}</td>
                 <td>{datas.memId}</td>
@@ -108,7 +116,7 @@ function QnaManagement() {
                 {datas.answered ? (
                 <td>✔ 답변완료</td>
               ) : (
-                <td>✖ 답변대기중</td>
+                <td><button onClick={() => handleClick(datas.id)}>답변 등록</button></td>
               )}
               </tr>
             )) : <tr><td>No data available.</td></tr>}
