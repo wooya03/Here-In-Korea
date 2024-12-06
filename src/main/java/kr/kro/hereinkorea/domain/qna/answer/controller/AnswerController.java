@@ -2,11 +2,8 @@ package kr.kro.hereinkorea.domain.qna.answer.controller;
 
 import kr.kro.hereinkorea.domain.qna.answer.dto.AnswerDTO;
 import kr.kro.hereinkorea.domain.qna.answer.service.AnswerService;
-import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,11 +24,4 @@ public class AnswerController {
             return "문제 발생: " + e.getMessage();
         }
     }
-
-//    @GetMapping("/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity findAnswerById(@PathVariable("id") Long id){
-//        AnswerDTO answerDTO = answerService.get(id);
-//        return ResponseEntity.ok(answerDTO);
-//    }
 }
