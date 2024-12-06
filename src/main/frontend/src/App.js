@@ -28,6 +28,7 @@ import IdFind from "./user/js/IdFind";
 import PwFind from "./user/js/PwFind";
 import Profile from "./user/js/Profile";
 import Festival from "./festival/js/Festival";
+import GoogleMaps from "./maps/js/GoogleMaps";
 
 
 
@@ -83,9 +84,11 @@ function App() {
         <Route path="/course" element={<><Course /></>} />
         <Route path="/course/write" element={<><CourseWrite /></>} />
 
-
         {/* 행사 페이지 */}
         <Route path="/festival" element={<><Festival /></>} />
+
+        {/* 지도 */}
+        <Route path="/maps" element={<><Header/> <GoogleMaps /></>} />
 
       </Routes>
     </main>
