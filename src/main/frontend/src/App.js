@@ -28,6 +28,7 @@ import RegisterAuth from "./user/js/RegisterAuth";
 import IdFind from "./user/js/IdFind";
 import PwFind from "./user/js/PwFind";
 import Profile from "./user/js/Profile";
+import HotelsList from './hotels/js/HotelsList.js';
 
 
 
@@ -85,7 +86,8 @@ function App() {
         <Route path="/course" element={<><Course /></>} />
         <Route path="/course/write" element={<><CourseWrite /></>} />
 
-
+        {/* 숙소 페이지 */}
+        <Route path='/hotels' element={<><Header /><HotelsList /></>} />
       </Routes>
     </main>
   );
