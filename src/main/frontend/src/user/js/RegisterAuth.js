@@ -9,11 +9,33 @@ const RegisterAuth = () =>{
     const [inputCode, setInputCode] = useState(""); // 입력된 인증 코드
     const [error, setError] = useState("");
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         if (inputCode === verificationCode) {
-            alert("회원가입이 완료되었습니다.");
-            console.log("회원가입 데이터:", formData);
-            navigate("/");
+            // 회원가입 데이터를 서버로 전송
+            // 주소는 차후 숨겨서 보안 관리
+            try {
+                const response = await fetch("http://localhost:8080/registerAuth/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    // 서버 응답 처리
+                    const result = await response.text();
+                    console.log(result);
+                    alert("회원가입이 완료되었습니다.");
+                    console.log("회원가입 데이터:", formData);
+                    navigate("/");
+                } else {
+                    const errorMessage = await response.text();
+                    alert("회원가입 실패: " + errorMessage);
+                }
+            } catch (error) {
+                alert("서버와의 통신 중 오류가 발생했습니다: " + error.message);
+            }
         } else {
             console.log("회원가입 데이터:", formData);
             console.log("인증코드", verificationCode);
