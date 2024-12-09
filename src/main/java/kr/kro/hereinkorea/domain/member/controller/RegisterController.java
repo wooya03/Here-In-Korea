@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.domain.member;
+package kr.kro.hereinkorea.domain.member.controller;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/registerAuth")
+@RequestMapping("/user")
 //경로 수정 예정
-public class MemberController {
+public class RegisterController {
     @Autowired
     private  MemberService memberService;
 
-    @PostMapping("/register")
+    @PostMapping("/registerauth")
     public ResponseEntity<String> registerMember(@RequestBody MemberDTO memberDTO) {
         try {
             MemberEntity memberEntity = MemberMapper.createEntity(memberDTO);
@@ -31,6 +31,7 @@ public class MemberController {
             return ResponseEntity.ok("회원가입이 완료되었습니다.");
         } catch (Exception e) {
             // 예외 발생 시
+            // 다른 예외 처리 추후 처리 예정, 지금은 오류 메세지만 출력
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("회원가입 중 오류가 발생했습니다: " + e.getMessage());
         }

@@ -1,15 +1,13 @@
 package kr.kro.hereinkorea.domain.member.service;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
-import kr.kro.hereinkorea.domain.member.MemberRepository;
 import kr.kro.hereinkorea.domain.member.mapper.MemberMapper;
-import lombok.Setter;
+import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class MemberService {
