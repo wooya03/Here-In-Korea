@@ -34,8 +34,9 @@ public class MemberMapper {
 
     }
 
-    public static void joinMember(MemberEntity memberEntity){
+    public static MemberEntity joinMember(MemberEntity memberEntity){
         memberEntity.setRole(MemberRole.USER);      //멤버 권한 : USER
         memberEntity.setSignDate(new Date());       //가입 날짜 현재 시간으로 설정
+        return memberEntity;
     }
 }

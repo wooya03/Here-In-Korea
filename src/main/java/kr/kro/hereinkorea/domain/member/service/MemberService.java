@@ -20,8 +20,8 @@ public class MemberService {
     
     public void joinMember(MemberEntity memberEntity){
         try {
-            MemberMapper.joinMember(memberEntity);  //데이터 가공
-            memberRepository.save(memberEntity);
+            MemberEntity NewMembers = MemberMapper.joinMember(memberEntity);  //데이터 가공
+            memberRepository.save(NewMembers);      //저장
         }catch(Exception e){
             //오류 발생시 처리를 위한 공간
             logger.error("오류 : "+ e.getMessage());  //오류 메세지 출력
