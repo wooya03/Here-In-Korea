@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
-public class MemberEntity extends BaseEntity {
+public class MemberEntity {
     @Id
     @Column(length = 30)
     private String memId;

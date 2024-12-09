@@ -24,23 +24,23 @@ public class QQuestionEntity extends EntityPathBase<QuestionEntity> {
 
     public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);
 
+    public final StringPath category = createString("category");
+
+    public final StringPath contents = createString("contents");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity member;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
-    public final StringPath qCategory = createString("qCategory");
+    public final BooleanPath status = createBoolean("status");
 
-    public final StringPath qContents = createString("qContents");
-
-    public final NumberPath<Long> qId = createNumber("qId", Long.class);
-
-    public final BooleanPath qStatus = createBoolean("qStatus");
-
-    public final StringPath qTitle = createString("qTitle");
+    public final StringPath title = createString("title");
 
     public QQuestionEntity(String variable) {
         this(QuestionEntity.class, forVariable(variable), INITS);

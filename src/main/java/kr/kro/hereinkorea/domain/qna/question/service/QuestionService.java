@@ -14,11 +14,11 @@ public interface QuestionService {
 
     default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user){
         return QuestionDTO.builder()
-                .id(entity.getQId())
-                .title(entity.getQTitle())
-                .category(entity.getQCategory())
-                .contents(entity.getQContents())
-                .status(entity.getQStatus())
+                .id(entity.getId())
+                .title(entity.getTitle())
+                .category(entity.getCategory())
+                .contents(entity.getContents())
+                .status(entity.getStatus())
                 .memId(user.getMemId())
                 .memName(user.getMemName())
                 .createdDate(entity.getCreatedDate())
@@ -30,11 +30,11 @@ public interface QuestionService {
         MemberEntity memberEntity = MemberEntity.builder().memId(dto.getMemId()).build();
 
         return QuestionEntity.builder()
-                .qId(dto.getId())
-                .qTitle(dto.getTitle())
-                .qCategory(dto.getCategory())
-                .qContents(dto.getContents())
-                .qStatus(dto.getStatus())
+                .id(dto.getId())
+                .title(dto.getTitle())
+                .category(dto.getCategory())
+                .contents(dto.getContents())
+                .status(dto.getStatus())
                 .member(memberEntity)
                 .build();
     }
