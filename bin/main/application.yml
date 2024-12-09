@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://hereinkorea.cpo40e060m0q.ap-northeast-2.rds.amazonaws.com:3306/hereinkorea?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: hereuser
+    password: hereuser456$%^
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
