@@ -15,9 +15,4 @@ public class HereinkoreaApplication {
 
 
 	}
-
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
 }
