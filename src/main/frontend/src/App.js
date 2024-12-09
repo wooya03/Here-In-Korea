@@ -57,19 +57,19 @@ function App() {
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
 
         {/* 로그인 페이지 */}
-        <Route path="/login" element={<><Header /><LoginMain /></>} />
+        <Route path="/user/login" element={<><Header /><LoginMain /></>} />
 
         {/* 회원가입 페이지 */}
-        <Route path="/register" element={<><Header /><Register /></>} />
-        <Route path="/registerauth" element={<><Header /><RegisterAuth /></>} />
+        <Route path="/user/register" element={<><Header /><Register /></>} />
+        <Route path="/user/registerauth" element={<><Header /><RegisterAuth /></>} />
 
         {/* 아이디/비밀번호 찾기 페이지*/}
-        <Route path="/find/id" element={<><Header /><IdFind /></>} />
+        <Route path="/user/find/id" element={<><Header /><IdFind /></>} />
         {/* 비밀번호 찾기 경로 수정 예정*/}
-        <Route path="/find/pw" element={<><Header /><PwFind /></>} />
+        <Route path="/user/find/pw" element={<><Header /><PwFind /></>} />
 
         {/* 프로필 */}
-        <Route path="/profile" element={<><Header /><Profile /></>} />
+        <Route path="/user/profile" element={<><Header /><Profile /></>} />
 
 
         {/* 질문 페이지 */}
@@ -88,7 +88,7 @@ function App() {
         <Route path="/course/write" element={<><CourseWrite /></>} />
 
         {/* 행사 페이지 */}
-        <Route path="/festival" element={<><Festival /></>} />
+        <Route path="/event" element={<><Festival /></>} />
 
         {/* 지도 */}
         <Route path="/maps" element={<><Header/> <GoogleMaps /></>} />

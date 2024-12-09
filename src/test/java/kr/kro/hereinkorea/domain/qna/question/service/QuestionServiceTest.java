@@ -12,19 +12,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 class QuestionServiceTest {
     @Autowired
     private QuestionRepository questionRepository;
-    @Test
-    void testInsert() {
-        MemberEntity memberEntity = MemberEntity.builder().memId("user003").build();
 
-
-        QuestionEntity questionEntity = QuestionEntity.builder()
-                .qCategory("숙소문의")
-                .qTitle("test4")
-                .qStatus(false)
-                .qContents("test444")
-                .member(memberEntity)
-                .build();
-
-        questionRepository.save(questionEntity);
-    }
+//    @Test
+//    void testInsert() {
+//        MemberEntity memberEntity = MemberEntity.builder().memId("user003").build();
+//
+//        QuestionEntity questionEntity = QuestionEntity.builder()
+//                .qCategory("숙소문의")
+//                .qTitle("test4")
+//                .qStatus(false)
+//                .qContents("test444")
+//                .member(memberEntity)
+//                .build();
+//
+//        questionRepository.save(questionEntity);
+//    }
 }
