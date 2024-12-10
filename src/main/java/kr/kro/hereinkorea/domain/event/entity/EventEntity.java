@@ -20,10 +20,10 @@ public class EventEntity extends BaseEntity {
     private String title;
 
     @Column(nullable = false)
-    private String arr1;
+    private String addr1;
 
     @Column(nullable = false)
-    private String arr2;
+    private String addr2;
 
     @Column(nullable = false)
     private Double mapx;
@@ -34,12 +34,9 @@ public class EventEntity extends BaseEntity {
     @Column(nullable = false)
     private int areacode;
 
-    @Column(length = 20, nullable = false)
-    private String tel;
-
-    @Column(nullable = false)
+    @Column()
     private Date eventstartdate;
 
-    @Column(nullable = false)
+    @Column()
     private Date eventenddate;
 }

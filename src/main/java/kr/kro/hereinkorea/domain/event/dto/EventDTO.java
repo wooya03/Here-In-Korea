@@ -15,8 +15,8 @@ import java.util.Date;
 public class EventDTO {
     private long contentid;
     private String title;
-    private String arr1;
-    private String arr2;
+    private String addr1;
+    private String addr2;
     private Double mapx;
     private Double mapy;
     private int areacode;
