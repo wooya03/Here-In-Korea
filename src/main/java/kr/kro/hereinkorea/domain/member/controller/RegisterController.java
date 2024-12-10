@@ -7,14 +7,12 @@ import kr.kro.hereinkorea.domain.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 //경로 수정 예정
+@CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true")
 public class RegisterController {
     @Autowired
     private  MemberService memberService;
