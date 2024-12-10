@@ -1,7 +1,6 @@
 package kr.kro.hereinkorea.domain.event.entity;
 
 import jakarta.persistence.*;
-import kr.kro.hereinkorea.domain.hotels.entity.HotelsEntity;
 import lombok.*;
 
 @Entity

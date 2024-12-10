@@ -1,10 +1,6 @@
 package kr.kro.hereinkorea.domain.event.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToOne;
-import kr.kro.hereinkorea.domain.event.entity.EventEntity;
 import lombok.*;
 
 @Builder
