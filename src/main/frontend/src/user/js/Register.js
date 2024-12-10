@@ -120,8 +120,19 @@ const Register = () =>{
 
         // 폼 데이터를 확인 후 이동 (임시로 navigate 사용)
         console.log("전달된 데이터:", formData);
-        navigate("/registerauth",{
-            state:{formData, verificationCode}
+        // navigate("/user/registerauth",{
+        //     state:{formData, verificationCode}
+        // });
+        navigate("/user/registerauth", {
+            state: {
+                memId: formData.id,
+                memPass: formData.pw,
+                memName: formData.uName,
+                birth: formData.birth,
+                email: formData.email,
+                gender: formData.gender,
+                verificationCode: verificationCode,
+            },
         });
     };
 

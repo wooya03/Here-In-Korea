@@ -18,6 +18,7 @@ public class MemberService {
     
     public void joinMember(MemberEntity memberEntity){
         try {
+
             MemberEntity NewMembers = MemberMapper.joinMember(memberEntity);  //데이터 가공
             memberRepository.save(NewMembers);      //저장
         }catch(Exception e){
