@@ -1,0 +1,42 @@
+.event-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    padding: 30px;
+}
+
+.event-card {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.event-image {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;  /* 호텔 이미지 자리 */
+}
+
+.event-info {
+    padding: 10px;
+}
+
+.event-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.event-area {
+    font-size: 14px;
+    color: #777;
+}
+
+.event-date {
+    font-size: 12px;
+    color: #555;
+}
