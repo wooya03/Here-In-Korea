@@ -42,39 +42,39 @@ function HotelsList() {
     function areastring(res){
         switch(res){
             case 1:
-                return "서울";
+                return "#서울";
             case 2:
-                return "인천";
+                return "#인천";
             case 3:
-                return "대전";
+                return "#대전";
             case 4:
-                return "대구";
+                return "#대구";
             case 5:
-                return "광주";
+                return "#광주";
             case 6:
-                return "부산";
+                return "#부산";
             case 7:
-                return "울산";
+                return "#울산";
             case 8:
-                return "세종";
+                return "#세종";
             case 31:
-                return "경기";
+                return "#경기";
             case 32:
-                return "강원";
+                return "#강원";
             case 33:
-                return "충북";
+                return "#충북";
             case 34:
-                return "충남";
+                return "#충남";
             case 35:
-                return "경북";
+                return "#경북";
             case 36:
-                return "경남";
+                return "#경남";
             case 37:
-                return "전북";
+                return "#전북";
             case 38:
-                return "전남";
+                return "#전남";
             case 39:
-                return "제주";    
+                return "#제주";    
         }
     }
     return (
@@ -86,7 +86,7 @@ function HotelsList() {
                             {datas.thumbnail ? (
                                 <img src={datas.thumbnail} alt="thumbnail" width="100%" height="100%" />
                             ) : (
-                                <img src="./noimg.png" alt="no_img" />
+                                <img src={`${process.env.PUBLIC_URL}/Image/noimg.png`} alt="no_img" width="100%" height="100%" />
                             )}
                         </div>
                         <div className="hotel-info">
