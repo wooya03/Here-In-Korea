@@ -23,8 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # Gradle
-
-# Gradle
 .gradle/
 
 # IntelliJ IDEA-specific files
