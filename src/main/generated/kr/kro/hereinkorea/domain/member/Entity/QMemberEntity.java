@@ -33,6 +33,8 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final StringPath memPass = createString("memPass");
 
+    public final EnumPath<kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole> role = createEnum("role", kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole.class);
+
     public final DateTimePath<java.util.Date> signDate = createDateTime("signDate", java.util.Date.class);
 
     public QMemberEntity(String variable) {
