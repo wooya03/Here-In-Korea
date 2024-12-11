@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="961d6712-a513-4a4c-8d68-7591a62021fc" name="변경" comment="답변">
+      <change afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10__8_46__________.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/HereinkoreaApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/MemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/MemberEntityTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QAnswerEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QMemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QQuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionEntity$QuestionEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionServiceTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_/file-system.probe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_/noimg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/global/api/OpenApiController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/HereinkoreaApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/controller/EventController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/dto/EventDTO$EventDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/dto/EventDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/dto/EventImgDTO$EventImgDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/dto/EventImgDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/entity/EventEntity$EventEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/entity/EventEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/entity/EventImgEntity$EventImgEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/entity/EventImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/entity/QEventEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/entity/QEventImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/repository/EventImgRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/repository/EventRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/service/EventApiService$ApiResponse$Body.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/service/EventApiService$ApiResponse$Header.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/service/EventApiService$ApiResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/service/EventApiService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/service/EventService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/event/service/EventServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO$HotelsImgDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity$HotelsImgEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/repository/HotelsImgRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Body.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Header.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity$MemberEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/member/repository/MemberRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/dto/QuestionDTO$QuestionDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/dto/QuestionDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity$QuestionEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/global/common/dto/PageDataResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/global/common/dto/PageRequestDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/global/common/dto/PageResultDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/global/config/JacksonConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/global/config/WebConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/global/entity/BaseEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/kr/kro/hereinkorea/global/entity/QBaseEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/event/entity/QEventEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/event/entity/QEventImgEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/global/entity/QBaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventApiService$ApiResponse$Body.class.uniqueId11" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventApiService$ApiResponse$Header.class.uniqueId5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventApiService$ApiResponse.class.uniqueId2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventApiService.class.uniqueId12" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventController.class.uniqueId8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventDTO$EventDTOBuilder.class.uniqueId6" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventDTO.class.uniqueId3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventImgDTO$EventImgDTOBuilder.class.uniqueId9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventImgDTO.class.uniqueId4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventImgEntity$EventImgEntityBuilder.class.uniqueId10" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventImgEntity.class.uniqueId1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventImgRepository.class.uniqueId7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventService.class.uniqueId15" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EventServiceImpl.class.uniqueId0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/QEventImgEntity.class.uniqueId14" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/QEventImgEntity.java.uniqueId13" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/controller/EventController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/dto/EventDTO$EventDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/dto/EventDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/dto/EventImgDTO$EventImgDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/dto/EventImgDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/entity/EventEntity$EventEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/entity/EventEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/entity/EventImgEntity$EventImgEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/entity/EventImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/entity/QEventEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/entity/QEventImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/repository/EventImgRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/repository/EventRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventApiService$ApiResponse$Body.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventApiService$ApiResponse$Header.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventApiService$ApiResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventApiService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO$HotelsImgDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity$HotelsImgEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/repository/HotelsImgRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Body.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Header.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/global/config/JacksonConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/event/entity/QEventEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/event/entity/QEventImgEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/event/controller/EventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/event/service/EventApiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/event/service/EventServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Here-In-Korea.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/hereinkorea.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/HereinkoreaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/HereinkoreaApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity$QuestionEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity$QuestionEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/test/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/HereinkoreaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/HereinkoreaApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="hereinkorea" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2q08efLw6hYUBaExsyimzrNJTWE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Here-In-Korea [:HereinkoreaApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;애플리케이션.HereinkoreaApplication.executor&quot;: &quot;Run&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="HereinkoreaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kr.kro.hereinkorea.HereinkoreaApplication" />
+      <module name="hereinkorea.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kr.kro.hereinkorea.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Here-In-Korea" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Here-In-Korea" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="애플리케이션.HereinkoreaApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-jbrsdk-17.0.9-8336523bb0d9-19d87a74" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="961d6712-a513-4a4c-8d68-7591a62021fc" name="변경" comment="" />
+      <created>1733788230386</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733788230386</updated>
+    </task>
+    <task id="LOCAL-00001" summary=".">
+      <option name="closed" value="true" />
+      <created>1733788819530</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733788819530</updated>
+    </task>
+    <task id="LOCAL-00002" summary="행사 이미지">
+      <option name="closed" value="true" />
+      <created>1733830374183</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733830374183</updated>
+    </task>
+    <task id="LOCAL-00003" summary="행사">
+      <option name="closed" value="true" />
+      <created>1733830452502</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733830452502</updated>
+    </task>
+    <task id="LOCAL-00004" summary="행사 이미지">
+      <option name="closed" value="true" />
+      <created>1733830518083</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733830518083</updated>
+    </task>
+    <task id="LOCAL-00005" summary="행사 리스트 출력">
+      <option name="closed" value="true" />
+      <created>1733833908547</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733833908547</updated>
+    </task>
+    <task id="LOCAL-00006" summary=".">
+      <option name="closed" value="true" />
+      <created>1733833913922</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733833913922</updated>
+    </task>
+    <task id="LOCAL-00007" summary="AnswerDTO 수정">
+      <option name="closed" value="true" />
+      <created>1733927566151</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733927566151</updated>
+    </task>
+    <task id="LOCAL-00008" summary="AnswerRepo">
+      <option name="closed" value="true" />
+      <created>1733927603888</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733927603888</updated>
+    </task>
+    <task id="LOCAL-00009" summary="답변">
+      <option name="closed" value="true" />
+      <created>1733927648412</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733927648412</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/woo" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="행사" />
+    <MESSAGE value="행사 이미지" />
+    <MESSAGE value="행사 리스트 출력" />
+    <MESSAGE value="." />
+    <MESSAGE value="AnswerDTO 수정" />
+    <MESSAGE value="AnswerRepo" />
+    <MESSAGE value="답변" />
+    <option name="LAST_COMMIT_MESSAGE" value="답변" />
+  </component>
+</project>
