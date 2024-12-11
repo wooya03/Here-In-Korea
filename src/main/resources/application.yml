@@ -20,3 +20,9 @@ spring:
     jackson:
       date-format: yyyy-MM-dd HH:mm:ss
       time-zone: Asia/Seoul
+
+application:
+  jwt:
+    secretKey: c7e38bd6a3a0ceb9c87451a03b51f64b89daeb5d21bdcaec61fef73e142c4800
+    expiration: 9000000 # 15분 access token 테스팅을 위해 현재 시간 늘려놓음 원래시간 : 900000
+    refreshExpiration: 86400000 # 1일 refresh token
