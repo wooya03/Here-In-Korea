@@ -44,6 +44,9 @@
 .form_item{
     display: flex;
     position:relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     box-sizing: border-box;
     z-index: 1;
 }
@@ -67,3 +70,55 @@
     margin-top: 10%;
 }
 
+.name_wrapper {
+    flex: 7;
+    padding-right: 0;
+}
+
+.gender_wrapper {
+    flex: 3;
+    display: flex;
+    align-items: center;
+}
+
+.gender_list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.radio_item {
+    flex:1;
+    text-align: center;
+    position: relative;
+    margin:0;
+}
+
+.radio_item input[type="radio"] {
+    display: none;
+}
+
+.radio_item .gender_label {
+    display: block;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.radio_item:last-child .gender_label {
+    border-left: none; /* 마지막 버튼 왼쪽 경계선 제거 */
+}
+
+.radio_item input[type="radio"]:checked + .gender_label {
+    background-color: lightblue;
+    border-color: steelblue;
+    color: white;
+    font-weight: bold;
+}

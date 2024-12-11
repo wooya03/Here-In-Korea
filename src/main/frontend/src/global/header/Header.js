@@ -16,7 +16,7 @@ function Header() {
     } else {
       setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
       setIsLoggedIn(true);
-      navigate("/login");
+      navigate("/user/login");
     }
   };
 

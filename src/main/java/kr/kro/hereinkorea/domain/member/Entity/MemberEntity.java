@@ -1,6 +1,7 @@
 package kr.kro.hereinkorea.domain.member.Entity;
 
 import jakarta.persistence.*;
+import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.global.entity.BaseEntity;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 public class MemberEntity {
     @Id
     @Column(length = 30)
@@ -37,5 +39,8 @@ public class MemberEntity {
 
     @Column(nullable = true)
     private Date loginDate;
+
+    @Enumerated(EnumType.STRING)
+    private MemberRole role;
 }
 
