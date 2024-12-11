@@ -1,23 +1,27 @@
 package kr.kro.hereinkorea.domain.hotels.dto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HotelsDTO {
-    private Long id;
-    private String name;
-    private String address;
-    private int area_code;
-    private Double hotelMapx;
-    private Double hotelMapy;
+    private Long contentid;
+    private String title;
+    private String addr1;
+    private String addr2;
+    private int areacode;
+    private Double mapx;
+    private Double mapy;
     private String tel;
-    private String detail;
-    private String homepage;
-    private Boolean hasParking;
-    private String checkIn;
-    private String checkOut;
-    private String hotelTag;
+    private String firstimage;
+    private String firstimage2;
+    private LocalDateTime createDate;
+    private LocalDateTime modifiedDate;
 }
+
