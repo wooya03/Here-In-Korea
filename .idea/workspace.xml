@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="961d6712-a513-4a4c-8d68-7591a62021fc" name="변경" comment="." />
+    <list default="true" id="06cdcd0c-d383-4504-be72-90beb0fced82" name="Changes" comment="로그인 구현을 위한 처절한 몸부림">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/hereinkorea.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,14 +27,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="hereinkorea" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -35,317 +42,385 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="package-info" />
         <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/main" />
-  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Julygon&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wooya03/Here-In-Korea.git&quot;,
+    &quot;accountId&quot;: &quot;c7de1e6d-5c12-4f33-9963-3df17fb7388b&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;wooya03&quot;,
+    &quot;repository&quot;: &quot;Here-In-Korea&quot;
+  }
+}</component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2q08efLw6hYUBaExsyimzrNJTWE" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2pmwxHBrUHfK6B8o0Kt9eaQH6OR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Here-In-Korea [:HereinkoreaApplication.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;애플리케이션.HereinkoreaApplication.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build project_here_in_korea.executor": "Run",
+    "Gradle.JwtUtilTest.testGenerateAccessToken.executor": "Run",
+    "Gradle.MemberRepositoryTest.testSelectMember.executor": "Run",
+    "JUnit.MemberRepositoryTest.testSelectMember.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.HereinkoreaApplication.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "#32 on jin",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/USER/project_here_in_korea",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="HereinkoreaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kr.kro.hereinkorea.HereinkoreaApplication" />
-      <module name="hereinkorea.main" />
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="kr.kro.hereinkorea.global.jwt.properties" />
+      <recent name="kr.kro.hereinkorea.domain.member" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.HereinkoreaApplication">
+    <configuration name="JwtUtilTest.testGenerateAccessToken" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;kr.kro.hereinkorea.global.jwt.properties.JwtUtilTest.testGenerateAccessToken&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="MemberRepositoryTest.testSelectMember" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;kr.kro.hereinkorea.domain.member.MemberRepositoryTest.testSelectMember&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="MemberRepositoryTest.testSelectMember" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hereinkorea.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kr.kro.hereinkorea.*" />
+          <option name="PATTERN" value="kr.kro.hereinkorea.domain.member.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="kr.kro.hereinkorea.domain.member" />
+      <option name="MAIN_CLASS_NAME" value="kr.kro.hereinkorea.domain.member.MemberRepositoryTest" />
+      <option name="METHOD_NAME" value="testSelectMember" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Here-In-Korea" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Here-In-Korea" />
-      <option name="filePath" />
+    <configuration name="HereinkoreaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="kr.kro.hereinkorea.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="kr.kro.hereinkorea.HereinkoreaApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="애플리케이션.HereinkoreaApplication" />
+        <item itemvalue="Gradle.JwtUtilTest.testGenerateAccessToken" />
+        <item itemvalue="Gradle.MemberRepositoryTest.testSelectMember" />
+        <item itemvalue="JUnit.MemberRepositoryTest.testSelectMember" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.9-jbrsdk-17.0.9-8336523bb0d9-19d87a74" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="961d6712-a513-4a4c-8d68-7591a62021fc" name="변경" comment="" />
-      <created>1733788230386</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="06cdcd0c-d383-4504-be72-90beb0fced82" name="Changes" comment="" />
+      <created>1733384804622</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1733788230386</updated>
+      <updated>1733384804622</updated>
+      <workItem from="1733384806317" duration="548000" />
+      <workItem from="1733448283355" duration="4075000" />
+      <workItem from="1733453046780" duration="4420000" />
+      <workItem from="1733720020112" duration="3533000" />
+      <workItem from="1733730106181" duration="253000" />
+      <workItem from="1733730368690" duration="64000" />
+      <workItem from="1733730469394" duration="527000" />
+      <workItem from="1733731008364" duration="1943000" />
+      <workItem from="1733736588909" duration="9830000" />
+      <workItem from="1733881461868" duration="4127000" />
+      <workItem from="1733885650524" duration="10938000" />
+      <workItem from="1733929217320" duration="297000" />
+      <workItem from="1733929767724" duration="570000" />
     </task>
-    <task id="LOCAL-00001" summary=".">
+    <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
-      <created>1733788819530</created>
+      <created>1733385329535</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1733788819530</updated>
+      <updated>1733385329535</updated>
     </task>
-    <task id="LOCAL-00002" summary="행사 이미지">
+    <task id="LOCAL-00002" summary="지도페이지">
       <option name="closed" value="true" />
-      <created>1733830374183</created>
+      <created>1733452024027</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1733830374183</updated>
+      <updated>1733452024027</updated>
     </task>
-    <task id="LOCAL-00003" summary="행사">
+    <task id="LOCAL-00003" summary="member join(signIn) create base file">
       <option name="closed" value="true" />
-      <created>1733830452502</created>
+      <created>1733468372384</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1733830452502</updated>
+      <updated>1733468372384</updated>
     </task>
-    <task id="LOCAL-00004" summary="행사 이미지">
+    <task id="LOCAL-00004" summary="회원가입 로직 구현">
       <option name="closed" value="true" />
-      <created>1733830518083</created>
+      <created>1733721245453</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1733830518083</updated>
+      <updated>1733721245453</updated>
     </task>
-    <task id="LOCAL-00005" summary="행사 리스트 출력">
+    <task id="LOCAL-00005" summary="회원가입 로직 구현(프론트)">
       <option name="closed" value="true" />
-      <created>1733833908547</created>
+      <created>1733721257605</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1733833908547</updated>
+      <updated>1733721257605</updated>
     </task>
-    <task id="LOCAL-00006" summary=".">
+    <task id="LOCAL-00006" summary="풀을위한 커밋">
       <option name="closed" value="true" />
-      <created>1733833913922</created>
+      <created>1733731378346</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1733833913922</updated>
+      <updated>1733731378346</updated>
     </task>
-    <task id="LOCAL-00007" summary="AnswerDTO 수정">
+    <task id="LOCAL-00007" summary="경로 수정 및 주석 추가">
       <option name="closed" value="true" />
-      <created>1733927566151</created>
+      <created>1733731431359</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1733927566151</updated>
+      <updated>1733731431359</updated>
     </task>
-    <task id="LOCAL-00008" summary="AnswerRepo">
+    <task id="LOCAL-00008" summary="경로 수정 및 주석 추가">
       <option name="closed" value="true" />
-      <created>1733927603888</created>
+      <created>1733791075149</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1733927603888</updated>
+      <updated>1733791075149</updated>
     </task>
-    <task id="LOCAL-00009" summary="답변">
+    <task id="LOCAL-00009" summary="gradle,idea,build 파일 들어가지않게 이그노어 수정">
       <option name="closed" value="true" />
-      <created>1733927648412</created>
+      <created>1733791117790</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1733927648412</updated>
+      <updated>1733791117790</updated>
     </task>
-    <task id="LOCAL-00010" summary="행사 API 서비스">
+    <task id="LOCAL-00010" summary="회원가입 프론트, 백 연결 / 테스팅 완료">
       <option name="closed" value="true" />
-      <created>1733927672272</created>
+      <created>1733791163162</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1733927672272</updated>
+      <updated>1733791163162</updated>
     </task>
-    <task id="LOCAL-00011" summary="행사 서비스">
+    <task id="LOCAL-00011" summary="CrossOrigin 도메인 다른점 임시로 맞춘 상태">
       <option name="closed" value="true" />
-      <created>1733927699189</created>
+      <created>1733791193214</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1733927699189</updated>
+      <updated>1733791193214</updated>
     </task>
-    <task id="LOCAL-00012" summary="행사 이미지">
+    <task id="LOCAL-00012" summary="깃 이그노어 수정">
       <option name="closed" value="true" />
-      <created>1733927731543</created>
+      <created>1733791436046</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1733927731543</updated>
+      <updated>1733791436046</updated>
     </task>
-    <task id="LOCAL-00013" summary="행사">
+    <task id="LOCAL-00013" summary="jwt 세팅">
       <option name="closed" value="true" />
-      <created>1733927751750</created>
+      <created>1733796665543</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1733927751750</updated>
+      <updated>1733796665543</updated>
     </task>
-    <task id="LOCAL-00014" summary="답변">
+    <task id="LOCAL-00014" summary="jwt를 위한 처절한 몸부림의 과정">
       <option name="closed" value="true" />
-      <created>1733927765275</created>
+      <created>1733796682851</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1733927765275</updated>
+      <updated>1733796682851</updated>
     </task>
-    <task id="LOCAL-00015" summary="호텔 이미지">
+    <task id="LOCAL-00015" summary="로그인 구현을 위한 처절한 몸부림">
       <option name="closed" value="true" />
-      <created>1733927785391</created>
+      <created>1733902083345</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1733927785391</updated>
+      <updated>1733902083345</updated>
     </task>
-    <task id="LOCAL-00016" summary="호텔 추가 및 출력">
-      <option name="closed" value="true" />
-      <created>1733927821376</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1733927821376</updated>
-    </task>
-    <task id="LOCAL-00017" summary="호텔 api">
-      <option name="closed" value="true" />
-      <created>1733927845005</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1733927845005</updated>
-    </task>
-    <task id="LOCAL-00018" summary=".">
-      <option name="closed" value="true" />
-      <created>1733927871406</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1733927871406</updated>
-    </task>
-    <task id="LOCAL-00019" summary="페이징">
-      <option name="closed" value="true" />
-      <created>1733927882202</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1733927882202</updated>
-    </task>
-    <task id="LOCAL-00020" summary="qclaas">
-      <option name="closed" value="true" />
-      <created>1733927987996</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1733927987996</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Question">
-      <option name="closed" value="true" />
-      <created>1733928024810</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1733928024810</updated>
-    </task>
-    <task id="LOCAL-00022" summary=".">
-      <option name="closed" value="true" />
-      <created>1733928045019</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1733928045019</updated>
-    </task>
-    <task id="LOCAL-00023" summary=".">
-      <option name="closed" value="true" />
-      <created>1733928097695</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1733928097695</updated>
-    </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="jin" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="woo" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="행사 리스트 출력" />
-    <MESSAGE value="AnswerDTO 수정" />
-    <MESSAGE value="AnswerRepo" />
-    <MESSAGE value="행사 API 서비스" />
-    <MESSAGE value="행사 서비스" />
-    <MESSAGE value="행사 이미지" />
-    <MESSAGE value="행사" />
-    <MESSAGE value="답변" />
-    <MESSAGE value="호텔 이미지" />
-    <MESSAGE value="호텔 추가 및 출력" />
-    <MESSAGE value="호텔 api" />
-    <MESSAGE value="페잊이" />
-    <MESSAGE value="qclaas" />
-    <MESSAGE value="Question" />
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="1" />
+    <MESSAGE value="지도페이지" />
+    <MESSAGE value="member join(signIn) create base file" />
+    <MESSAGE value="회원가입 로직 구현" />
+    <MESSAGE value="회원가입 로직 구현(프론트)" />
+    <MESSAGE value="풀을위한 커밋" />
+    <MESSAGE value="경로 수정 및 주석 추가" />
+    <MESSAGE value="gradle,idea,build 파일 들어가지않게 이그노어 수정" />
+    <MESSAGE value="회원가입 프론트, 백 연결 / 테스팅 완료" />
+    <MESSAGE value="CrossOrigin 도메인 다른점 임시로 맞춘 상태" />
+    <MESSAGE value="깃 이그노어 수정" />
+    <MESSAGE value="jwt 세팅" />
+    <MESSAGE value="jwt를 위한 처절한 몸부림의 과정" />
+    <MESSAGE value="로그인 구현을 위한 처절한 몸부림" />
+    <option name="LAST_COMMIT_MESSAGE" value="로그인 구현을 위한 처절한 몸부림" />
   </component>
 </project>
