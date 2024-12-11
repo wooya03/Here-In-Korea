@@ -35,11 +35,6 @@ public class HotelsApiService implements HotelsService {
             + "?serviceKey=Had%2BznoLVPTQg7iygM9Hb%2Ba64OjDqjcztb2seubysp1ivP0dbmpaLeOYyaYhEmdCBu0skkp%2FiZEdP%2BqL%2BrAyew%3D%3D"
             + "&MobileOS=ETC&MobileApp=AppTest&numOfRows=30";
 
-    private static final String DETAIL_INFO_URL = "http://apis.data.go.kr/B551011/KorService1/detailInfo1"
-            + "?serviceKey=Had%2BznoLVPTQg7iygM9Hb%2Ba64OjDqjcztb2seubysp1ivP0dbmpaLeOYyaYhEmdCBu0skkp%2FiZEdP%2BqL%2BrAyew%3D%3D"
-            + "&contentId=%d"
-            + "&MobileOS=ETC&MobileApp=TestApp&_type=json";
-
     public void fetchAndSaveHotels() {
         try {
             String areaBasedListResponse = callApi(AREA_BASED_LIST_URL);
