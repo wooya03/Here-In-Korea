@@ -5,9 +5,18 @@ spring:
     username: hereuser
     password: hereuser456$%^
 
+  profiles:
+    active: default
+
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
+        format_sql: true
     show-sql: true
+
+  spring:
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: Asia/Seoul
