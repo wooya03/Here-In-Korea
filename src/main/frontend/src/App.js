@@ -18,6 +18,7 @@ import GoogleTranslate from './global/translate/Translate_api.js';
 import QuestionList from './qna/js/QuestionList.js';
 import QuestionAdd from './qna/js/QuestionAdd.js';
 import QuestionDetails from './qna/js/QuestionDetails.js';
+import AnswerAdd from './qna/js/AnswerAdd.js';
 import Review from './review/js/Review.js';
 import ReviewWrite from './review/js/ReviewWrite.js'
 import Course from './course/js/Course.js';
@@ -27,6 +28,9 @@ import RegisterAuth from "./user/js/RegisterAuth";
 import IdFind from "./user/js/IdFind";
 import PwFind from "./user/js/PwFind";
 import Profile from "./user/js/Profile";
+import HotelsList from './hotels/js/HotelsList.js';
+import Festival from "./festival/js/Festival";
+import GoogleMaps from "./maps/js/GoogleMaps";
 
 
 
@@ -54,25 +58,27 @@ function App() {
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
 
         {/* 로그인 페이지 */}
-        <Route path="/login" element={<><Header /><LoginMain /></>} />
+        <Route path="/user/login" element={<><Header /><LoginMain /></>} />
 
         {/* 회원가입 페이지 */}
-        <Route path="/register" element={<><Header /><Register /></>} />
-        <Route path="/registerauth" element={<><Header /><RegisterAuth /></>} />
+        <Route path="/user/register" element={<><Header /><Register /></>} />
+        <Route path="/user/registerauth" element={<><Header /><RegisterAuth /></>} />
 
         {/* 아이디/비밀번호 찾기 페이지*/}
-        <Route path="/find/id" element={<><Header /><IdFind /></>} />
+        <Route path="/user/find/id" element={<><Header /><IdFind /></>} />
         {/* 비밀번호 찾기 경로 수정 예정*/}
-        <Route path="/find/pw" element={<><Header /><PwFind /></>} />
+        <Route path="/user/find/pw" element={<><Header /><PwFind /></>} />
 
         {/* 프로필 */}
-        <Route path="/profile" element={<><Header /><Profile /></>} />
+        <Route path="/user/profile" element={<><Header /><Profile /></>} />
 
 
         {/* 질문 페이지 */}
         <Route path="/question/list" element={<><Header /><QuestionList /></>} />
         <Route path="/question/write" element={<><Header /><QuestionAdd /></>} />
         <Route path="/question/:id" element={<><Header /><QuestionDetails /></>} />
+        {/* 답변 페이지 */}
+        <Route path="/question/:id/answer/write" element={<><Header /><AnswerAdd /></>} />
 
         {/* 리뷰 페이지 */}
         <Route path="/review" element={<><Review /></>} />
@@ -82,6 +88,11 @@ function App() {
         <Route path="/course" element={<><Course /></>} />
         <Route path="/course/write" element={<><CourseWrite /></>} />
 
+        {/* 지도 */}
+        <Route path="/maps" element={<><Header/> <GoogleMaps /></>} />
+
+        {/* 숙소 페이지 */}
+        <Route path='/hotels' element={<><Header /><HotelsList /></>} />
 
       </Routes>
     </main>

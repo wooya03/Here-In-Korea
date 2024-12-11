@@ -22,7 +22,7 @@ public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> 
     @Query("SELECT q, m " +
             "FROM QuestionEntity q " +
             "LEFT JOIN q.member m " +
-            "WHERE q.qId = :id " +
+            "WHERE q.id = :id " +
             "GROUP BY q ")
     Object getQuestionById(@Param("id") Long id);
 
