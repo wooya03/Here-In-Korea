@@ -1,6 +1,7 @@
 package kr.kro.hereinkorea.domain.member.service;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.domain.member.exception.NotFoundMemberException;
 import kr.kro.hereinkorea.domain.member.mapper.MemberMapper;
 import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
+
+import java.util.Optional;
 
 @Service
 public class MemberService {
@@ -26,5 +29,10 @@ public class MemberService {
             logger.error("오류 : "+ e.getMessage());  //오류 메세지 출력
         }
 
+    }
+
+
+    public MemberEntity findByMemId(String memId) {
+        return memberRepository.findByMemId(memId).orElseThrow(() -> new NotFoundMemberException());
     }
 }

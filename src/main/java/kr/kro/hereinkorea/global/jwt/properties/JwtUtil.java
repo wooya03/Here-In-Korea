@@ -7,6 +7,7 @@ import kr.kro.hereinkorea.domain.member.mapper.MemberMapper;
 import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 import kr.kro.hereinkorea.global.jwt.enums.JwtType;
+import kr.kro.hereinkorea.global.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -55,8 +56,7 @@ public class JwtUtil {
             return Jwts.parserBuilder()
                     .setSigningKey(jwtProperties.getSecretKey())
                     .build()
-                    .parseClaimsJws(token)
-                    ;
+                    .parseClaimsJws(token);
         } catch (ExpiredJwtException e){
             throw new JwtException("Expired JWT");
         } catch (UnsupportedJwtException e){
@@ -71,25 +71,26 @@ public class JwtUtil {
     }
 
     //사용자 인증
-//    public Authentication getAuthentication(String token) {
-//        Jws<Claims> claims = getClaims(token);
-//
-//        if (isWrongType(claims, JwtType.ACCESS)) {
-//            throw new JwtException("JWT Type Exception!");
-//        }
-//        String memId = claims.getBody().getSubject();
-//
-//        MemberDTO memberDTO = memberRepository.
-//                findByMemId(memId).
-//                map(memberEntity -> MemberMapper.createDTO(memberEntity)
-//                ).orElseThrow(() -> NotFoundMemberException.EXCEPTION
-//                );
-//         //유저디테일 작성예정
-//        CustomUserDetails customUserDetails = CustomUserDetails.create(memberDTO);
-//
-//        return new UsernamePasswordAuthenticationToken
-//                (customUserDetails, null, customUserDetails.getAuthorities());
-//    }
+    public Authentication getAuthentication(String token) {
+        Jws<Claims> claims = getClaims(token);
+
+        if (isWrongType(claims, JwtType.ACCESS)) {
+            throw new JwtException("JWT Type Exception!");
+        }
+        String memId = claims.getBody().getSubject();
+
+        MemberDTO memberDTO = memberRepository
+                .findByMemId(memId)
+                .map(memberEntity -> MemberMapper.createDTO(memberEntity))
+                .orElseThrow(() -> NotFoundMemberException.EXCEPTION
+                );
+
+        CustomUserDetails customUserDetails = CustomUserDetails.create(memberDTO);
+
+        //인증된 사용자 객체, 비밀번호, 권한
+        return new UsernamePasswordAuthenticationToken
+                (customUserDetails, null, customUserDetails.getAuthorities());
+    }
 
     public boolean isWrongType(Jws<Claims> claims, JwtType jwtType) {
         return !(claims.getHeader().get(Header.JWT_TYPE).equals(jwtType.toString()));
