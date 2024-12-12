@@ -14,7 +14,8 @@ public class HotelSearchService {
     private HotelSearchRepository hotelSearchRepository;
 
     // 지역을 기준으로 호텔 검색
+
     public List<HotelsEntity> searchHotelsByTitle(String title) {
-        return hotelSearchRepository.findByTitleLike("%"+title+"%");
+        return hotelSearchRepository.findTop3ByTitleLike("%"+title+"%");
     }
 }
