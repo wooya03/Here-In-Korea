@@ -94,7 +94,7 @@ function App() {
 
         {/* 숙소 페이지 */}
         <Route path='/hotels' element={<><Header /><HotelsList /></>} />
-        <Route path='/hotels/details' element={<><Header /><HotelDetails /></>} />
+        <Route path='/hotels/:id' element={<><Header /><HotelDetails /></>} />
 
       </Routes>
     </main>
