@@ -1,87 +1,146 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  min-width: 1200px;  /* 최소 너비 설정 */
+}
+
 .header {
-    background-color: #003B54;
-    text-align: center;
-    height: 140px;
-    position: sticky;
-  }
-  
-  .logo-container {
-    margin-bottom: 20px;
-  }
-  
-  .logo {
-    width: 120px;
-  }
-  
-  .nav {
-    margin-bottom: 20px;
-  }
-  
-  .menu {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    justify-content: center;
-  }
-  
-  .menu-item {
-    position: relative;
-    margin: 0 10px;
-    padding: 0 10px;
-  }
-  
-  .menu-item a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .menu-item a:hover {
-    text-decoration: underline;
-  }
-  
-  .menu-item::before,
-  .menu-item::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 1px;
-    background-color: white;
-  }
-  
-  .first-item::before {
-    left: -120px;
-    width: 100px;
-  }
-  
-  .last-item::after {
-    right: -120px;
-    width: 100px;
-  }
-  
-  .search-container {
-    margin-top: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .search-icon {
-    position: absolute;
-    left: 620px;
-    color: #003B54;
-    font-size: 20px;
-  }
-  
-  .search-input {
-    width: 700px;
-    padding: 10px 10px 10px 40px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-  
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #003B54;
+  text-align: center;
+  padding: 20px 0;
+  min-height: 150px;
+  height: 100%;
+  z-index: 1;
+}
+
+#google_translate_element {
+  position: absolute;
+  top: 20px; /* 헤더 안에서 고정 */
+  left: 15px;
+  background-color: #ffffff;
+  border: 10px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(112, 105, 105, 0.2);
+  z-index: 3;
+}
+
+
+.logo {
+  width: 130px;
+
+}
+
+.menu-and-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px; /* 로고와 메뉴/검색창 사이의 공간 확보 */
+}
+
+.nav {
+  margin-bottom: 5px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  margin-bottom: 20px;
+}
+
+.menu-item {
+  position: relative;
+  margin: 0 10px;
+  padding: 0 10px;
+}
+
+.menu-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu-item a:hover {
+  text-decoration: underline;
+}
+
+.search-container {
+  position: relative ;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+.search-input { 
+  width: 70% !important;
+  padding: 10px 10px 10px 40px;
+  border: none;
+  border-radius: 30px !important;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: -5px;
+}
+
+.search-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  margin-top: -25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  width: 60px;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.login-container {
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #003B54;
+  z-index: 2;  /* 로그인 컨테이너가 다른 요소들 위에 보이도록 설정 */
+}
+
+.guest-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  margin-right: 20px;
+  background-color: aliceblue;
+}
+
+.guest-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+#google_translate_element {
+  position: 1000px;
+}

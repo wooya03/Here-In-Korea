@@ -1,0 +1,497 @@
+Index: src/main/java/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.member.Entity;\r\n\r\nimport jakarta.persistence.*;\r\nimport kr.kro.hereinkorea.global.entity.BaseEntity;\r\nimport lombok.*;\r\n\r\nimport java.util.Date;\r\n\r\n@Entity\r\n@Table(name = \"member\")\r\n@Builder\r\n@AllArgsConstructor\r\n@NoArgsConstructor(access = AccessLevel.PROTECTED)\r\n@Getter\r\npublic class MemberEntity extends BaseEntity {\r\n    @Id\r\n    @Column(length = 30)\r\n    private String memId;\r\n\r\n    @Column(nullable = false, length = 255)\r\n    private String memName;\r\n\r\n    @Column(nullable = false, length = 30)\r\n    private String memPass;\r\n\r\n    @Column(nullable = false, length = 1)\r\n    private String gender;\r\n\r\n    @Column(nullable = false, length = 10)\r\n    private String birth;\r\n\r\n    @Column(nullable = false, length = 50)\r\n    private String email;\r\n\r\n    @Column(nullable = true)\r\n    private Date signDate;\r\n\r\n    @Column(nullable = true)\r\n    private Date loginDate;\r\n}\r\n\r\n
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.java b/src/main/java/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.java	
+@@ -12,7 +12,7 @@
+ @AllArgsConstructor
+ @NoArgsConstructor(access = AccessLevel.PROTECTED)
+ @Getter
+-public class MemberEntity extends BaseEntity {
++public class MemberEntity {
+     @Id
+     @Column(length = 30)
+     private String memId;
+Index: src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.question.service;\r\n\r\nimport kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;\r\nimport kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;\r\nimport kr.kro.hereinkorea.domain.member.Entity.MemberEntity;\r\nimport kr.kro.hereinkorea.global.common.dto.PageRequestDTO;\r\nimport kr.kro.hereinkorea.global.common.dto.PageResultDTO;\r\n\r\npublic interface QuestionService {\r\n\r\n    void write(QuestionDTO dto);\r\n\r\n    PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO);\r\n\r\n    default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user){\r\n        return QuestionDTO.builder()\r\n                .id(entity.getQId())\r\n                .title(entity.getQTitle())\r\n                .category(entity.getQCategory())\r\n                .contents(entity.getQContents())\r\n                .status(entity.getQStatus())\r\n                .memId(user.getMemId())\r\n                .memName(user.getMemName())\r\n                .createdDate(entity.getCreatedDate())\r\n                .modifiedDate(entity.getModifiedDate())\r\n                .build();\r\n    }\r\n\r\n    default QuestionEntity dtoToEntity(QuestionDTO dto){\r\n        MemberEntity memberEntity = MemberEntity.builder().memId(dto.getMemId()).build();\r\n\r\n        return QuestionEntity.builder()\r\n                .qId(dto.getId())\r\n                .qTitle(dto.getTitle())\r\n                .qCategory(dto.getCategory())\r\n                .qContents(dto.getContents())\r\n                .qStatus(dto.getStatus())\r\n                .member(memberEntity)\r\n                .build();\r\n    }\r\n\r\n    void delete(Long id);\r\n\r\n    QuestionDTO get(Long id);\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.java b/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.java	
+@@ -14,11 +14,11 @@
+ 
+     default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user){
+         return QuestionDTO.builder()
+-                .id(entity.getQId())
+-                .title(entity.getQTitle())
+-                .category(entity.getQCategory())
+-                .contents(entity.getQContents())
+-                .status(entity.getQStatus())
++                .id(entity.getId())
++                .title(entity.getTitle())
++                .category(entity.getCategory())
++                .contents(entity.getContents())
++                .status(entity.getStatus())
+                 .memId(user.getMemId())
+                 .memName(user.getMemName())
+                 .createdDate(entity.getCreatedDate())
+@@ -30,11 +30,11 @@
+         MemberEntity memberEntity = MemberEntity.builder().memId(dto.getMemId()).build();
+ 
+         return QuestionEntity.builder()
+-                .qId(dto.getId())
+-                .qTitle(dto.getTitle())
+-                .qCategory(dto.getCategory())
+-                .qContents(dto.getContents())
+-                .qStatus(dto.getStatus())
++                .id(dto.getId())
++                .title(dto.getTitle())
++                .category(dto.getCategory())
++                .contents(dto.getContents())
++                .status(dto.getStatus())
+                 .member(memberEntity)
+                 .build();
+     }
+Index: src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.question.service;\r\n\r\nimport kr.kro.hereinkorea.domain.member.Entity.MemberEntity;\r\nimport kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;\r\nimport kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;\r\nimport kr.kro.hereinkorea.domain.qna.question.repository.QuestionRepository;\r\nimport kr.kro.hereinkorea.global.common.dto.PageRequestDTO;\r\nimport kr.kro.hereinkorea.global.common.dto.PageResultDTO;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.data.domain.Page;\r\nimport org.springframework.data.domain.Sort;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.transaction.annotation.Transactional;\r\nimport org.springframework.web.bind.annotation.RequestBody;\r\n\r\n@Service\r\n@RequiredArgsConstructor\r\n@Transactional(rollbackFor = Exception.class)\r\npublic class QuestionServiceImpl implements QuestionService {\r\n\r\n    private final QuestionRepository questionRepository;\r\n\r\n    @Override\r\n    public void write(@RequestBody QuestionDTO dto) {\r\n        if (dto.getContents() == null || dto.getContents().trim().isEmpty()) {\r\n            throw new IllegalArgumentException(\"문의 내용을 입력해주세요.\");\r\n        }\r\n        if (dto.getCategory() == null || dto.getCategory().trim().isEmpty()) {\r\n            throw new IllegalArgumentException(\"카테고리 내용을 입력해주세요.\");\r\n        }\r\n\r\n        if (dto.getTitle() == null || dto.getTitle().trim().isEmpty()) {\r\n            throw new IllegalArgumentException(\"제목을 입력해주세요.\");\r\n        }\r\n        \r\n        QuestionEntity questionEntity = dtoToEntity(dto);\r\n        questionRepository.save(questionEntity);\r\n    }\r\n\r\n    @Override\r\n    public PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {\r\n        Page<Object[]> result = questionRepository.getQuestionCount(\r\n                pageRequestDTO.getPageable(Sort.by(\"id\").descending())\r\n        );\r\n        return new PageResultDTO<QuestionDTO, Object[]>(result,\r\n                en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1])\r\n\r\n        );\r\n    }\r\n\r\n    @Override\r\n    public void delete(Long id) {\r\n        questionRepository.deleteById(id);\r\n    }\r\n\r\n    @Override\r\n    public QuestionDTO get(Long id) {\r\n        Object result = questionRepository.getQuestionById(id);\r\n        Object[] arr = (Object[]) result;\r\n        return entityToDTO((QuestionEntity) arr[0], (MemberEntity) arr[1]);\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.java b/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.java	
+@@ -1,6 +1,9 @@
+ package kr.kro.hereinkorea.domain.qna.question.service;
+ 
+ import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
++import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
++import kr.kro.hereinkorea.domain.qna.answer.entity.AnswerEntity;
++import kr.kro.hereinkorea.domain.qna.answer.repository.AnswerRepository;
+ import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
+ import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
+ import kr.kro.hereinkorea.domain.qna.question.repository.QuestionRepository;
+@@ -12,6 +15,9 @@
+ import org.springframework.stereotype.Service;
+ import org.springframework.transaction.annotation.Transactional;
+ import org.springframework.web.bind.annotation.RequestBody;
++import org.webjars.NotFoundException;
++
++import java.util.Optional;
+ 
+ @Service
+ @RequiredArgsConstructor
+@@ -19,6 +25,8 @@
+ public class QuestionServiceImpl implements QuestionService {
+ 
+     private final QuestionRepository questionRepository;
++    private final AnswerRepository answerRepository;
++    private final MemberRepository memberRepository;
+ 
+     @Override
+     public void write(@RequestBody QuestionDTO dto) {
+@@ -50,6 +58,11 @@
+ 
+     @Override
+     public void delete(Long id) {
++        Optional<AnswerEntity> optionalAnswer = answerRepository.findByQuestionId(id);
++
++        optionalAnswer.ifPresent(answerRepository::delete);
++
++        // 질문 삭제
+         questionRepository.deleteById(id);
+     }
+ 
+@@ -59,4 +72,6 @@
+         Object[] arr = (Object[]) result;
+         return entityToDTO((QuestionEntity) arr[0], (MemberEntity) arr[1]);
+     }
++
++
+ }
+Index: src/main/frontend/src/qna/js/QuestionDetails.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useEffect, useState } from 'react';\r\nimport { format } from 'date-fns';\r\nimport axios from 'axios';\r\nimport { useParams } from 'react-router-dom';\r\nimport '../css/QuestionDetails.css';\r\n\r\nfunction QuestionDetails() {\r\n    const baseUrl = \"http://localhost:8080\";\r\n    const [data, setData] = useState();\r\n    const {id} = useParams();\r\n  \r\n    useEffect(() => {\r\n        axios.get(baseUrl + `/question/${id}`)\r\n        .then((res) => {\r\n            setData(res.data);\r\n        })\r\n        .catch((error) => {\r\n            console.error(error);\r\n        });\r\n    }, [id]);\r\n\r\n    if (!data) return <p>No data available.</p>;\r\n\r\n    return (\r\n        <div className=\"question-container\">\r\n            <div className=\"question-title\">\r\n                <h1>{data.title}</h1>\r\n            </div>\r\n            <div className=\"question-header\">\r\n                <div className='info'>\r\n                    <span>작성자 : {data.memName}</span>\r\n                    <span>문의구분 : {data.category}</span>\r\n                    <span>작성일 : {data.createdDate}</span>\r\n                </div>\r\n            </div>\r\n            <div className=\"question-style\">\r\n                <div className=\"question-text\">\r\n                    {data.contents}\r\n                </div>\r\n            </div>\r\n            <div class=\"answer\">\r\n                답변내용\r\n            </div>\r\n        </div>\r\n    )\r\n}\r\n\r\nexport default QuestionDetails;
+===================================================================
+diff --git a/src/main/frontend/src/qna/js/QuestionDetails.js b/src/main/frontend/src/qna/js/QuestionDetails.js
+--- a/src/main/frontend/src/qna/js/QuestionDetails.js	
++++ b/src/main/frontend/src/qna/js/QuestionDetails.js	
+@@ -1,48 +1,78 @@
+ import React, { useEffect, useState } from 'react';
+-import { format } from 'date-fns';
+ import axios from 'axios';
+ import { useParams } from 'react-router-dom';
+ import '../css/QuestionDetails.css';
+ 
+ function QuestionDetails() {
+     const baseUrl = "http://localhost:8080";
+-    const [data, setData] = useState();
+-    const {id} = useParams();
+-  
++    const [questionData, setQuestionData] = useState(null); // 질문 데이터
++    const [answerData, setAnswerData] = useState([]); // 답변 데이터
++    const { id } = useParams();
++
+     useEffect(() => {
++        // 질문 데이터 가져오기
+         axios.get(baseUrl + `/question/${id}`)
+-        .then((res) => {
+-            setData(res.data);
+-        })
+-        .catch((error) => {
+-            console.error(error);
+-        });
++            .then((res) => {
++                const question = res.data;
++                setQuestionData({
++                    id: question.id,
++                    title: question.title,
++                    category: question.category,
++                    contents: question.contents,
++                    createdDate: question.createdDate,
++                    memName: question.memName,
++                    answered: question.qstatus // 답변 상태
++                });
++            })
++            .catch((error) => {
++                console.error('질문 데이터 오류:', error);
++            });
++
++        // 답변 데이터 가져오기
++        axios.get(baseUrl + `/answer/${id}`)
++            .then((res) => {
++                setAnswerData(res.data); // 답변 데이터를 상태에 저장
++            })
++            .catch((error) => {
++                console.error('답변 데이터 오류:', error);
++            });
+     }, [id]);
+ 
+-    if (!data) return <p>No data available.</p>;
++    if (!questionData) return <p>질문 데이터를 불러오는 중...</p>;
+ 
+     return (
+         <div className="question-container">
+             <div className="question-title">
+-                <h1>{data.title}</h1>
++                <h1>{questionData.title}</h1>
+             </div>
+             <div className="question-header">
+-                <div className='info'>
+-                    <span>작성자 : {data.memName}</span>
+-                    <span>문의구분 : {data.category}</span>
+-                    <span>작성일 : {data.createdDate}</span>
++                <div className="info">
++                    <span>작성자: {questionData.memName}</span>
++                    <span>문의구분: {questionData.category}</span>
++                    <span>작성일: {questionData.createdDate}</span>
+                 </div>
+             </div>
+             <div className="question-style">
+                 <div className="question-text">
+-                    {data.contents}
++                    {questionData.contents}
+                 </div>
+             </div>
+-            <div class="answer">
+-                답변내용
+-            </div>
++            <div className="answer">
++                <h2>답변 내용</h2>
++                 {/* {answerData.length > 0 ? (
++                    answerData.map((answer, index) => (
++                        <div key={index} className="answer-item">
++                            <p>{answer.contents}</p>
++                            <span>작성자: {answer.memName}</span>
++                            <span>작성일: {answer.createdDate}</span>
++                        </div>
++                    ))
++                ) : (
++                    <p>등록된 답변이 없습니다.</p>
++                )} */}
++             </div>
+         </div>
+-    )
++    );
+ }
+ 
+-export default QuestionDetails;
+\ No newline at end of file
++export default QuestionDetails;
+Index: src/test/java/kr/kro/hereinkorea/domain/member/MemberEntityTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.member;\r\n\r\nimport kr.kro.hereinkorea.domain.member.repository.MemberRepository;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.boot.test.context.SpringBootTest;\r\n\r\n@SpringBootTest\r\nclass MemberEntityTest {\r\n    @Autowired\r\n    private MemberRepository memberRepository;\r\n\r\n    @Test\r\n    void createTableTest() {\r\n        System.out.println(memberRepository.findById(\"user001\").get().getMemName());\r\n    }\r\n\r\n\r\n}
+===================================================================
+diff --git a/src/test/java/kr/kro/hereinkorea/domain/member/MemberEntityTest.java b/src/test/java/kr/kro/hereinkorea/domain/member/MemberEntityTest.java
+--- a/src/test/java/kr/kro/hereinkorea/domain/member/MemberEntityTest.java	
++++ b/src/test/java/kr/kro/hereinkorea/domain/member/MemberEntityTest.java	
+@@ -1,10 +1,16 @@
+ package kr.kro.hereinkorea.domain.member;
+ 
++import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+ import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
+ import org.junit.jupiter.api.Test;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.boot.test.context.SpringBootTest;
+ 
++import java.text.SimpleDateFormat;
++import java.time.LocalDate;
++import java.time.LocalDateTime;
++import java.util.Date;
++
+ @SpringBootTest
+ class MemberEntityTest {
+     @Autowired
+@@ -14,6 +20,4 @@
+     void createTableTest() {
+         System.out.println(memberRepository.findById("user001").get().getMemName());
+     }
+-
+-
+ }
+\ No newline at end of file
+Index: src/main/java/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.question.entity;\r\n\r\nimport jakarta.persistence.*;\r\nimport kr.kro.hereinkorea.domain.member.Entity.MemberEntity;\r\nimport kr.kro.hereinkorea.global.entity.BaseEntity;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"question\")\r\n@Builder\r\n@AllArgsConstructor\r\n@NoArgsConstructor(access = AccessLevel.PROTECTED)\r\n@Getter\r\npublic class QuestionEntity extends BaseEntity {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long qId;\r\n\r\n    @Column(nullable = false, length = 20)\r\n    private String qTitle;\r\n\r\n    @Column(nullable = false, length = 4)\r\n    private String qCategory;\r\n\r\n    @Column(nullable = false)\r\n    private String qContents;\r\n\r\n    @Column(nullable = false)\r\n    private Boolean qStatus;\r\n\r\n    @ManyToOne(fetch = FetchType.LAZY)\r\n    private MemberEntity member;\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.java b/src/main/java/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.java	
+@@ -11,24 +11,26 @@
+ @AllArgsConstructor
+ @NoArgsConstructor(access = AccessLevel.PROTECTED)
+ @Getter
++@Setter
+ public class QuestionEntity extends BaseEntity {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+-    private Long qId;
++    private Long id;
+ 
+     @Column(nullable = false, length = 20)
+-    private String qTitle;
++    private String title;
+ 
+     @Column(nullable = false, length = 4)
+-    private String qCategory;
++    private String category;
+ 
+     @Column(nullable = false)
+-    private String qContents;
++    private String contents;
+ 
+     @Column(nullable = false)
+-    private Boolean qStatus;
++    private Boolean status;
+ 
+-    @ManyToOne(fetch = FetchType.LAZY)
++    @ManyToOne
+     private MemberEntity member;
+ 
++    public void okStatus(){this.status = true;}
+ }
+Index: src/main/java/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.question.controller;\r\n\r\nimport kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;\r\nimport kr.kro.hereinkorea.domain.qna.question.service.QuestionService;\r\nimport kr.kro.hereinkorea.global.common.dto.PageRequestDTO;\r\nimport kr.kro.hereinkorea.global.common.dto.PageResultDTO;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\n\r\n\r\n@RestController\r\n@RequestMapping(\"/question\")\r\n@RequiredArgsConstructor\r\npublic class QuestionController {\r\n\r\n    private final QuestionService questionService;\r\n\r\n    @GetMapping(\"/list\")\r\n    public PageResultDTO<QuestionDTO, Object[]> list(PageRequestDTO requestDTO){\r\n        return questionService.getList(requestDTO);\r\n    }\r\n\r\n    @GetMapping(\"/{qId}\")\r\n    @ResponseStatus(HttpStatus.OK)\r\n    public ResponseEntity findQuestionById(@PathVariable(\"qId\") Long id){\r\n        QuestionDTO questionDTO = questionService.get(id);\r\n        return ResponseEntity.ok(questionDTO);\r\n    }\r\n\r\n    @PostMapping(\"/write\")\r\n    @ResponseStatus(HttpStatus.CREATED)\r\n    public String addQuestion(@RequestBody QuestionDTO questionDTO) {\r\n        try {\r\n            questionService.write(questionDTO);\r\n            return \"질문이 등록되었습니다.\";\r\n        } catch (Exception e) {\r\n            e.printStackTrace();  // 로그에 에러 출력\r\n            return \"문제 발생: \" + e.getMessage();\r\n        }\r\n    }\r\n\r\n    @DeleteMapping(\"/delete/{qId}\")\r\n    public void delete(@PathVariable(\"qId\") Long id){\r\n        questionService.delete(id);\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.java b/src/main/java/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.java	
+@@ -23,9 +23,9 @@
+         return questionService.getList(requestDTO);
+     }
+ 
+-    @GetMapping("/{qId}")
++    @GetMapping("/{id}")
+     @ResponseStatus(HttpStatus.OK)
+-    public ResponseEntity findQuestionById(@PathVariable("qId") Long id){
++    public ResponseEntity findQuestionById(@PathVariable("id") Long id){
+         QuestionDTO questionDTO = questionService.get(id);
+         return ResponseEntity.ok(questionDTO);
+     }
+@@ -42,8 +42,8 @@
+         }
+     }
+ 
+-    @DeleteMapping("/delete/{qId}")
+-    public void delete(@PathVariable("qId") Long id){
++    @DeleteMapping("/delete/{id}")
++    public void delete(@PathVariable("id") Long id){
+         questionService.delete(id);
+     }
+ 
+Index: src/main/java/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.question.repository;\r\n\r\nimport kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;\r\nimport org.springframework.data.domain.Page;\r\nimport org.springframework.data.domain.Pageable;\r\nimport org.springframework.data.jpa.repository.JpaRepository;\r\nimport org.springframework.data.jpa.repository.Query;\r\nimport org.springframework.data.repository.query.Param;\r\n\r\npublic interface QuestionRepository extends JpaRepository<QuestionEntity, Long> {\r\n\r\n    @Query(\r\n            value = \"SELECT q, m \" +\r\n                    \"FROM QuestionEntity q \" +\r\n                    \"LEFT JOIN q.member m \" +\r\n                    \"GROUP BY q \",\r\n            countQuery = \"SELECT COUNT(q) \" +\r\n                    \"FROM QuestionEntity q \")\r\n    Page<Object[]> getQuestionCount(Pageable pageable);\r\n\r\n\r\n    @Query(\"SELECT q, m \" +\r\n            \"FROM QuestionEntity q \" +\r\n            \"LEFT JOIN q.member m \" +\r\n            \"WHERE q.qId = :id \" +\r\n            \"GROUP BY q \")\r\n    Object getQuestionById(@Param(\"id\") Long id);\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.java b/src/main/java/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.java	
+@@ -22,7 +22,7 @@
+     @Query("SELECT q, m " +
+             "FROM QuestionEntity q " +
+             "LEFT JOIN q.member m " +
+-            "WHERE q.qId = :id " +
++            "WHERE q.id = :id " +
+             "GROUP BY q ")
+     Object getQuestionById(@Param("id") Long id);
+ 
+Index: src/main/generated/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.member.Entity;\r\n\r\nimport static com.querydsl.core.types.PathMetadataFactory.*;\r\n\r\nimport com.querydsl.core.types.dsl.*;\r\n\r\nimport com.querydsl.core.types.PathMetadata;\r\nimport javax.annotation.processing.Generated;\r\nimport com.querydsl.core.types.Path;\r\n\r\n\r\n/**\r\n * QMemberEntity is a Querydsl query type for MemberEntity\r\n */\r\n@Generated(\"com.querydsl.codegen.DefaultEntitySerializer\")\r\npublic class QMemberEntity extends EntityPathBase<MemberEntity> {\r\n\r\n    private static final long serialVersionUID = 1172524568L;\r\n\r\n    public static final QMemberEntity memberEntity = new QMemberEntity(\"memberEntity\");\r\n\r\n    public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);\r\n\r\n    public final StringPath birth = createString(\"birth\");\r\n\r\n    //inherited\r\n    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;\r\n\r\n    public final StringPath email = createString(\"email\");\r\n\r\n    public final StringPath gender = createString(\"gender\");\r\n\r\n    public final DateTimePath<java.util.Date> loginDate = createDateTime(\"loginDate\", java.util.Date.class);\r\n\r\n    public final StringPath memId = createString(\"memId\");\r\n\r\n    public final StringPath memName = createString(\"memName\");\r\n\r\n    public final StringPath memPass = createString(\"memPass\");\r\n\r\n    //inherited\r\n    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;\r\n\r\n    public final DateTimePath<java.util.Date> signDate = createDateTime(\"signDate\", java.util.Date.class);\r\n\r\n    public QMemberEntity(String variable) {\r\n        super(MemberEntity.class, forVariable(variable));\r\n    }\r\n\r\n    public QMemberEntity(Path<? extends MemberEntity> path) {\r\n        super(path.getType(), path.getMetadata());\r\n    }\r\n\r\n    public QMemberEntity(PathMetadata metadata) {\r\n        super(MemberEntity.class, metadata);\r\n    }\r\n\r\n}\r\n\r\n
+===================================================================
+diff --git a/src/main/generated/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java b/src/main/generated/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java
+--- a/src/main/generated/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java	
++++ b/src/main/generated/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java	
+@@ -19,13 +19,8 @@
+ 
+     public static final QMemberEntity memberEntity = new QMemberEntity("memberEntity");
+ 
+-    public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);
+-
+     public final StringPath birth = createString("birth");
+ 
+-    //inherited
+-    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+-
+     public final StringPath email = createString("email");
+ 
+     public final StringPath gender = createString("gender");
+@@ -38,9 +33,12 @@
+ 
+     public final StringPath memPass = createString("memPass");
+ 
++<<<<<<< HEAD
+     //inherited
+     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+ 
++=======
++>>>>>>> 1501d3669b4a5d68be623cb8a7d123e6d32e5d33
+     public final DateTimePath<java.util.Date> signDate = createDateTime("signDate", java.util.Date.class);
+ 
+     public QMemberEntity(String variable) {
+Index: src/main/java/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.answer.entity;\r\n\r\nimport jakarta.persistence.*;\r\nimport kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;\r\nimport kr.kro.hereinkorea.domain.member.Entity.MemberEntity;\r\nimport kr.kro.hereinkorea.global.entity.BaseEntity;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"Answer\")\r\n@Builder\r\n@AllArgsConstructor\r\n@NoArgsConstructor(access = AccessLevel.PROTECTED)\r\n@Getter\r\npublic class AnswerEntity extends BaseEntity {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long aId;\r\n\r\n    @Column(nullable = false, length = 255)\r\n    private String aContents;\r\n\r\n    @ManyToOne(fetch = FetchType.LAZY)\r\n    private MemberEntity member;\r\n\r\n    @OneToOne(fetch = FetchType.LAZY) // 지연\r\n    private QuestionEntity question; // 1 : 1\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.java b/src/main/java/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.java	
+@@ -12,17 +12,22 @@
+ @AllArgsConstructor
+ @NoArgsConstructor(access = AccessLevel.PROTECTED)
+ @Getter
++@Setter
+ public class AnswerEntity extends BaseEntity {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+-    private Long aId;
++    private Long id;
+ 
+     @Column(nullable = false, length = 255)
+-    private String aContents;
++    private String contents;
+ 
+     @ManyToOne(fetch = FetchType.LAZY)
+     private MemberEntity member;
+ 
+     @OneToOne(fetch = FetchType.LAZY) // 지연
+     private QuestionEntity question; // 1 : 1
++
++    public void changeQuestion(QuestionEntity question){
++        this.question = question;
++    }
+ }
+Index: src/main/java/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.answer.dto;\r\n\r\nimport lombok.*;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n@Builder\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\n@Getter\r\n@Setter\r\npublic class AnswerDTO {\r\n    private Long id;\r\n    private String aContents;\r\n    private String memId;\r\n    private Long questionId;\r\n    private LocalDateTime createdDate;\r\n    private LocalDateTime modifiedDate;\r\n}
+===================================================================
+diff --git a/src/main/java/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.java b/src/main/java/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.java
+--- a/src/main/java/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.java	
++++ b/src/main/java/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.java	
+@@ -11,7 +11,7 @@
+ @Setter
+ public class AnswerDTO {
+     private Long id;
+-    private String aContents;
++    private String contents;
+     private String memId;
+     private Long questionId;
+     private LocalDateTime createdDate;
+Index: src/main/generated/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.answer.entity;\r\n\r\nimport static com.querydsl.core.types.PathMetadataFactory.*;\r\n\r\nimport com.querydsl.core.types.dsl.*;\r\n\r\nimport com.querydsl.core.types.PathMetadata;\r\nimport javax.annotation.processing.Generated;\r\nimport com.querydsl.core.types.Path;\r\nimport com.querydsl.core.types.dsl.PathInits;\r\n\r\n\r\n/**\r\n * QAnswerEntity is a Querydsl query type for AnswerEntity\r\n */\r\n@Generated(\"com.querydsl.codegen.DefaultEntitySerializer\")\r\npublic class QAnswerEntity extends EntityPathBase<AnswerEntity> {\r\n\r\n    private static final long serialVersionUID = 1476630474L;\r\n\r\n    private static final PathInits INITS = PathInits.DIRECT2;\r\n\r\n    public static final QAnswerEntity answerEntity = new QAnswerEntity(\"answerEntity\");\r\n\r\n    public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);\r\n\r\n    public final StringPath aContents = createString(\"aContents\");\r\n\r\n    public final NumberPath<Long> aId = createNumber(\"aId\", Long.class);\r\n\r\n    //inherited\r\n    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;\r\n\r\n    public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity member;\r\n\r\n    //inherited\r\n    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;\r\n\r\n    public final kr.kro.hereinkorea.domain.qna.question.entity.QQuestionEntity question;\r\n\r\n    public QAnswerEntity(String variable) {\r\n        this(AnswerEntity.class, forVariable(variable), INITS);\r\n    }\r\n\r\n    public QAnswerEntity(Path<? extends AnswerEntity> path) {\r\n        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));\r\n    }\r\n\r\n    public QAnswerEntity(PathMetadata metadata) {\r\n        this(metadata, PathInits.getFor(metadata, INITS));\r\n    }\r\n\r\n    public QAnswerEntity(PathMetadata metadata, PathInits inits) {\r\n        this(AnswerEntity.class, metadata, inits);\r\n    }\r\n\r\n    public QAnswerEntity(Class<? extends AnswerEntity> type, PathMetadata metadata, PathInits inits) {\r\n        super(type, metadata, inits);\r\n        this.member = inits.isInitialized(\"member\") ? new kr.kro.hereinkorea.domain.member.Entity.QMemberEntity(forProperty(\"member\")) : null;\r\n        this.question = inits.isInitialized(\"question\") ? new kr.kro.hereinkorea.domain.qna.question.entity.QQuestionEntity(forProperty(\"question\"), inits.get(\"question\")) : null;\r\n    }\r\n\r\n}\r\n\r\n
+===================================================================
+diff --git a/src/main/generated/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java b/src/main/generated/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java
+--- a/src/main/generated/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java	
++++ b/src/main/generated/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java	
+@@ -24,13 +24,13 @@
+ 
+     public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);
+ 
+-    public final StringPath aContents = createString("aContents");
+-
+-    public final NumberPath<Long> aId = createNumber("aId", Long.class);
++    public final StringPath contents = createString("contents");
+ 
+     //inherited
+     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+ 
++    public final NumberPath<Long> id = createNumber("id", Long.class);
++
+     public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity member;
+ 
+     //inherited
+Index: src/main/generated/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.kro.hereinkorea.domain.qna.question.entity;\r\n\r\nimport static com.querydsl.core.types.PathMetadataFactory.*;\r\n\r\nimport com.querydsl.core.types.dsl.*;\r\n\r\nimport com.querydsl.core.types.PathMetadata;\r\nimport javax.annotation.processing.Generated;\r\nimport com.querydsl.core.types.Path;\r\nimport com.querydsl.core.types.dsl.PathInits;\r\n\r\n\r\n/**\r\n * QQuestionEntity is a Querydsl query type for QuestionEntity\r\n */\r\n@Generated(\"com.querydsl.codegen.DefaultEntitySerializer\")\r\npublic class QQuestionEntity extends EntityPathBase<QuestionEntity> {\r\n\r\n    private static final long serialVersionUID = 1311359578L;\r\n\r\n    private static final PathInits INITS = PathInits.DIRECT2;\r\n\r\n    public static final QQuestionEntity questionEntity = new QQuestionEntity(\"questionEntity\");\r\n\r\n    public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);\r\n\r\n    //inherited\r\n    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;\r\n\r\n    public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity member;\r\n\r\n    //inherited\r\n    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;\r\n\r\n    public final StringPath qCategory = createString(\"qCategory\");\r\n\r\n    public final StringPath qContents = createString(\"qContents\");\r\n\r\n    public final NumberPath<Long> qId = createNumber(\"qId\", Long.class);\r\n\r\n    public final BooleanPath qStatus = createBoolean(\"qStatus\");\r\n\r\n    public final StringPath qTitle = createString(\"qTitle\");\r\n\r\n    public QQuestionEntity(String variable) {\r\n        this(QuestionEntity.class, forVariable(variable), INITS);\r\n    }\r\n\r\n    public QQuestionEntity(Path<? extends QuestionEntity> path) {\r\n        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));\r\n    }\r\n\r\n    public QQuestionEntity(PathMetadata metadata) {\r\n        this(metadata, PathInits.getFor(metadata, INITS));\r\n    }\r\n\r\n    public QQuestionEntity(PathMetadata metadata, PathInits inits) {\r\n        this(QuestionEntity.class, metadata, inits);\r\n    }\r\n\r\n    public QQuestionEntity(Class<? extends QuestionEntity> type, PathMetadata metadata, PathInits inits) {\r\n        super(type, metadata, inits);\r\n        this.member = inits.isInitialized(\"member\") ? new kr.kro.hereinkorea.domain.member.Entity.QMemberEntity(forProperty(\"member\")) : null;\r\n    }\r\n\r\n}\r\n\r\n
+===================================================================
+diff --git a/src/main/generated/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java b/src/main/generated/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java
+--- a/src/main/generated/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java	
++++ b/src/main/generated/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java	
+@@ -24,23 +24,23 @@
+ 
+     public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);
+ 
++    public final StringPath category = createString("category");
++
++    public final StringPath contents = createString("contents");
++
+     //inherited
+     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+ 
++    public final NumberPath<Long> id = createNumber("id", Long.class);
++
+     public final kr.kro.hereinkorea.domain.member.Entity.QMemberEntity member;
+ 
+     //inherited
+     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+ 
+-    public final StringPath qCategory = createString("qCategory");
+-
+-    public final StringPath qContents = createString("qContents");
++    public final BooleanPath status = createBoolean("status");
+ 
+-    public final NumberPath<Long> qId = createNumber("qId", Long.class);
+-
+-    public final BooleanPath qStatus = createBoolean("qStatus");
+-
+-    public final StringPath qTitle = createString("qTitle");
++    public final StringPath title = createString("title");
+ 
+     public QQuestionEntity(String variable) {
+         this(QuestionEntity.class, forVariable(variable), INITS);

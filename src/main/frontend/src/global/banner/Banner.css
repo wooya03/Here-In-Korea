@@ -1,0 +1,50 @@
+
+.carousel {
+  position: absolute; /* Carousel에 위치 속성을 추가 */
+}
+
+/* 좌우 네비게이션 버튼을 배너의 아래쪽 중간에 배치 */
+.carousel .control-prev,
+.carousel .control-next {
+  position: absolute;
+  bottom: 10px; /* 하단에서 10px 떨어진 위치 */
+  width: 50px; /* 버튼 크기 */
+  height: 50px;
+  background-color: rgba(0, 0, 0, 1); /* 반투명 배경 */
+  border-radius: 50%; /* 둥근 모양 */
+  z-index: 1; /* 배너 위에 표시 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(80px); /* 버튼을 아래로 20px 이동 */
+}
+
+.carousel .control-prev {
+  left: 10px; /* 왼쪽 버튼 위치 조정 */
+}
+
+.carousel .control-next {
+  right: 10px; /* 오른쪽 버튼 위치 조정 */
+}
+
+
+
+.carousel-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0; /* 전체 배너 슬라이드에 여백 없애기 */
+}
+
+.banner-image {
+  width: 100%; /* 부모 요소(슬라이드)에 맞게 이미지 크기 조정 */
+  height: 200px; /* 이미지 높이 동일하게 설정 */
+  object-fit: cover; /* 이미지 비율 유지하며 잘리지 않도록 */
+  margin: 0; /* 이미지 간 여백 없애기 */
+  border-radius: 0; /* 둥근 모서리 없애기 (원한다면 유지 가능) */
+  transition: transform 5s ease;
+}
+
+.banner-image:hover {
+  transform: scale(1.05); /* 호버 시 약간 확대 */
+}

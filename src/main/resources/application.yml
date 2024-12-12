@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://hereinkorea.cpo40e060m0q.ap-northeast-2.rds.amazonaws.com:3306/hereinkorea?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: hereuser
+    password: hereuser456$%^
+
+  profiles:
+    active: default
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  spring:
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: Asia/Seoul
+
+application:
+  jwt:
+    secretKey: c7e38bd6a3a0ceb9c87451a03b51f64b89daeb5d21bdcaec61fef73e142c4800
+    expiration: 9000000 # 15분 access token 테스팅을 위해 현재 시간 늘려놓음 원래시간 : 900000
+    refreshExpiration: 86400000 # 1일 refresh token

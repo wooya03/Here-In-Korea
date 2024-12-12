@@ -1,10 +1,10 @@
 .footer {
-    background-color: #003B54;
-    color: white;
-    text-align: center;
-    padding: 1px 0;
-    width: 100%;
-    position : absolute;
-    bottom : 0;
-  }
-  
+  background-color: #003B54;
+  color: white;
+  text-align: center;
+  padding: 1px 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;       /* 화면 하단에 고정 */
+  left: 0;         /* 화면의 왼쪽 끝으로 고정 */
+}
