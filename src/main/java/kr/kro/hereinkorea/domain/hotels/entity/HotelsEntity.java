@@ -1,6 +1,7 @@
 package kr.kro.hereinkorea.domain.hotels.entity;
 
 import jakarta.persistence.*;
+import kr.kro.hereinkorea.global.entity.BaseEntity;
 import lombok.*;
 
 @Entity
@@ -9,44 +10,28 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class HotelsEntity {
+public class HotelsEntity extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long contentid;
 
     @Column(length = 50, nullable = false)
-    private String name;
-
-    @Column(length = 255, nullable = false)
-    private String address;
+    private String title;
 
     @Column(nullable = false)
-    private int area_code;
+    private String addr1;
+
+    @Column()
+    private String addr2;
 
     @Column(nullable = false)
-    private Double hotelMapx;
+    private int areacode;
 
     @Column(nullable = false)
-    private Double hotelMapy;
+    private Double mapx;
 
-    @Column(length = 13, nullable = false)
+    @Column(nullable = false)
+    private Double mapy;
+
+    @Column(length = 20)
     private String tel;
-
-    @Column(length = 255, nullable = false)
-    private String detail;
-
-    @Column(length = 255, nullable = false)
-    private String homepage;
-
-    @Column(nullable = false)
-    private Boolean hasParking;
-
-    @Column(length = 5, nullable = false)
-    private String checkIn;
-
-    @Column(length = 5, nullable = false)
-    private String checkOut;
-
-    @Column(length = 100)
-    private String hotelTag;
 }

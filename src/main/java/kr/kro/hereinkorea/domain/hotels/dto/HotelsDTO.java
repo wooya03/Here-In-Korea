@@ -1,7 +1,6 @@
 package kr.kro.hereinkorea.domain.hotels.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +10,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Jacksonized
 public class HotelsDTO {
     private Long contentid;
     private String title;

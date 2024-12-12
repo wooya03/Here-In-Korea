@@ -19,31 +19,29 @@ public class QHotelsEntity extends EntityPathBase<HotelsEntity> {
 
     public static final QHotelsEntity hotelsEntity = new QHotelsEntity("hotelsEntity");
 
-    public final StringPath address = createString("address");
+    public final kr.kro.hereinkorea.global.entity.QBaseEntity _super = new kr.kro.hereinkorea.global.entity.QBaseEntity(this);
 
-    public final NumberPath<Integer> area_code = createNumber("area_code", Integer.class);
+    public final StringPath addr1 = createString("addr1");
 
-    public final StringPath checkIn = createString("checkIn");
+    public final StringPath addr2 = createString("addr2");
 
-    public final StringPath checkOut = createString("checkOut");
+    public final NumberPath<Integer> areacode = createNumber("areacode", Integer.class);
 
-    public final StringPath detail = createString("detail");
+    public final NumberPath<Long> contentid = createNumber("contentid", Long.class);
 
-    public final BooleanPath hasParking = createBoolean("hasParking");
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final StringPath homepage = createString("homepage");
+    public final NumberPath<Double> mapx = createNumber("mapx", Double.class);
 
-    public final NumberPath<Double> hotelMapx = createNumber("hotelMapx", Double.class);
+    public final NumberPath<Double> mapy = createNumber("mapy", Double.class);
 
-    public final NumberPath<Double> hotelMapy = createNumber("hotelMapy", Double.class);
-
-    public final StringPath hotelTag = createString("hotelTag");
-
-    public final NumberPath<Long> id = createNumber("id", Long.class);
-
-    public final StringPath name = createString("name");
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
     public final StringPath tel = createString("tel");
+
+    public final StringPath title = createString("title");
 
     public QHotelsEntity(String variable) {
         super(HotelsEntity.class, forVariable(variable));

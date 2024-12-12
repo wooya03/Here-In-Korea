@@ -33,6 +33,13 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final StringPath memPass = createString("memPass");
 
+<<<<<<< HEAD
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
+=======
+    public final EnumPath<kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole> role = createEnum("role", kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole.class);
+>>>>>>> 69fe6eb9767f6ce5670ce0bca562463e785505f7
+
     public final DateTimePath<java.util.Date> signDate = createDateTime("signDate", java.util.Date.class);
 
     public QMemberEntity(String variable) {
