@@ -26,7 +26,7 @@ public interface HotelsRepository extends JpaRepository<HotelsEntity, Long> {
                     "FROM HotelsEntity h " +
                     "LEFT JOIN HotelsImgEntity i ON i.hotels = h " +
                     "LEFT JOIN RoomEntity r ON r.hotels = h " +
-                    "WHERE h.id = :id"
+                    "WHERE h.contentid = :id"
     )
     List<Object[]> getHotelsById(@Param("id") Long id);
 }
