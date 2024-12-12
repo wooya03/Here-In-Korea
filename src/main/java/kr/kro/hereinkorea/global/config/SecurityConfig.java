@@ -53,6 +53,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**", "/upload", "/display", "/file").permitAll()
                         .requestMatchers("/user/login").permitAll()// 인증 없이 접근 허용
                         .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN 권한 필요
+                        .requestMatchers("/api/**", "/hotels/**","/quesion/**").permitAll()
                         .anyRequest().authenticated() // 나머지는 인증 필요
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // JWT 필터 추가
