@@ -8,6 +8,7 @@
       <change afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/hereinkorea.main.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10__8_46__________.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/AnswerDTO$AnswerDTOBuilder.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/AnswerDTO.class" afterDir="false" />
@@ -25,9 +26,45 @@
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionRepository.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionServiceTest.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/fileHashes.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9___4_29__________.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9___4_29__________1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/AnswerDTO$AnswerDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/AnswerDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/AnswerEntity$AnswerEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/AnswerEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/HereinkoreaApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/MemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QAnswerEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QMemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QQuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QuestionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QuestionEntity$QuestionEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QuestionRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QuestionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QuestionServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/AnswerDTO$AnswerDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/AnswerDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/AnswerEntity$AnswerEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/AnswerEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/HereinkoreaApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/MemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QAnswerEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QMemberEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QQuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QuestionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QuestionEntity$QuestionEntityBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QuestionEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QuestionRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QuestionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QuestionServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/QuestionServiceTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/shelved.patch" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/_.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/_/buildOutputCleanup.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/_/checksums.lock" afterDir="false" />
@@ -36,27 +73,16 @@
       <change afterPath="$PROJECT_DIR$/.idea/shelf/_/noimg.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/_/shelved.patch" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO$HotelsImgDTOBuilder.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity$HotelsImgEntityBuilder.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/repository/HotelsImgRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Body.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Header.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/Entity/enums/MemberRole.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/controller/JwtResponse.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/controller/RegisterController.class" afterDir="false" />
@@ -65,10 +91,6 @@
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/exception/NotFoundMemberException.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/mapper/MemberMapper.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/service/MemberService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/controller/AnswerController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/repository/AnswerRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/service/AnswerService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/service/AnswerServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/global/config/JacksonConfig.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/global/config/SecurityConfig.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/global/exception/CustomException.class" afterDir="false" />
@@ -133,6 +155,7 @@
       <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/event/entity/QEventImgEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/global/entity/QBaseEntity.java" afterDir="false" />
@@ -173,36 +196,21 @@
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventApiService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/event/service/EventServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO$HotelsImgDTOBuilder.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity$HotelsImgEntityBuilder.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/repository/HotelsImgRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Body.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse$Header.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService$ApiResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/Entity/enums/MemberRole.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/controller/RegisterController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/dto/MemberDTO$MemberDTOBuilder.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/dto/MemberDTO.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/mapper/MemberMapper.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/service/MemberService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/controller/AnswerController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/repository/AnswerRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/service/AnswerService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/service/AnswerServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/global/api/OpenApiController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/global/config/JacksonConfig.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/member/MemberRepositoryTest.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/frontend/public/Image/noimg.png" afterDir="false" />
@@ -212,24 +220,12 @@
       <change afterPath="$PROJECT_DIR$/src/main/frontend/src/hotels/js/HotelsList.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/frontend/src/maps/css/GoogleMaps.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/frontend/src/maps/js/GoogleMaps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/frontend/src/qna/css/AnswerAdd.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/frontend/src/qna/css/AnswerDetails.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/frontend/src/qna/js/AnswerAdd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/frontend/src/qna/js/AnswerDetails.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/event/entity/QEventEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/event/entity/QEventImgEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/hotels/entity/QHotelsImgEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/dto/HotelsImgDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/entity/HotelsImgEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/repository/HotelsImgRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/Entity/enums/MemberRole.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/controller/JwtResponse.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/controller/RegisterController.java" afterDir="false" />
@@ -237,10 +233,6 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/exception/NotFoundMemberException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/mapper/MemberMapper.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/service/MemberService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/controller/AnswerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/repository/AnswerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/service/AnswerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/service/AnswerServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/global/config/JacksonConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/global/config/SecurityConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/global/exception/CustomException.java" afterDir="false" />
@@ -255,6 +247,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/global/security/handler/JwtAuthenticationEntryPoint.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/kr/kro/hereinkorea/domain/member/MemberRepositoryTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/kr/kro/hereinkorea/global/jwt/properties/JwtUtilTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" afterDir="false" />
@@ -266,96 +259,79 @@
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Here-In-Korea.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/hereinkorea.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/hereinkorea.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/default/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bin/generated-sources/annotations/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/HereinkoreaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/HereinkoreaApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity$MemberEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity$MemberEntityBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/repository/MemberRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/member/repository/MemberRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO$AnswerDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO$AnswerDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity$AnswerEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity$AnswerEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity$QuestionEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity$QuestionEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/global/api/OpenApiController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/global/config/OpenApiController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/kr/kro/hereinkorea/global/config/OpenApiManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/test/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/test/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/test/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/2024-12-10_오전_8_46,_업데이트_전에_커밋되지_않은_변경_내용_[변경]/QuestionServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/Entity/MemberEntity$MemberEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/Entity/MemberEntity$MemberEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/HereinkoreaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/HereinkoreaApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO$HotelsDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity$HotelsEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/repository/MemberRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/member/repository/MemberRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO$AnswerDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO$AnswerDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity$AnswerEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity$AnswerEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity$QuestionEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity$QuestionEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/user/Entity/QUserEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/user/Entity/UserEntity$UserEntityBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/user/Entity/UserEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/user/QUserEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/user/UserEntity$UserEntityBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/user/UserEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/domain/user/repository/UserRepository.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/global/config/OpenApiController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/kr/kro/hereinkorea/global/config/OpenApiManager.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/member/MemberEntityTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/24__12__9__오후_4_29,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/QuestionServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/admin/js/QnaManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/admin/js/QnaManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/course/css/CourseWrite.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/course/css/CourseWrite.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/course/js/CourseWrite.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/course/js/CourseWrite.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/global/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/global/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/qna/js/QuestionDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/qna/js/QuestionDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/review/css/ReviewWrite.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/review/css/ReviewWrite.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/user/css/Register.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/user/css/Register.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/user/js/LoginMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/user/js/LoginMain.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/user/js/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/user/js/Register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/user/js/RegisterAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/user/js/RegisterAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/hotels/entity/QHotelsEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/member/Entity/QMemberEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/qna/answer/entity/QAnswerEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/generated/kr/kro/hereinkorea/domain/qna/question/entity/QQuestionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/HereinkoreaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/HereinkoreaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/controller/HotelsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/dto/HotelsDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/entity/HotelsEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/repository/HotelsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/hotels/service/HotelsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/Entity/MemberEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/member/repository/MemberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/dto/AnswerDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/answer/entity/AnswerEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/controller/QuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/entity/QuestionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/repository/QuestionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/global/api/OpenApiController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/global/config/OpenApiController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/kro/hereinkorea/global/config/OpenApiManager.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/kr/kro/hereinkorea/domain/member/MemberEntityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/kr/kro/hereinkorea/domain/member/MemberEntityTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/kr/kro/hereinkorea/domain/qna/question/service/QuestionServiceTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -447,39 +423,39 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build project_here_in_korea.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JwtUtilTest.testGenerateAccessToken.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MemberRepositoryTest.testSelectMember.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MemberRepositoryTest.testSelectMember.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.HereinkoreaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main 병합 중&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/project_here_in_korea&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build project_here_in_korea.executor": "Run",
+    "Gradle.JwtUtilTest.testGenerateAccessToken.executor": "Run",
+    "Gradle.MemberRepositoryTest.testSelectMember.executor": "Run",
+    "JUnit.MemberRepositoryTest.testSelectMember.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.HereinkoreaApplication.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "park 병합 중",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/USER/project_here_in_korea",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
