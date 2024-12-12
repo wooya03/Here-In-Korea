@@ -8,9 +8,9 @@ import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hotels")
@@ -47,5 +47,12 @@ public class HotelsController {
     @GetMapping("/list")
     public PageResultDTO<HotelsDTO, Object[]> list(PageRequestDTO requestDTO){
         return hotelsService.getList(requestDTO);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity findHotelsById(@PathVariable("id") Long id){
+        HotelsDTO hotelsDTO = hotelsService.get(id);
+        return ResponseEntity.ok(hotelsDTO);
     }
 }

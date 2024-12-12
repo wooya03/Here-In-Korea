@@ -7,6 +7,9 @@ import kr.kro.hereinkorea.domain.hotels.entity.HotelsEntity;
 import kr.kro.hereinkorea.domain.hotels.entity.HotelsImgEntity;
 import kr.kro.hereinkorea.domain.hotels.entity.RoomEntity;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public interface HotelsService {
 
     default RoomEntity dtoToEntity(RoomDTO dto){
@@ -45,40 +48,6 @@ public interface HotelsService {
                 .build();
     }
 
-    default RoomDTO entityToDTO(RoomEntity entity) {
-        return RoomDTO.builder()
-                .id(entity.getId())
-                .contentid(entity.getHotels().getContentid())
-                .roomtitle(entity.getRoomtitle())
-                .roomsize1(entity.getRoomsize1())
-                .roomcount(entity.getRoomcount())
-                .roombasecount(entity.getRoombasecount())
-                .roommaxcount(entity.getRoommaxcount())
-                .roomoffseasonminfee1(entity.getRoomoffseasonminfee1())
-                .roomoffseasonminfee2(entity.getRoomoffseasonminfee2())
-                .roomintro(entity.getRoomintro())
-                .roombathfacility(entity.getRoombathfacility())
-                .roombath(entity.getRoombath())
-                .roomhometheater(entity.getRoomhometheater())
-                .roomaircondition(entity.getRoomaircondition())
-                .roomtv(entity.getRoomtv())
-                .roompc(entity.getRoompc())
-                .roomcable(entity.getRoomcable())
-                .roominternet(entity.getRoominternet())
-                .roomrefrigerator(entity.getRoomrefrigerator())
-                .roomtoiletries(entity.getRoomtoiletries())
-                .roomsofa(entity.getRoomsofa())
-                .roomcook(entity.getRoomcook())
-                .roomtable(entity.getRoomtable())
-                .roomhairdryer(entity.getRoomhairdryer())
-                .roomimg1(entity.getRoomimg1())
-                .roomimg2(entity.getRoomimg2())
-                .roomimg3(entity.getRoomimg3())
-                .roomimg4(entity.getRoomimg4())
-                .roomimg5(entity.getRoomimg5())
-                .build();
-    }
-
     default HotelsDTO entityToDTO(HotelsEntity hotels, HotelsImgEntity img){
         return HotelsDTO.builder()
                 .contentid(hotels.getContentid())
@@ -92,6 +61,56 @@ public interface HotelsService {
                 .createDate(hotels.getCreatedDate())
                 .modifiedDate(hotels.getModifiedDate())
                 .firstimage2(img != null ? img.getFirstimage() : null)
+                .build();
+    }
+
+    default HotelsDTO entityToDTO(HotelsEntity hotels, HotelsImgEntity img, List<RoomEntity> rooms) {
+        List<RoomDTO> roomDTOs = rooms.stream()
+                .map(room -> RoomDTO.builder()
+                        .id(room.getId())
+                        .roomtitle(room.getRoomtitle())
+                        .roomsize1(room.getRoomsize1())
+                        .roomcount(room.getRoomcount())
+                        .roombasecount(room.getRoombasecount())
+                        .roommaxcount(room.getRoommaxcount())
+                        .roomoffseasonminfee1(room.getRoomoffseasonminfee1())
+                        .roomoffseasonminfee2(room.getRoomoffseasonminfee2())
+                        .roomintro(room.getRoomintro())
+                        .roombathfacility(room.getRoombathfacility())
+                        .roombath(room.getRoombath())
+                        .roomhometheater(room.getRoomhometheater())
+                        .roomaircondition(room.getRoomaircondition())
+                        .roomtv(room.getRoomtv())
+                        .roompc(room.getRoompc())
+                        .roomcable(room.getRoomcable())
+                        .roominternet(room.getRoominternet())
+                        .roomrefrigerator(room.getRoomrefrigerator())
+                        .roomtoiletries(room.getRoomtoiletries())
+                        .roomsofa(room.getRoomsofa())
+                        .roomcook(room.getRoomcook())
+                        .roomtable(room.getRoomtable())
+                        .roomhairdryer(room.getRoomhairdryer())
+                        .roomimg1(room.getRoomimg1())
+                        .roomimg2(room.getRoomimg2())
+                        .roomimg3(room.getRoomimg3())
+                        .roomimg4(room.getRoomimg4())
+                        .roomimg5(room.getRoomimg5())
+                        .build())
+                .collect(Collectors.toList());
+
+        return HotelsDTO.builder()
+                .contentid(hotels.getContentid())
+                .title(hotels.getTitle())
+                .addr1(hotels.getAddr1())
+                .addr2(hotels.getAddr2())
+                .areacode(hotels.getAreacode())
+                .mapx(hotels.getMapx())
+                .mapy(hotels.getMapy())
+                .tel(hotels.getTel())
+                .createDate(hotels.getCreatedDate())
+                .modifiedDate(hotels.getModifiedDate())
+                .firstimage2(img != null ? img.getFirstimage() : null)
+                .rooms(roomDTOs) // Room 정보 추가
                 .build();
     }
 

@@ -10,7 +10,6 @@ import lombok.*;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RoomDTO {
-
     private Long id;
     private Long contentid;
     private String roomtitle; // 객실 명칭
