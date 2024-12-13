@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../css/HotelsList.css';
 import { format } from "date-fns";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function formatTime(dateString) {
     const date = new Date(dateString);
@@ -16,6 +17,11 @@ function HotelsList() {
         putSpringData();
     }, []);
 
+      const navigate = useNavigate();
+    
+      const detailsClick = (id) => {
+        navigate(`/hotels/${id}`);
+      };
     
     async function putSpringData() {
         await axios
@@ -82,7 +88,7 @@ function HotelsList() {
             {data.length > 0 ? (
                 data.map((datas, index) => (
                     <div key={index} className="hotel-card">
-                        <div className="hotel-image">
+                        <div className="hotel-image" onClick={() => detailsClick(datas.id)}>
                             {datas.thumbnail ? (
                                 <img src={datas.thumbnail} alt="thumbnail" width="100%" height="100%" />
                             ) : (

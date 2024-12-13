@@ -34,4 +34,5 @@ public class HotelsEntity extends BaseEntity {
 
     @Column(length = 20)
     private String tel;
+
 }

@@ -1,3 +1,12 @@
+bin/
+
+node_modules/
+
+out/
+
+gradle/
+
+.gradle/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -30,3 +39,8 @@ yarn-error.log*
 
 # Build directory
 /build/
+build/
+
+.idea/
+
+src/main/resource/
