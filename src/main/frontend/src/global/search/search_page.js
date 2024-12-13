@@ -99,7 +99,7 @@ const SearchPage = () => {
           <div className="section accommodations">
             <h2 style={{ display: 'inline-block' }}>숙박 정보</h2>
             <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3001/hotels" className="more-link">#숙박 정보 더보기</a>
+              <a href="http://localhost:3000/hotels" className="more-link">#숙박 정보 더보기</a>
             </div>
             <div className="course-list">
               {hotels.length > 0 ? (
@@ -109,7 +109,7 @@ const SearchPage = () => {
                       {/* 이미지가 있을 경우 firstimage2 사용 */}
                       {hotel.firstimage2 ? (
                         <img
-                          src={`http://localhost:8080${hotel.firstimage2}`} // 상대 경로를 절대 경로로 변환
+                          src={hotel.firstimage2} 
                           alt={hotel.title}
                           className="rounded-image"
                           width="100%"
@@ -127,8 +127,9 @@ const SearchPage = () => {
                     </div>
                     <div className="course-info">
                       <div className="s_course-title">{hotel.title}</div>
-                      <div className="s_course-tag">{areastring(hotel.areaCode)}</div>
+                      <div className="s_course-tag">{areastring(hotel.areacode)}</div>
                       <div className="s_course-date">{hotel.modifiedDate}</div>
+                      <div>{hotel.firstimage2}</div>
                     </div>
                   </div>
                 ))

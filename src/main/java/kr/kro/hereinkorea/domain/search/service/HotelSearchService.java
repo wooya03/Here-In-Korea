@@ -1,21 +1,45 @@
 package kr.kro.hereinkorea.domain.search.service;
 
+import kr.kro.hereinkorea.domain.hotels.dto.HotelsDTO;
 import kr.kro.hereinkorea.domain.hotels.entity.HotelsEntity;
-import kr.kro.hereinkorea.domain.search.repository.HotelSearchRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import kr.kro.hereinkorea.domain.hotels.entity.HotelsImgEntity;
 
 import java.util.List;
+import java.util.Objects;
 
-@Service
-public class HotelSearchService {
+public interface HotelSearchService {
 
-    @Autowired
-    private HotelSearchRepository hotelSearchRepository;
+    List<HotelsDTO> searchHotelsByTitle(String title);
 
-    // 지역을 기준으로 호텔 검색
 
-    public List<HotelsEntity> searchHotelsByTitle(String title) {
-        return hotelSearchRepository.findTop3ByTitleLike("%"+title+"%");
+    default HotelsDTO entityToDTO(HotelsEntity hotels, HotelsImgEntity img){
+        return HotelsDTO.builder()
+                .contentid(hotels.getContentid())
+                .title(hotels.getTitle())
+                .addr1(hotels.getAddr1())
+                .addr2(hotels.getAddr2())
+                .areacode(hotels.getAreacode())
+                .mapx(hotels.getMapx())
+                .mapy(hotels.getMapy())
+                .tel(hotels.getTel())
+                .createDate(hotels.getCreatedDate())
+                .modifiedDate(hotels.getModifiedDate())
+                .firstimage2(img != null ? img.getFirstimage() : null)
+                .build();
     }
+
+    default HotelsEntity dtoToEntity(HotelsDTO dto){
+        return HotelsEntity.builder()
+                .contentid(dto.getContentid())
+                .title(dto.getTitle())
+                .addr1(dto.getAddr1())
+                .addr2(dto.getAddr2())
+                .areacode(dto.getAreacode())
+                .mapx(dto.getMapx())
+                .mapy(dto.getMapy())
+                .tel(dto.getTel())
+                .build();
+    }
+
+
 }
