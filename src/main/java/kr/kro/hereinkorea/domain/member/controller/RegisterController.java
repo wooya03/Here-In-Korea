@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/user")
-//경로 수정 예정
-@CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true")
 public class RegisterController {
     @Autowired
     private  MemberService memberService;
