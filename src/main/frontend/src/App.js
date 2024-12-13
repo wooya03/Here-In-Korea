@@ -29,6 +29,7 @@ import IdFind from "./user/js/IdFind";
 import PwFind from "./user/js/PwFind";
 import Profile from "./user/js/Profile";
 import HotelsList from './hotels/js/HotelsList.js';
+import HotelDetails from './hotels/js/HotelsDetails.js';
 import Festival from "./festival/js/Festival";
 import GoogleMaps from "./maps/js/GoogleMaps";
 
@@ -74,7 +75,7 @@ function App() {
 
 
         {/* 질문 페이지 */}
-        <Route path="/question/list" element={<><Header /><QuestionList /></>} />
+        <Route path="/question" element={<><Header /><QuestionList /></>} />
         <Route path="/question/write" element={<><Header /><QuestionAdd /></>} />
         <Route path="/question/:id" element={<><Header /><QuestionDetails /></>} />
         {/* 답변 페이지 */}
@@ -93,6 +94,7 @@ function App() {
 
         {/* 숙소 페이지 */}
         <Route path='/hotels' element={<><Header /><HotelsList /></>} />
+        <Route path='/hotels/:id' element={<><Header /><HotelDetails /></>} />
 
       </Routes>
     </main>

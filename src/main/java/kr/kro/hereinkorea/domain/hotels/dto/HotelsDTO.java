@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -23,5 +24,7 @@ public class HotelsDTO {
     private String firstimage2;
     private LocalDateTime createDate;
     private LocalDateTime modifiedDate;
+
+    private List<RoomDTO> rooms;
 }
 

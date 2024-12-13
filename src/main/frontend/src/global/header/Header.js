@@ -53,7 +53,7 @@ function Header() {
             <li className="menu-item"><Link to="/course">여행코스</Link></li>
             <li className="menu-item"><Link to="/hotels">숙박</Link></li>
             <li className="menu-item"><Link to="/map">지도</Link></li>
-            <li className="menu-item last-item"><Link to="/question/list">Q&A</Link></li>
+            <li className="menu-item last-item"><Link to="/question">Q&A</Link></li>
           </ul>
         </nav>
       </div>

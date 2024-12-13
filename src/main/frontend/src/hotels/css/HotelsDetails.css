@@ -1,0 +1,120 @@
+/* 전체 페이지 스타일 */
+.hotel-detail {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    min-height: 100vh;
+    flex-direction: column;
+}
+  
+  /* 호텔 상세 내용 */
+.hotel-content {
+    display: flex;    
+    max-width: 120%;
+    width: 100%;
+    position: relative;
+    gap: 20px; /* gap을 20px로 줄여서 공간 비움 */
+} 
+
+.room-info {
+    flex: 8; /* 객실 정보는 8을 차지 */
+    height: auto;
+} 
+
+.room-header h1 {
+    margin: 10px 0;
+    font-size: 2.3rem;    
+    color: #333;
+    border-style:none;
+}
+
+.room-header h2 {
+    font-size: 1.3rem;
+    color: #333;
+    border-style:none;
+    margin: 10px 0;
+}
+
+.hotel-room {
+    border-style: solid;
+    border-color: rgb(97, 97, 97);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+  /* 객실 정보 항목 */
+.room-info .room {
+    display: flex;  /* Flexbox로 설정 */
+    justify-content: space-between;  /* 각 p를 공간에 맞게 배치 */
+    gap: 10px;  /* 각 p 사이에 간격 추가 */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.room-info .room p {
+    margin: 8px 0;
+    color: #555;
+}
+
+
+.room-section {
+    flex: 1;  
+    padding: 10px;
+    border-radius: 5px;
+}
+
+  /* 숙소 정보 스타일 (오른쪽) */
+  .hotel-info {
+    flex: 2; /* 숙소 정보와 지도는 2을 차지 */
+    background-color: rgb(136, 176, 209);
+    border-radius: 10px;
+    height: auto;
+  }
+  
+  .hotel-sinfo {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    color: #333;
+  }
+  /* 지도 스타일 */
+  .map iframe {
+    background-color: #ffffff;
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    border: 0;
+  }
+  
+  .room-card {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* 플렉스 박스 설정 */
+    flex-direction: row; /* 가로 방향 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 10px; /* 이미지 간격 추가 */
+    height: 170px; /* 컨테이너 높이 설정 (필요시 수정) */
+}
+
+.room-image {
+    width: 170px; /* 이미지 너비 */
+    height: 170px; /* 이미지 높이 */
+    object-fit: cover; /* 이미지 비율 유지 */
+    padding: 10px;
+}
+
+.thum-img img {
+    background-color: #ffffff;
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    border: 0;
+}
