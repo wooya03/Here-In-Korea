@@ -7,7 +7,10 @@ const Festival = () => {
     return(
     <div>
         <Header/>
-        <div>이벤트 페이지</div>
+        <div className="content_festival">
+
+
+        </div>
     </div>
     )
 }
