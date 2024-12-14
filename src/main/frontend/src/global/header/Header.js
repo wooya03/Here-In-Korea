@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 import TranslateApi from "../translate/Translate_api";
 
@@ -8,6 +8,18 @@ function Header() {
   const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`);
   const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const navigate = useNavigate();
+  const location = useLocation(); // useLocation 추가
+
+  // URL에서 쿼리 파라미터로 검색어 가져오기
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const query = params.get("query");
+    if (query) {
+      setSearchTerm(query); // URL에 있는 검색어로 상태 설정
+    } else {
+      setSearchTerm(""); // 검색어가 없으면 빈 값으로 설정
+    }
+  }, [location.search]); // location이 변경될 때마다 실행
 
   const handleLoginLogout = () => {
     if (isLoggedIn) {
