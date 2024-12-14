@@ -1,39 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";  // useNavigate 추가
 import "./search_page.css";
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [hotels, setHotels] = useState([]); // 숙박 정보
-  const [searchHistory, setSearchHistory] = useState([]); // 검색 기록
+  const [hotels, setHotels] = useState([]);
+  const [searchHistory, setSearchHistory] = useState([]);
+  const [hoveredHotel, setHoveredHotel] = useState(null);  // 새 상태 추가
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 }); // 마우스 위치 상태 추가
 
-  // 검색 함수
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/hotels/search?title=${searchTerm}`);
-      setHotels(response.data); // 숙박 정보는 백엔드에서 가져온 데이터로 업데이트
+  const location = useLocation();
+  const navigate = useNavigate();  // useNavigate 추가
 
-      // 검색어 기록 저장 (최대 20개)
-      if (searchHistory.length >= 20) {
-        setSearchHistory((prevHistory) => [searchTerm, ...prevHistory.slice(0, 19)]);
-      } else {
-        setSearchHistory((prevHistory) => [searchTerm, ...prevHistory]);
-      }
-    } catch (error) {
-      console.error("숙박 정보 검색 오류", error);
+  // URL에서 검색어 가져오기
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const query = params.get("query");
+    if (query) {
+      setSearchTerm(query);
+      handleSearch(query);
     }
-  };
-
-  // 초기화 함수
-  const handleReset = () => {
-    setSearchTerm("");
-    setHotels([]); // 숙박 정보 초기화
-  };
-
-  // 검색어 삭제 함수
-  const handleDeleteSearchTerm = (termToDelete) => {
-    setSearchHistory((prevHistory) => prevHistory.filter((term) => term !== termToDelete));
-  };
+  }, [location.search]);
 
   // 지역 이름 변환 함수
   const areastring = (res) => {
@@ -59,8 +47,42 @@ const SearchPage = () => {
     }
   };
 
+  // 검색 함수
+  const handleSearch = async (term = searchTerm) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/hotels/search?title=${term}`);
+      setHotels(response.data);
+
+      // 검색 기록 저장 (최대 20개)
+      if (searchHistory.length >= 20) {
+        setSearchHistory((prevHistory) => [term, ...prevHistory.slice(0, 19)]);
+      } else {
+        setSearchHistory((prevHistory) => [term, ...prevHistory]);
+      }
+    } catch (error) {
+      console.error("숙박 정보 검색 오류", error);
+    }
+  };
+
+  // 엔터 키로 검색 실행
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  // 호텔 클릭 시 상세 페이지로 이동
+  const handleHotelClick = (id) => {
+    navigate(`/hotels/${id}`);  // 해당 호텔의 ID를 URL에 추가
+  };
+
+  // 마우스 위치 업데이트
+  const handleMouseMove = (e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+
   return (
-    <div className="search-page">
+    <div className="search-page" onMouseMove={handleMouseMove}> {/* 마우스 이동 이벤트 추가 */}
       <h1 className="search-results-title">검색결과</h1>
 
       {/* 검색 입력 필드 */}
@@ -71,31 +93,14 @@ const SearchPage = () => {
           placeholder="검색어를 입력하세요"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}  // 엔터 키 이벤트 추가
         />
-        <button className="search-page-button" onClick={handleSearch}>검색</button>
-      </div>
-
-      {/* 검색 기록 */}
-      <div className="search-history">
-        <h3>최근 검색어</h3>
-        <ul>
-          {searchHistory.length > 0 ? (
-            searchHistory.map((term, index) => (
-              <li key={index} className="search-term-item">
-                <span>{term}</span>
-                <button className="delete_button" onClick={() => handleDeleteSearchTerm(term)}>X</button>
-              </li>
-            ))
-          ) : (
-            <p>검색 기록이 없습니다.</p>
-          )}
-        </ul>
+        <button className="search-page-button" onClick={() => handleSearch()}>검색</button>
       </div>
 
       {/* 검색 결과 */}
       <div className="search-content">
         <div className="section-group">
-          {/* 숙박 정보 섹션 */}
           <div className="section accommodations">
             <h2 style={{ display: 'inline-block' }}>숙박 정보</h2>
             <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
@@ -104,12 +109,17 @@ const SearchPage = () => {
             <div className="course-list">
               {hotels.length > 0 ? (
                 hotels.map((hotel, index) => (
-                  <div key={index} className="course-box-item">
+                  <div
+                    key={index}
+                    className="course-box-item"
+                    onClick={() => handleHotelClick(hotel.contentid)}  // 검색 결과 클릭 시 상세 페이지로 이동
+                    onMouseEnter={() => setHoveredHotel(hotel.contentid)}  // 마우스가 올라가면 표시
+                    onMouseLeave={() => setHoveredHotel(null)}  // 마우스가 떠나면 숨기기
+                  >
                     <div className="course-box">
-                      {/* 이미지가 있을 경우 firstimage2 사용 */}
                       {hotel.firstimage2 ? (
                         <img
-                          src={hotel.firstimage2} 
+                          src={hotel.firstimage2}
                           alt={hotel.title}
                           className="rounded-image"
                           width="100%"
@@ -117,7 +127,7 @@ const SearchPage = () => {
                         />
                       ) : (
                         <img
-                          src={`${process.env.PUBLIC_URL}/Image/noimg.png`} // 기본 이미지
+                          src={`${process.env.PUBLIC_URL}/Image/noimg.png`}
                           alt="no_img"
                           className="rounded-image"
                           width="100%"
@@ -129,8 +139,26 @@ const SearchPage = () => {
                       <div className="s_course-title">{hotel.title}</div>
                       <div className="s_course-tag">{areastring(hotel.areacode)}</div>
                       <div className="s_course-date">{hotel.modifiedDate}</div>
-                      <div>{hotel.firstimage2}</div>
                     </div>
+
+                    {/* 마우스 오버 시 "클릭 시 해당 게시물로 이동합니다!" 문구 표시 */}
+                    {hoveredHotel === hotel.contentid && (
+                      <div
+                        className="hover-text"
+                        style={{
+                          position: "absolute",
+                          top: mousePosition.y + 10,  // 마우스 위치에 따라 문구 위치 설정
+                          left: mousePosition.x + 10,
+                          backgroundColor: "rgba(0, 0, 0, 0.7)",
+                          color: "white",
+                          padding: "5px",
+                          borderRadius: "5px",
+                          pointerEvents: "none",
+                        }}
+                      >
+                        클릭 시 해당 게시물로 이동합니다!
+                      </div>
+                    )}
                   </div>
                 ))
               ) : (

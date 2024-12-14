@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
-import TranslateApi from '../translate/Translate_api';  // 수정된 경로와 파일명
+import TranslateApi from "../translate/Translate_api";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`);
+  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const navigate = useNavigate();
 
   const handleLoginLogout = () => {
@@ -21,21 +22,27 @@ function Header() {
   };
 
   const handleSearchClick = () => {
-    console.log("Search button clicked"); // 클릭 여부 확인
-    navigate("/search_page");
+    if (!searchTerm.trim()) {
+      alert("검색어를 입력해 주세요!"); // 검색어가 비어있을 때 경고창 띄움
+      return;
+    }
+    navigate(`/search_page?query=${encodeURIComponent(searchTerm)}`); // 검색어를 URL 파라미터로 전달
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearchClick(); // 엔터키가 눌리면 검색 실행
+    }
   };
 
   const handleMoveProfile = () => {
-    if(isLoggedIn){
-      console.log(isLoggedIn);
-      console.log("act1");
+    if (isLoggedIn) {
       navigate("/profile");
     }
   };
 
   return (
     <header className="header">
-      {/* Google 번역 위젯을 헤더 상단에 추가 */}
       <TranslateApi />
 
       <div className="logo-container">
@@ -59,13 +66,25 @@ function Header() {
       </div>
 
       <div className="search-container">
-        <input type="text" className="search-input" placeholder="검색어를 입력하세요." />
+        <input
+          type="text"
+          className="search-input"
+          placeholder="검색어를 입력하세요."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // 검색어 입력 상태 업데이트
+          onKeyDown={handleKeyDown} // 엔터키 이벤트 처리
+        />
         <button className="search-button" onClick={handleSearchClick}>검색</button>
       </div>
 
       <div className="login-container">
         <div className="guest-image">
-            <img alt="guest" src={guestImage} style={{ width: '40px', height: '40px', borderRadius: '50%' }} onClick={handleMoveProfile}/>
+          <img
+            alt="guest"
+            src={guestImage}
+            style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+            onClick={handleMoveProfile}
+          />
         </div>
         <div className="login-button">
           <button onClick={handleLoginLogout}>
