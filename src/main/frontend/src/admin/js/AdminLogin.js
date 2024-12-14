@@ -1,49 +1,88 @@
-import React from "react";
+import React, {useState} from "react";
 import '../css/AdminLogin.css';
+import {useNavigate} from "react-router-dom";
 
-class AdminLogin extends React.Component {
-    handleLogin = () => {
-        // 아이디와 비밀번호 필드 값을 가져오기
-        const adminId = document.getElementsByName('admin_id')[0].value;
-        const adminPassword = document.getElementsByName('admin_password')[0].value;
+const AdminLogin = () => {
+    const baseUrl = "http://localhost:8080";
+    const navigate = useNavigate();
+    const [item, setItem] = useState({
+        id: '',
+        pw: ''
+    });
 
-        // 아이디 또는 비밀번호가 비어있거나 공백만 있는지 확인
-        if (adminId.trim() === '' || adminPassword.trim() === '') {
-            alert('아이디와 비밀번호를 입력해주세요.'); // 경고창 띄우기
-        } else {
-            // 로그인 성공 로직 (여기서는 페이지 이동)
-            window.location.href = "/admin"; // 또는 다른 페이지 이동 방식 사용 가능
+    const handleIdChange = (event) => {
+        setItem((prev) => ({ ...prev, id: event.target.value }));
+      };
+
+      const handlePwChange = (event) => {
+        setItem((prev) => ({ ...prev, pw: event.target.value }));
+      };
+
+    const handleLogin = async () => {
+        if (item.id.trim() === '' || item.pw.trim() === '') {
+            alert('아이디와 비밀번호를 입력해주세요.');
+            return;
         }
-    };
 
-    render() {
-        return (
-            <div className='admin-login-container'> 
-                <form>
-                    <h2 id='login_title'> 로그인</h2>
+        try {
+            const response = await fetch(baseUrl+"/user/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }, 
+                body: JSON.stringify({
+                    memId: item.id,
+                    memPass: item.pw,
+                }),
+            });
+
+            if(response.ok){
+                const data = await response.json();
+                console.log("응답 데이터: ", data);
+                if (data.accessToken && data.refreshToken) {
+                    localStorage.setItem('token', data.accessToken);
+                    localStorage.setItem('refreshToken', data.refreshToken); // refreshToken 저장
+                    navigate("/admin");
+                } else {
+                    alert('응답에 토큰 정보가 없습니다.');
+                }
+            } else {
+                const error = await response.json();
+                alert(error.message || '로그인에 실패했습니다.');
+            }
+        } catch (error) {
+            console.error('로그인 요청 중 오류 발생:',
+                error);
+                alert('서버와 연결할 수 없습니다. 나중에 다시 시도해주세요.');
+
+        }
+    }
+    return (
+        <div className='admin-login-container'> 
+            <form>
+                <h2 id='login_title'> 로그인</h2>
+                <div>
                     <div>
-                        <div>
-                            {/* 아이디 */}
-                            <div className='admin-login-input'>
-                                <input type='text' className="input-field" maxLength='20' name='admin_id'
+                        {/* 아이디 */}
+                        <div className='admin-login-input'>
+                                <input type='text' className="input-field" maxLength='20' value={item.id} onChange={handleIdChange}
                                     placeholder="ID" />
-                            </div>
+                        </div>
 
-                            {/* 비밀번호 */}
-                            <div className='admin-login-input'>
-                                <input type='password' className="input-field" maxLength='15' name='admin_password' 
+                        {/* 비밀번호 */}
+                        <div className='admin-login-input'>
+                                <input type='password' className="input-field" maxLength='15' value={item.pw} onChange={handlePwChange}
                                     placeholder="PASSWORD" />
-                            </div>
                         </div>
                     </div>
-                    <div>
-                        {/* 버튼 클릭 시 handleLogin 함수 호출 */}
-                        <button type="button" id="sbtn" onClick={this.handleLogin}>로그인</button>
-                    </div>
-                </form>
-            </div>
-        )
-    }
+                </div>
+                <div>
+                    {/* 버튼 클릭 시 handleLogin 함수 호출 */}
+                    <button type="button" id="sbtn" onClick={handleLogin}>로그인</button>
+                </div>
+            </form>
+        </div>
+    )
 }
 
 export default AdminLogin;
