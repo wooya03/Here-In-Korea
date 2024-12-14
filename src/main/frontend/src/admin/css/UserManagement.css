@@ -2,6 +2,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    padding: 10px;
   }
    
   .search-user input {
@@ -12,12 +13,6 @@
 
   .search-user p {
     width: 50px;
-  }
-
-  .search-user input[type="date"] {
-    margin-right: 20px;
-    width: 200px;
-    height: 20px;
   }
 
 
@@ -32,3 +27,5 @@
     width: 200px;
     height: 45px;
   }
+
+  
