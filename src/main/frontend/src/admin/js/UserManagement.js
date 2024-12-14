@@ -1,145 +1,139 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/UserManagement.css";
 import "../css/Common.css";
+import { format } from "date-fns";
+import axios from "axios";
 
-class UserManagement extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: "",
-      filteredData: [
-        { id: 1, userId: "test123", name: "홍길동", nickname: "test1", joinDate: "2024-03-21 16:23", active: "O" },
-        { id: 2, userId: "test456", name: "홍순자", nickname: "test2", joinDate: "2023-04-22 11:52", active: "X" },
-        { id: 3, userId: "test789", name: "김기남", nickname: "test3", joinDate: "2023-06-11 22:45", active: "X" },
-        { id: 4, userId: "test012", name: "김영수", nickname: "test4", joinDate: "2023-06-12 09:34", active: "X" },
-        { id: 5, userId: "test345", name: "박지우", nickname: "test5", joinDate: "2023-07-11 08:12", active: "X" },
-        { id: 6, userId: "test678", name: "강유리", nickname: "test6", joinDate: "2024-10-21 19:45", active: "X" }
-      ],
-      data: [
-        { id: 1, userId: "test123", name: "홍길동", nickname: "test1", joinDate: "2024-03-21 16:23", active: "O" },
-        { id: 2, userId: "test456", name: "홍순자", nickname: "test2", joinDate: "2023-04-22 11:52", active: "X" },
-        { id: 3, userId: "test789", name: "김기남", nickname: "test3", joinDate: "2023-06-11 22:45", active: "X" },
-        { id: 4, userId: "test012", name: "김영수", nickname: "test4", joinDate: "2023-06-12 09:34", active: "X" },
-        { id: 5, userId: "test345", name: "박지우", nickname: "test5", joinDate: "2023-07-11 08:12", active: "X" },
-        { id: 6, userId: "test678", name: "강유리", nickname: "test6", joinDate: "2024-10-21 19:45", active: "X" }
-      ],
-      selectedItems: [], // 선택된 항목을 저장
-    };
+function formatTime(dateString) {
+  if (!dateString) return "날짜 정보 없음"; // dateString이 null/undefined/빈 문자열일 경우 처리
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    // 유효하지 않은 날짜 포맷 처리
+    return "잘못된 날짜";
   }
 
-  handleSearchTextChange = (event) => {
-    this.setState({ searchText: event.target.value });
-  };
-
-  handleSearch = () => {
-    const { data, searchText } = this.state;
-    const filtered = data.filter(
-      (item) =>
-        item.userId.includes(searchText) || item.nickname.includes(searchText)
-    );
-    this.setState({ filteredData: filtered });
-  };
-
-  handleSelectItem = (id) => {
-    const { selectedItems } = this.state;
-    const isSelected = selectedItems.includes(id);
-
-    if (isSelected) {
-      this.setState({
-        selectedItems: selectedItems.filter((itemId) => itemId !== id)
-      });
-    } else {
-      this.setState({
-        selectedItems: [...selectedItems, id]
-      });
-    }
-  };
-
-  handleDelete = () => {
-    const { filteredData, selectedItems } = this.state;
-
-    if (selectedItems.length === 0) {
-      alert("삭제할 항목을 선택하세요.");
-      return;
-    }
-
-    if (window.confirm("정말 삭제하겠습니까?")) {
-      const updatedData = filteredData.filter(
-        (item) => !selectedItems.includes(item.id)
-      );
-      this.setState({
-        filteredData: updatedData,
-        selectedItems: [] // 삭제 후 선택 항목 초기화
-      });
-    }
-  };
-
-  render() {
-    const { filteredData, searchText, selectedItems } = this.state;
-
-    return (
-      <div className="app-container">
-        <h1>회원정보조회</h1>
-        <div className="search-user">
-          <input
-            type="text"
-            placeholder="아이디 검색"
-            value={searchText}
-            onChange={this.handleSearchTextChange}
-          />
-          <input type="text" placeholder="닉네임 검색" />
-          <p>남</p><input type="radio" name="gender" value="male" />
-          <p>여</p><input type="radio" name="gender" value="female" />
-          <p>휴면</p><input type="checkbox" name="dormancy" value="dormancy_yes" />
-          <input type="date"/>~<input type="date" />
-          <button onClick={this.handleSearch}>조회</button>
-        </div>
-
-        <button className="delete-button" onClick={this.handleDelete}>
-          DELETE
-        </button>
-
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>회원 아이디</th>
-              <th>회원 이름</th>
-              <th>닉네임</th>
-              <th>가입일자</th>
-              <th>휴면여부</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.includes(item.id)}
-                    onChange={() => this.handleSelectItem(item.id)}
-                  />
-                </td>
-                <td>{item.userId}</td>
-                <td>{item.name}</td>
-                <td>{item.nickname}</td>
-                <td>{item.joinDate}</td>
-                <td>{item.active}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className="pagination">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-        </div>
-      </div>
-    );
-  }
+  return format(date, "yyyy-MM-dd h:mm:ss a"); // 유효한 경우 날짜 포맷팅
 }
+
+const UserManagement = () => {
+  const baseUrl = "http://localhost:8080";
+  const [data, setData] = useState([]); // 현재 페이지 데이터
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+  const [itemsPerPage] = useState(10); // 페이지당 항목 수
+  const [searchKeyword, setSearchKeyword] = useState(""); // 검색어
+
+  useEffect(() => {
+    putSpringData(currentPage, searchKeyword); // 컴포넌트 로드 시 데이터 요청
+  }, [currentPage]);
+
+  useEffect(() => {
+    // 검색어가 변경될 때마다 첫 페이지로 이동
+    if (searchKeyword !== "") {
+      setCurrentPage(1);
+      putSpringData(1, searchKeyword);
+    }
+  }, [searchKeyword]);
+
+  async function putSpringData(pageNumber, keyword) {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/admin/member?page=${pageNumber}&size=${itemsPerPage}&memName=${keyword}`
+      );
+      const transformedData = response.data.dtoList
+        ? response.data.dtoList.map((item) => {
+            return {
+              memid: item.memId,
+              memname: item.memName,
+              loginDate: item.loginDate,
+              signDate: item.signDate,
+              gender: item.gender,
+              birth: item.birth,
+              role: item.role,
+              email: item.email
+            };
+          })
+        : [];
+      setData(transformedData); // 현재 페이지 데이터 설정
+      setTotalPages(response.data.totalPage); // 총 페이지 수 설정
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber); // 페이지 상태 업데이트
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchKeyword(e.target.value); // 검색어 상태 업데이트
+  };
+
+  const handleSearch = () => {
+    setCurrentPage(1); // 검색 후 첫 페이지로 이동
+    putSpringData(1, searchKeyword); // 검색어로 데이터 요청
+  };
+
+  return (
+    <div className="app-container">
+      <h1>회원정보조회</h1>
+
+      {/* 검색 입력 및 버튼 */}
+      <form className="search-user" onSubmit={(e) => e.preventDefault()}>
+        <input
+          type="text"
+          value={searchKeyword}
+          onChange={handleSearchChange}
+          placeholder="회원 이름으로 검색"
+        />
+        <button onClick={handleSearch}>검색</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>회원 아이디</th>
+            <th>회원 이름</th>
+            <th>가입일자</th>
+            <th>로그인일자</th>
+            <th>성별</th>
+            <th>생년월일</th>
+            <th>이메일</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>
+                <input type="checkbox" />
+              </td>
+              <td>{item.memid}</td>
+              <td>{item.memname}</td>
+              <td>{formatTime(item.signDate)}</td>
+              <td>{formatTime(item.loginDate)}</td>
+              <td>{item.gender}</td>
+              <td>{item.birth}</td>
+              <td>{item.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <span
+            key={index}
+            className={currentPage === index + 1 ? "active" : ""}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default UserManagement;
