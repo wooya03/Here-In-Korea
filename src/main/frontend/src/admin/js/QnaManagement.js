@@ -29,8 +29,8 @@ function QnaManagement() {
             title: item.title,  // 질문 제목
             category: item.category,  // 문의 구분
             createdDate: item.createdDate,  // 생성일
-            answered: item.qstatus,  // 질문의 답변 여부
-            memId : item.memId
+            memId : item.memId,
+            answerContents: item.answerContents
           };
         }) : [];
         setData(transformedData);  // 변환된 데이터를 상태로 설정
@@ -113,7 +113,7 @@ function QnaManagement() {
                 <td>{datas.memId}</td>
                 <td>{datas.category}</td>
                 <td>{formatTime(datas.createdDate)}</td>
-                {datas.answered ? (
+                {datas.answerContents ? (
                 <td>✔ 답변완료</td>
               ) : (
                 <td><button onClick={() => handleClick(datas.id)}>답변 등록</button></td>

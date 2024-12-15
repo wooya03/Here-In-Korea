@@ -11,11 +11,11 @@ import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.webjars.NotFoundException;
 
 import java.util.Optional;
 
@@ -26,7 +26,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
-    private final MemberRepository memberRepository;
 
     @Override
     public void write(@RequestBody QuestionDTO dto) {
@@ -46,13 +45,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-        Page<Object[]> result = questionRepository.getQuestionCount(
-                pageRequestDTO.getPageable(Sort.by("id").descending())
-        );
-        return new PageResultDTO<QuestionDTO, Object[]>(result,
-                en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1])
+    public PageResultDTO<QuestionDTO, Object[]> getList(String category, PageRequestDTO pageRequestDTO) {
+        Pageable pageable = pageRequestDTO.getPageable(Sort.by("id").descending());
 
+        Page<Object[]> result;
+
+        if(category == null || category.trim().isEmpty()){
+            result = questionRepository.getQuestionCount(pageable);
+        } else {
+            result = questionRepository.getQuestionCategory(category,pageable);
+        }
+
+        return new PageResultDTO<QuestionDTO, Object[]>(result,
+                en -> entityToDTO((QuestionEntity) en[0], (MemberEntity) en[1], (AnswerEntity) en[2])
         );
     }
 
@@ -70,8 +75,6 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionDTO get(Long id) {
         Object result = questionRepository.getQuestionById(id);
         Object[] arr = (Object[]) result;
-        return entityToDTO((QuestionEntity) arr[0], (MemberEntity) arr[1]);
+        return entityToDTO((QuestionEntity) arr[0], (MemberEntity) arr[1], (AnswerEntity) arr[2]);
     }
-
-
 }
