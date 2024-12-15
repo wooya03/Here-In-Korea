@@ -1,7 +1,6 @@
 package kr.kro.hereinkorea.domain.qna.question.service;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
-import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
 import kr.kro.hereinkorea.domain.qna.answer.entity.AnswerEntity;
 import kr.kro.hereinkorea.domain.qna.answer.repository.AnswerRepository;
 import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
@@ -53,7 +52,7 @@ public class QuestionServiceImpl implements QuestionService {
         if(category == null || category.trim().isEmpty()){
             result = questionRepository.getQuestionCount(pageable);
         } else {
-            result = questionRepository.getQuestionCategory(category,pageable);
+            result = questionRepository.getQuestionByCategory(category,pageable);
         }
 
         return new PageResultDTO<QuestionDTO, Object[]>(result,

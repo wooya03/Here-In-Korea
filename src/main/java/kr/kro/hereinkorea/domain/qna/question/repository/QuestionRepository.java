@@ -27,7 +27,7 @@ public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> 
             countQuery = "SELECT COUNT(q) " +
                     "FROM QuestionEntity q " +
                     "WHERE (q.category = :category)")
-    Page<Object[]> getQuestionCategory(
+    Page<Object[]> getQuestionByCategory(
             @Param("category") String category,
             Pageable pageable);
 
@@ -37,4 +37,29 @@ public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> 
             "LEFT JOIN AnswerEntity a ON a.question = q " +
             "WHERE q.id = :id ")
     Object getQuestionById(@Param("id") Long id);
+
+    @Query(
+            value = "SELECT q, m, a " +
+                    "FROM QuestionEntity q " +
+                    "LEFT JOIN q.member m " +
+                    "LEFT JOIN AnswerEntity a ON a.question = q " +
+                    "WHERE q.title LIKE CONCAT('%', :title, '%')",
+            countQuery = "SELECT COUNT(q) " +
+                    "FROM QuestionEntity q " +
+                    "WHERE q.title LIKE CONCAT('%', :title, '%')")
+    Page<Object[]> getQuestionByTitle(@Param("title") String title, Pageable pageable);
+
+
+    @Query(
+            value = "SELECT q, m, a " +
+                    "FROM QuestionEntity q " +
+                    "LEFT JOIN q.member m " +
+                    "LEFT JOIN AnswerEntity a ON a.question = q " +
+                    "WHERE q.title LIKE CONCAT('%', :title, '%') AND " +
+                    "(q.category = :category) ",
+            countQuery = "SELECT COUNT(q) " +
+                    "FROM QuestionEntity q " +
+                    "WHERE q.title LIKE CONCAT('%', :title, '%') AND " +
+                    "(q.category = :category) ")
+    Page<Object[]> getQuestionByTitleAndCategory(@Param("title") String title, @Param("category") String category, Pageable pageable);
 }

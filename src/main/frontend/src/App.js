@@ -79,7 +79,7 @@ function App() {
         <Route path="/question/write" element={<><Header /><QuestionAdd /></>} />
         <Route path="/question/:id" element={<><Header /><QuestionDetails /></>} />
         {/* 답변 페이지 */}
-        <Route path="/question/:id/answer/write" element={<><Header /><AnswerAdd /></>} />
+        <Route path="/question/:id/answer/write" element={<><AdminHeader /><AnswerAdd /></>} />
 
         {/* 리뷰 페이지 */}
         <Route path="/review" element={<><Review /></>} />
