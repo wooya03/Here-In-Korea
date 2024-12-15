@@ -1,12 +1,16 @@
 package kr.kro.hereinkorea.domain.admin.controller;
 
 import kr.kro.hereinkorea.domain.admin.service.AdminMemberService;
+import kr.kro.hereinkorea.domain.admin.service.AdminQuestionService;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.domain.member.Entity.QMemberEntity;
 import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.domain.member.controller.JwtResponse;
 import kr.kro.hereinkorea.domain.member.controller.RegisterController;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 import kr.kro.hereinkorea.domain.member.service.MemberService;
+import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
+import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import kr.kro.hereinkorea.global.jwt.properties.JwtUtil;
@@ -27,12 +31,20 @@ public class AdminController {
     AdminMemberService adminMemberService;
 
     @Autowired
+    AdminQuestionService adminQuestionService;
+
+    @Autowired
     MemberService memberService;
 
     private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @GetMapping("question")
+    public PageResultDTO<QuestionDTO, Object[]> getQuestions(String title, String category, PageRequestDTO pageRequestDTO){
+        return adminQuestionService.getQuestion(title, category, pageRequestDTO);
+    }
 
     // 성별 필터를 추가한 getMembers 메서드
     @GetMapping("/member")
