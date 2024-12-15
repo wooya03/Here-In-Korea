@@ -1,31 +1,41 @@
- .search-user {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 10px;
-  }
-   
-  .search-user input {
-    padding: 10px;
-    margin-right: 20px;
-    height: 40px;
-  }
+/* 검색 폼 스타일 */
+.search-user {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* 항목 간 간격 */
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 
-  .search-user p {
-    width: 50px;
-  }
+.search-user input[type="text"] {
+  padding: 5px;
+  font-size: 16px;
+  width: 400px;
+}
 
+.search-user button {
+  padding: 5px 10px;
+  background-color: #424e95;
+  color: white;
+  border: none;
+  width: 100px;
+  cursor: pointer;
+}
 
-  .search-user input[type="text"] {
-    width: 500px;
-    margin-right: 20px;
-  }
+/* 성별 라디오 버튼과 텍스트 가로로 정렬 */
+.gender-selection {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* 라디오 버튼과 텍스트 간의 간격 */
+}
 
-  .search-user button {
-    padding: 5px;
-    margin-right: 20px;
-    width: 200px;
-    height: 45px;
-  }
+.search-user input[type="radio"] {
+  margin: 0; /* 라디오 버튼 기본 마진 제거 */
+}
 
-  
+/* 성별 라벨 텍스트 스타일 */
+.search-user label {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* 라디오 버튼과 텍스트 사이의 간격 */
+}

@@ -23,23 +23,24 @@ const UserManagement = () => {
   const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
   const [itemsPerPage] = useState(10); // 페이지당 항목 수
   const [searchKeyword, setSearchKeyword] = useState(""); // 검색어
+  const [gender, setGender] = useState(""); // 성별 필터
 
   useEffect(() => {
-    putSpringData(currentPage, searchKeyword); // 컴포넌트 로드 시 데이터 요청
-  }, [currentPage]);
+    putSpringData(currentPage, searchKeyword, gender); // 컴포넌트 로드 시 데이터 요청
+  }, [currentPage, gender]);
 
   useEffect(() => {
     // 검색어가 변경될 때마다 첫 페이지로 이동
-    if (searchKeyword !== "") {
+    if (searchKeyword !== "" || gender) {
       setCurrentPage(1);
-      putSpringData(1, searchKeyword);
+      putSpringData(1, searchKeyword, gender);
     }
-  }, [searchKeyword]);
+  }, [searchKeyword, gender]);
 
-  async function putSpringData(pageNumber, keyword) {
+  async function putSpringData(pageNumber, keyword, selectedGender) {
     try {
       const response = await axios.get(
-        `${baseUrl}/admin/member?page=${pageNumber}&size=${itemsPerPage}&memName=${keyword}`
+        `${baseUrl}/admin/member?page=${pageNumber}&size=${itemsPerPage}&memName=${keyword}&gender=${selectedGender}`
       );
       const transformedData = response.data.dtoList
         ? response.data.dtoList.map((item) => {
@@ -50,7 +51,6 @@ const UserManagement = () => {
               signDate: item.signDate,
               gender: item.gender,
               birth: item.birth,
-              role: item.role,
               email: item.email
             };
           })
@@ -70,9 +70,13 @@ const UserManagement = () => {
     setSearchKeyword(e.target.value); // 검색어 상태 업데이트
   };
 
+  const handleGenderChange = (e) => {
+    setGender(e.target.value); // 성별 필터 상태 업데이트
+  };
+
   const handleSearch = () => {
     setCurrentPage(1); // 검색 후 첫 페이지로 이동
-    putSpringData(1, searchKeyword); // 검색어로 데이터 요청
+    putSpringData(1, searchKeyword, gender); // 검색어 및 성별로 데이터 요청
   };
 
   return (
@@ -87,7 +91,39 @@ const UserManagement = () => {
           onChange={handleSearchChange}
           placeholder="회원 이름으로 검색"
         />
-        <button onClick={handleSearch}>검색</button>
+        
+        {/* 성별 필터 */}
+        <div className="gender-selection">
+          <label>
+            <input
+              type="radio"
+              value="M"
+              checked={gender === "M"}
+              onChange={handleGenderChange}
+            />
+            남
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="F"
+              checked={gender === "F"}
+              onChange={handleGenderChange}
+            />
+            <span>여</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              value=""
+              checked={gender === ""}
+              onChange={handleGenderChange}
+            />
+            전체
+          </label>
+          
+          <button onClick={handleSearch}>검색</button>
+        </div>
       </form>
 
       <table>
