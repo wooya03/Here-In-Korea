@@ -26,11 +26,8 @@ public class QuestionEntity extends BaseEntity {
     @Column(nullable = false)
     private String contents;
 
-    @Column(nullable = false)
-    private Boolean status;
-
     @ManyToOne
     private MemberEntity member;
 
-    public void okStatus(){this.status = true;}
+
 }

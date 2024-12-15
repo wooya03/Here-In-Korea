@@ -1,5 +1,6 @@
 package kr.kro.hereinkorea.domain.qna.question.service;
 
+import kr.kro.hereinkorea.domain.qna.answer.entity.AnswerEntity;
 import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import kr.kro.hereinkorea.domain.qna.question.entity.QuestionEntity;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
@@ -10,19 +11,19 @@ public interface QuestionService {
 
     void write(QuestionDTO dto);
 
-    PageResultDTO<QuestionDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+    PageResultDTO<QuestionDTO, Object[]> getList(String category,PageRequestDTO pageRequestDTO);
 
-    default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user){
+    default QuestionDTO entityToDTO(QuestionEntity entity, MemberEntity user, AnswerEntity answer) {
         return QuestionDTO.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .category(entity.getCategory())
                 .contents(entity.getContents())
-                .status(entity.getStatus())
                 .memId(user.getMemId())
                 .memName(user.getMemName())
                 .createdDate(entity.getCreatedDate())
                 .modifiedDate(entity.getModifiedDate())
+                .answerContents(answer != null ? answer.getContents() : null) // null 체크 추가
                 .build();
     }
 
@@ -34,7 +35,6 @@ public interface QuestionService {
                 .title(dto.getTitle())
                 .category(dto.getCategory())
                 .contents(dto.getContents())
-                .status(dto.getStatus())
                 .member(memberEntity)
                 .build();
     }

@@ -8,7 +8,6 @@ const QuestionAdd = () => {
     title: '',
     category: '', 
     contents: '',
-    status: false,
     memId: 'user002',
     memName: '함황여',
     createdDate: new Date().toISOString(),
@@ -53,7 +52,7 @@ const QuestionAdd = () => {
       const response = await axios.post('http://localhost:8080/question/write', questions);
       if (response.status === 201) {
         alert('질문이 등록되었습니다!');
-        navigate('/question/list');
+        navigate('/question');
       }
     } catch (error) {
       console.error('질문 등록 중 오류 발생:', error);
