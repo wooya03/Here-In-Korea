@@ -18,25 +18,31 @@ public class AdminMemberService {
     @Autowired
     AdminMemberRepository memberRepository;
 
-    public PageResultDTO<MemberDTO, MemberEntity> getMember(String memName, PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<MemberDTO, MemberEntity> getMember(String memName, String gender, PageRequestDTO pageRequestDTO) {
         Sort sort = Sort.by("memId").descending();
         Pageable pageable = pageRequestDTO.getPageable(sort);
 
-
         Page<MemberEntity> result;
 
-        if(memName == null || memName.trim().isEmpty()){
-            result = memberRepository.findAll(pageable);
+        if (memName == null || memName.trim().isEmpty()) {
+            if (gender == null || gender.isEmpty()) {
+                result = memberRepository.findAll(pageable);
+            } else {
+                result = memberRepository.findByGender(gender, pageable);
+            }
         } else {
-            result = memberRepository.findByMemNameContaining(memName, pageable);
+            if (gender == null || gender.isEmpty()) {
+                result = memberRepository.findByMemNameContaining(memName, pageable);
+            } else {
+                result = memberRepository.findByMemNameContainingAndGender(memName, gender, pageable);
+            }
         }
 
         Function<MemberEntity, MemberDTO> fn = this::entityToDTO;
-
         return new PageResultDTO<>(result, fn);
     }
 
-    private MemberDTO entityToDTO(MemberEntity entity){
+    private MemberDTO entityToDTO(MemberEntity entity) {
         return MemberDTO.builder()
                 .memId(entity.getMemId())
                 .memName(entity.getMemName())
@@ -48,7 +54,8 @@ public class AdminMemberService {
                 .build();
     }
 
-    public long getTotalMemberCount(){
+    public long getTotalMemberCount() {
         return memberRepository.count();
     }
 }
+

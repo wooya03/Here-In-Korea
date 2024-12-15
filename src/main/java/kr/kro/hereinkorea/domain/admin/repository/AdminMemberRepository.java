@@ -8,5 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AdminMemberRepository extends JpaRepository<MemberEntity, String> {
 
     Page<MemberEntity> findByMemNameContaining(String memName, Pageable pageable);
+
+    Page<MemberEntity> findByGender(String gender, Pageable pageable);
+
+    Page<MemberEntity> findByMemNameContainingAndGender(String memName, String gender, Pageable pageable);
+
     long count();
 }
+

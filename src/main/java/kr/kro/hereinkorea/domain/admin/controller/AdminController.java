@@ -34,9 +34,15 @@ public class AdminController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    // 성별 필터를 추가한 getMembers 메서드
     @GetMapping("/member")
-    public ResponseEntity<PageResultDTO<MemberDTO, MemberEntity>> getMembers(@RequestParam(value = "memName", required = false) String memName, PageRequestDTO pageRequestDTO){
-        PageResultDTO<MemberDTO, MemberEntity> memberList = adminMemberService.getMember(memName, pageRequestDTO);
+    public ResponseEntity<PageResultDTO<MemberDTO, MemberEntity>> getMembers(
+            @RequestParam(value = "memName", required = false) String memName,
+            @RequestParam(value = "gender", required = false) String gender, // 성별 파라미터 추가
+            PageRequestDTO pageRequestDTO) {
+
+        // 성별 파라미터와 함께 adminMemberService.getMember 호출
+        PageResultDTO<MemberDTO, MemberEntity> memberList = adminMemberService.getMember(memName, gender, pageRequestDTO);
 
         return new ResponseEntity<>(memberList, HttpStatus.OK);
     }
