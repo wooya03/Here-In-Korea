@@ -19,8 +19,8 @@ public class QuestionController {
     private final QuestionService questionService;
 
     @GetMapping("/list")
-    public PageResultDTO<QuestionDTO, Object[]> list(PageRequestDTO requestDTO){
-        return questionService.getList(requestDTO);
+    public PageResultDTO<QuestionDTO, Object[]> list(String category, PageRequestDTO requestDTO){
+        return questionService.getList(category, requestDTO);
     }
 
     @GetMapping("/{id}")
