@@ -50,9 +50,20 @@ const SearchPage = () => {
 
   const handleSearch = async (term = searchTerm) => {
     try {
-      const hotelResponse = await axios.get(`http://localhost:8080/api/hotels/search?title=${term}`);
-      setHotels(hotelResponse.data);
+      // 두 요청을 병렬로 처리
+      const [hotelResponseByAddr, hotelResponseByTitle] = await Promise.all([
+        axios.get(`http://localhost:8080/api/hotels/search2?addr1=${term}`),
+        axios.get(`http://localhost:8080/api/hotels/search?title=${term}`)
+      ]);
 
+      // 두 응답 데이터를 합쳐서 상태에 저장
+      const combinedHotels = [
+        ...hotelResponseByAddr.data,
+        ...hotelResponseByTitle.data
+      ];
+      setHotels(combinedHotels);
+
+      // 나머지 검색 요청은 기존대로 처리
       const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search?title=${term}`);
       setReviews(reviewResponse.data);
 
@@ -62,6 +73,7 @@ const SearchPage = () => {
       const courseResponse = await axios.get(`http://localhost:8080/api/courses/search?title=${term}`);
       setCourses(courseResponse.data);
 
+      // 검색 기록 관리
       if (searchHistory.length >= 20) {
         setSearchHistory((prevHistory) => [term, ...prevHistory.slice(0, 19)]);
       } else {
@@ -104,7 +116,6 @@ const SearchPage = () => {
 
       <div className="search-content">
         <div className="section-group">
-          
           {/* 숙박 정보 */}
           <div className="section accommodations">
             <h2 style={{ display: 'inline-block' }}>숙박 정보</h2>
@@ -334,7 +345,7 @@ const SearchPage = () => {
               )}
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>

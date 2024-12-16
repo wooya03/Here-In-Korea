@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class HotelSearchServiceImpl implements HotelSearchService {
@@ -25,12 +24,35 @@ public class HotelSearchServiceImpl implements HotelSearchService {
         List<HotelsDTO> hotelDtoResult = new ArrayList<>();
 
 
-        for(Object[] dto:result){
-           HotelsEntity hotelsEntity = (HotelsEntity)  dto[0];
-           HotelsImgEntity hotelsImgEntity = (HotelsImgEntity) dto[1];
+        for (Object[] dto : result) {
+            HotelsEntity hotelsEntity = (HotelsEntity) dto[0];
+            HotelsImgEntity hotelsImgEntity = (HotelsImgEntity) dto[1];
 
-           hotelDtoResult.add(entityToDTO(hotelsEntity,hotelsImgEntity));
+            hotelDtoResult.add(entityToDTO(hotelsEntity, hotelsImgEntity));
         }
         return hotelDtoResult;
     }
+
+    @Override
+    public List<HotelsDTO> searchHotelsByAddr1(String addr1) {
+
+        List<Object[]> result = hotelSearchRepository.findTop4ByAddrContaining(addr1);
+        List<HotelsDTO> hotelsDtoResult = new ArrayList<>();
+
+        for (Object[] dto : result) {
+            HotelsEntity hotelsEntity = (HotelsEntity) dto[0];
+            HotelsImgEntity hotelsImgEntity = (HotelsImgEntity) dto[1];
+
+            hotelsDtoResult.add(entityToDTO(hotelsEntity, hotelsImgEntity));
+        }
+        return hotelsDtoResult;
+    }
+
 }
+
+
+
+
+
+
+
