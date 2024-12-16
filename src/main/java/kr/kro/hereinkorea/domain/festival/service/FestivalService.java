@@ -6,12 +6,20 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
 import kr.kro.hereinkorea.domain.festival.entity.FestivalEntity;
 import kr.kro.hereinkorea.domain.festival.entity.FestivalImgEntity;
+import kr.kro.hereinkorea.domain.festival.mapper.FestivalMapper;
 import kr.kro.hereinkorea.domain.festival.repository.FestivalImgRepository;
 import kr.kro.hereinkorea.domain.festival.repository.FestivalRepository;
+import kr.kro.hereinkorea.domain.hotels.dto.HotelsDTO;
+import kr.kro.hereinkorea.domain.hotels.entity.HotelsEntity;
+import kr.kro.hereinkorea.domain.hotels.entity.HotelsImgEntity;
+import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
+import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -21,6 +29,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import static kr.kro.hereinkorea.domain.festival.mapper.FestivalMapper.mapToFestivalDTO;
 
 @Service
 @Slf4j
@@ -230,5 +240,16 @@ public class FestivalService {
             private String firstimage2;
 
         }
+    }
+
+    public PageResultDTO<FestivalDTO, Object[]> getList(PageRequestDTO requestDTO) {
+        // 페이징 및 정렬 설정
+        requestDTO.setSize(30); // 한 페이지에 30개 데이터 표시
+        Page<Object[]> result = festivalRepository.getFestivalWithImages(
+                requestDTO.getPageable(Sort.by("contentId").descending())
+        );
+
+        // PageResultDTO 생성
+        return new PageResultDTO<>(result, en -> mapToFestivalDTO((FestivalEntity) en[0], (FestivalImgEntity) en[1]));
     }
 }

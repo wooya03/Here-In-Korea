@@ -3,6 +3,7 @@ package kr.kro.hereinkorea.domain.festival.mapper;
 
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
 import kr.kro.hereinkorea.domain.festival.entity.FestivalEntity;
+import kr.kro.hereinkorea.domain.festival.entity.FestivalImgEntity;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 
@@ -36,6 +37,14 @@ public class FestivalMapper {
                 .tel(festivalEntity.getTel())
                 .eventStartDate(festivalEntity.getEventStartDate())
                 .eventEndDate(festivalEntity.getEventEndDate())
+                .build();
+    }
+
+    public static FestivalDTO mapToFestivalDTO(FestivalEntity festivalEntity, FestivalImgEntity festivalImgEntity) {
+        return FestivalDTO.builder()
+                .contentId(festivalEntity.getContentId())
+                .title(festivalEntity.getTitle())
+                .firstimage2(festivalImgEntity != null ? festivalImgEntity.getFirstimage2() : null) // 썸네일 이미지
                 .build();
     }
 }

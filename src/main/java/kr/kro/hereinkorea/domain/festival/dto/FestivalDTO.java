@@ -19,6 +19,8 @@ public class FestivalDTO {
     private Double mapx;
     private Double mapy;
     private String tel;
+    private String firstimage;
+    private String firstimage2;
     private LocalDate eventStartDate;
     private LocalDate eventEndDate;
 }

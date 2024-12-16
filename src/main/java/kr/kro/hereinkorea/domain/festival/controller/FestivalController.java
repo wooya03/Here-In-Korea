@@ -3,6 +3,9 @@ package kr.kro.hereinkorea.domain.festival.controller;
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
 import kr.kro.hereinkorea.domain.festival.repository.FestivalImgRepository;
 import kr.kro.hereinkorea.domain.festival.service.FestivalService;
+import kr.kro.hereinkorea.domain.hotels.dto.HotelsDTO;
+import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
+import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +37,10 @@ public class FestivalController {
             log.error("정보 저장 실패: {}", e.getMessage());
             return "정보 저장 실패!";
         }
+    }
+
+    @GetMapping("/list")
+    public PageResultDTO<FestivalDTO, Object[]> list(PageRequestDTO requestDTO){
+        return festivalService.getList(requestDTO);
     }
 }
