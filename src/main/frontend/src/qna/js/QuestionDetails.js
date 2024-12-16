@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/QuestionDetails.css';
+import { format } from "date-fns";
+import axios from "axios";
+
+function formatTime(dateString) {
+  if (!dateString) return "날짜 정보 없음"; // dateString이 null/undefined/빈 문자열일 경우 처리
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    // 유효하지 않은 날짜 포맷 처리
+    return "잘못된 날짜";
+  }
+
+  return format(date, "yyyy-MM-dd h:mm:ss a"); // 유효한 경우 날짜 포맷팅
+}
 
 function QuestionDetails() {
     const baseUrl = "http://localhost:8080";
-    const [questionData, setQuestionData] = useState(null); // 질문 데이터
-    const [answerData, setAnswerData] = useState([]); // 답변 데이터
+    const [questionData, setQuestionData] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
@@ -21,20 +33,11 @@ function QuestionDetails() {
                     contents: question.contents,
                     createdDate: question.createdDate,
                     memName: question.memName,
-                    answered: question.qstatus // 답변 상태
+                    answerContents: question.answerContents
                 });
             })
             .catch((error) => {
                 console.error('질문 데이터 오류:', error);
-            });
-
-        // 답변 데이터 가져오기
-        axios.get(baseUrl + `/answer/${id}`)
-            .then((res) => {
-                setAnswerData(res.data); // 답변 데이터를 상태에 저장
-            })
-            .catch((error) => {
-                console.error('답변 데이터 오류:', error);
             });
     }, [id]);
 
@@ -49,7 +52,7 @@ function QuestionDetails() {
                 <div className="info">
                     <span>작성자: {questionData.memName}</span>
                     <span>문의구분: {questionData.category}</span>
-                    <span>작성일: {questionData.createdDate}</span>
+                    <span>작성일: {formatTime(questionData.createdDate)}</span>
                 </div>
             </div>
             <div className="question-style">
@@ -59,17 +62,11 @@ function QuestionDetails() {
             </div>
             <div className="answer">
                 <h2>답변 내용</h2>
-                 {/* {answerData.length > 0 ? (
-                    answerData.map((answer, index) => (
-                        <div key={index} className="answer-item">
-                            <p>{answer.contents}</p>
-                            <span>작성자: {answer.memName}</span>
-                            <span>작성일: {answer.createdDate}</span>
-                        </div>
-                    ))
+                 {questionData.answerContents ? (
+                    <p>{questionData.answerContents}</p>
                 ) : (
                     <p>등록된 답변이 없습니다.</p>
-                )} */}
+                )}
              </div>
         </div>
     );

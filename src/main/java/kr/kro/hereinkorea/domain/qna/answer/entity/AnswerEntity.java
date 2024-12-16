@@ -24,10 +24,13 @@ public class AnswerEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private MemberEntity member;
 
-    @OneToOne(fetch = FetchType.LAZY) // 지연
+    @OneToOne(fetch = FetchType.EAGER) // 지연
     private QuestionEntity question; // 1 : 1
 
-    public void changeQuestion(QuestionEntity question){
+    public void changeQuestion(QuestionEntity question) {
+        if (question == null) {
+            throw new IllegalArgumentException("Question cannot be null");
+        }
         this.question = question;
     }
 }

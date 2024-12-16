@@ -1,27 +1,95 @@
-import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./search_page.css";
 
-
 const SearchPage = () => {
-  // 상태 관리: 검색어, 선택된 위치, 선택된 카테고리
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [hotels, setHotels] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [courses, setCourses] = useState([]); // 코스 정보 상태 추가
+  const [searchHistory, setSearchHistory] = useState([]);
+  const [hoveredHotel, setHoveredHotel] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  // 초기화 함수
-  const handleReset = () => {
-    setSearchTerm("");
-    setSelectedLocation("");
-    setSelectedCategory("");
-    console.log("초기화 버튼 클릭됨");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const query = params.get("query");
+    if (query) {
+      setSearchTerm(query);
+      handleSearch(query);
+    }
+  }, [location.search]);
+
+  const areastring = (res) => {
+    switch (res) {
+      case 1: return "#서울";
+      case 2: return "#인천";
+      case 3: return "#대전";
+      case 4: return "#대구";
+      case 5: return "#광주";
+      case 6: return "#부산";
+      case 7: return "#울산";
+      case 8: return "#세종";
+      case 31: return "#경기";
+      case 32: return "#강원";
+      case 33: return "#충북";
+      case 34: return "#충남";
+      case 35: return "#경북";
+      case 36: return "#경남";
+      case 37: return "#전북";
+      case 38: return "#전남";
+      case 39: return "#제주";
+      default: return "#미정";
+    }
+  };
+
+  const handleSearch = async (term = searchTerm) => {
+    try {
+      const hotelResponse = await axios.get(`http://localhost:8080/api/hotels/search?title=${term}`);
+      setHotels(hotelResponse.data);
+
+      const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search?title=${term}`);
+      setReviews(reviewResponse.data);
+
+      const eventResponse = await axios.get(`http://localhost:8080/api/events/search?title=${term}`);
+      setEvents(eventResponse.data);
+
+      const courseResponse = await axios.get(`http://localhost:8080/api/courses/search?title=${term}`);
+      setCourses(courseResponse.data);
+
+      if (searchHistory.length >= 20) {
+        setSearchHistory((prevHistory) => [term, ...prevHistory.slice(0, 19)]);
+      } else {
+        setSearchHistory((prevHistory) => [term, ...prevHistory]);
+      }
+    } catch (error) {
+      console.error("검색 오류", error);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleHotelClick = (id) => {
+    navigate(`/hotels/${id}`);
+  };
+
+  const handleMouseMove = (e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
   return (
-    <div className="search-page">
+    <div className="search-page" onMouseMove={handleMouseMove}>
       <h1 className="search-results-title">검색결과</h1>
 
-      {/* 검색 입력 필드 */}
       <div className="search-input-container">
         <input
           type="text"
@@ -29,222 +97,244 @@ const SearchPage = () => {
           placeholder="검색어를 입력하세요"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
-        <button className="search-page-button">검색</button>
+        <button className="search-page-button" onClick={() => handleSearch()}>검색</button>
       </div>
 
-      {/* 최근 검색어 표시 */}
-      <div className="recent-search-container">
-        <h2 className="recent-search-label">최근 검색어:</h2>
-        <div className="recent-search-list">
-          <span>부산 x</span>
-          <span>대전 x</span>
-          <span>대구 x</span>
-          <span>빵 x</span>
-          <span>덕질 x</span>
-          <span>애니메이션 x</span>
-        </div>
-      </div>
-
-      {/* 드롭다운 및 초기화 버튼 */}
-      <div className="dropdown-container">
-        <select
-          className="dropdown"
-          value={selectedLocation}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-        >
-          <option value="">서울</option>
-          <option value="인천">인천</option>
-          <option value="대구">대구</option>
-          <option value="대전">대전</option>
-          <option value="광주">광주</option>
-          <option value="부산">부산</option>
-          <option value="울산">울산</option>
-          <option value="경기도">경기도</option>
-          <option value="경상도">경상도</option>
-          <option value="전라도">전라도</option>
-          <option value="충청도">충청도</option>
-          <option value="제주도">제주도</option>
-        </select>
-        <select
-          className="dropdown"
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">여행스팟</option>
-          <option value="문화시설">문화시설</option>
-          <option value="레저">레저</option>
-          <option value="숙박">숙박</option>
-          <option value="쇼핑">쇼핑</option>
-          <option value="음식">음식</option>
-          <option value="여행코스">여행코스</option>
-        </select>
-        <button className="reset-button" onClick={handleReset}>
-          초기화
-        </button>
-      </div>
-
-      {/* 검색 결과 */}
       <div className="search-content">
         <div className="section-group">
-          {/* 여행 코스 섹션 */}
-          <div className="section travel-course">
-            <h2 style={{ display: 'inline-block' }}>대전 여행 코스</h2>
-            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-            <Link to="/course" className="more-link">#여행 코스 더보기</Link>
-           
-            </div>
-            <div className="course-list">
-              {/* 개별 코스 항목 */}
-              <div className="course-box-item">
-                <div className="course-box">
-                  <img
-                    src="/Image/daejun_course1.png"
-                    alt="코스 1"
-                    className="rounded-image"
-                  />
-                </div>
-                <div className="course-info">
-                  <div className="s_course-title">성심당 투어</div>
-                  <div className="s_course-tag">#대전 #먹거리 #명소 #오로지_빵만</div>
-                  <div className="s_course-date">24-05-28 조회23</div>
-                </div>
-              </div>
-              {/* 추가 코스 항목들 */}
-              <div className="course-box-item">
-                <div className="course-box">
-                  <img
-                    src="/Image/daejun_course2.png"
-                    alt="코스 2"
-                    className="rounded-image"
-                  />
-                </div>
-                <div className="course-info">
-                  <div className="s_course-title">대전 여름 나들이</div>
-                  <div className="s_course-tag">#대전 #수목원 #나들이</div>
-                  <div className="s_course-date">24-05-07 조회14</div>
-                </div>
-              </div>
-              <div className="course-box-item">
-                <div className="course-box">
-                  <img
-                    src="/Image/daejun_course3.png"
-                    alt="코스 3"
-                    className="rounded-image"
-                  />
-                </div>
-                <div className="course-info">
-                  <div className="s_course-title">대전 어린이 체험 투어</div>
-                  <div className="s_course-tag">#대전 #가족나들이 #체험 #국립중앙과학관</div>
-                  <div className="s_course-date">24-05-08 조회5</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 주요 행사 섹션 */}
-          <div className="section events">
-            <h2 style={{ display: 'inline-block' }}>대전 주요 행사</h2>
-            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-            {/* <Link to="/festival" className="more-link">#주요 행사 더보기</Link> 나중에 연결하기 */}
-              <a href="#more-events" className="more-link">#주요 행사 더보기</a>
-            </div>
-            <div className="course-list">
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">행사 제목 1</div>
-                  <div className="s_course-tag">#행사 #상세정보</div>
-                  <div className="s_course-date">24-05-28 조회23</div>
-                </div>
-              </div>
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">행사 제목 2</div>
-                  <div className="s_course-tag">#행사 #상세정보</div>
-                  <div className="s_course-date">24-05-07 조회14</div>
-                </div>
-              </div>
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">행사 제목 3</div>
-                  <div className="s_course-tag">#행사 #상세정보</div>
-                  <div className="s_course-date">24-05-08 조회5</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 리뷰 섹션 */}
-          <div className="section reviews">
-            <h2 style={{ display: 'inline-block' }}>대전 리뷰</h2>
-            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-            <Link to="/review" className="more-link">#리뷰 더보기</Link>
-            </div>
-            <div className="course-list">
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">리뷰 제목 1</div>
-                  <div className="s_course-tag">#리뷰 #상세정보</div>
-                  <div className="s_course-date">24-05-28 조회23</div>
-                </div>
-              </div>
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">리뷰 제목 2</div>
-                  <div className="s_course-tag">#리뷰 #상세정보</div>
-                  <div className="s_course-date">24-05-07 조회14</div>
-                </div>
-              </div>
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">리뷰 제목 3</div>
-                  <div className="s_course-tag">#리뷰 #상세정보</div>
-                  <div className="s_course-date">24-05-08 조회5</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 숙박 정보 섹션 */}
+          
+          {/* 숙박 정보 */}
           <div className="section accommodations">
-            <h2 style={{ display: 'inline-block' }}>대전 숙박 정보</h2>
+            <h2 style={{ display: 'inline-block' }}>숙박 정보</h2>
             <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-            {/* <Link to="/숙박 정보 링크" className="more-link">#숙박 정보 더보기</Link> 나중에 연결하기 */}
-              <a href="#more-accommodations" className="more-link">#숙박 정보 더보기</a>
+              <a href="http://localhost:3000/hotels" className="more-link">#숙박 정보 더보기</a>
             </div>
             <div className="course-list">
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">숙박 제목 1</div>
-                  <div className="s_course-tag">#숙박 #상세정보</div>
-                  <div className="s_course-date">24-05-28 조회23</div>
-                </div>
-              </div>
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">숙박 제목 2</div>
-                  <div className="s_course-tag">#숙박 #상세정보</div>
-                  <div className="s_course-date">24-05-07 조회14</div>
-                </div>
-              </div>
-              <div className="course-box-item">
-                <div className="course-box rounded-box"></div>
-                <div className="course-info">
-                  <div className="s_course-title">숙박 제목 3</div>
-                  <div className="s_course-tag">#숙박 #상세정보</div>
-                  <div className="s_course-date">24-05-08 조회5</div>
-                </div>
-              </div>
+              {hotels.length > 0 ? (
+                hotels.map((hotel, index) => (
+                  <div
+                    key={index}
+                    className="course-box-item"
+                    onClick={() => handleHotelClick(hotel.contentid)}
+                    onMouseEnter={() => setHoveredHotel(hotel.contentid)}
+                    onMouseLeave={() => setHoveredHotel(null)}
+                  >
+                    <div className="course-box">
+                      {hotel.firstimage2 ? (
+                        <img
+                          src={hotel.firstimage2}
+                          alt={hotel.title}
+                          className="rounded-image"
+                          width="100%"
+                          height="100%"
+                        />
+                      ) : (
+                        <img
+                          src={`${process.env.PUBLIC_URL}/Image/noimg.png`}
+                          alt="no_img"
+                          className="rounded-image"
+                          width="100%"
+                          height="100%"
+                        />
+                      )}
+                    </div>
+                    <div className="course-info">
+                      <div className="s_course-title">{hotel.title}</div>
+                      <div className="s_course-tag">{areastring(hotel.areacode)}</div>
+                      <div className="s_course-date">{hotel.modifiedDate}</div>
+                    </div>
+                    {hoveredHotel === hotel.contentid && (
+                      <div
+                        className="hover-text"
+                        style={{
+                          position: "fixed",
+                          top: mousePosition.y + 10,
+                          left: mousePosition.x + 10,
+                          backgroundColor: "rgba(0, 0, 0, 0.7)",
+                          color: "white",
+                          padding: "5px",
+                          borderRadius: "5px",
+                          pointerEvents: "none",
+                        }}
+                      >
+                        클릭 시 해당 게시물로 이동합니다!
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>숙박 정보가 없습니다.</p>
+              )}
             </div>
           </div>
+
+          {/* 리뷰 정보 */}
+          <div className="section reviews">
+            <h2 style={{ display: 'inline-block' }}>리뷰 정보</h2>
+            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
+              <a href="http://localhost:3000/review" className="more-link">#리뷰 정보 더보기</a>
+            </div>
+            <div className="course-list">
+              {reviews.length > 0 ? (
+                reviews.map((review, index) => (
+                  <div
+                    key={index}
+                    className="course-box-item"
+                    onClick={() => handleHotelClick(review.hotelId)}
+                    onMouseEnter={() => setHoveredHotel(review.hotelId)} 
+                    onMouseLeave={() => setHoveredHotel(null)}
+                  >
+                    <div className="course-box">
+                      <img
+                        src={review.hotelImage || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        alt={review.title}
+                        className="rounded-image"
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                    <div className="course-info">
+                      <div className="s_course-title">{review.title}</div>
+                      <div className="s_course-tag">{areastring(review.areacode)}</div>
+                      <div className="s_course-date">{review.date}</div>
+                    </div>
+                    {hoveredHotel === review.hotelId && (
+                      <div
+                        className="hover-text"
+                        style={{
+                          position: "fixed",
+                          top: mousePosition.y + 10,
+                          left: mousePosition.x + 10,
+                          backgroundColor: "rgba(0, 0, 0, 0.7)",
+                          color: "white",
+                          padding: "5px",
+                          borderRadius: "5px",
+                          pointerEvents: "none",
+                        }}
+                      >
+                        클릭 시 해당 게시물로 이동합니다!
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>리뷰 정보가 없습니다.</p>
+              )}
+            </div>
+          </div>
+
+          {/* 행사 정보 */}
+          <div className="section events">
+            <h2 style={{ display: 'inline-block' }}>행사 정보</h2>
+            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
+              <a href="http://localhost:3000/festival" className="more-link">#행사 정보 더보기</a>
+            </div>
+            <div className="course-list">
+              {events.length > 0 ? (
+                events.map((event, index) => (
+                  <div
+                    key={index}
+                    className="course-box-item"
+                    onClick={() => navigate(`/events/${event.id}`)} 
+                    onMouseEnter={() => setHoveredHotel(event.id)} 
+                    onMouseLeave={() => setHoveredHotel(null)}
+                  >
+                    <div className="course-box">
+                      <img
+                        src={event.image || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        alt={event.title}
+                        className="rounded-image"
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                    <div className="course-info">
+                      <div className="s_course-title">{event.title}</div>
+                      <div className="s_course-tag">{areastring(event.areacode)}</div>
+                      <div className="s_course-date">{event.date}</div>
+                    </div>
+                    {hoveredHotel === event.id && (
+                      <div
+                        className="hover-text"
+                        style={{
+                          position: "fixed",
+                          top: mousePosition.y + 10,
+                          left: mousePosition.x + 10,
+                          backgroundColor: "rgba(0, 0, 0, 0.7)",
+                          color: "white",
+                          padding: "5px",
+                          borderRadius: "5px",
+                          pointerEvents: "none",
+                        }}
+                      >
+                        클릭 시 해당 게시물로 이동합니다!
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>행사 정보가 없습니다.</p>
+              )}
+            </div>
+          </div>
+
+          {/* 코스 정보 */}
+          <div className="section courses">
+            <h2 style={{ display: 'inline-block' }}>코스 정보</h2>
+            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
+              <a href="http://localhost:3000/course" className="more-link">#코스 정보 더보기</a>
+            </div>
+            <div className="course-list">
+              {courses.length > 0 ? (
+                courses.map((course, index) => (
+                  <div
+                    key={index}
+                    className="course-box-item"
+                    onClick={() => navigate(`/courses/${course.id}`)} 
+                    onMouseEnter={() => setHoveredHotel(course.id)} 
+                    onMouseLeave={() => setHoveredHotel(null)}
+                  >
+                    <div className="course-box">
+                      <img
+                        src={course.image || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        alt={course.title}
+                        className="rounded-image"
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                    <div className="course-info">
+                      <div className="s_course-title">{course.title}</div>
+                      <div className="s_course-tag">{areastring(course.areacode)}</div>
+                      <div className="s_course-date">{course.date}</div>
+                    </div>
+                    {hoveredHotel === course.id && (
+                      <div
+                        className="hover-text"
+                        style={{
+                          position: "fixed",
+                          top: mousePosition.y + 10,
+                          left: mousePosition.x + 10,
+                          backgroundColor: "rgba(0, 0, 0, 0.7)",
+                          color: "white",
+                          padding: "5px",
+                          borderRadius: "5px",
+                          pointerEvents: "none",
+                        }}
+                      >
+                        클릭 시 해당 게시물로 이동합니다!
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>코스 정보가 없습니다.</p>
+              )}
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
