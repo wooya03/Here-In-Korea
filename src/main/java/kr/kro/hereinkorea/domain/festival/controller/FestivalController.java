@@ -1,6 +1,7 @@
 package kr.kro.hereinkorea.domain.festival.controller;
 
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
+import kr.kro.hereinkorea.domain.festival.repository.FestivalImgRepository;
 import kr.kro.hereinkorea.domain.festival.service.FestivalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +19,20 @@ import java.util.List;
 public class FestivalController {
     private final FestivalService festivalService;
 
-    @GetMapping
-    public List<FestivalDTO> getFestivals() {
-        return festivalService.getFestivalsContent();
+//    @GetMapping
+//    public List<FestivalDTO> getFestivals() {
+//        return festivalService.getFestivalsContent();
+//    }
+//}
+
+    @GetMapping("/contentadd")
+    public String contentAdd() {
+        try {
+            festivalService.addContentFestival();
+            return "정보 저장 완료!";
+        } catch (Exception e) {
+            log.error("정보 저장 실패: {}", e.getMessage());
+            return "정보 저장 실패!";
+        }
     }
 }
-
-//    @PostMapping("/contentadd")
-//    public String contentAdd(){
-//
-//        return "";
-//    }

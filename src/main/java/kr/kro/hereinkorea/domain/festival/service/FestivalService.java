@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
+import kr.kro.hereinkorea.domain.festival.entity.FestivalEntity;
+import kr.kro.hereinkorea.domain.festival.entity.FestivalImgEntity;
+import kr.kro.hereinkorea.domain.festival.repository.FestivalImgRepository;
+import kr.kro.hereinkorea.domain.festival.repository.FestivalRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -23,6 +27,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FestivalService {
     private final XmlMapper xmlMapper; // XML 처리용 XmlMapper
+    private final FestivalRepository festivalRepository;
+    private final FestivalImgRepository festivalImgRepository;
+
 
 
     private static final String AREA_BASED_LIST_URL = "http://apis.data.go.kr/B551011/KorService1/searchFestival1" +
@@ -34,25 +41,22 @@ public class FestivalService {
             "&numOfRows=12";
 
 
-//    API 데이터를 호출하고 DTO 리스트로 반환
-//    @return List<FestivalDTO>
-    public List<FestivalDTO> getFestivalsContent() {
+    public void addContentFestival() {
         try {
+            // API 호출
             String areaBasedListResponse = callApi(AREA_BASED_LIST_URL);
             log.info("areaBasedListResponse: {}", areaBasedListResponse);
 
             // XML 데이터를 ApiResponse 객체로 변환
             ApiResponse apiResponse = xmlMapper.readValue(areaBasedListResponse, ApiResponse.class);
 
-            // API 응답 데이터가 null이 아닌지 확인하고, null인 경우 예외 처리
-            if (apiResponse == null || apiResponse.getBody() == null || apiResponse.getBody().getItems() == null) {
-                throw new RuntimeException("API 응답이 유효하지 않거나, 응답 본문에 데이터가 없습니다.");
-            }
-
-            // API 응답 데이터를 DTO 리스트로 변환하여 반환
-            return apiResponse.getBody().getItems().stream()
-                    .map(item -> FestivalDTO.builder()
-                            .contentId(item.getContentId())
+            // API 응답 데이터 처리
+            apiResponse.getBody().getItems().forEach(item -> {
+                try {
+                    // FestivalEntity 생성
+                    Long contentId = item.getContentId();
+                    FestivalEntity festivalEntity = FestivalEntity.builder()
+                            .contentId(contentId)
                             .contentTypeId(item.getContentTypeId())
                             .title(item.getTitle())
                             .addr1(item.getAddr1())
@@ -63,11 +67,29 @@ public class FestivalService {
                             .tel(item.getTel())
                             .eventStartDate(parseDate(item.getEventStartDate()))
                             .eventEndDate(parseDate(item.getEventEndDate()))
-                            .build())
-                    .toList();
+                            .build();
+
+                    // FestivalEntity 저장
+                    festivalRepository.save(festivalEntity);
+
+                    // FestivalImgEntity 저장 (이미지가 있는 경우에만)
+                    if (item.getFirstimage() != null && !item.getFirstimage().isEmpty()) {
+                        FestivalImgEntity festivalImgEntity = FestivalImgEntity.builder()
+                                .festival(festivalEntity)
+                                .firstimage(item.getFirstimage())
+                                .firstimage2(item.getFirstimage2())
+                                .build();
+
+                        festivalImgRepository.save(festivalImgEntity);
+                    }
+
+                } catch (Exception e) {
+                    log.error("Error processing contentId {}: {}", item.getContentId(), e.getMessage());
+                }
+            });
 
         } catch (Exception e) {
-            log.error("API 호출 및 처리 중 오류 발생: {}", e.getMessage());
+            log.error("API 호출 및 저장 중 오류 발생: {}", e.getMessage());
             throw new RuntimeException("API 처리 실패", e);
         }
     }
@@ -190,6 +212,13 @@ public class FestivalService {
 
             @JsonProperty("eventenddate")
             private String eventEndDate;
+
+            @JsonProperty("firstimage")
+            private String firstimage;
+
+            @JsonProperty("firstimage2")
+            private String firstimage2;
+
         }
     }
 }

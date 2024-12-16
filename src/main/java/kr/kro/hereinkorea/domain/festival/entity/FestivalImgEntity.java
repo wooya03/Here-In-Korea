@@ -20,6 +20,7 @@ public class FestivalImgEntity {
     @Column
     private String firstimage; //원본 이미지
 
-    @Column String firstimage2; //썸네일 이미지
+    @Column
+    private String firstimage2; //썸네일 이미지
 
 }
