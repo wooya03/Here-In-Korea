@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { format } from "date-fns";
 import { useParams } from 'react-router-dom';
 import "../css/HotelsDetails.css";
 
 function formatTime(dateString) {
-    if (!dateString) return "날짜 정보 없음"; // dateString이 null/undefined/빈 문자열일 경우 처리
+    if (!dateString) return "날짜 정보 없음"; 
     const date = new Date(dateString);
-
     if (isNaN(date.getTime())) {
-        // 유효하지 않은 날짜 포맷 처리
         return "잘못된 날짜";
     }
-
-    return format(date, "yyyy-MM-dd h:mm:ss a"); // 유효한 경우 날짜 포맷팅
+    return format(date, "yyyy-MM-dd h:mm:ss a");
 }
 
-
 const HotelDetails = () => {
+    const mapRef = useRef(null);
     const baseUrl = "http://localhost:8080";
     const [data, setData] = useState([]);
+    const [map, setMap] = useState(null);
     const { id } = useParams();
     
     useEffect(() => {
@@ -32,6 +30,32 @@ const HotelDetails = () => {
                 console.error('질문 데이터 오류:', error);
             });
     }, [id]);
+    
+    useEffect(() => {
+        const initializeMap = () => {
+            if (data.mapx && data.mapy) { // 좌표값이 존재할 경우에만 지도 초기화
+                const mapInstance = new window.google.maps.Map(mapRef.current, {
+                    center: { lat: data.mapy, lng: data.mapx },
+                    zoom: 16,
+                });
+    
+                // 마커 추가
+                const marker = new window.google.maps.Marker({
+                    position: { lat: data.mapy, lng: data.mapx },
+                    map: mapInstance,
+                    title: data.title || "호텔 위치"
+                });
+    
+                setMap(mapInstance);
+            }
+        };
+    
+        if (window.google && data.mapx && data.mapy) { // Google Maps API가 로드되었고 좌표값이 있을 때만 실행
+            initializeMap();
+        } else if (!window.google) {
+            console.error('Google Maps API가 로드되지 않았습니다.');
+        }
+    }, [data.mapx, data.mapy]);
   
     return (
         <div className="hotel-detail">
@@ -100,14 +124,7 @@ const HotelDetails = () => {
                             )}</div>
                 
                     <div className="map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=..."
-                            width="100%"
-                            height="300"
-                            style={{ border: 0 }}
-                            allowFullScreen=""
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        <div ref={mapRef} style={{ width: '100%', height: '300px' }}></div>
                     </div>
                 </div>
             </div>
