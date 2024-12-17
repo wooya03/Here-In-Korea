@@ -96,6 +96,9 @@ function App() {
         <Route path='/hotels' element={<><Header /><HotelsList /></>} />
         <Route path='/hotels/:id' element={<><Header /><HotelDetails /></>} />
 
+        {/* 행사 페이지 */}
+        <Route path='/festival' element={<><Header /><Festival /></>} />
+
       </Routes>
     </main>
   );
