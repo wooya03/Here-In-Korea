@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.reviewboard.dto;
+package kr.kro.hereinkorea.domain.reviewboard.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class ReviewDto {
+public class ReviewDTO {
     private Long reviewId;
     private String reviewTitle;
     private String memId;
