@@ -2,10 +2,15 @@ package kr.kro.hereinkorea.domain.festival.mapper;
 
 
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
+import kr.kro.hereinkorea.domain.festival.dto.FestivalDetailsDTO;
+import kr.kro.hereinkorea.domain.festival.entity.FestivalDetailsEntity;
 import kr.kro.hereinkorea.domain.festival.entity.FestivalEntity;
 import kr.kro.hereinkorea.domain.festival.entity.FestivalImgEntity;
+import kr.kro.hereinkorea.domain.hotels.entity.HotelsEntity;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
+
+import java.time.LocalDate;
 
 public class FestivalMapper {
     public static FestivalEntity dtoToEntity(FestivalDTO festivalDTO){
@@ -45,6 +50,23 @@ public class FestivalMapper {
                 .contentId(festivalEntity.getContentId())
                 .title(festivalEntity.getTitle())
                 .firstimage2(festivalImgEntity != null ? festivalImgEntity.getFirstimage2() : null) // 썸네일 이미지
+                .eventStartDate(festivalEntity.getEventStartDate())
+                .eventEndDate(festivalEntity.getEventEndDate())
+                .build();
+    }
+
+    public static FestivalDetailsEntity dtoToEntity(FestivalDetailsDTO dto, FestivalEntity festival){
+        FestivalEntity festivalEntity = FestivalEntity.builder().contentId(dto.getContentid()).build();
+
+        return FestivalDetailsEntity.builder()
+                .festival(festival)
+                .sponsor1(dto.getSponsor1())
+                .sponsor1tel(dto.getSponsor1tel())
+                .eventstartdate(dto.getEventstartdate())
+                .eventenddate(dto.getEventenddate())
+                .playtime(dto.getPlaytime())
+                .eventplace(dto.getEventplace())
+                .usetimefestival(dto.getUsetimefestival())
                 .build();
     }
 }

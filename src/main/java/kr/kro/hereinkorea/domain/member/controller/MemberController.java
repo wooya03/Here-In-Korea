@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
+
 
 @RestController
 @RequestMapping("/user")
-public class RegisterController {
+public class MemberController {
     @Autowired
     private  MemberService memberService;
 
-    private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -70,6 +72,20 @@ public class RegisterController {
             // 예외 발생 시 500 Internal Server Error 반환
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new JwtResponse("로그인 중 오류가 발생했습니다: " + e.getMessage(), ""));
+        }
+    }
+
+    @PostMapping("/find/id/request")
+    public ResponseEntity<?> findMemberId(@RequestBody MemberDTO memberDTO) {
+        // 이름과 이메일로 아이디 찾기
+        String memId = memberService.findMemberId(memberDTO.getMemName(), memberDTO.getEmail());
+
+        if (memId != null) {
+            // 아이디가 존재하면 아이디만 반환
+            return ResponseEntity.ok(Collections.singletonMap("id", memId));
+        } else {
+            // 아이디가 존재하지 않으면 에러 메시지 반환
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("존재하지 않는 아이디입니다.");
         }
     }
 

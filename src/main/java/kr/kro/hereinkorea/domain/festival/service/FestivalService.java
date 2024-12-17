@@ -45,21 +45,11 @@ public class FestivalService {
     private static final String AREA_BASED_LIST_URL = "http://apis.data.go.kr/B551011/KorService1/searchFestival1?" +
     "eventStartDate=20241201&eventEndDate=20241231" +
     "&areaCode=&sigunguCode=" +
-    "&ServiceKey=6DNqQa8aepnBmiGcSEH7tkLBSEGDEaDTGEJQnNx6G%2Bf5U4Kqf%2FDNoQVC%2F%2BrWRNRLW9RaDY1qHUvGKF1hVzbrRA%3D%3D" +
+    "&ServiceKey=Vzrka%2FMW4E5Dh3bkH2muvLYWT9BFjjgp1sKVHTbfHKb6Qvku%2BnS4e4UnV%2BMQgqlSZR1D00kCcMI5xqtvqwPQtg%3D%3D" +
     "&listYN=Y&MobileOS=ETC&MobileApp=AppTest" +
     "&arrange=A" +
     "&numOfRows=30" +
     "&pageNo=1";
-
-//    "http://apis.data.go.kr/B551011/KorService1/searchFestival1" +
-//            "?eventStartDate=20241201" +
-//            "&eventEndDate=20241201" +
-//            "&ServiceKey=6DNqQa8aepnBmiGcSEH7tkLBSEGDEaDTGEJQnNx6G%2Bf5U4Kqf%2FDNoQVC%2F%2BrWRNRLW9RaDY1qHUvGKF1hVzbrRA%3D%3D" +
-//            "&MobileOS=ETC&MobileApp=AppTest"+
-//            "&listYN=N" +
-//            "&numOfRows=12";
-
-
 
     public void addContentFestival() {
         try {

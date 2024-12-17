@@ -6,7 +6,7 @@ import kr.kro.hereinkorea.domain.admin.service.AdminReviewService;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.domain.member.controller.JwtResponse;
-import kr.kro.hereinkorea.domain.member.controller.RegisterController;
+import kr.kro.hereinkorea.domain.member.controller.MemberController;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 import kr.kro.hereinkorea.domain.member.service.MemberService;
 import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
@@ -39,7 +39,7 @@ public class AdminController {
     @Autowired
     MemberService memberService;
 
-    private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
     @Autowired
     private JwtUtil jwtUtil;
