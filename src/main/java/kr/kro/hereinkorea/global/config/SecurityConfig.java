@@ -50,14 +50,14 @@ public class SecurityConfig {
                         .accessDeniedHandler(jwtAccessDeniedHandler) // 403 Forbidden 핸들링
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/hotels/**").permitAll()
-                        .requestMatchers("/auth/**", "/upload", "/display", "/file").permitAll()
-                        .requestMatchers("/user/login").permitAll()// 인증 없이 접근 허용
+//                        .requestMatchers("/user/login").permitAll()// 인증 없이 접근 허용
 //                        .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN 권한 필요
-                        .requestMatchers("/admin/**").permitAll()
-                        .requestMatchers("/hotels/**").permitAll()
-                        .requestMatchers("/question/**").permitAll().requestMatchers("/answer/**").permitAll()
-                        .anyRequest().authenticated() // 나머지는 인증 필요
+//                        .requestMatchers("/hotels/**").permitAll()
+//                        .requestMatchers("/question/**").permitAll()
+//                        .requestMatchers("/api/hotels/**").permitAll()
+//                        .requestMatchers("/festival","/festival/**").permitAll()
+//                        .anyRequest().authenticated() // 나머지는 인증 필요
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // JWT 필터 추가
                 .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class)
