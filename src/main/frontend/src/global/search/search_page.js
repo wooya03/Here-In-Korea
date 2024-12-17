@@ -61,7 +61,13 @@ const SearchPage = () => {
         ...hotelResponseByAddr.data,
         ...hotelResponseByTitle.data
       ];
-      setHotels(combinedHotels);
+
+      // 중복된 호텔을 제거 (contentid 기준으로)
+      const uniqueHotels = [
+        ...new Map(combinedHotels.map(hotel => [hotel.contentid, hotel])).values()
+      ];
+
+      setHotels(uniqueHotels);
 
       // 나머지 검색 요청은 기존대로 처리
       const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search?title=${term}`);
@@ -120,7 +126,7 @@ const SearchPage = () => {
           <div className="section accommodations">
             <h2 style={{ display: 'inline-block' }}>숙박 정보</h2>
             <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/hotels" className="more-link">#숙박 정보 더보기</a>
+              <a href="/hotels" className="more-link">#숙박 정보 더보기</a>
             </div>
             <div className="course-list">
               {hotels.length > 0 ? (
@@ -153,7 +159,7 @@ const SearchPage = () => {
                     </div>
                     <div className="course-info">
                       <div className="s_course-title">{hotel.title}</div>
-                      <div className="s_course-tag">{areastring(hotel.areacode)}</div>
+                      <div className="s_course-tag">{hotel.addr1}</div>
                       <div className="s_course-date">{hotel.modifiedDate}</div>
                     </div>
                     {hoveredHotel === hotel.contentid && (
@@ -185,7 +191,7 @@ const SearchPage = () => {
           <div className="section reviews">
             <h2 style={{ display: 'inline-block' }}>리뷰 정보</h2>
             <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/review" className="more-link">#리뷰 정보 더보기</a>
+              <a href="/review" className="more-link">#리뷰 정보 더보기</a>
             </div>
             <div className="course-list">
               {reviews.length > 0 ? (
@@ -194,7 +200,7 @@ const SearchPage = () => {
                     key={index}
                     className="course-box-item"
                     onClick={() => handleHotelClick(review.hotelId)}
-                    onMouseEnter={() => setHoveredHotel(review.hotelId)} 
+                    onMouseEnter={() => setHoveredHotel(review.hotelId)}
                     onMouseLeave={() => setHoveredHotel(null)}
                   >
                     <div className="course-box">
@@ -240,7 +246,7 @@ const SearchPage = () => {
           <div className="section events">
             <h2 style={{ display: 'inline-block' }}>행사 정보</h2>
             <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/festival" className="more-link">#행사 정보 더보기</a>
+              <a href="/festival" className="more-link">#행사 정보 더보기</a>
             </div>
             <div className="course-list">
               {events.length > 0 ? (
@@ -248,8 +254,8 @@ const SearchPage = () => {
                   <div
                     key={index}
                     className="course-box-item"
-                    onClick={() => navigate(`/events/${event.id}`)} 
-                    onMouseEnter={() => setHoveredHotel(event.id)} 
+                    onClick={() => navigate(`/events/${event.id}`)}
+                    onMouseEnter={() => setHoveredHotel(event.id)}
                     onMouseLeave={() => setHoveredHotel(null)}
                   >
                     <div className="course-box">
@@ -291,11 +297,11 @@ const SearchPage = () => {
             </div>
           </div>
 
-          {/* 코스 정보 */}
+          {/* 여행 코스 정보 */}
           <div className="section courses">
-            <h2 style={{ display: 'inline-block' }}>코스 정보</h2>
+            <h2 style={{ display: 'inline-block' }}>여행 코스 정보</h2>
             <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/course" className="more-link">#코스 정보 더보기</a>
+              <a href="/courses" className="more-link">#여행 코스 더보기</a>
             </div>
             <div className="course-list">
               {courses.length > 0 ? (
@@ -303,8 +309,8 @@ const SearchPage = () => {
                   <div
                     key={index}
                     className="course-box-item"
-                    onClick={() => navigate(`/courses/${course.id}`)} 
-                    onMouseEnter={() => setHoveredHotel(course.id)} 
+                    onClick={() => navigate(`/courses/${course.id}`)}
+                    onMouseEnter={() => setHoveredHotel(course.id)}
                     onMouseLeave={() => setHoveredHotel(null)}
                   >
                     <div className="course-box">
@@ -341,11 +347,10 @@ const SearchPage = () => {
                   </div>
                 ))
               ) : (
-                <p>코스 정보가 없습니다.</p>
+                <p>여행 코스 정보가 없습니다.</p>
               )}
             </div>
           </div>
-
         </div>
       </div>
     </div>
