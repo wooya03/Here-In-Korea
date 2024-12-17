@@ -19,11 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class ReviewDto {
     private Long reviewId;
-    private String title;
+    private String reviewTitle;
     private String memId;
-    private String content;
-    private String hashtags;
-    private LocalDateTime createdDate;
-    private int views;
-    private int likes;
+    private String reviewContent;
+    private String reviewTag;
+    private LocalDateTime reviewTime;
+    private int reviewViews;
+    private int reviewLikes;
 }

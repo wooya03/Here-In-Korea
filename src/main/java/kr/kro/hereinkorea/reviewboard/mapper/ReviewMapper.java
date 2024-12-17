@@ -12,13 +12,13 @@ public class ReviewMapper {
     public ReviewDto toDto(ReviewEntity review) {
         return ReviewDto.builder()
                 .reviewId(review.getReviewId())
-                .title(review.getTitle())
-                .content(review.getContent())
+                .reviewTitle(review.getReviewTitle())
+                .reviewContent(review.getReviewContent())
                 .memId(review.getMemId() != null ? review.getMemId().getMemId() : null) // Member에서 userId 추출
-                .hashtags(review.getHashtags())
-                .createdDate(review.getCreatedDate())
-                .views(review.getViews())
-                .likes(review.getLikes())
+                .reviewTag(review.getReviewTag())
+                .reviewTime(review.getReviewTime())
+                .reviewViews(review.getReviewViews())
+                .reviewLikes(review.getReviewLikes())
                 .build();
     }
 
@@ -26,9 +26,9 @@ public class ReviewMapper {
     public ReviewEntity toEntity(ReviewDto reviewDto, MemberEntity member) {
         ReviewEntity review = new ReviewEntity();
         review.setReviewId(reviewDto.getReviewId());
-        review.setTitle(reviewDto.getTitle());
-        review.setContent(reviewDto.getContent());
-        review.setHashtags(reviewDto.getHashtags());
+        review.setReviewTime(reviewDto.getReviewTime());
+        review.setReviewContent(reviewDto.getReviewContent());
+        review.setReviewTag(reviewDto.getReviewTag());
         review.setMemId(member); // MemberEntity 설정
         return review;
     }
