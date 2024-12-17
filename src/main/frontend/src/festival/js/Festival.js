@@ -5,31 +5,55 @@ import axios from "axios";
 
 const Festival = () => {
     const [data, setData] = useState([]); // 전체 데이터
+    const [filteredData, setFilteredData] = useState([]); // 필터링된 데이터
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
     const [itemsPerPage] = useState(12); // 한 페이지에 표시할 항목 수
+    const [error, setError] = useState(false); // 데이터 불러오기 실패 여부
+    const [startDate, setStartDate] = useState(""); // 시작 날짜
+    const [endDate, setEndDate] = useState(""); // 종료 날짜
 
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+    const base_url = "http://localhost:8080/festival/list";
 
     const fetchFestivals = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/festival/list");
-            console.log(response.data.dtoList);
-            console.log(response.data.dtoList);
+            const response = await axios.get(base_url);
             setData(response.data.dtoList);
+            setFilteredData(response.data.dtoList); // 초기 필터링 데이터 설정
+            setError(false); // 데이터 성공적으로 불러오면 에러 상태 초기화
         } catch (error) {
-            console.error("Error fetching festivals:", error); // 오류 객체를 더 자세히 출력
-            if (error.response) {
-                // 서버가 응답했지만 상태 코드가 2xx가 아닌 경우
-                console.error("Response error:", error.response.data);
-            } else if (error.request) {
-                // 요청은 보냈지만 응답을 받지 못한 경우
-                console.error("Request error:", error.request);
-            } else {
-                // 기타 오류
-                console.error("Error message:", error.message);
-            }
+            console.error("Error fetching festivals:", error);
+            setError(true); // 데이터 불러오기 실패 시 에러 상태 설정
         }
     };
+
+    // 날짜 필터링 - 실시간 반영
+    useEffect(() => {
+        const filtered = data.filter((festival) => {
+            const start = festival.eventStartDate ? new Date(festival.eventStartDate) : null;
+            const end = festival.eventEndDate ? new Date(festival.eventEndDate) : null;
+
+            const selectedStartDate = startDate ? new Date(startDate) : null;
+            const selectedEndDate = endDate ? new Date(endDate) : null;
+
+            // 필터링 조건
+            if (selectedStartDate && selectedEndDate) {
+                return (
+                    (start && start <= selectedEndDate && end && end >= selectedStartDate) ||
+                    (end && end >= selectedStartDate && start && start <= selectedEndDate)
+                );
+            } else if (selectedStartDate) {
+                return (start && start >= selectedStartDate) || (end && end >= selectedStartDate);
+            } else if (selectedEndDate) {
+                return (end && end <= selectedEndDate) || (start && start <= selectedEndDate);
+            }
+            return true; // 날짜 선택이 없으면 전체 데이터 반환
+        });
+        console.log("Filtered Data:", filtered);
+        setFilteredData(filtered);
+        setCurrentPage(1); // 페이지 초기화
+    }, [startDate, endDate, data]);
 
     useEffect(() => {
         fetchFestivals();
@@ -37,48 +61,77 @@ const Festival = () => {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
     // 페이지 변경 함수
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className="content_festival">
-            <div className="data_area">
-                {/* 데이터 목록 */}
-                {currentItems.map((festival, index) => (
-                    <div key={index} className="content_container">
-                        {/* 이미지 썸네일 */}
-                        <span className="img_wrap">
-                            <img
-                                src={festival.firstimage2 ? festival.firstimage2 : `${process.env.PUBLIC_URL}/Image/noimg.png`}
-                                alt={festival.title}
-                            />
-                        </span>
-                        {/* 제목 */}
-                        <p className="content_title">{festival.title}</p>
-                    </div>
-                ))}
-            </div>
+            {!error && (
+                <div className="date_filter">
+                    <label>
+                        시작 날짜:
+                        <input
+                            type="date"
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        종료 날짜:
+                        <input
+                            type="date"
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                        />
+                    </label>
+                </div>
+            )}
 
-            {/* 페이지 버튼 영역 */}
-            {totalPages > 1 && (
-                <div className="pagination_area">
-                    <div className="pagination">
-                        {Array.from({ length: totalPages }, (_, index) => (
-                            <button
-                                key={index + 1}
-                                onClick={() => paginate(index + 1)}
-                                className={currentPage === index + 1 ? 'active' : ''}
-                            >
-                                {index + 1}
-                            </button>
+            {error ? (
+                <div className="error_message">
+                    <p>데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.</p>
+                </div>
+            ) : (
+                <>
+                    <div className="data_area">
+                        {currentItems.map((festival, index) => (
+                            <div key={index} className="content_container">
+                                <span className="img_wrap">
+                                    <img
+                                        src={
+                                            festival.firstimage2
+                                                ? festival.firstimage2
+                                                : `${process.env.PUBLIC_URL}/Image/noimg.png`
+                                        }
+                                        alt={festival.title}
+                                    />
+                                </span>
+                                <p className="content_title">{festival.title}</p>
+                            </div>
                         ))}
                     </div>
-                </div>
+
+                    {totalPages > 1 && (
+                        <div className="pagination_area">
+                            <div className="pagination">
+                                {Array.from({ length: totalPages }, (_, index) => (
+                                    <button
+                                        key={index + 1}
+                                        onClick={() => paginate(index + 1)}
+                                        className={currentPage === index + 1 ? "active" : ""}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );
-}
+};
 
-export default Festival
+export default Festival;

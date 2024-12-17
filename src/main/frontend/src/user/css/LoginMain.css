@@ -1,89 +1,69 @@
-li{
-    list-style:none;
+li {
+    list-style: none;
 }
-a{
+a {
     color: inherit;
     text-decoration: none;
 }
-.content{
+.content {
     width: 100%;
-    height : 500px;
+    height: 500px;
     margin: 0 auto;
     padding: 0;
 }
-.login_wrap{
-    width : 40%;
-    min-width:500px;
+.login_wrap {
+    width: 40%;
+    min-width: 500px;
     height: 100%;
     min-height: 500px;
-    margin:0 auto;
-    position : relative;
-    top:25px;
-    bottom:25px;
-}
-
-.menu_wrap{
-    margin-bottom: 0;
-    display:table;
-    table-layout: fixed;
+    margin: 0 auto;
     position: relative;
-    width:100%;
-    height: 10%;
-    border-collapse: collapse;
-    border-radius : 12px 12px 0 0;
-    border-style : hidden;
-    box-shadow : 0 0 0 1px black;
+    top: 25px;
+    bottom: 25px;
 }
 
-.menu_item{
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
-    border: 1px solid;
-    text-align: center;
-}
-
-.fm_login{
+.fm_login {
     height: 80%;
 }
 
-.panel_wrap{
+.panel_wrap {
     height: 100%;
-    margin:0;
-    padding:0;
-    border-top:0;
+    margin: 0;
+    padding: 0;
+    border-top: 0;
 }
 
-.panel_item{
+.panel_item {
     height: 100%;
-    border-top:0;
-    border-radius: 0 0 12px 12px;
-    border-style : hidden;
-    box-shadow : -1px 0 0 0 black ,1px 0 0 0 black, 0 1px 0 0 black;
+    border-top: 0;
+    border-radius: 12px 12px 12px 12px;
+    border-style: hidden;
+    box-shadow: -1px 0 0 0 black, 1px 0 0 0 black, 0 1px 0 0 black, 0 -1px 0 0 black;
 
 }
-.panel_inner{
+
+.panel_inner {
     height: 100%;
     position: relative;
 }
 
-.login_form_box{
-    position:absolute;
-    left:7.5%;
-    right:7.5%;
-    top:10%;
-    width:85%;
+.login_form_box {
+    position: absolute;
+    left: 7.5%;
+    right: 7.5%;
+    top: 10%;
+    width: 85%;
 }
 
-.login_box{
+.login_box {
     padding: 10px;
 }
 
-.input_item_id{
+.input_item_id {
     padding: 5px 0 0 5px;
 }
 
-.input_item_id > input{
+.input_item_id > input {
     width: 100%;
     padding: 10px;
     margin-bottom: 0;
@@ -94,40 +74,44 @@ a{
     height: 55px;
 }
 
-.input_item_id > input:focus{
+.input_item_id > input:focus {
     outline: none;
     background: lightsteelblue;
 }
 
-.find_wrap{
+/* 아이디/비밀번호 찾기 */
+.find_wrap {
     position: absolute;
-    width:100%;
+    width: 100%;
     height: 50px;
     margin: auto;
     text-align: center;
-    bottom:30%;
+    bottom: 30%;
 }
-.find_wrap>li{
+
+.find_wrap > li {
     margin: 0;
     padding: 0 20px 0 20px;
     display: inline-block;
     text-align: center;
 }
-.find_wrap>li:nth-child(2){
+
+.find_wrap > li:nth-child(2) {
     border-left: 1px solid black;
 }
-.find_wrap>li:nth-child(2){
+
+.find_wrap > li:nth-child(2) {
     border-right: 1px solid black;
 }
 
-.btn_login_wrap{
-    width:75%;
+.btn_login_wrap {
+    width: 75%;
     margin: auto;
-    position:absolute;
+    position: absolute;
     bottom: 10%;
     left: 12.5%;
 }
 
-.btn_login_wrap > button{
+.btn_login_wrap > button {
     height: 50px;
 }

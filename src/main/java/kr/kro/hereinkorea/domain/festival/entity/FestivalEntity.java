@@ -1,12 +1,10 @@
 package kr.kro.hereinkorea.domain.festival.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "festival")
@@ -47,5 +45,8 @@ public class FestivalEntity {
 
     @Column(nullable = false)
     private LocalDate eventEndDate;
+
+    @OneToMany(mappedBy = "festival", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FestivalDetailsEntity> festivalDetailsEntities;
 
 }

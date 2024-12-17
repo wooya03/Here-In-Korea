@@ -1,48 +1,110 @@
-.content_find{
+.content_find {
     width: 100%;
-    height : 500px;
-    padding: 0;
-    position : relative;
-    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.form_wrap{
-    width : 40%;
-    min-width:500px;
-    height: 100%;
-    min-height: 500px;
-    margin:0 auto;
-    position : relative;
-    top:25px;
-    bottom:25px;
+.form_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.move_find_page{
-    border: 2px solid lightsteelblue;
-    background-color: white;
-    color:black;
-    margin-top : 30px;
+.content_find_id_main {
+    width: 100%;
+    max-width: 600px; /* 최대 너비 설정 */
+    height: auto; /* 높이를 자동으로 조정 */
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    box-sizing: border-box;
 }
 
-.move_find_page:hover{
-    background-color: steelblue;
-}
-
-.info_text{
+.form_find_id {
+    width: 100%;
+    height: auto; /* 자동으로 높이 조정 */
+    padding: 20px;
+    border: 2px solid midnightblue;
+    border-radius: 4px;
     text-align: center;
+    margin-bottom: 30px; /* 헤더와 콘텐츠 사이의 간격을 줄임 */
+}
+
+.list_wrap {
+    display: flex;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list_wrap > p {
+    width: 20%;
+    text-align: left;
     font-weight: bold;
-    font-size: 20px;
 }
 
-.content_find_id{
-    margin-bottom:50px;
-
+.list_wrap > input {
+    width: 70%;
+    padding: 10px;
+    border: 2px solid steelblue;
+    border-radius: 8px;
+    font-size: 14px;
 }
 
-.component_wrap>button{
-    width:50%;
-    display: grid;
-    place-items: center;
-    margin-top: 30px;
-    margin-left: 25%;
+/* form_find_id 내의 버튼만 스타일링 */
+.form_find_id button {
+    padding: 6px 12px; /* 버튼 크기 작게 설정 */
+    width: 30%;
+    position: relative;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; /* 글자 크기도 작게 설정 */
+    margin-top: 30px; /* 버튼 간격을 줄임 */
+}
+
+.form_find_id .back_btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.form_find_id .next_btn {
+    background-color: midnightblue;
+    color: white;
+    margin-left: 10px;
+}
+
+.form_find_id button:hover {
+    opacity: 0.8;
+}
+
+.error_message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px; /* 에러 메시지와 입력 필드 간격 조정 */
+}
+
+.user_id_message {
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px; /* 아이디 표시와 버튼 간격 조정 */
+    padding:100px;
+    border: 2px solid steelblue;
+}
+
+.submit_btn {
+    padding: 8px 16px;
+    margin-top: 20px;
+    background-color: #498ea4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
