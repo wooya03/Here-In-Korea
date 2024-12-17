@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.reviewboard.service;
+package kr.kro.hereinkorea.domain.reviewboard.service;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
-import kr.kro.hereinkorea.reviewboard.dto.ReviewDto;
-import kr.kro.hereinkorea.reviewboard.entity.ReviewEntity;
-import kr.kro.hereinkorea.reviewboard.mapper.ReviewMapper;
-import kr.kro.hereinkorea.reviewboard.repository.ReviewRepository;
+import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDto;
+import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
+import kr.kro.hereinkorea.domain.reviewboard.mapper.ReviewMapper;
+import kr.kro.hereinkorea.domain.reviewboard.repository.ReviewRepository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
