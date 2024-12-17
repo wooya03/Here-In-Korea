@@ -51,16 +51,6 @@ public class FestivalService {
     "&numOfRows=30" +
     "&pageNo=1";
 
-//    "http://apis.data.go.kr/B551011/KorService1/searchFestival1" +
-//            "?eventStartDate=20241201" +
-//            "&eventEndDate=20241201" +
-//            "&ServiceKey=6DNqQa8aepnBmiGcSEH7tkLBSEGDEaDTGEJQnNx6G%2Bf5U4Kqf%2FDNoQVC%2F%2BrWRNRLW9RaDY1qHUvGKF1hVzbrRA%3D%3D" +
-//            "&MobileOS=ETC&MobileApp=AppTest"+
-//            "&listYN=N" +
-//            "&numOfRows=12";
-
-
-
     public void addContentFestival() {
         try {
             // API 호출

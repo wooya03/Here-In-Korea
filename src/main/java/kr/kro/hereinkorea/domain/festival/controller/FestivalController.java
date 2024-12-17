@@ -1,13 +1,16 @@
 package kr.kro.hereinkorea.domain.festival.controller;
 
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
+import kr.kro.hereinkorea.domain.festival.repository.FestivalDetailsRepository;
 import kr.kro.hereinkorea.domain.festival.repository.FestivalImgRepository;
+import kr.kro.hereinkorea.domain.festival.service.FestivalDetailsService;
 import kr.kro.hereinkorea.domain.festival.service.FestivalService;
 import kr.kro.hereinkorea.domain.hotels.dto.HotelsDTO;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,7 @@ import java.util.List;
 @Slf4j
 public class FestivalController {
     private final FestivalService festivalService;
+    private final FestivalDetailsService festivalDetailsService;
 
 //    @GetMapping
 //    public List<FestivalDTO> getFestivals() {
@@ -39,8 +43,22 @@ public class FestivalController {
         }
     }
 
+    @GetMapping("/contentdetailsadd")
+    public String contentDetailsAdd() {
+        try {
+            festivalDetailsService.addFestivalDetails();
+            return "정보 저장 완료!";
+        } catch (Exception e) {
+            log.error("정보 저장 실패: {}", e.getMessage());
+            return "정보 저장 실패!";
+        }
+    }
+
     @GetMapping("/list")
     public PageResultDTO<FestivalDTO, Object[]> list(PageRequestDTO requestDTO){
         return festivalService.getList(requestDTO);
     }
+
+    @GetMapping("/{id}")
+    public void getDetailsList(){}
 }

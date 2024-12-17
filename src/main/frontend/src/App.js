@@ -32,6 +32,7 @@ import HotelsList from './hotels/js/HotelsList.js';
 import HotelDetails from './hotels/js/HotelsDetails.js';
 import Festival from "./festival/js/Festival";
 import GoogleMaps from "./maps/js/GoogleMaps";
+import FestivalDetails from "./festival/js/FestivalDetails";
 
 
 
@@ -98,6 +99,8 @@ function App() {
 
         {/* 행사 페이지 */}
         <Route path='/festival' element={<><Header /><Festival /></>} />
+        <Route path='/festival/:id' element={<><Header /><FestivalDetails /></>} />
+
 
       </Routes>
     </main>

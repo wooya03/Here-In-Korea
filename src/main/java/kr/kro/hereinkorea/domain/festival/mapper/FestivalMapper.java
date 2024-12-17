@@ -45,6 +45,8 @@ public class FestivalMapper {
                 .contentId(festivalEntity.getContentId())
                 .title(festivalEntity.getTitle())
                 .firstimage2(festivalImgEntity != null ? festivalImgEntity.getFirstimage2() : null) // 썸네일 이미지
+                .eventStartDate(festivalEntity.getEventStartDate())
+                .eventEndDate(festivalEntity.getEventEndDate())
                 .build();
     }
 }
