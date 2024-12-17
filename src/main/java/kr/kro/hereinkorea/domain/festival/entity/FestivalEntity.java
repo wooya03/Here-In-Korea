@@ -46,7 +46,7 @@ public class FestivalEntity {
     @Column(nullable = false)
     private LocalDate eventEndDate;
 
-    @OneToMany(mappedBy = "festivalEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "festival", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FestivalDetailsEntity> festivalDetailsEntities;
 
 }

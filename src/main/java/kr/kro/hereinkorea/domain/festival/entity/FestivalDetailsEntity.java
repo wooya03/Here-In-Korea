@@ -3,19 +3,23 @@ package kr.kro.hereinkorea.domain.festival.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Builder
+@Table(name = "festival_details")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 public class FestivalDetailsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // FestivalEntity와 연결 (외래키)
     @ManyToOne(fetch = FetchType.LAZY)
-    private FestivalEntity festivalEntity;
+    @JoinColumn(name = "festival_id")
+    private FestivalEntity festival;
 
     @Column
     private String sponsor1; // 주최자 정보

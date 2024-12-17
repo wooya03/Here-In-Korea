@@ -49,8 +49,9 @@ public class FestivalController {
             festivalDetailsService.addFestivalDetails();
             return "정보 저장 완료!";
         } catch (Exception e) {
-            log.error("정보 저장 실패: {}", e.getMessage());
-            return "정보 저장 실패!";
+            // 예외 메시지와 스택 트레이스를 로그에 출력
+            log.error("정보 저장 실패: {}", e.getMessage(), e); // 전체 예외 정보 출력
+            return "정보 저장 실패! " + e.getMessage(); // 클라이언트에게 더 구체적인 오류 메시지 제공
         }
     }
 
