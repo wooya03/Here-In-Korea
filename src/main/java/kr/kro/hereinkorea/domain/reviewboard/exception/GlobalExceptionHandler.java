@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.reviewboard.exception;
+package kr.kro.hereinkorea.domain.reviewboard.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

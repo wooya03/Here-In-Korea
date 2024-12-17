@@ -1,11 +1,11 @@
 package kr.kro.hereinkorea.domain.admin.service;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
+import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
+import kr.kro.hereinkorea.domain.reviewboard.repository.ReviewRepository;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
-import kr.kro.hereinkorea.reviewboard.dto.ReviewDto;
-import kr.kro.hereinkorea.reviewboard.entity.ReviewEntity;
-import kr.kro.hereinkorea.reviewboard.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,23 +17,23 @@ public class AdminReviewService {
 
     @Autowired
     ReviewRepository reviewRepository;
-    public PageResultDTO<ReviewDto, Object[]> getReview(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<ReviewDTO, Object[]> getReview(PageRequestDTO pageRequestDTO) {
         Pageable pageable = pageRequestDTO.getPageable(Sort.by("id").descending());
 
         Page<Object[]> result = reviewRepository.getReviewCount(pageable);
-        return new PageResultDTO<ReviewDto, Object[]>(result,
+        return new PageResultDTO<ReviewDTO, Object[]>(result,
                                              en -> entityToDTO((ReviewEntity) en[0], (MemberEntity) en[1]));
     }
 
-    private ReviewDto entityToDTO(ReviewEntity review, MemberEntity member){
-        return ReviewDto.builder()
-                .id(review.getId())
-                .title(review.getTitle())
+    private ReviewDTO entityToDTO(ReviewEntity review, MemberEntity member){
+        return ReviewDTO.builder()
+                .reviewId(review.getReviewId())
+                .reviewTitle(review.getReviewTitle())
                 .memId(member.getMemId())
-                .views(review.getViews())
-                .likes(review.getLikes())
-                .createdDate(review.getCreatedDate())
-                .content(review.getContent())
+                .reviewViews(review.getReviewViews())
+                .reviewLikes(review.getReviewLikes())
+                .reviewTime(review.getReviewTime())
+                .reviewContent(review.getReviewContent())
                 .build();
     }
 }

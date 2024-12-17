@@ -10,10 +10,10 @@ import kr.kro.hereinkorea.domain.member.controller.RegisterController;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 import kr.kro.hereinkorea.domain.member.service.MemberService;
 import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
+import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import kr.kro.hereinkorea.global.jwt.properties.JwtUtil;
-import kr.kro.hereinkorea.reviewboard.dto.ReviewDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +45,7 @@ public class AdminController {
     private JwtUtil jwtUtil;
 
     @GetMapping("review")
-    public PageResultDTO<ReviewDto, Object[]> getReviews(PageRequestDTO pageRequestDTO){
+    public PageResultDTO<ReviewDTO, Object[]> getReviews(PageRequestDTO pageRequestDTO){
         return adminReviewService.getReview(pageRequestDTO);
     }
     @GetMapping("question")
