@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class ReviewDto {
-    private Long reviewId;
+    private Long id;
     private String title;
     private String memId;
     private String content;
