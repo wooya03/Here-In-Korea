@@ -20,12 +20,8 @@ public class ReviewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
     @Column(name = "review_id") // 언더스코어 방식으로 매핑
     private Long reviewId;
-=======
-    private Long id;
->>>>>>> origin/main
 
     @Column(name = "review_title", nullable = false)
     private String reviewTitle;
@@ -56,20 +52,11 @@ public class ReviewEntity {
 
     // 생성자
     public ReviewEntity(String title, MemberEntity member, String content, String hashtags) {
-<<<<<<< HEAD
         this.reviewTitle = title;
         this.memId = member;
         this.reviewContent = content;
         this.reviewTag = hashtags;
         this.reviewViews = 0;
         this.reviewLikes = 0;
-=======
-        this.title = title;
-        this.memId= member;
-        this.content = content;
-        this.hashtags = hashtags;
-        this.views = 0;
-        this.likes = 0;
->>>>>>> origin/main
     }
 }

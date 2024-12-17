@@ -18,13 +18,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class ReviewDto {
-<<<<<<< HEAD
     private Long reviewId;
     private String reviewTitle;
-=======
-    private Long id;
-    private String title;
->>>>>>> origin/main
     private String memId;
     private String reviewContent;
     private String reviewTag;

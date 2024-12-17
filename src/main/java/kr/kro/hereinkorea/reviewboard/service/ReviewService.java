@@ -46,11 +46,8 @@ public class ReviewService {
     public Optional<ReviewDto> getReviewById(Long id) {
         return reviewRepository.findById(id) // 특정 ID로 리뷰 조회
                 .map(reviewMapper::toDto);  // Entity -> DTO 변환
-<<<<<<< HEAD
     } 
-=======
-    }    
->>>>>>> origin/main
+
 
     public ReviewDto createReview(ReviewDto reviewDto, MemberEntity member) {
         validateReviewDto(reviewDto); // 유효성 검사 추가
@@ -65,14 +62,8 @@ public class ReviewService {
                 .orElseThrow(() -> new IllegalArgumentException("리뷰를 찾을 수 없습니다: ID=" + id));
     
         ReviewEntity updatedReview = reviewMapper.toEntity(updatedReviewDto, existingReview.getMemId()); // 기존 Member 유지
-<<<<<<< HEAD
         updatedReview.setReviewId(existingReview.getReviewId());
         updatedReview.setReviewTime(existingReview.getReviewTime()); // 기존 생성일자 유지
-=======
-        updatedReview.setId(existingReview.getId());
-        updatedReview.setCreatedDate(existingReview.getCreatedDate()); // 기존 생성일자 유지
->>>>>>> origin/main
-    
         return reviewMapper.toDto(reviewRepository.save(updatedReview));
     }    
 
