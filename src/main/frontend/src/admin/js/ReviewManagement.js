@@ -8,18 +8,18 @@ class ReviewManagement extends Component {
         this.state = {
           searchText: "",
           filteredData: [
-            { id: 1, title: "대전이 보유한 최고의 놀이터 심성당 리뷰", userId: "ync2024", date:"2024-04-21 15:44", views: 410230, likes: 21404 },
-            { id: 2, title: "전라도 맛집 추천", userId: "ync2024", date:"2024-04-21 15:44", views: 130, likes: 42 },
-            { id: 3, title: "애니 오타쿠를 위한 덕질 투어", userId: "ync2024", date:"2024-04-21 15:44", views: 180, likes: 32 },
-            { id: 4, title: "도미는 여기가 맛있어요", userId: "test012", date:"2024-04-21 15:44", views: 1230, likes: 242 },
-            { id: 5, title: "서울에서 가까운 꽃 축제 탐방", userId: "test789", date:"2024-04-21 15:44", views: 302, likes: 30 },
+            { id: 1, title: "대전이 보유한 최고의 놀이터 심성당 리뷰", userId: "user001", date:"2024-04-21 15:44", views: 410230, likes: 21404 },
+            { id: 2, title: "전라도 맛집 추천", userId: "user002", date:"2024-04-21 15:44", views: 130, likes: 42 },
+            { id: 3, title: "애니 오타쿠를 위한 덕질 투어", userId: "user004", date:"2024-04-21 15:44", views: 180, likes: 32 },
+            { id: 4, title: "도미는 여기가 맛있어요", userId: "user002", date:"2024-04-21 15:44", views: 1230, likes: 242 },
+            { id: 5, title: "서울에서 가까운 꽃 축제 탐방", userId: "user002", date:"2024-04-21 15:44", views: 302, likes: 30 },
           ],
           data: [
-            { id: 1, title: "대전이 보유한 최고의 놀이터 심성당 리뷰", userId: "ync2024", date:"2024-04-21 15:44", views: 410230, likes: 21404 },
-            { id: 2, title: "전라도 맛집 추천", userId: "ync2024", date:"2024-04-21 15:44", views: 130, likes: 42 },
-            { id: 3, title: "애니 오타쿠를 위한 덕질 투어", userId: "ync2024", date:"2024-04-21 15:44", views: 180, likes: 32 },
-            { id: 4, title: "도미는 여기가 맛있어요", userId: "test012", date:"2024-04-21 15:44", views: 1230, likes: 242 },
-            { id: 5, title: "서울에서 가까운 꽃 축제 탐방", userId: "test789", date:"2024-04-21 15:44", views: 302, likes: 30 },
+            { id: 1, title: "대전이 보유한 최고의 놀이터 심성당 리뷰", userId: "user001", date:"2024-04-21 15:44", views: 410230, likes: 21404 },
+            { id: 2, title: "전라도 맛집 추천", userId: "user002", date:"2024-04-21 15:44", views: 130, likes: 42 },
+            { id: 3, title: "애니 오타쿠를 위한 덕질 투어", userId: "user004", date:"2024-04-21 15:44", views: 180, likes: 32 },
+            { id: 4, title: "도미는 여기가 맛있어요", userId: "user002", date:"2024-04-21 15:44", views: 1230, likes: 242 },
+            { id: 5, title: "서울에서 가까운 꽃 축제 탐방", userId: "user002", date:"2024-04-21 15:44", views: 302, likes: 30 },
           ],
           selectedItems: [], // 선택된 항목을 저장
         };
@@ -83,7 +83,6 @@ class ReviewManagement extends Component {
                 onChange={this.handleSearchTextChange}
               />
               <input type="text" placeholder="아이디 검색" />
-              <input type="date" />~<input type="date" />
               <button onClick={this.handleSearch}>조회</button>
             </div>
     
@@ -122,10 +121,6 @@ class ReviewManagement extends Component {
     
             <div className="pagination">
               <span>1</span>
-              <span>2</span>
-              <span>3</span>
-              <span>4</span>
-              <span>5</span>
             </div>
           </div>
         )

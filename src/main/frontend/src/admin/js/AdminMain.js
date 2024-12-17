@@ -44,8 +44,8 @@ const AdminMain = () => {
             ) : (
                 <div className="info-box">
                     <p>현재 회원 수: <span className="count">{data.memberCount}</span></p>
-                    <p>누적 게시글 수: <span className="count">40345</span></p>
-                    <p>오늘 등록 게시글 수: <span className="count">4345</span></p>
+                    <p>누적 게시글 수: <span className="count">74</span></p>
+                    <p>오늘 등록 게시글 수: <span className="count">8</span></p>
                 </div>
             )}
         </div>

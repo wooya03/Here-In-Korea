@@ -8,18 +8,28 @@ class CourseManagement extends Component {
     this.state = {
       searchText: "",
       filteredData: [
-        { id: 1, title: "대구 투어!", userId: "test123", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
-        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "test456", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
-        { id: 3, title: "서울 당일치기 코스", userId: "test789", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
-        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "test789", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
-        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "test012", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 1, title: "대구 투어!", userId: "user001", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
+        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "user023", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
+        { id: 3, title: "서울 당일치기 코스", userId: "user002", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
+        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "user100", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
+        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "user003", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 6, title: "대전 투어", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 7, title: "김천 여행", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 8, title: "제주도 1박 2일", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 9, title: "오늘 놀기 좋은 경주", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 10, title: "대구 핫플 목록", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
       ],
       data: [
-        { id: 1, title: "대구 투어!", userId: "test123", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
-        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "test456", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
-        { id: 3, title: "서울 당일치기 코스", userId: "test789", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
-        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "test789", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
-        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "test012", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 1, title: "대구 투어!", userId: "user001", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
+        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "user023", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
+        { id: 3, title: "서울 당일치기 코스", userId: "user002", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
+        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "user100", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
+        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "user003", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 6, title: "대전 투어", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 7, title: "김천 여행", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 8, title: "제주도 1박 2일", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 9, title: "오늘 놀기 좋은 경주", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
+        { id: 10, title: "대구 핫플 목록", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
       ],
       selectedItems: [], // 선택된 항목을 저장
     };
@@ -78,7 +88,7 @@ class CourseManagement extends Component {
         <div className="search-course">
           <input
             type="text"
-            placeholder="코스 이름"
+            placeholder="제목 검색"
             value={searchText}
             onChange={this.handleSearchTextChange}
           />
@@ -103,7 +113,6 @@ class CourseManagement extends Component {
             <option value="경상남도">경상남도</option>
             <option value="제주도">제주도</option>
           </select>
-          <input type="date" />~<input type="date" />
           <button onClick={this.handleSearch}>조회</button>
         </div>
 
@@ -143,9 +152,6 @@ class CourseManagement extends Component {
         <div className="pagination">
           <span>1</span>
           <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
         </div>
       </div>
     );
