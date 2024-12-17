@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "../css/ReviewManagement.css";
-import "../css/Common.css";
-import { format } from 'date-fns';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { format } from 'date-fns';
+
+function formatTime(dateString) {
+  if (!dateString) return "날짜 정보 없음"; 
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    return "잘못된 날짜";
+  }
+
+  return format(date, "yyyy-MM-dd h:mm:ss a"); 
+}
 
 const ReviewManagement = () => {
       const baseUrl = "http://localhost:8080";
@@ -11,28 +20,39 @@ const ReviewManagement = () => {
       const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
       const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
       const [itemsPerPage] = useState(10); // 페이지당 항목 수
-      const navigate = useNavigate();
+        const [title, setTitle] = useState(""); // 검색어
+        const [memId, setmemId] = useState(""); // 성별 필터
     
         useEffect(() => {
-          putSpringData(currentPage); // 컴포넌트 로드 시 데이터 요청
-        }, [currentPage]);
+          putSpringData(currentPage, title, memId); // 컴포넌트 로드 시 데이터 요청
+        }, [currentPage, title, memId]);
+        
+        useEffect(() => {
+            // 검색어가 변경될 때마다 첫 페이지로 이동
+            if (title !== "" || memId !== "") {
+              setCurrentPage(1);
+              putSpringData(1, title, memId);
+            }
+          }, [title, memId]);
 
         async function putSpringData(pageNumber) {
           try {
             const params = {
               page: pageNumber,
               size: itemsPerPage,
+              reviewTitle: title,
+              memId: memId
             };
       
             const response = await axios.get(baseUrl + "/admin/review", { params });
             const transformedData = response.data.dtoList
               ? response.data.dtoList.map(item => ({
-                  id: item.id,
-                  title: item.title,
+                  id: item.reviewId,
+                  title: item.reviewTitle,
                   userId: item.memId,
-                  date: item.createdDate,
-                  views: item.views,
-                  likes: item.likes
+                  date: item.reviewTime,
+                  views: item.reviewViews,
+                  likes: item.reviewLikes
                 }))
               : [];
             setData(transformedData);
@@ -41,6 +61,23 @@ const ReviewManagement = () => {
             console.error("데이터를 가져오는 중 오류 발생:", error);
           }
         }
+
+        const handlePageChange = (pageNumber) => {
+          setCurrentPage(pageNumber);
+        };
+
+        const handleTitleChange = (e) => {
+          setTitle(e.target.value); // 검색어 상태 업데이트
+        };
+
+        const handleIdChange = (e) => {
+          setmemId(e.target.value); // 검색어 상태 업데이트
+        };
+
+        const handleSearch = () => {
+          setCurrentPage(1); // 검색 후 첫 페이지로 이동
+          putSpringData(1, title, memId); // 검색어 및 성별로 데이터 요청
+        };
     
       // const handleDelete = () => {
         // const { filteredData, selectedItems } = this.state;
@@ -63,14 +100,14 @@ const ReviewManagement = () => {
           <div className="app-container">
             <h1>리뷰게시판관리</h1>
             <div className="search-review">
-              {/* <input
+              <input
                 type="text"
                 placeholder="게시글 이름"
-                value={searchText}
-                onChange={this.handleSearchTextChange}
+                value={title}
+                onChange={handleTitleChange}
               />
-              <input type="text" placeholder="아이디 검색" />
-              <button onClick={this.handleSearch}>조회</button> */}
+              <input type="text" placeholder="아이디 검색" value={memId} onChange={handleIdChange}/>
+              <button onClick={handleSearch}>조회</button>
             </div>
     
             {/* <button className="delete-button" onClick={this.handleDelete}>DELETE</button>
@@ -96,7 +133,7 @@ const ReviewManagement = () => {
                     </td>
                     <td>{item.title}</td>
                     <td>{item.userId}</td>
-                    <td>{item.date}</td>
+                    <td>{formatTime(item.date)}</td>
                     <td>{item.views}</td>
                     <td>{item.likes}</td>
                   </tr>
@@ -105,8 +142,16 @@ const ReviewManagement = () => {
             </table>
     
             <div className="pagination">
-              <span>1</span>
-            </div>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <span
+                key={index}
+                className={currentPage === index + 1 ? "active" : ""}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </span>
+            ))}
+          </div>
           </div>
         )
 }

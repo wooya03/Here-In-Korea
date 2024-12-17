@@ -17,12 +17,27 @@ public class AdminReviewService {
 
     @Autowired
     ReviewRepository reviewRepository;
-    public PageResultDTO<ReviewDTO, Object[]> getReview(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<ReviewDTO, Object[]> getReview(String reviewTitle, String memId, PageRequestDTO pageRequestDTO) {
         Pageable pageable = pageRequestDTO.getPageable(Sort.by("id").descending());
 
-        Page<Object[]> result = reviewRepository.getReviewCount(pageable);
-        return new PageResultDTO<ReviewDTO, Object[]>(result,
-                                             en -> entityToDTO((ReviewEntity) en[0], (MemberEntity) en[1]));
+        Page<Object[]> result;
+
+        if(reviewTitle == null || reviewTitle.trim().isEmpty()){
+            if(memId == null || memId.trim().isEmpty() ){
+                result = reviewRepository.getReviewCount(pageable);
+            } else {
+                result = reviewRepository.getReviewById(memId, pageable);
+            }
+        } else {
+            if(memId == null || memId.trim().isEmpty()){
+                result = reviewRepository.getReviewByTitle(reviewTitle,pageable);
+            } else {
+                result = reviewRepository.getReviewByTitleAndId(reviewTitle, memId, pageable);
+            }
+        }
+
+        return new PageResultDTO<>(result,
+                en -> entityToDTO((ReviewEntity) en[0], (MemberEntity) en[1]));
     }
 
     private ReviewDTO entityToDTO(ReviewEntity review, MemberEntity member){
