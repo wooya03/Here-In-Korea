@@ -8,7 +8,7 @@ const SearchPage = () => {
   const [hotels, setHotels] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [events, setEvents] = useState([]);
-  const [courses, setCourses] = useState([]); // 코스 정보 상태 추가
+  const [courses, setCourses] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
   const [hoveredHotel, setHoveredHotel] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -25,43 +25,51 @@ const SearchPage = () => {
     }
   }, [location.search]);
 
-  const areastring = (res) => {
-    switch (res) {
-      case 1: return "#서울";
-      case 2: return "#인천";
-      case 3: return "#대전";
-      case 4: return "#대구";
-      case 5: return "#광주";
-      case 6: return "#부산";
-      case 7: return "#울산";
-      case 8: return "#세종";
-      case 31: return "#경기";
-      case 32: return "#강원";
-      case 33: return "#충북";
-      case 34: return "#충남";
-      case 35: return "#경북";
-      case 36: return "#경남";
-      case 37: return "#전북";
-      case 38: return "#전남";
-      case 39: return "#제주";
-      default: return "#미정";
-    }
-  };
-
   const handleSearch = async (term = searchTerm) => {
     try {
-      const hotelResponse = await axios.get(`http://localhost:8080/api/hotels/search?title=${term}`);
-      setHotels(hotelResponse.data);
+      // 호텔 정보 검색
+      const [hotelResponseByAddr, hotelResponseByTitle] = await Promise.all([
+        axios.get(`http://localhost:8080/api/hotels/search2?addr1=${term}`),
+        axios.get(`http://localhost:8080/api/hotels/search?title=${term}`)
+      ]);
 
-      const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search?title=${term}`);
-      setReviews(reviewResponse.data);
+      const combinedHotels = [
+        ...hotelResponseByAddr.data,
+        ...hotelResponseByTitle.data
+      ];
 
-      const eventResponse = await axios.get(`http://localhost:8080/api/events/search?title=${term}`);
-      setEvents(eventResponse.data);
+      const uniqueHotels = [
+        ...new Map(combinedHotels.map(hotel => [hotel.contentid, hotel])).values()
+      ];
 
+      setHotels(uniqueHotels);
+
+      // 행사 정보 검색 (title과 addr1로 검색)
+      const [eventResponseByAddr, eventResponseByTitle] = await Promise.all([
+        axios.get(`http://localhost:8080/api/festivals/search4?addr1=${term}`),
+        axios.get(`http://localhost:8080/api/festivals/search3?title=${term}`)
+      ]);
+
+      const combinedEvents = [
+        ...eventResponseByAddr.data,
+        ...eventResponseByTitle.data
+      ];
+
+      const uniqueEvents = [
+        ...new Map(combinedEvents.map(event => [event.contentId, event])).values()
+      ];
+
+      setEvents(uniqueEvents);
+
+      // 여행 코스 정보 검색
       const courseResponse = await axios.get(`http://localhost:8080/api/courses/search?title=${term}`);
       setCourses(courseResponse.data);
 
+      // 리뷰 정보 검색
+      const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search?title=${term}`);
+      setReviews(reviewResponse.data);
+
+      // 검색 기록 처리
       if (searchHistory.length >= 20) {
         setSearchHistory((prevHistory) => [term, ...prevHistory.slice(0, 19)]);
       } else {
@@ -80,6 +88,10 @@ const SearchPage = () => {
 
   const handleHotelClick = (id) => {
     navigate(`/hotels/${id}`);
+  };
+
+  const handleEventClick = (id) => {
+    navigate(`/events/${id}`);
   };
 
   const handleMouseMove = (e) => {
@@ -104,146 +116,52 @@ const SearchPage = () => {
 
       <div className="search-content">
         <div className="section-group">
-          
           {/* 숙박 정보 */}
           <div className="section accommodations">
-            <h2 style={{ display: 'inline-block' }}>숙박 정보</h2>
-            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/hotels" className="more-link">#숙박 정보 더보기</a>
-            </div>
+            <h2>숙박 정보</h2>
             <div className="course-list">
               {hotels.length > 0 ? (
                 hotels.map((hotel, index) => (
-                  <div
-                    key={index}
-                    className="course-box-item"
-                    onClick={() => handleHotelClick(hotel.contentid)}
-                    onMouseEnter={() => setHoveredHotel(hotel.contentid)}
-                    onMouseLeave={() => setHoveredHotel(null)}
-                  >
-                    <div className="course-box">
-                      {hotel.firstimage2 ? (
-                        <img
-                          src={hotel.firstimage2}
-                          alt={hotel.title}
-                          className="rounded-image"
-                          width="100%"
-                          height="100%"
-                        />
-                      ) : (
-                        <img
-                          src={`${process.env.PUBLIC_URL}/Image/noimg.png`}
-                          alt="no_img"
-                          className="rounded-image"
-                          width="100%"
-                          height="100%"
-                        />
-                      )}
-                    </div>
-                    <div className="course-info">
-                      <div className="s_course-title">{hotel.title}</div>
-                      <div className="s_course-tag">{areastring(hotel.areacode)}</div>
-                      <div className="s_course-date">{hotel.modifiedDate}</div>
-                    </div>
-                    {hoveredHotel === hotel.contentid && (
-                      <div
-                        className="hover-text"
-                        style={{
-                          position: "fixed",
-                          top: mousePosition.y + 10,
-                          left: mousePosition.x + 10,
-                          backgroundColor: "rgba(0, 0, 0, 0.7)",
-                          color: "white",
-                          padding: "5px",
-                          borderRadius: "5px",
-                          pointerEvents: "none",
-                        }}
-                      >
-                        클릭 시 해당 게시물로 이동합니다!
-                      </div>
-                    )}
-                  </div>
-                ))
-              ) : (
-                <p>숙박 정보가 없습니다.</p>
-              )}
-            </div>
-          </div>
-
-          {/* 리뷰 정보 */}
-          <div className="section reviews">
-            <h2 style={{ display: 'inline-block' }}>리뷰 정보</h2>
-            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/review" className="more-link">#리뷰 정보 더보기</a>
-            </div>
-            <div className="course-list">
-              {reviews.length > 0 ? (
-                reviews.map((review, index) => (
-                  <div
-                    key={index}
-                    className="course-box-item"
-                    onClick={() => handleHotelClick(review.hotelId)}
-                    onMouseEnter={() => setHoveredHotel(review.hotelId)} 
-                    onMouseLeave={() => setHoveredHotel(null)}
-                  >
+                  <div key={index} className="course-box-item" onClick={() => handleHotelClick(hotel.contentid)}>
                     <div className="course-box">
                       <img
-                        src={review.hotelImage || `${process.env.PUBLIC_URL}/Image/noimg.png`}
-                        alt={review.title}
+                        src={hotel.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        alt={hotel.title}
                         className="rounded-image"
                         width="100%"
                         height="100%"
                       />
                     </div>
                     <div className="course-info">
-                      <div className="s_course-title">{review.title}</div>
-                      <div className="s_course-tag">{areastring(review.areacode)}</div>
-                      <div className="s_course-date">{review.date}</div>
+                      <div className="s_course-title">{hotel.title}</div>
+                      <div className="s_course-tag">{hotel.addr1}</div>
+                      <div className="s_course-date">{hotel.modifiedDate}</div>
                     </div>
-                    {hoveredHotel === review.hotelId && (
-                      <div
-                        className="hover-text"
-                        style={{
-                          position: "fixed",
-                          top: mousePosition.y + 10,
-                          left: mousePosition.x + 10,
-                          backgroundColor: "rgba(0, 0, 0, 0.7)",
-                          color: "white",
-                          padding: "5px",
-                          borderRadius: "5px",
-                          pointerEvents: "none",
-                        }}
-                      >
-                        클릭 시 해당 게시물로 이동합니다!
-                      </div>
-                    )}
                   </div>
                 ))
               ) : (
-                <p>리뷰 정보가 없습니다.</p>
+                <p>숙박 정보가 없습니다.</p>
               )}
+            </div>
+            {/* 숙박 정보 더보기 버튼 */}
+            <div className="more-link-container">
+              <a href="/hotels" className="more-link">#숙박 정보 더보기</a>
             </div>
           </div>
 
           {/* 행사 정보 */}
           <div className="section events">
-            <h2 style={{ display: 'inline-block' }}>행사 정보</h2>
-            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/festival" className="more-link">#행사 정보 더보기</a>
+            <h2>행사 정보</h2>
+            <div className="more-link-container">
+              <a href="/festival" className="more-link">#행사 정보 더보기</a>
             </div>
             <div className="course-list">
               {events.length > 0 ? (
                 events.map((event, index) => (
-                  <div
-                    key={index}
-                    className="course-box-item"
-                    onClick={() => navigate(`/events/${event.id}`)} 
-                    onMouseEnter={() => setHoveredHotel(event.id)} 
-                    onMouseLeave={() => setHoveredHotel(null)}
-                  >
+                  <div key={index} className="course-box-item" onClick={() => handleEventClick(event.contentId)}>
                     <div className="course-box">
                       <img
-                        src={event.image || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        src={event.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
                         alt={event.title}
                         className="rounded-image"
                         width="100%"
@@ -252,26 +170,9 @@ const SearchPage = () => {
                     </div>
                     <div className="course-info">
                       <div className="s_course-title">{event.title}</div>
-                      <div className="s_course-tag">{areastring(event.areacode)}</div>
-                      <div className="s_course-date">{event.date}</div>
+                      <div className="s_course-tag">{event.addr1}</div>
+                      <div className="s_course-date">{event.eventStartDate} - {event.eventEndDate}</div>
                     </div>
-                    {hoveredHotel === event.id && (
-                      <div
-                        className="hover-text"
-                        style={{
-                          position: "fixed",
-                          top: mousePosition.y + 10,
-                          left: mousePosition.x + 10,
-                          backgroundColor: "rgba(0, 0, 0, 0.7)",
-                          color: "white",
-                          padding: "5px",
-                          borderRadius: "5px",
-                          pointerEvents: "none",
-                        }}
-                      >
-                        클릭 시 해당 게시물로 이동합니다!
-                      </div>
-                    )}
                   </div>
                 ))
               ) : (
@@ -280,25 +181,19 @@ const SearchPage = () => {
             </div>
           </div>
 
-          {/* 코스 정보 */}
+          {/* 여행 코스 정보 */}
           <div className="section courses">
-            <h2 style={{ display: 'inline-block' }}>코스 정보</h2>
-            <div className="more-link-container" style={{ display: 'inline-block', marginLeft: '10px' }}>
-              <a href="http://localhost:3000/course" className="more-link">#코스 정보 더보기</a>
+            <h2>여행 코스 정보</h2>
+            <div className="more-link-container">
+              <a href="/courses" className="more-link">#여행 코스 더보기</a>
             </div>
             <div className="course-list">
               {courses.length > 0 ? (
                 courses.map((course, index) => (
-                  <div
-                    key={index}
-                    className="course-box-item"
-                    onClick={() => navigate(`/courses/${course.id}`)} 
-                    onMouseEnter={() => setHoveredHotel(course.id)} 
-                    onMouseLeave={() => setHoveredHotel(null)}
-                  >
+                  <div key={index} className="course-box-item">
                     <div className="course-box">
                       <img
-                        src={course.image || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        src={course.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
                         alt={course.title}
                         className="rounded-image"
                         width="100%"
@@ -307,34 +202,48 @@ const SearchPage = () => {
                     </div>
                     <div className="course-info">
                       <div className="s_course-title">{course.title}</div>
-                      <div className="s_course-tag">{areastring(course.areacode)}</div>
-                      <div className="s_course-date">{course.date}</div>
+                      <div className="s_course-tag">{course.addr1}</div>
+                      <div className="s_course-date">{course.modifiedDate}</div>
                     </div>
-                    {hoveredHotel === course.id && (
-                      <div
-                        className="hover-text"
-                        style={{
-                          position: "fixed",
-                          top: mousePosition.y + 10,
-                          left: mousePosition.x + 10,
-                          backgroundColor: "rgba(0, 0, 0, 0.7)",
-                          color: "white",
-                          padding: "5px",
-                          borderRadius: "5px",
-                          pointerEvents: "none",
-                        }}
-                      >
-                        클릭 시 해당 게시물로 이동합니다!
-                      </div>
-                    )}
                   </div>
                 ))
               ) : (
-                <p>코스 정보가 없습니다.</p>
+                <p>여행 코스 정보가 없습니다.</p>
               )}
             </div>
           </div>
-          
+
+          {/* 리뷰 정보 */}
+          <div className="section reviews">
+            <h2>리뷰 정보</h2>
+            <div className="more-link-container">
+              <a href="/reviews" className="more-link">#리뷰 정보 더보기</a>
+            </div>
+            <div className="course-list">
+              {reviews.length > 0 ? (
+                reviews.map((review, index) => (
+                  <div key={index} className="course-box-item">
+                    <div className="course-box">
+                      <img
+                        src={review.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        alt={review.title}
+                        className="rounded-image"
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                    <div className="course-info">
+                      <div className="s_course-title">{review.title}</div>
+                      <div className="s_course-tag">{review.addr1}</div>
+                      <div className="s_course-date">{review.date}</div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>리뷰 정보가 없습니다.</p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -22,10 +22,10 @@
   
   .main-image-placeholder {
     width: 1200%;
-    max-width: 100px;
+    max-width: 200px;
     height: 120px;
     background-color: #ddd;
-    border: 1px dashed #aaa;
+    border: 1px dashed #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -175,3 +175,34 @@
     font-weight: bold;
     color: #555;
   }  
+
+  .course-description-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .vertical-line {
+    width: 4px;
+    background-color: #ccc;
+    height: 100%;
+  }
+  
+  .course-description {
+    flex: 1;
+    min-height: 60px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+  }
+  
+  
+  .course-hashtag-input,
+  .course-title-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }

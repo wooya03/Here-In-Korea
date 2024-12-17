@@ -7,6 +7,8 @@ function CourseWrite() {
   const navigate = useNavigate();
   const [mainImage, setMainImage] = useState(null);
   const [courseImages, setCourseImages] = useState([]);
+  const [locations, setLocations] = useState([""]); // 장소 이름 리스트
+  const [courseDescriptions, setCourseDescriptions] = useState([]);
   const [hashtag, setHashtag] = useState("");
   const [title, setTitle] = useState("");
 
@@ -15,6 +17,8 @@ function CourseWrite() {
     if (savedCourse) {
       setMainImage(savedCourse.mainImage);
       setCourseImages(savedCourse.courseImages || []);
+      setLocations(savedCourse.locations || [""]);
+      setCourseDescriptions(savedCourse.courseDescriptions || []);
       setHashtag(savedCourse.hashtag || "");
       setTitle(savedCourse.title || "");
     }
@@ -38,18 +42,34 @@ function CourseWrite() {
 
   const handleCourseRemoveImage = (index) => {
     const newCourseImages = [...courseImages];
-    newCourseImages.splice(index, 1); // 해당 이미지를 삭제
+    const newLocations = [...locations];
+    const newCourseDescriptions = [...courseDescriptions];
+    newCourseImages.splice(index, 1);
+    newLocations.splice(index, 1);
+    newCourseDescriptions.splice(index, 1);
     setCourseImages(newCourseImages);
+    setLocations(newLocations);
+    setCourseDescriptions(newCourseDescriptions);
   };
 
   const handleAddImage = () => {
-    setCourseImages([...courseImages, null]); // 새 이미지 추가
+    setCourseImages([...courseImages, null]);
+    setLocations([...locations, ""]);
+    setCourseDescriptions([...courseDescriptions, ""]);
+  };
+
+  const handleDescriptionChange = (index, value) => {
+    const newDescriptions = [...courseDescriptions];
+    newDescriptions[index] = value;
+    setCourseDescriptions(newDescriptions);
   };
 
   const handleCourseSave = () => {
     const courseData = {
       mainImage,
       courseImages,
+      locations,
+      courseDescriptions,
       hashtag,
       title,
     };
@@ -74,6 +94,8 @@ function CourseWrite() {
     const courseData = {
       mainImage,
       courseImages,
+      locations,
+      courseDescriptions,
       hashtag,
       title,
     };
@@ -130,7 +152,7 @@ function CourseWrite() {
                 value={hashtag}
                 onChange={(e) => setHashtag(e.target.value)}
                 placeholder="#해시태그를 입력해 주세요"
-                className="review-hashtag-input"
+                className="course-hashtag-input"
               />
               <label htmlFor="title">제목</label>
               <input
@@ -142,38 +164,65 @@ function CourseWrite() {
                 className="review-title-input"
               />
             </div>
-
+            코스 입력
             <section className="courses-section">
-              <div className="course-images-container">
-                {courseImages.map((image, index) => (
-                  <label key={index} className="image-upload">
-                    <div className="course-image-placeholder">
-                      {image ? (
-                        <div className="uploaded-image-container">
-                          <img src={image} alt={`코스 이미지 ${index + 1}`} className="uploaded-image" />
-                          <button onClick={() => handleCourseRemoveImage(index)} className="coures-image-remove-btn">
-                            X
-                          </button>
-                        </div>
-                      ) : (
-                        <span>이미지 {index + 1}</span>
-                      )}
-                    </div>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleCourseImageUpload(index, e)}
-                      style={{ display: "none" }}
-                    />
-                  </label>
-                ))}
-                {/* 이미지 추가 버튼 */}
-                <label className="image-upload">
-                  <div className="course-image-placeholder add-image-style" onClick={handleAddImage}>
-                    <span>+</span>
+              {courseImages.map((image, index) => (
+                <div key={index} className="course-item">
+                  <div className="course-images-container">
+                    <label className="image-upload">
+                      <div className="course-image-placeholder">
+                        {image ? (
+                          <div className="uploaded-image-container">
+                            <img src={image} alt={`코스 이미지 ${index + 1}`} className="uploaded-image" />
+                            <button
+                              onClick={() => handleCourseRemoveImage(index)}
+                              className="coures-image-remove-btn"
+                            >
+                              X
+                            </button>
+                          </div>
+                        ) : (
+                          <span>이미지 {index + 1}</span>
+                        )}
+                      </div>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleCourseImageUpload(index, e)}
+                        style={{ display: "none" }}
+                      />
+                    </label>
                   </div>
-                </label>
-              </div>
+                  <div className="course-description-container">
+                    <div className="vertical-line"></div>
+                    
+                    {/* 장소 이름 입력란 */}
+                    <input
+                      className="location-name-input"
+                      placeholder={`장소 이름 ${index + 1}`}
+                      value={locations[index] || ""}
+                      onChange={(e) => {
+                        const updatedLocations = [...locations];
+                        updatedLocations[index] = e.target.value;
+                        setLocations(updatedLocations);
+                      }}
+                    />
+
+                    {/* 장소 설명 입력란 */}
+                    <textarea
+                      className="course-write-description"
+                      placeholder={`코스 설명 ${index + 1}`}
+                      value={courseDescriptions[index] || ""}
+                      onChange={(e) => handleDescriptionChange(index, e.target.value)}
+                    />
+                  </div>
+                </div>
+              ))}
+              <label className="image-upload">
+                <div className="course-image-placeholder add-image-style" onClick={handleAddImage}>
+                  <span>+</span>
+                </div>
+              </label>
             </section>
 
             <div className="course-submit-btn-container">

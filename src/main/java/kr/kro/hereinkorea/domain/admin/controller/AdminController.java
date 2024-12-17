@@ -2,6 +2,7 @@ package kr.kro.hereinkorea.domain.admin.controller;
 
 import kr.kro.hereinkorea.domain.admin.service.AdminMemberService;
 import kr.kro.hereinkorea.domain.admin.service.AdminQuestionService;
+import kr.kro.hereinkorea.domain.admin.service.AdminReviewService;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.domain.member.controller.JwtResponse;
@@ -12,6 +13,7 @@ import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import kr.kro.hereinkorea.global.jwt.properties.JwtUtil;
+import kr.kro.hereinkorea.reviewboard.dto.ReviewDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,9 @@ public class AdminController {
     AdminQuestionService adminQuestionService;
 
     @Autowired
+    AdminReviewService adminReviewService;
+
+    @Autowired
     MemberService memberService;
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -39,6 +44,10 @@ public class AdminController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @GetMapping("review")
+    public PageResultDTO<ReviewDto, Object[]> getReviews(PageRequestDTO pageRequestDTO){
+        return adminReviewService.getReview(pageRequestDTO);
+    }
     @GetMapping("question")
     public PageResultDTO<QuestionDTO, Object[]> getQuestions(String title, String category, PageRequestDTO pageRequestDTO){
         return adminQuestionService.getQuestion(title, category, pageRequestDTO);

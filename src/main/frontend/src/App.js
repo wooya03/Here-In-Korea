@@ -91,7 +91,7 @@ function App() {
         <Route path="/course/write" element={<><CourseWrite /></>} />
 
         {/* 지도 */}
-        <Route path="/maps" element={<><Header/> <GoogleMaps /></>} />
+        <Route path="/map" element={<><Header/> <GoogleMaps /></>} />
 
         {/* 숙소 페이지 */}
         <Route path='/hotels' element={<><Header /><HotelsList /></>} />

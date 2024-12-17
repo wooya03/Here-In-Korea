@@ -10,9 +10,9 @@ import java.util.Objects;
 public interface HotelSearchService {
 
     List<HotelsDTO> searchHotelsByTitle(String title);
+    List<HotelsDTO> searchHotelsByAddr1(String addr1);
 
-
-    default HotelsDTO entityToDTO(HotelsEntity hotels, HotelsImgEntity img){
+    default HotelsDTO entityToDTO(HotelsEntity hotels, HotelsImgEntity img) {
         return HotelsDTO.builder()
                 .contentid(hotels.getContentid())
                 .title(hotels.getTitle())
@@ -28,7 +28,7 @@ public interface HotelSearchService {
                 .build();
     }
 
-    default HotelsEntity dtoToEntity(HotelsDTO dto){
+    default HotelsEntity dtoToEntity(HotelsDTO dto) {
         return HotelsEntity.builder()
                 .contentid(dto.getContentid())
                 .title(dto.getTitle())
@@ -40,6 +40,7 @@ public interface HotelSearchService {
                 .tel(dto.getTel())
                 .build();
     }
+
 
 
 }
