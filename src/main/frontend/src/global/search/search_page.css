@@ -145,7 +145,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2); /* 파란색 그림자 효과 */
 }
 
-
 /* 이미지 영역 스타일 */
 .course-box {
     flex: 0 0 150px; /* 이미지 영역 고정 너비 설정 */
@@ -190,12 +189,18 @@
     height: 93px; /* 회색 박스의 높이를 고정 (필요에 따라 조정) */
 }
 
-/* 더보기 링크 컨테이너 스타일 */
-.more-link-container {
-    display: flex; /* Flexbox 사용 */
-    justify-content: flex-end; /* 오른쪽 정렬 */
-    margin-top: 20px; /* 위쪽 마진 추가 */
-}
+.section {
+    position: relative; /* 각 섹션을 relative로 설정하여 내부 요소들에 절대 위치를 줄 수 있도록 함 */
+  }
+  
+  .more-link-container {
+    position: absolute; /* 절대 위치 지정 */
+    top: 10px; /* 상단에 10px 간격 */
+    right: 10px; /* 오른쪽에 10px 간격 */
+    display: flex;
+    justify-content: flex-end; /* 버튼을 오른쪽 끝으로 배치 */
+  }
+  
 
 /* 더보기 링크 스타일 */
 .more-link {
