@@ -44,11 +44,6 @@ public class ReviewService {
     return reviewPage.map(reviewMapper::toDto);
     }
 
-    public Optional<ReviewDto> getReviewById(Long id) {
-        return reviewRepository.findById(id) // 특정 ID로 리뷰 조회
-                .map(reviewMapper::toDto);  // Entity -> DTO 변환
-    }    
-
     public ReviewDto createReview(ReviewDto reviewDto, MemberEntity member) {
         validateReviewDto(reviewDto); // 유효성 검사 추가
         ReviewEntity reviewEntity = reviewMapper.toEntity(reviewDto, member);
