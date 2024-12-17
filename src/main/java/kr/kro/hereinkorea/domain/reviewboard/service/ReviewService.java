@@ -46,12 +46,13 @@ public class ReviewService {
     public Optional<ReviewDto> getReviewById(Long id) {
         return reviewRepository.findById(id) // 특정 ID로 리뷰 조회
                 .map(reviewMapper::toDto);  // Entity -> DTO 변환
-    }    
+    } 
+
 
     public ReviewDto createReview(ReviewDto reviewDto, MemberEntity member) {
         validateReviewDto(reviewDto); // 유효성 검사 추가
         ReviewEntity reviewEntity = reviewMapper.toEntity(reviewDto, member);
-        reviewEntity.setCreatedDate(LocalDateTime.now());
+        reviewEntity.setReviewTime(LocalDateTime.now());
         return reviewMapper.toDto(reviewRepository.save(reviewEntity));
     }
     
@@ -61,9 +62,8 @@ public class ReviewService {
                 .orElseThrow(() -> new IllegalArgumentException("리뷰를 찾을 수 없습니다: ID=" + id));
     
         ReviewEntity updatedReview = reviewMapper.toEntity(updatedReviewDto, existingReview.getMemId()); // 기존 Member 유지
-        updatedReview.setId(existingReview.getId());
-        updatedReview.setCreatedDate(existingReview.getCreatedDate()); // 기존 생성일자 유지
-    
+        updatedReview.setReviewId(existingReview.getReviewId());
+        updatedReview.setReviewTime(existingReview.getReviewTime()); // 기존 생성일자 유지
         return reviewMapper.toDto(reviewRepository.save(updatedReview));
     }    
 
@@ -81,10 +81,10 @@ public class ReviewService {
 
 
     private void validateReviewDto(ReviewDto reviewDto) {
-        if (reviewDto.getTitle() == null || reviewDto.getTitle().trim().isEmpty()) {
+        if (reviewDto.getReviewTitle() == null || reviewDto.getReviewTitle().trim().isEmpty()) {
             throw new IllegalArgumentException("리뷰 제목은 필수 입력 항목입니다.");
         }
-        if (reviewDto.getContent() == null || reviewDto.getContent().trim().isEmpty()) {
+        if (reviewDto.getReviewContent() == null || reviewDto.getReviewContent().trim().isEmpty()) {
             throw new IllegalArgumentException("리뷰 내용은 필수 입력 항목입니다.");
         }
     }
