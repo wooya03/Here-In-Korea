@@ -53,51 +53,32 @@ const LoginMain = () => {
     return (
         <div className="content">
             <div className="login_wrap">
-                <ul className="menu_wrap">
-                    {/* 로그인 방법 선택 패널*/}
-                    <li className="menu_item">
-                        <a href="#none" className="menu_id">
-                            <span className="menu_text">ID로그인</span>
-                        </a>
-                    </li>
-                    <li className="menu_item">
-                        <a href="#none" className="menu_id_google">
-                            <span className="menu_text">GOOGLE</span>
-                        </a>
-                    </li>
-                    <li className="menu_item">
-                        <a href="#none" className="menu_id_kakao">
-                            <span className="menu_text">KAKAO</span>
-                        </a>
-                    </li>
-                </ul>
-
                 {/* 로그인 ID/Pass 입력 위치 폼*/}
                 <form className="fm_login" id="fm_login">
                     <ul className="panel_wrap">
-                    <li className="panel_item">
-                        <div className="panel_inner">
-                            <div className="login_form_box">
-                                <div className="login_box">
-                                    <div className="input_item_id" name="item_id">
-                                        <input type="text" className="input_id" name="id" placeholder="ID" value={idValue}
-                                               onChange={(e) => setIdValue(e.target.value)}/>
-                                    </div>
-                                    <div className="input_item_id" name="item_pw">
-                                        <input type="password" className="input_pw" name="pw" placeholder="PassWord" value={pwValue}
-                                               onChange={(e) => setPwValue(e.target.value)}/>
+                        <li className="panel_item">
+                            <div className="panel_inner">
+                                <div className="login_form_box">
+                                    <div className="login_box">
+                                        <div className="input_item_id" name="item_id">
+                                            <input type="text" className="input_id" name="id" placeholder="ID" value={idValue}
+                                                   onChange={(e) => setIdValue(e.target.value)} />
+                                        </div>
+                                        <div className="input_item_id" name="item_pw">
+                                            <input type="password" className="input_pw" name="pw" placeholder="PassWord" value={pwValue}
+                                                   onChange={(e) => setPwValue(e.target.value)} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {/* 아이디/비밀번호 찾기 */}
-                            <nav role="navigation" aria-label="find or signUp">
-                                <div className="find_wrap">
-                                    <li><a href="/user/find/id" className="find_text">아이디 찾기</a></li>
-                                    <li><a href="/user/find/pw" className="find_text">비밀번호 찾기</a></li>
-                                    <li><a href="/user/register" className="find_text">회원 가입</a></li>
-                                </div>
-                            </nav>
-                        {/* 로그인 버튼*/}
+                                {/* 아이디/비밀번호 찾기 */}
+                                <nav role="navigation" aria-label="find or signUp">
+                                    <div className="find_wrap">
+                                        <li><a href="/user/find/id" className="find_text">아이디 찾기</a></li>
+                                        <li><a href="/user/find/pw" className="find_text">비밀번호 찾기</a></li>
+                                        <li><a href="/user/register" className="find_text">회원 가입</a></li>
+                                    </div>
+                                </nav>
+                                {/* 로그인 버튼*/}
                                 <div className="btn_login_wrap">
                                     <button type="button" className="btn_login" name="btn_login" onClick={checkLogin}>
                                         <span className="btn_text">로그인</span>
@@ -107,12 +88,8 @@ const LoginMain = () => {
                         </li>
                     </ul>
                 </form>
-
             </div>
-
         </div>
-
-
     )
 }
 
