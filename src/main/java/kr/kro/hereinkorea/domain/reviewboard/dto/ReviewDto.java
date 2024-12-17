@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.reviewboard.dto;
+package kr.kro.hereinkorea.domain.reviewboard.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

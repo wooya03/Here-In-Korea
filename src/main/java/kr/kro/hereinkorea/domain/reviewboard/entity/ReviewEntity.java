@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.reviewboard.entity;
+package kr.kro.hereinkorea.domain.reviewboard.entity;
 
 import jakarta.persistence.*;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;

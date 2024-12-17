@@ -1,11 +1,11 @@
-package kr.kro.hereinkorea.reviewboard.repository;
+package kr.kro.hereinkorea.domain.reviewboard.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import kr.kro.hereinkorea.reviewboard.entity.ReviewEntity;
 import org.springframework.data.jpa.repository.Query;
+
+import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
 
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
 

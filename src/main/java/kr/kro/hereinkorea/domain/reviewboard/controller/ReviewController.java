@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.reviewboard.controller;
+package kr.kro.hereinkorea.domain.reviewboard.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
-import kr.kro.hereinkorea.reviewboard.dto.ReviewDto;
-import kr.kro.hereinkorea.reviewboard.service.ReviewService;
+import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDto;
+import kr.kro.hereinkorea.domain.reviewboard.service.ReviewService;
 
 import java.util.Map;
 

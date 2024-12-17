@@ -1,9 +1,10 @@
-package kr.kro.hereinkorea.reviewboard.mapper;
+package kr.kro.hereinkorea.domain.reviewboard.mapper;
 
 import org.springframework.stereotype.Component;
-import kr.kro.hereinkorea.reviewboard.dto.ReviewDto;
-import kr.kro.hereinkorea.reviewboard.entity.ReviewEntity;
+
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDto;
+import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
 
 @Component
 public class ReviewMapper {

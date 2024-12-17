@@ -1,4 +1,4 @@
-package kr.kro.hereinkorea.reviewboard;
+package kr.kro.hereinkorea.domain.reviewboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
