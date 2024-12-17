@@ -19,7 +19,7 @@ public class ReviewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewId;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
@@ -51,7 +51,7 @@ public class ReviewEntity {
     // 생성자
     public ReviewEntity(String title, MemberEntity member, String content, String hashtags) {
         this.title = title;
-        this.memId= memId;
+        this.memId= member;
         this.content = content;
         this.hashtags = hashtags;
         this.views = 0;

@@ -8,18 +8,28 @@ class CommentManagement extends Component {
     this.state = {
       searchText: "",
       filteredData: [
-        { id: 1, contents: "좋아요!", userId: "ync2024", commentDate: "2024-04-21"},
-        { id: 2, contents: "잘 보고 가요",  userId: "test1", commentDate: "2023-04-21"},
-        { id: 3, contents: "저도 가보고 싶네요!", userId: "test2", commentDate: "2023-04-21"},
-        { id: 4, contents: "엄청 맛있어보여요", userId: "test012", commentDate: "2023-04-21"},
-        { id: 5, contents: "너무 예뻐요ㅠㅠ",  userId: "test789", commentDate: "2023-04-21"}
+        { id: 1, contents: "좋아요!", userId: "user001", commentDate: "2024-12-01"},
+        { id: 2, contents: "잘 보고 가요",  userId: "user001", commentDate: "2024-12-03"},
+        { id: 3, contents: "저도 가보고 싶네요!", userId: "user002", commentDate: "2024-12-03"},
+        { id: 4, contents: "엄청 맛있어보여요", userId: "user002", commentDate: "2024-12-03"},
+        { id: 5, contents: "너무 예뻐요ㅠㅠ",  userId: "user003", commentDate: "2024-12-03"},
+        { id: 6, contents: "예뻐요",  userId: "user004", commentDate: "2024-12-04"},
+        { id: 7, contents: "대박이네요",  userId: "user003", commentDate: "2024-12-05"},
+        { id: 8, contents: "굳",  userId: "user001", commentDate: "2024-12-05"},
+        { id: 9, contents: "잘 봤습니다",  userId: "user002", commentDate: "2024-12-10"},
+        { id: 10, contents: "참고할게요",  userId: "user002", commentDate: "2024-12-10"}
       ],
       data: [
-        { id: 1, contents: "좋아요!", userId: "ync2024", commentDate: "2024-04-21"},
-        { id: 2, contents: "잘 보고 가요",  userId: "test1", commentDate: "2023-04-21"},
-        { id: 3, contents: "저도 가보고 싶네요!", userId: "test2", commentDate: "2023-04-21"},
-        { id: 4, contents: "엄청 맛있어보여요", userId: "test012", commentDate: "2023-04-21"},
-        { id: 5, contents: "너무 예뻐요ㅠㅠ",  userId: "test789", commentDate: "2023-04-21"}
+        { id: 1, contents: "좋아요!", userId: "user032", commentDate: "2024-12-01"},
+        { id: 2, contents: "잘 보고 가요",  userId: "user001", commentDate: "2024-12-03"},
+        { id: 3, contents: "저도 가보고 싶네요!", userId: "user002", commentDate: "2024-12-03"},
+        { id: 4, contents: "엄청 맛있어보여요", userId: "user002", commentDate: "2024-12-03"},
+        { id: 5, contents: "너무 예뻐요ㅠㅠ",  userId: "user003", commentDate: "2024-12-03"},
+        { id: 6, contents: "예뻐요",  userId: "user004", commentDate: "2024-12-04"},
+        { id: 7, contents: "대박이네요",  userId: "user008", commentDate: "2024-12-05"},
+        { id: 8, contents: "굳",  userId: "user096", commentDate: "2024-12-05"},
+        { id: 9, contents: "잘 봤습니다",  userId: "user087", commentDate: "2024-12-10"},
+        { id: 10, contents: "참고할게요",  userId: "user042", commentDate: "2024-12-10"}
       ],
       selectedItems: [], // 선택된 항목을 저장
     };
@@ -85,8 +95,7 @@ class CommentManagement extends Component {
             value={searchText}
             onChange={this.handleSearchTextChange}
           />
-          <input type="text" placeholder="닉네임 검색" />
-          <input type="date"/>~<input type="date" />
+          <input type="text" placeholder="아이디 검색" />
           <button onClick={this.handleSearch}>조회</button>
         </div>
 

@@ -11,7 +11,7 @@ public class ReviewMapper {
     // Entity -> DTO 변환
     public ReviewDto toDto(ReviewEntity review) {
         return ReviewDto.builder()
-                .reviewId(review.getReviewId())
+                .id(review.getId())
                 .title(review.getTitle())
                 .content(review.getContent())
                 .memId(review.getMemId() != null ? review.getMemId().getMemId() : null) // Member에서 userId 추출
@@ -25,7 +25,7 @@ public class ReviewMapper {
     // DTO -> Entity 변환
     public ReviewEntity toEntity(ReviewDto reviewDto, MemberEntity member) {
         ReviewEntity review = new ReviewEntity();
-        review.setReviewId(reviewDto.getReviewId());
+        review.setId(reviewDto.getId());
         review.setTitle(reviewDto.getTitle());
         review.setContent(reviewDto.getContent());
         review.setHashtags(reviewDto.getHashtags());

@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.reviewboard.dto.ReviewDto;
@@ -62,7 +61,7 @@ public class ReviewService {
                 .orElseThrow(() -> new IllegalArgumentException("리뷰를 찾을 수 없습니다: ID=" + id));
     
         ReviewEntity updatedReview = reviewMapper.toEntity(updatedReviewDto, existingReview.getMemId()); // 기존 Member 유지
-        updatedReview.setReviewId(existingReview.getReviewId());
+        updatedReview.setId(existingReview.getId());
         updatedReview.setCreatedDate(existingReview.getCreatedDate()); // 기존 생성일자 유지
     
         return reviewMapper.toDto(reviewRepository.save(updatedReview));

@@ -12,77 +12,69 @@ function formatTime(dateString) {
 
 function QnaManagement() {
   const baseUrl = "http://localhost:8080";
-  const [data, setData] = useState([]);  // 빈 배열로 초기화
+  const [data, setData] = useState([]); // 현재 페이지 데이터
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+  const [itemsPerPage] = useState(10); // 페이지당 항목 수
   const [title, setTitle] = useState(""); // 제목 필터 상태
   const [category, setCategory] = useState(""); // 카테고리 필터 상태
+  const navigate = useNavigate();
 
-  // 필터 값이 변경될 때마다 데이터를 다시 요청
   useEffect(() => {
-    putSpringData();
-  }, [title, category]);  // title 또는 category가 변경되면 다시 데이터 요청
+    putSpringData(currentPage, title, category);
+  }, [currentPage, title, category]);
 
-  // 필터링된 데이터 요청 함수
-  async function putSpringData() {
+  async function putSpringData(pageNumber, titleFilter, categoryFilter) {
     try {
-      const params = {};
-      if (title) params.title = title; // 제목 필터 값이 있을 경우
-      if (category) params.category = category; // 카테고리 필터 값이 있을 경우
+      const params = {
+        page: pageNumber,
+        size: itemsPerPage,
+      };
+      if (titleFilter) params.title = titleFilter;
+      if (categoryFilter) params.category = categoryFilter;
 
-      // API 호출
-      await axios.get(baseUrl + "/admin/question", { params })
-        .then((res) => {
-          // 받은 데이터를 상태에 저장
-          const transformedData = res.data.dtoList ? res.data.dtoList.map(item => {
-            return {
-              id: item.id,  // 질문 ID
-              title: item.title,  // 질문 제목
-              category: item.category,  // 문의 구분
-              createdDate: item.createdDate,  // 생성일
-              contents: item.contents,
-              memId: item.memId,  // 회원 ID
-              answerContents: item.answerContents  // 답변 내용
-            };
-          }) : [];
-          setData(transformedData);  // 변환된 데이터를 상태로 설정
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const response = await axios.get(baseUrl + "/admin/question", { params });
+      const transformedData = response.data.dtoList
+        ? response.data.dtoList.map(item => ({
+            id: item.id,
+            title: item.title,
+            category: item.category,
+            createdDate: item.createdDate,
+            contents: item.contents,
+            memId: item.memId,
+            answerContents: item.answerContents
+          }))
+        : [];
+      setData(transformedData);
+      setTotalPages(response.data.totalPage);
     } catch (error) {
-      console.error("데이터를 가져오는 중 오류 발생", error);
-    }
-  }
-
-  const [selectedIds, setSelectedIds] = useState([]); // 선택된 체크박스 상태
-
-  function handleCheckboxChange(event, id) {
-    if (event.target.checked) {
-      setSelectedIds([...selectedIds, id]);
-    } else {
-      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+      console.error("데이터를 가져오는 중 오류 발생:", error);
     }
   }
 
   const handleSearch = () => {
-    putSpringData(1, title, category);   
+    setCurrentPage(1);
+    putSpringData(1, title, category);
   };
-
-  const navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(`/question/${id}/answer/write`); // 버튼 클릭 시 해당 경로로 이동
+    navigate(`/question/${id}/answer/write`);
   };
 
-  async function handleDelete() {
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  async function handleDelete(selectedIds) {
     if (selectedIds.length === 0) {
       alert("삭제할 게시글을 선택해주세요.");
       return;
     }
-  
     try {
       const response = await axios.delete(baseUrl + `/question/delete/${selectedIds}`);
       if (response.status === 200) {
         alert("삭제가 완료되었습니다.");
+        putSpringData(currentPage, title, category); // 삭제 후 데이터 갱신
       }
     } catch (error) {
       console.error("삭제 중 오류 발생:", error);
@@ -98,11 +90,11 @@ function QnaManagement() {
           type="text" 
           placeholder="문의 제목" 
           value={title} 
-          onChange={(e) => setTitle(e.target.value)} // 제목 필터링
+          onChange={(e) => setTitle(e.target.value)}
         />
         <select 
           value={category} 
-          onChange={(e) => setCategory(e.target.value)} // 카테고리 필터링
+          onChange={(e) => setCategory(e.target.value)}
         >
           <option value="">문의구분</option>
           <option value="숙소문의">숙소문의</option>
@@ -113,12 +105,9 @@ function QnaManagement() {
         <button onClick={handleSearch}>조회</button>
       </div>
 
-      <button className="delete-button" onClick={handleDelete}>DELETE</button>
-
       <table>
         <thead>
           <tr>
-            <th></th>
             <th>제목</th>
             <th>아이디</th>
             <th>내용</th>
@@ -128,23 +117,36 @@ function QnaManagement() {
           </tr>
         </thead>
         <tbody>
-        {data && data.length > 0 ? data.map((datas) => (
-            <tr key={datas.id}>
-              <td><input type="checkbox" onChange={(e) => handleCheckboxChange(e, datas.id)} /></td>
-              <td><a></a>{datas.title}</td>
-              <td>{datas.memId}</td>
-              <td>{datas.contents}</td>
-              <td>{datas.category}</td>
-              <td>{formatTime(datas.createdDate)}</td>
-              {datas.answerContents ? (
-              <td>✔ 답변완료</td>
-            ) : (
-              <td><button onClick={() => handleClick(datas.id)}>답변 등록</button></td>
-            )}
+          {data.length > 0 ? data.map((item) => (
+            <tr key={item.id}>
+              <td>{item.title}</td>
+              <td>{item.memId}</td>
+              <td>{item.contents}</td>
+              <td>{item.category}</td>
+              <td>{formatTime(item.createdDate)}</td>
+              <td>
+                {item.answerContents ? (
+                  <span>✔ 답변완료</span>
+                ) : (
+                  <button onClick={() => handleClick(item.id)}>답변 등록</button>
+                )}
+              </td>
             </tr>
-          )) : <tr><td>No data available.</td></tr>}
+          )) : <tr><td colSpan="6">No data available.</td></tr>}
         </tbody>
       </table>
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <span
+            key={index}
+            className={currentPage === index + 1 ? "active" : ""}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
