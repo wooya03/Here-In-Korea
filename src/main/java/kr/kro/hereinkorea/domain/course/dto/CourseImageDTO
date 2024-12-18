@@ -1,0 +1,9 @@
+package kr.kro.hereinkorea.domain.course.dto;
+
+import lombok.Data;
+
+@Data
+public class CourseImageDTO {
+    private Long id; // 코스 이미지 아이디
+    private String imageUrl; // 이미지 주소
+}

@@ -3,7 +3,6 @@ package kr.kro.hereinkorea.domain.reviewboard.entity;
 import jakarta.persistence.*;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import lombok.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -39,17 +38,14 @@ public class ReviewEntity {
     private int reviewLikes = 0;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mem_id", nullable = false) // 외래 키도 언더스코어로 매핑
+    @JoinColumn(name = "mem_id", nullable = false)
     private MemberEntity memId;
 
-
-    // Getter와 Setter 추가
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    @PrePersist
+    public void prePersist() {
+        if (this.createdDate == null) {
+            this.createdDate = LocalDateTime.now();
+        }
     }
 
     // 생성자
