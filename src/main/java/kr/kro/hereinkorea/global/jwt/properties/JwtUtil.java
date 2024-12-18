@@ -21,7 +21,7 @@ public class JwtUtil {
     private final JwtProperties jwtProperties;
     private final MemberRepository memberRepository;
 
-    public String generateAccessToken(String memId){
+    public String generateAccessToken(String memId) {
         return Jwts.builder()
                 .setHeaderParam(Header.JWT_TYPE, JwtType.ACCESS)
                 .setSubject(memId)
@@ -35,7 +35,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String generateRefreshToken(String memId){
+    public String generateRefreshToken(String memId) {
         return Jwts.builder()
                 .setHeaderParam(Header.JWT_TYPE, JwtType.REFRESH)
                 .setSubject(memId)
@@ -43,29 +43,28 @@ public class JwtUtil {
                         new Date(System.currentTimeMillis())
                 )// 발행
                 .setExpiration(
-                        new Date(System.currentTimeMillis()+jwtProperties.getRefreshExpiration())
+                        new Date(System.currentTimeMillis() + jwtProperties.getRefreshExpiration())
                 )//만료
-                .signWith(SignatureAlgorithm.HS256,jwtProperties.getSecretKey())
+                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();
     }
 
     //토큰 복호화 및 클레임 확인
-    public Jws<Claims> getClaims(String token)
-    {
-        try{
+    public Jws<Claims> getClaims(String token) {
+        try {
             return Jwts.parserBuilder()
                     .setSigningKey(jwtProperties.getSecretKey())
                     .build()
                     .parseClaimsJws(token);
-        } catch (ExpiredJwtException e){
+        } catch (ExpiredJwtException e) {
             throw new JwtException("Expired JWT");
-        } catch (UnsupportedJwtException e){
+        } catch (UnsupportedJwtException e) {
             throw new JwtException("Unsupporeted JWT");
-        }catch (MalformedJwtException e){
+        } catch (MalformedJwtException e) {
             throw new JwtException("Invalid JWT"); //서명예외
-        }catch (SignatureException e){
+        } catch (SignatureException e) {
             throw new JwtException("Unsupporeted JWT");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new JwtException("JWT claims string is empty");
         }
     }
@@ -96,4 +95,10 @@ public class JwtUtil {
         return !(claims.getHeader().get(Header.JWT_TYPE).equals(jwtType.toString()));
     }
 
+    public String getUserIdFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(jwtProperties.getSecretKey()).build()
+                .parseClaimsJws(token).getBody();
+        return claims.getSubject();
+    }
 }

@@ -51,13 +51,14 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/user/login").permitAll()// 인증 없이 접근 허용
-//                        .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN 권한 필요
-//                        .requestMatchers("/hotels/**").permitAll()
-//                        .requestMatchers("/question/**").permitAll()
-//                        .requestMatchers("/api/hotels/**").permitAll()
-//                        .requestMatchers("/festival","/festival/**").permitAll()
-//                        .anyRequest().authenticated() // 나머지는 인증 필요
-                        .anyRequest().permitAll()
+                        .requestMatchers("/admin/login").permitAll()
+                        .requestMatchers("/admin/main", "/admin/member", "/admin/review", "/admin/question").hasRole("ADMIN") // ADMIN 권한 필요
+                        .requestMatchers("/admin/logout").authenticated()
+                        .requestMatchers("/hotels/**").permitAll()
+                        .requestMatchers("/question/**").permitAll()
+                        .requestMatchers("/api/hotels/**").permitAll()
+                        .requestMatchers("/festival","/festival/**").permitAll()
+                        .anyRequest().authenticated() // 나머지는 인증 필요
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // JWT 필터 추가
                 .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class)
