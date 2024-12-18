@@ -8,7 +8,6 @@ const AnswerAdd = () => {
 
     const [data, setData] = useState({
       contents: '',
-      memId: 'admin001',
       questionId: id,
       createdDate: new Date().toISOString(),
       modifiedDate: new Date().toISOString()
@@ -33,11 +32,14 @@ const AnswerAdd = () => {
   
       try {
         console.log(data);
-        // Spring Boot로 데이터 전송
-        const response = await axios.post('http://localhost:8080/answer/write', data);
+        const token = localStorage.getItem("token");
+        const response = await axios.post('http://localhost:8080/answer/write', data, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더로 전달
+          },
+        });
         if (response.status === 201) {
           alert('답변이 등록되었습니다!');
-          console.log('전송 데이터:', data);
           navigate('/admin/qna');
         }
       } catch (error) {
