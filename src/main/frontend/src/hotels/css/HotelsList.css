@@ -5,6 +5,26 @@
     padding: 30px;
 }
 
+.hotel-button {
+    padding-top: 10px;
+    display: inline-flex; /* 버튼을 일자로 배치 */
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.hotel-button button {
+    padding: 5px 10px; /* 버튼 크기를 작게 설정 */
+    font-size: 14px;    /* 글씨 크기 */
+    margin: 0 5px;      /* 버튼 사이에 간격을 줌 */
+    cursor: pointer;    /* 클릭 시 포인터 커서 */
+    border-radius: 3px; /* 테두리 둥글게 */
+    background-color: #598ac6; /* 버튼 배경색 */
+    transition: background-color 0.3s; /* 배경색 변경 효과 */
+}
+
+.hotel-button button:hover {
+    background-color: rgb(137, 165, 213);
+}
+
 .hotel-card {
     background-color: #f0f0f0;
     border-radius: 8px;

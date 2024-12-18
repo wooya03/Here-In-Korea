@@ -10,6 +10,7 @@ import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +27,25 @@ public class HotelsServiceImpl implements HotelsService{
 
     private final HotelsRepository hotelsRepository;
 
-    public PageResultDTO<HotelsDTO, Object[]> getList(PageRequestDTO requestDTO) {
+    public PageResultDTO<HotelsDTO, Object[]> getList(String order, int areaCode, PageRequestDTO requestDTO) {
         requestDTO.setSize(30);
-        Page<Object[]> result = hotelsRepository.getHotelsCount(
-                requestDTO.getPageable(Sort.by("contentid").descending())
-        );
+        Pageable pageable = requestDTO.getPageable(Sort.by("contentid").descending());
+        Page<Object[]> result;
+
+        if(order.equals("desc")){
+            if(areaCode == 0) {
+                result = hotelsRepository.getHotelsCountDesc(pageable);
+            } else {
+                result = hotelsRepository.getHotelsByAreaDesc(areaCode, pageable);
+            }
+        } else {
+            if(areaCode == 0) {
+                result = hotelsRepository.getHotelsCountAsc(pageable);
+            } else {
+                result = hotelsRepository.getHotelsByAreaAsc(areaCode,pageable);
+            }
+
+        }
         return new PageResultDTO<HotelsDTO, Object[]>(result,
                 en -> entityToDTO((HotelsEntity) en[0], (HotelsImgEntity)en[1])
         );

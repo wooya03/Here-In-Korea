@@ -45,8 +45,8 @@ public class AdminController {
     private JwtUtil jwtUtil;
 
     @GetMapping("review")
-    public PageResultDTO<ReviewDTO, Object[]> getReviews(PageRequestDTO pageRequestDTO){
-        return adminReviewService.getReview(pageRequestDTO);
+    public PageResultDTO<ReviewDTO, Object[]> getReviews(String reviewTitle, String memId, PageRequestDTO pageRequestDTO){
+        return adminReviewService.getReview(reviewTitle, memId, pageRequestDTO);
     }
     @GetMapping("question")
     public PageResultDTO<QuestionDTO, Object[]> getQuestions(String title, String category, PageRequestDTO pageRequestDTO){
