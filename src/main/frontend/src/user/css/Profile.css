@@ -1,0 +1,136 @@
+/* 전체 컨테이너 */
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    height: 600px; /* 높이를 600px로 설정 */
+    box-sizing: border-box;
+}
+
+/* 왼쪽 구역 */
+.left-section {
+    width: 30%; /* 왼쪽 구역의 너비를 30%로 설정 */
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 왼쪽 구역의 상단 (이미지 + 이름) */
+.left-section .top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    flex: 1; /* 공간을 50% 차지하도록 설정 */
+}
+
+.left-section .profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.left-section .user-id p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 왼쪽 구역의 하단 (메뉴) */
+.left-section .menu {
+    flex: 1; /* 남은 공간을 차지하도록 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.left-section .menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.left-section .menu li {
+    margin-bottom: 10px;
+}
+
+.left-section .menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* 오른쪽 구역 */
+.right-section {
+    width: 70%; /* 오른쪽 구역을 더 넓게 설정 */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profile-header {
+    display: none; /* profile-header 부분을 제거 */
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 각 항목 사이의 간격을 더 넓게 설정 */
+    height: 100%; /* 오른쪽 구역이 세로로 꽉 차도록 설정 */
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 80px; /* 각 항목의 세로 크기 확장 */
+}
+
+.detail-item label {
+    font-size: 16px;
+    color: #333;
+    width: 25%; /* 레이블의 너비를 고정 */
+}
+
+.detail-item p {
+    font-size: 16px;
+    color: #555;
+    width: 40%; /* 텍스트의 너비를 고정 */
+}
+
+.detail-item input {
+    width: 50%; /* input 박스를 넓게 설정 */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    height: 40px; /* input의 높이를 늘려서 더 넓게 표시 */
+}
+
+.detail-item button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 40px; /* 버튼 높이를 늘려서 일관되게 표시 */
+}
+
+.detail-item button:hover {
+    background-color: #45a049;
+}
