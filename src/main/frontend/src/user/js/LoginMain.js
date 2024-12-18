@@ -35,6 +35,7 @@ const LoginMain = () => {
                 if (data.accessToken && data.refreshToken) {
                     localStorage.setItem('token', data.accessToken);
                     localStorage.setItem('refreshToken', data.refreshToken); // refreshToken 저장
+                    localStorage.setItem('memId', idValue); //로그인시 아이디 저장<<리뷰작성때 필요해서 임시로 넣어둠
                     navigate("/");
                 } else {
                     alert('응답에 토큰 정보가 없습니다.');
