@@ -47,7 +47,7 @@ public class AdminReviewService {
                 .memId(member.getMemId())
                 .reviewViews(review.getReviewViews())
                 .reviewLikes(review.getReviewLikes())
-                .reviewTime(review.getReviewTime())
+                .createdDate(review.getCreatedDate())
                 .reviewContent(review.getReviewContent())
                 .build();
     }
