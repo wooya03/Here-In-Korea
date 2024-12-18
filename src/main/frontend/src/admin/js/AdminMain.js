@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import '../css/AdminMain.css';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AdminMain = () => {          
     const baseUrl = "http://localhost:8080";
+    const navigate = useNavigate();
     const [data, setData] = useState({
         memberCount: 0,
     });
@@ -15,11 +17,6 @@ const AdminMain = () => {
     
     async function putSpringData() {
         const token = localStorage.getItem("token"); // 예: 토큰을 localStorage에서 가져옴
-        if (!token) {
-            setErrorMessage("권한이 필요합니다");
-            return;
-        }
-
         try {
             const res = await axios.get(baseUrl + "/admin/main", {
                 headers: {
@@ -28,8 +25,9 @@ const AdminMain = () => {
             });
             setData({ ...data, memberCount: res.data });
         } catch (err) {
-            if (err.response && err.response.status === 401) {
-                setErrorMessage("권한이 필요합니다");
+            if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+                alert('권한이 필요합니다.');
+                navigate("/admin/login")
             } else {
                 console.log(err);
             }
