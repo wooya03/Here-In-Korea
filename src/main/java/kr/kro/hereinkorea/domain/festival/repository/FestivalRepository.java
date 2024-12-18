@@ -6,18 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 public interface FestivalRepository extends JpaRepository<FestivalEntity,Long> {
-    @Query(
-            value = "SELECT h, i " +
-                    "FROM FestivalEntity h " +
-                    "LEFT JOIN FestivalImgEntity i ON i.festival = h "+
-                    "GROUP BY h ",
-            countQuery = "SELECT COUNT(h) " +
-                    "FROM FestivalEntity h ")
-    Page<Object[]> getFestivalCount(Pageable pageable);
-
-
     @Query("SELECT f, fi FROM FestivalEntity f " +
             "LEFT JOIN FestivalImgEntity fi ON f.contentId = fi.festival.contentId")
     Page<Object[]> getFestivalWithImages(Pageable pageable);
+
+    Optional<FestivalEntity> findByContentId(Long contentId);
 }
