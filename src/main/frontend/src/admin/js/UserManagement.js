@@ -139,7 +139,7 @@ const UserManagement = () => {
             전체
           </label>
           
-          <button onClick={handleSearch}>검색</button>
+          <button onClick={handleSearch}>조회</button>
         </div>
       </form>
 
