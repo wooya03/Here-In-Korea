@@ -19,12 +19,11 @@ function ReviewWrite() {
 
     // 백엔드로 POST 요청
     try {
-      const response = await axios.post("http://localhost:8080/reviews", {
-        title: title,
-        hashtag: hashtag,
-        content: content,
-        userId: "ync2024", // 예시로 넣은 사용자 ID
-      });
+      const response = await axios.post("http://localhost:8080/review", {
+        reviewTitle: title,  // DTO와 필드 이름 매칭
+        reviewTag: hashtag,  // DTO와 필드 이름 매칭
+        reviewContent: content,
+      });      
       console.log("리뷰 작성 성공:", response.data);
 
       alert("리뷰가 성공적으로 등록되었습니다.");

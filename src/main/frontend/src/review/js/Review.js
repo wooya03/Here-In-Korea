@@ -14,32 +14,30 @@ const Review = () => {
   // 리뷰 데이터를 백엔드에서 가져오는 함수
   const fetchReviews = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/reviews", {
+      const response = await axios.get("http://localhost:8080/review", {
         params: {
-          page: currentPage - 1,  // 페이지 번호는 0부터 시작하므로, currentPage에서 1을 뺍니다.
-          size: itemsPerPage,
+          page: currentPage - 1,   // 페이지 번호는 0부터 시작
+          size: itemsPerPage,      // 페이지 크기
+          sortBy: 'createdDate'    // 정렬 기준
         }
       });
 
       const transformedData = response.data.dtoList
-        ? response.data.dtoList.map((item) => {
-            return {
-              id: item.id,
-              title: item.title,
-              userId: item.userId,
-              date: item.createdDate,
-              views: item.views,
-              likes: item.likes,
-            };
-          })
+        ? response.data.dtoList.map((item) => ({
+            id: item.reviewId,
+            title: item.reviewTitle,
+            userId: item.memId,
+            date: new Date(item.createdDate).toLocaleString(),  // 날짜 변환
+            views: item.reviewViews,
+            likes: item.reviewLikes,
+        }))
         : [];
 
       setReviews(transformedData);
       setTotalPages(response.data.totalPages); // totalPages 값을 설정
-
-      console.log("리뷰 데이터 가져오기 성공:", transformedData);
     } catch (error) {
       console.error("리뷰 데이터 가져오기 실패:", error);
+      // 서버 오류 또는 요청 오류에 대한 처리
     }
   };
 
@@ -52,11 +50,6 @@ const Review = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  // 페이지네이션 로직
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = reviews.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div className="review-app-container">
@@ -80,9 +73,9 @@ const Review = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((item, index) => (
+            {reviews.map((item, index) => (
               <tr key={item.id}>
-                <td>{indexOfFirstItem + index + 1}</td>
+                <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                 <td>{item.title}</td>
                 <td>{item.userId}</td>
                 <td>{item.date}</td>
