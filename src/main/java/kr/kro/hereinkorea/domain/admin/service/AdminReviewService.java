@@ -6,11 +6,16 @@ import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
 import kr.kro.hereinkorea.domain.reviewboard.repository.ReviewRepository;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
+import lombok.extern.java.Log;
+import org.aspectj.weaver.IntMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class AdminReviewService {
@@ -50,5 +55,16 @@ public class AdminReviewService {
                 .createdDate(review.getCreatedDate())
                 .reviewContent(review.getReviewContent())
                 .build();
+    }
+
+    @Transactional
+    public void deleteReview(List<Long> reviewIds) {
+        try {
+            for(Long id : reviewIds){
+                reviewRepository.deleteById(id);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("리뷰 삭제 중 오류 발생", e);
+        }
     }
 }
