@@ -1,5 +1,5 @@
 /* 전체 컨테이너 */
-.profile-container {
+.profile_container {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -9,7 +9,7 @@
 }
 
 /* 왼쪽 구역 */
-.left-section {
+.left_section {
     width: 30%; /* 왼쪽 구역의 너비를 30%로 설정 */
     padding: 20px;
     background-color: #f7f7f7;
@@ -18,56 +18,88 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center; /* 수평 가운데 정렬 */
+    border: 2px solid #003b53; /* 경계선 색을 진하게 설정 */
 }
 
 /* 왼쪽 구역의 상단 (이미지 + 이름) */
-.left-section .top-section {
+.left_section .top_section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* 수평 가운데 정렬 */
+    justify-content: center; /* 수직 가운데 정렬 */
     margin-bottom: 20px;
     flex: 1; /* 공간을 50% 차지하도록 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
 }
 
-.left-section .profile-image img {
-    width: 100px;
-    height: 100px;
+.left_section .profile_image .profile_img {
+    width: 160px; /* 이미지 크기를 키움 */
+    height: 160px; /* 이미지 크기를 키움 */
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
-.left-section .user-id p {
-    font-size: 16px;
+.left_section .user_id p {
+    font-size: 24px; /* 폰트 사이즈 키움 */
     font-weight: bold;
 }
 
 /* 왼쪽 구역의 하단 (메뉴) */
-.left-section .menu {
+.left_section .menu {
     flex: 1; /* 남은 공간을 차지하도록 설정 */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center; /* 수직 가운데 정렬 */
+    align-items: center; /* 수평 가운데 정렬 */
     gap: 10px;
 }
 
-.left-section .menu ul {
+.left_section .menu ul {
     list-style: none;
     padding: 0;
     margin-top: 0;
 }
 
-.left-section .menu li {
-    margin-bottom: 10px;
+.left_section .menu li {
+    margin-bottom: 30px;
 }
 
-.left-section .menu a {
+.left_section .menu a {
     text-decoration: none;
     color: #333;
-    font-size: 14px;
+    font-size: 18px; /* 폰트 사이즈 키움 */
+    cursor: pointer;
+}
+
+.profile_image {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2); /* 아이콘 배경색 */
+    padding: 5px;
+    z-index: 10; /* 아이콘을 제일 앞으로 표시 */
+}
+
+.edit_icon .edit_icon_img {
+    width: 24px;
+    height: 24px;
+    color: white;
 }
 
 /* 오른쪽 구역 */
-.right-section {
+.right_section {
     width: 70%; /* 오른쪽 구역을 더 넓게 설정 */
     padding: 20px;
     background-color: #ffffff;
@@ -76,61 +108,92 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center; /* 수평 가운데 정렬 */
+    border: 2px solid #003b53; /* 경계선 색을 진하게 설정 */
 }
 
-.profile-header {
-    display: none; /* profile-header 부분을 제거 */
-}
-
-.profile-details {
+.profile_details {
     display: flex;
     flex-direction: column;
     gap: 20px; /* 각 항목 사이의 간격을 더 넓게 설정 */
     height: 100%; /* 오른쪽 구역이 세로로 꽉 차도록 설정 */
+    width: 100%; /* 오른쪽 구역의 너비에 맞게 */
+    align-items: center; /* 각 항목을 수평 가운데 정렬 */
+    justify-content: center;
 }
 
-.detail-item {
+.detail_item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    border: 1px solid #ddd;
+    border: 2px solid #003b53; /* 경계선 색을 진하게 설정 */
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: transparent; /* 배경색을 없앰 */
     height: 80px; /* 각 항목의 세로 크기 확장 */
+    width: 100%; /* 항목 너비를 80%로 설정 */
+    margin: 10px;
 }
 
-.detail-item label {
-    font-size: 16px;
+.detail_item label {
+    font-size: 18px; /* 폰트 사이즈 키움 */
     color: #333;
     width: 25%; /* 레이블의 너비를 고정 */
+    text-align: left; /* 레이블 왼쪽 정렬 */
 }
 
-.detail-item p {
-    font-size: 16px;
-    color: #555;
+.detail_item p {
+    font-size: 18px; /* 폰트 사이즈 키움 */
     width: 40%; /* 텍스트의 너비를 고정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
 }
 
-.detail-item input {
+.detail_item input {
     width: 50%; /* input 박스를 넓게 설정 */
     padding: 10px;
-    font-size: 16px;
+    font-size: 18px; /* 폰트 사이즈 키움 */
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 2px solid #003b53; /* 경계선 색을 진하게 설정 */
     height: 40px; /* input의 높이를 늘려서 더 넓게 표시 */
+    text-align: center; /* input 내용 가운데 정렬 */
 }
 
-.detail-item button {
-    background-color: #4CAF50;
-    color: white;
+.detail_item button {
+    background-color: transparent; /* 배경색을 없앰 */
+    color: #003b53; /* 버튼 텍스트 색을 #003b53으로 설정 */
     padding: 8px 15px;
-    border: none;
+    border: 2px solid #003b53; /* 버튼 경계선 색을 #003b53으로 설정 */
     border-radius: 5px;
     cursor: pointer;
     height: 40px; /* 버튼 높이를 늘려서 일관되게 표시 */
+    font-size: 18px; /* 버튼 텍스트 크기 키움 */
 }
 
-.detail-item button:hover {
-    background-color: #45a049;
+.detail_item button:hover {
+    background-color: #003b53; /* 버튼 배경색을 #003b53으로 설정 */
+    color: white; /* 버튼 텍스트 색을 흰색으로 설정 */
+}
+
+/* 내 게시글 관리 */
+.posts_list {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.posts_header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post_item {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
