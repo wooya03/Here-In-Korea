@@ -38,7 +38,10 @@ public class QuestionServiceImpl implements QuestionService {
         if (dto.getTitle() == null || dto.getTitle().trim().isEmpty()) {
             throw new IllegalArgumentException("제목을 입력해주세요.");
         }
-        
+
+        if(dto.getMemId() == null || dto.getMemId().trim().isEmpty()){
+            throw new IllegalArgumentException("사용자 정보를 찾을 수 없습니다.");
+        }
         QuestionEntity questionEntity = dtoToEntity(dto);
         questionRepository.save(questionEntity);
     }
