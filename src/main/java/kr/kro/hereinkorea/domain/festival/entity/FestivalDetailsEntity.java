@@ -35,4 +35,7 @@ public class FestivalDetailsEntity {
     private String eventplace; // 행사 장소
     @Column
     private String usetimefestival; // 이용 요금
+    @Lob
+    @Column(name = "overview", columnDefinition = "TEXT")
+    private String overview;    //개요(상세내용)
 }

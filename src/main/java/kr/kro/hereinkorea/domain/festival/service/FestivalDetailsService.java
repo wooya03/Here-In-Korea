@@ -2,6 +2,7 @@ package kr.kro.hereinkorea.domain.festival.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonpCharacterEscapes;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import jakarta.transaction.Transactional;
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDetailsDTO;
@@ -15,18 +16,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.jsoup.Jsoup;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
-import org.jsoup.Jsoup;
 
 @Service
 @Slf4j
@@ -35,100 +36,67 @@ public class FestivalDetailsService {
 
     private final FestivalRepository festivalRepository;
     private final FestivalDetailsRepository festivalDetailsRepository;
-    private final XmlMapper xmlMapper; // XML 처리용 XmlMapper
-    private final RestTemplate restTemplate; // RestTemplate 객체를 주입
+    private final XmlMapper xmlMapper;
 
     private static final String SERVICE_KEY = "Vzrka/MW4E5Dh3bkH2muvLYWT9BFjjgp1sKVHTbfHKb6Qvku+nS4e4UnV+MQgqlSZR1D00kCcMI5xqtvqwPQtg==";
 
-    private static final String URL_BASE = "http://apis.data.go.kr/B551011/KorService1/detailIntro1?" +
-            "ServiceKey=%s" + // 인코딩된 서비스 키
-            "&contentTypeId=15" +
-            "&MobileOS=ETC&MobileApp=AppTest";
-//    &contentId=%d
+    private static final String DETAIL_INTRO_URL = "http://apis.data.go.kr/B551011/KorService1/detailIntro1?" +
+            "ServiceKey=%s&contentTypeId=15&MobileOS=ETC&MobileApp=AppTest&contentId=%d";
 
-    private String getEncodedApiUrl(Long contentId) {
-        try {
-            // 서비스 키 인코딩
-            String encodedServiceKey = URLEncoder.encode(SERVICE_KEY, StandardCharsets.UTF_8.toString()); // 서비스 키 인코딩
-
-            // URL을 생성할 때 인코딩된 서비스 키를 삽입
-            String url = String.format(URL_BASE, encodedServiceKey) + "&contentId=" + contentId;
-
-            // URI 객체로 변환
-            URI uri = new URI(url);
-            return uri.toString(); // URI를 문자열로 반환
-        } catch (UnsupportedEncodingException e) {
-            log.error("Error encoding ServiceKey: {}", e.getMessage());
-            throw new RuntimeException("Error encoding ServiceKey", e);
-        } catch (Exception e) {
-            log.error("Error creating URI for contentId {}: {}", contentId, e.getMessage());
-            throw new RuntimeException("Error creating URI", e);
-        }
-    }
+    private static final String DETAIL_COMMON_URL = "http://apis.data.go.kr/B551011/KorService1/detailCommon1?" +
+            "ServiceKey=%s&contentTypeId=15&contentId=%d&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&overviewYN=Y";
 
     @Transactional
     public void addFestivalDetails() {
-        // FestivalEntity 목록을 가져옵니다.
         List<FestivalEntity> festivals = festivalRepository.findAll();
 
         for (FestivalEntity festival : festivals) {
             try {
-                // contentId를 이용해 API URL을 생성
                 Long contentId = festival.getContentId();
-                String apiUrl = getEncodedApiUrl(contentId);
-//                String apiUrl = URL_BASE + "&contentId=" + contentId;
-                log.info("Requesting API URL: {}", apiUrl);
+                String introApiUrl = getEncodedUrl(DETAIL_INTRO_URL, contentId);
+                String commonApiUrl = getEncodedUrl(DETAIL_COMMON_URL, contentId);
 
-                // API 호출
-                String response = callApi(apiUrl);
+                log.info("Requesting Detail Intro API: {}", introApiUrl);
+                String introResponse = callApi(introApiUrl);
 
-                // XML 데이터를 ApiResponse 객체로 변환
-                ApiResponse apiResponse = xmlMapper.readValue(response, ApiResponse.class);
-                log.info("API Response: {}", response);
-                // API 응답이 정상적으로 왔는지 확인
-                if (apiResponse != null && apiResponse.getBody() != null && apiResponse.getBody().getItems() != null) {
-                    apiResponse.getBody().getItems().forEach(item -> {
+                log.info("Requesting Detail Common API: {}", commonApiUrl);
+                String commonResponse = callApi(commonApiUrl);
+
+                xmlMapper.getFactory().setCharacterEscapes(new JsonpCharacterEscapes());
+
+                // Parse responses
+                ApiResponse introApiResponse = xmlMapper.readValue(introResponse, ApiResponse.class);
+                ApiResponse commonApiResponse = xmlMapper.readValue(commonResponse, ApiResponse.class);
+
+                if (introApiResponse != null && introApiResponse.getBody() != null && introApiResponse.getBody().getItems() != null) {
+                    introApiResponse.getBody().getItems().forEach(item -> {
                         try {
-                            // FestivalDetailsDTO 생성
                             FestivalDetailsDTO festivalDetailsDTO = FestivalDetailsDTO.builder()
-                                    .contentid(item.getContentId())
+                                    .contentid(item.getContentid())
                                     .sponsor1(item.getSponsor1())
                                     .sponsor1tel(item.getSponsor1tel())
                                     .eventstartdate(item.getEventstartdate())
                                     .eventenddate(item.getEventenddate())
-                                    .playtime(item.getPlaytime())
+                                    .playtime(cleanText(item.getPlaytime()))
                                     .eventplace(item.getEventplace())
-                                    .usetimefestival(item.getUsetimefestival())
+                                    .usetimefestival(cleanText(item.getUsetimefestival()))
                                     .build();
 
-                            String playtime = festivalDetailsDTO.getPlaytime();
-                            String usetimefestival = festivalDetailsDTO.getUsetimefestival();
-
-                            if (usetimefestival != null) {
-                                usetimefestival = unescapeHtml(usetimefestival);
-                                usetimefestival = Jsoup.parse(usetimefestival).text(); // HTML 태그 제거
-                                if (usetimefestival.getBytes(StandardCharsets.UTF_8).length > 255) {
-                                    festivalDetailsDTO.setUsetimefestival(truncateToByteLength(usetimefestival, 255));  // 255자까지 자른다
+                            // Add overview from common API response (no length restriction)
+                            commonApiResponse.getBody().getItems().forEach(commonItem -> {
+                                if (commonItem.getContentid() != null && commonItem.getContentid().equals(item.getContentid())) {
+                                    // overview가 null일 경우 빈 문자열로 설정
+                                    log.info("Overview for contentId {}: {}", commonItem.getContentid(), commonItem.getOverview());
+                                    String overview = commonItem.getOverview() != null ? commonItem.getOverview() : "";
+                                    festivalDetailsDTO.setOverview(overview);  // No length restriction
                                 }
-                            }
+                            });
 
-                            if (playtime != null) {
-                                playtime = unescapeHtml(playtime);
-                                playtime = Jsoup.parse(playtime).text(); // HTML 태그 제거
-                                if (playtime.getBytes(StandardCharsets.UTF_8).length > 255) {
-                                    festivalDetailsDTO.setPlaytime(truncateToByteLength(playtime, 255));  // 255자까지 자른다
-                                }
-                            }
-
-
-                            // DTO를 Entity로 변환
                             FestivalDetailsEntity festivalDetailsEntity = FestivalMapper.dtoToEntity(festivalDetailsDTO, festival);
-
-                            // 저장
                             festivalDetailsRepository.save(festivalDetailsEntity);
-                            log.info("Saved FestivalDetailsEntity for contentId {}", item.getContentId());
+                            log.info("Saved FestivalDetailsEntity for contentId {}", item.getContentid());
                         } catch (Exception e) {
-                            log.error("Error saving FestivalDetails for contentId {}: {}", item.getContentId(), e.getMessage());
+                            log.error("Error saving FestivalDetails for contentId {}: {}", item.getContentid(), e.getMessage());
                         }
                     });
                 } else {
@@ -140,74 +108,70 @@ public class FestivalDetailsService {
         }
     }
 
-    // HTML 엔티티를 실제 HTML 태그로 변환하는 메서드
-    private String unescapeHtml(String input) {
-        return StringEscapeUtils.unescapeHtml4(input);
-    }
-
-
-    // API 호출 메서드
-    private String callApi(String apiUrl) {
+    private String getEncodedUrl(String baseUrl, Long contentId) {
         try {
-            URI uri = new URI(apiUrl); // URL을 URI로 변환
-            String response = restTemplate.getForObject(uri, String.class); // URI를 RestTemplate에 전달
-
-            if (response == null || response.isEmpty()) {
-                throw new RuntimeException("API response is empty for URL: " + apiUrl);
-            }
-            log.info("API Response: {}", response); // 응답 로그 출력
-            return response;
-        } catch (Exception e) {
-            log.error("API call failed for URL {}: {}", apiUrl, e.getMessage());
-            throw new RuntimeException("API call failed", e);
+            String encodedServiceKey = URLEncoder.encode(SERVICE_KEY, StandardCharsets.UTF_8.toString());
+            return String.format(baseUrl, encodedServiceKey, contentId);
+        } catch (UnsupportedEncodingException e) {
+            log.error("Error encoding ServiceKey: {}", e.getMessage());
+            throw new RuntimeException("Error encoding ServiceKey", e);
         }
     }
 
-    // 날짜 문자열을 LocalDate로 변환
-    private LocalDate parseDate(String dateStr) {
-        if (dateStr == null || dateStr.isEmpty()) {
-            return null; // 날짜가 null이거나 비어있으면 null 반환
+    private String callApi(String apiUrl) throws Exception {
+        URL url = new URL(apiUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+
+        int responseCode = connection.getResponseCode();
+        log.info("HTTP Response Code: {}", responseCode);
+
+        if (responseCode != 200) {
+            throw new RuntimeException("API call failed with response code: " + responseCode);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        return LocalDate.parse(dateStr, formatter);
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+            StringBuilder result = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                result.append(line);
+            }
+            log.info("API Response: {}", result);
+            return result.toString();
+        } finally {
+            connection.disconnect();
+        }
+    }
+
+    private String cleanText(String input) {
+        if (input == null) return null;
+        String unescaped = StringEscapeUtils.unescapeHtml4(input);
+        String cleaned = Jsoup.parse(unescaped).text();
+        return cleaned.length() > 255 ? truncateToByteLength(cleaned, 255) : cleaned;
     }
 
     private String truncateToByteLength(String input, int maxLength) {
-        if (input == null) {
-            return null;
-        }
-
-        // UTF-8로 인코딩한 바이트 배열을 얻습니다.
         byte[] bytes = input.getBytes(StandardCharsets.UTF_8);
-
-        // 최대 바이트 길이를 넘지 않도록 자릅니다.
         if (bytes.length > maxLength) {
             byte[] truncatedBytes = new byte[maxLength];
             System.arraycopy(bytes, 0, truncatedBytes, 0, maxLength);
             return new String(truncatedBytes, StandardCharsets.UTF_8);
         }
-
-        return input; // 길이가 maxLength 이하인 경우 그대로 반환
+        return input;
     }
 
-
-    // API 응답을 매핑하기 위한 클래스
     @Getter
     @Setter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class ApiResponse {
         private Header header;
-        @JsonProperty("body")
         private Body body;
 
         @Getter
         @Setter
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Header {
-            @JsonProperty("resultCode")
             private String resultCode;
-
-            @JsonProperty("resultMsg")
             private String resultMsg;
         }
 
@@ -215,46 +179,22 @@ public class FestivalDetailsService {
         @Setter
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Body {
-            @JsonProperty("items")
             private List<FestivalItem> items;
-
-            @JsonProperty("numOfRows")
-            private int numOfRows;
-
-            @JsonProperty("pageNo")
-            private int pageNo;
-
-            @JsonProperty("totalCount")
-            private int totalCount;
         }
 
         @Getter
         @Setter
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class FestivalItem {
-            @JsonProperty("contentid")
-            private Long contentId;
-
-            @JsonProperty("eventstartdate")
+            private Long contentid;
             private String eventstartdate;
-
-            @JsonProperty("eventenddate")
             private String eventenddate;
-
-            @JsonProperty("playtime")
             private String playtime;
-
-            @JsonProperty("eventplace")
             private String eventplace;
-
-            @JsonProperty("usetimefestival")
             private String usetimefestival;
-
-            @JsonProperty("sponsor1")
             private String sponsor1;
-
-            @JsonProperty("sponsor1tel")
             private String sponsor1tel;
+            private String overview;
         }
     }
 }

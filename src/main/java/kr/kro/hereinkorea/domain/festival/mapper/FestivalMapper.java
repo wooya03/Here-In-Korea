@@ -67,6 +67,7 @@ public class FestivalMapper {
                 .playtime(dto.getPlaytime())
                 .eventplace(dto.getEventplace())
                 .usetimefestival(dto.getUsetimefestival())
+                .overview(dto.getOverview())
                 .build();
     }
 }

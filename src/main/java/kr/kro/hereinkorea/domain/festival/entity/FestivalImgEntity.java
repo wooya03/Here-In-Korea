@@ -15,6 +15,7 @@ public class FestivalImgEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "festival_content_id")
     private FestivalEntity festival;
 
     @Column

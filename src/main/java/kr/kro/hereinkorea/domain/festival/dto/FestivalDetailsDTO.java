@@ -21,4 +21,5 @@ public class FestivalDetailsDTO {
     private String playtime; // 공연 시간
     private String eventplace; // 행사 장소
     private String usetimefestival; // 이용 요금
+    private String overview;    //개요(상세정보)
 }
