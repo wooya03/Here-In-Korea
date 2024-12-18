@@ -25,7 +25,7 @@ const AdminLogin = () => {
         }
 
         try {
-            const response = await fetch(baseUrl+"/user/login", {
+            const response = await fetch(baseUrl+"/admin/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const AdminLogin = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="admin-login">
                     {/* 버튼 클릭 시 handleLogin 함수 호출 */}
                     <button type="button" id="sbtn" onClick={handleLogin}>로그인</button>
                 </div>

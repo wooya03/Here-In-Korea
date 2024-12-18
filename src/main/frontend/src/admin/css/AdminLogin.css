@@ -1,12 +1,12 @@
 /* 로그인 폼 전체를 감싸는 div */
 .admin-login-container {
-    padding: 50px;
+    padding: 100px;
     background-color: #fff;
     border-radius: 8px;
     text-align: center;
 }
 /* 로그인 제목 */
-h2 {
+.admin-login-container h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
@@ -27,7 +27,7 @@ h2 {
 }
 
 /* 로그인 버튼 스타일 */
-button {
+.admin-login button {
     width: 100%;
     padding: 10px;
     background-color: #4a8fa5;
@@ -38,6 +38,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.admin-login button:hover {
     background-color: #3a7280;
 }
