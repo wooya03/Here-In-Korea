@@ -2,11 +2,7 @@ package kr.kro.hereinkorea.domain.reviewboard.entity;
 
 import jakarta.persistence.*;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name = "review")
+@Builder
 public class ReviewEntity {
 
     @Id
@@ -32,8 +29,8 @@ public class ReviewEntity {
     @Column(name = "review_tag") // 태그는 필수 항목이 아니므로 nullable 설정 없음
     private String reviewTag;
 
-    @Column(name = "review_time", nullable = false, updatable = false)
-    private LocalDateTime reviewTime;
+    @Column(name = "created_date", nullable = false, updatable = false)
+    private LocalDateTime createdDate;
 
     @Column(name = "review_views", nullable = false)
     private int reviewViews = 0;
@@ -45,9 +42,14 @@ public class ReviewEntity {
     @JoinColumn(name = "mem_id", nullable = false) // 외래 키도 언더스코어로 매핑
     private MemberEntity memId;
 
-    @PrePersist
-    public void prePersist() {
-        this.reviewTime = LocalDateTime.now();
+
+    // Getter와 Setter 추가
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     // 생성자

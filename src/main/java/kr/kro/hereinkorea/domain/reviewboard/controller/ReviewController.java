@@ -1,29 +1,34 @@
 package kr.kro.hereinkorea.domain.reviewboard.controller;
 
-import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
 import kr.kro.hereinkorea.domain.reviewboard.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/reviews")
-@RequiredArgsConstructor
+@RequestMapping("/review")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReviewController {
 
     private final ReviewService reviewService;
 
+    @Autowired
+    public ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
+    }
     // 리뷰 목록 조회 (페이징)
     @GetMapping
     public ResponseEntity<Object> getReviews(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "createdDate") String sortBy) {
 
         Page<ReviewDTO> reviewPage = reviewService.getReviews(page, size, sortBy);

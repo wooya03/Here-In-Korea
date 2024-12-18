@@ -50,7 +50,7 @@ const ReviewManagement = () => {
                   id: item.reviewId,
                   title: item.reviewTitle,
                   userId: item.memId,
-                  date: item.reviewTime,
+                  date: item.createdDate,
                   views: item.reviewViews,
                   likes: item.reviewLikes
                 }))
