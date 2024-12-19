@@ -16,7 +16,7 @@ public class MemberMapper {
                 .gender(memberDTO.getGender())
                 .birth(memberDTO.getBirth())
                 .email(memberDTO.getEmail())
-                .role(memberDTO.getRole())
+                .role(memberDTO.getRole()!= null ? memberDTO.getRole() : MemberRole.USER)
                 .build();
     }
 

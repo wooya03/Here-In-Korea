@@ -69,7 +69,7 @@ const RegisterAuth = () =>{
 
     return(
         <div className="content">
-            <div className="form_wrap">
+            <div className="form_wrap_auth_register">
                     <div className="auth_form">
                         <p>인증번호 입력</p>
                         <input type="text" className="auth" name="auth" maxLength="6"
