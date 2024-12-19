@@ -66,7 +66,7 @@ function Header() {
 
   const handleMoveProfile = () => {
     if (isLoggedIn) {
-      navigate("/profile");
+      navigate("/user/profile"); // 로그인 상태일 때만 프로필로 이동
     }
   };
 

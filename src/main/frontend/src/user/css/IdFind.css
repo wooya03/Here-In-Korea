@@ -99,7 +99,18 @@
     border: 2px solid steelblue;
 }
 
-.submit_btn {
+.next_btn{
+    width: 35%;
+    padding: 8px 16px;
+    margin-top: 20px;
+    background-color: #498ea4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.find_btn_wrap button{
+    width: 100%;
     padding: 8px 16px;
     margin-top: 20px;
     background-color: #498ea4;
