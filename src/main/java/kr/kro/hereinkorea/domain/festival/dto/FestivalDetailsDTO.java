@@ -1,9 +1,5 @@
 package kr.kro.hereinkorea.domain.festival.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import kr.kro.hereinkorea.domain.festival.entity.FestivalEntity;
 import lombok.*;
 
 @Builder
@@ -22,4 +18,10 @@ public class FestivalDetailsDTO {
     private String eventplace; // 행사 장소
     private String usetimefestival; // 이용 요금
     private String overview;    //개요(상세정보)
+
+    private String title;
+    private String addr1;
+    private String addr2;
+    private String tel;
+    private String firstimage2;
 }

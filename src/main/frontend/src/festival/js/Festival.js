@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import Header from "../../global/header/Header";
 import "../css/Festival.css";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Festival = () => {
     const [data, setData] = useState([]); // 전체 데이터
@@ -11,6 +11,8 @@ const Festival = () => {
     const [error, setError] = useState(false); // 데이터 불러오기 실패 여부
     const [startDate, setStartDate] = useState(""); // 시작 날짜
     const [endDate, setEndDate] = useState(""); // 종료 날짜
+
+    const navigate = useNavigate();
 
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -97,7 +99,8 @@ const Festival = () => {
                 <>
                     <div className="data_area">
                         {currentItems.map((festival, index) => (
-                            <div key={index} className="content_container">
+                            <div key={index} className="content_container"
+                                 onClick={() => navigate(`/festival/${festival.contentId}`)}>
                                 <span className="img_wrap">
                                     <img
                                         src={
