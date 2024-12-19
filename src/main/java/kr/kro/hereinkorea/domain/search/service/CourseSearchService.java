@@ -8,7 +8,7 @@
 //
 //public interface CourseSearchService {
 //
-//    List<CourseDTO[]> searchCourseByTitle(String courseTitle);
+//    List<CourseDTO> searchCourseByTitle(String courseTitle);
 //
 //    default CourseDTO entityToDTO(CourseEntity course, CourseImageEntity img){
 //        return CourseDTO.builder()
