@@ -27,7 +27,7 @@ public interface HotelSearchService {
                 .firstimage2(img != null ? img.getFirstimage() : null)
                 .build();
     }
-
+    //필요하다면 사용
     default HotelsEntity dtoToEntity(HotelsDTO dto) {
         return HotelsEntity.builder()
                 .contentid(dto.getContentid())
