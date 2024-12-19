@@ -12,6 +12,7 @@ import kr.kro.hereinkorea.domain.course.dto.CourseDTO;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.domain.member.controller.JwtResponse;
+import kr.kro.hereinkorea.domain.member.controller.MemberController;
 import kr.kro.hereinkorea.domain.member.controller.RegisterController;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 import kr.kro.hereinkorea.domain.member.service.MemberService;
@@ -27,6 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
