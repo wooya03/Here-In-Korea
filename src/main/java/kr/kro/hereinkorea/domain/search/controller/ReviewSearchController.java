@@ -17,7 +17,7 @@ public class ReviewSearchController {
 
 
     @GetMapping("/search5")
-    List<ReviewDTO> searchReview(@RequestParam("title")String title){
-        return reviewService.searchReviewsByTitle(title);
+    List<ReviewDTO> searchReview(@RequestParam("reviewTitle")String reviewTitle){
+        return reviewService.searchReviewsByTitle(reviewTitle);
     }
 }

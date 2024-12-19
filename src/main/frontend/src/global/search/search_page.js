@@ -91,7 +91,7 @@ const SearchPage = () => {
   };
 
   const handleFestivalClick = (id) => {
-    navigate(`/festivals/${id}`);
+    navigate(`/festival/${id}`);
   };
 
   const handleCourseClick = (id) => {

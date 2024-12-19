@@ -55,12 +55,18 @@ public class SecurityConfig {
                         .requestMatchers("/admin/main", "/admin/member", "/admin/review", "/admin/question").hasRole("ADMIN") // ADMIN 권한 필요
                         .requestMatchers("/admin/logout").authenticated()
                         .requestMatchers("/hotels/**").permitAll()
+                        .requestMatchers("/question/write").authenticated()
                         .requestMatchers("/question/**").permitAll()
                         .requestMatchers("/api/hotels/**").permitAll()
                         .requestMatchers("/api/festivals/**").permitAll()
+                        .requestMatchers("/api/reviews/**").permitAll()
+                        .requestMatchers("/api/course/**").permitAll()
+                        .requestMatchers("/reviews/**").permitAll()
+                        .requestMatchers("/review/**", "/course/**").permitAll()
                         .requestMatchers("/festival","/festival/**").permitAll()
                         .anyRequest().authenticated() // 나머지는 인증 필요
                 )
+
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // JWT 필터 추가
                 .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // 세션 미사용
