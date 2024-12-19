@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/CourseWrite.css";
 import Header from "../../global/header/Header";
+import axios from "axios";
 
 function CourseWrite() {
   const navigate = useNavigate();
