@@ -23,7 +23,7 @@ public class QuestionController {
     private final JwtUtil jwtUtil;
 
     @GetMapping("/list")
-    public PageResultDTO<QuestionDTO, Object[]> list(String category, PageRequestDTO requestDTO){
+    public PageResultDTO<QuestionDTO, Object[]> list(@RequestParam("category") String category, PageRequestDTO requestDTO){
         return questionService.getList(category, requestDTO);
     }
 

@@ -46,7 +46,7 @@ public class HotelsController {
     }
 
     @GetMapping("/list")
-    public PageResultDTO<HotelsDTO, Object[]> list(@Param("order") String order, int areaCode, PageRequestDTO requestDTO){
+    public PageResultDTO<HotelsDTO, Object[]> list(@RequestParam("order") String order, @RequestParam("areaCode") int areaCode, PageRequestDTO requestDTO){
         return hotelsService.getList(order, areaCode, requestDTO);
     }
 
