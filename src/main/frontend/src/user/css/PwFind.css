@@ -48,7 +48,7 @@
 }
 
 .btn_wrap .next_btn {
-    width: 100%;
+    width: 60%;
     padding: 8px 16px;
     margin-top: 20px;
     background-color: #498ea4;
@@ -62,4 +62,71 @@
     color: red;
     font-size: 14px;
     margin-top: 20px;
+}
+
+.content_find_pw_main {
+    width: 70%;
+    min-height: 100px;
+    margin: 0 auto;
+    padding: 50px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.form_find_pw {
+    width: 500px;
+    height: auto; /* 높이를 자동으로 조정 */
+    max-height: 600px; /* 최대 높이 설정 */
+    border: 2px solid midnightblue;
+    border-radius: 8px;
+    text-align: center;
+    align-content: center;
+    margin-bottom: 50px;
+    display: flex; /* flexbox를 사용하여 내부 요소를 정렬 */
+    flex-direction: column; /* 입력폼과 버튼을 수직으로 정렬 */
+    justify-content: flex-start; /* 입력폼과 버튼을 위쪽으로 정렬 */
+    padding: 20px; /* 안쪽 여백 추가 */
+    box-sizing: border-box; /* 패딩을 포함한 크기 설정 */
+}
+
+.list_wrap_pw {
+    display: flex;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center; /* 텍스트와 입력란을 수직으로 정렬 */
+}
+
+.list_wrap_pw > p {
+    width: 30%;
+    text-align: left;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.list_wrap_pw > input {
+    width: 65%;
+    padding: 10px;
+    border: 2px solid steelblue;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.content_find_pw_main > .btn_wrap {
+    position: relative;
+    width: 100%;
+    margin-top: 20px; /* 버튼과 입력폼 사이의 간격을 추가 */
+    text-align: center; /* 버튼을 가운데 정렬 */
+}
+
+
+.error_message {
+    color: red;
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
 }

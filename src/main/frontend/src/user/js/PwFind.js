@@ -6,11 +6,14 @@ const PwFind = () => {
     const navigate = useNavigate();
     const [memId, setMemId] = useState("");
     const [memName, setMemName] = useState("");
+    const [memPass, setMemPass] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [isVerificationSent, setIsVerificationSent] = useState(false);
     const [verificationCode, setVerificationCode] = useState("");
     const [isCodeVerified, setIsCodeVerified] = useState(false);
     const [generatedCode, setGeneratedCode] = useState("");
+    const [newPassword, setNewPassword] = useState(""); // 새로운 비밀번호 입력
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     //임시로 인증코드 생성
     const generateVerificationCode = () => {
@@ -58,9 +61,7 @@ const PwFind = () => {
         if (verificationCode === generatedCode) {
             setIsCodeVerified(true);
             setErrorMessage("");
-            alert("인증 되었습니ㅏㄷ.")
-            console.log("인증 코드가 확인되었습니다.");
-            navigate("/user/login"); // 비밀번호 변경 페이지로 이동
+            updatePassChange();
         } else {
             setErrorMessage("인증 코드가 잘못되었습니다.");
         }
@@ -86,6 +87,43 @@ const PwFind = () => {
         //     console.error("서버와 연결할 수 없습니다.", error);
         //     setErrorMessage("서버와 연결할 수 없습니다. 다시 시도해주세요.");
         // }
+    };
+
+    const updatePassChange = async () => {
+        if (!newPassword || !confirmPassword) {
+            setErrorMessage("새로운 비밀번호와 비밀번호 확인을 모두 입력해 주세요.");
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            setErrorMessage("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
+        setMemPass(newPassword);
+        console.log("새비밀번호" + memPass);
+        console.log("새비밀번호" + newPassword);
+
+        try {
+            const response = await fetch("http://localhost:8080/user/find/pw/update", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ memId, memPass: newPassword }),
+            });
+
+            if (response.ok) {
+                alert("비밀번호가 성공적으로 변경되었습니다.");
+                navigate("/user/login"); // 비밀번호 변경 후 로그인 페이지로 리디렉션
+            } else {
+                const error = await response.json();
+                setErrorMessage(error.message || "비밀번호 변경에 실패했습니다.");
+            }
+        } catch (error) {
+            console.error("서버와 연결할 수 없습니다.", error);
+            setErrorMessage("서버와 연결할 수 없습니다. 다시 시도해주세요.");
+        }
     };
 
     return (
@@ -124,6 +162,30 @@ const PwFind = () => {
                         />
                     </div>
                 )}
+
+                {isCodeVerified && (
+                    <>
+                        <div className="list_wrap_pw">
+                            <p>새로운 비밀번호</p>
+                            <input
+                                type="password"
+                                className="form_name"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="list_wrap_pw">
+                            <p>비밀번호 확인</p>
+                            <input
+                                type="password"
+                                className="form_name"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
 
             <div className="btn_wrap">
@@ -131,9 +193,13 @@ const PwFind = () => {
                     <button className="next_btn" onClick={handleIdSubmit}>
                         다음
                     </button>
-                ) : (
+                ) : !isCodeVerified ? (
                     <button className="next_btn" onClick={handleVerificationSubmit}>
                         인증 코드 확인
+                    </button>
+                ) : (
+                    <button className="next_btn" onClick={updatePassChange}>
+                        비밀번호 변경
                     </button>
                 )}
             </div>
