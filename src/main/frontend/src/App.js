@@ -98,7 +98,7 @@ function App() {
 
         {/* 행사 페이지 */}
         <Route path='/festival' element={<><Header /><Festival /></>} />
-        <Route path='/festival/:id' element={<><Header /><FestivalDetails /></>} />
+        <Route path='/festival/:contentId' element={<><Header /><FestivalDetails /></>} />
 
 
       </Routes>
