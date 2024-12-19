@@ -1,14 +1,9 @@
 package kr.kro.hereinkorea.domain.reviewboard.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Getter
 @Setter
@@ -17,12 +12,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReviewDTO {
-    private Long reviewId;
-    private String reviewTitle;
-    private String memId; // 읽기 전용 (프론트엔드에서 memId는 전송되지 않음)
-    private String reviewContent;
-    private String reviewTag;
-    private LocalDateTime createdDate;
-    private int reviewViews;
-    private int reviewLikes;
+    private Long reviewId;         // 리뷰 ID
+    private String reviewTitle;    // 제목
+    private String memId;          // 작성자 회원 ID (String 타입)
+    private String reviewContent;  // 내용
+    private String reviewTag;      // 태그
+    private LocalDateTime createdDate; // 생성 날짜
+    private int reviewViews = 0;   // 조회수 기본값
+    private int reviewLikes = 0;   // 좋아요 기본값
 }
+

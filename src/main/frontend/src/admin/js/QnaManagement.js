@@ -18,7 +18,9 @@ function QnaManagement() {
   const [itemsPerPage] = useState(10); // 페이지당 항목 수
   const [title, setTitle] = useState(""); // 제목 필터 상태
   const [category, setCategory] = useState(""); // 카테고리 필터 상태
+  const [selectedItems, setSelectedItems] = useState([]); // 선택된 항목들
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     putSpringData(currentPage, title, category);
@@ -28,12 +30,16 @@ function QnaManagement() {
     try {
       const params = {
         page: pageNumber,
-        size: itemsPerPage,
+        size: itemsPerPage
       };
       if (titleFilter) params.title = titleFilter;
       if (categoryFilter) params.category = categoryFilter;
 
-      const response = await axios.get(baseUrl + "/admin/question", { params });
+      const response = await axios.get(baseUrl + "/admin/question", {params,
+        headers: {
+            Authorization: `Bearer ${token}`, // 헤더에 토큰 추가
+        },
+    });
       const transformedData = response.data.dtoList
         ? response.data.dtoList.map(item => ({
             id: item.id,
@@ -47,10 +53,21 @@ function QnaManagement() {
         : [];
       setData(transformedData);
       setTotalPages(response.data.totalPage);
-    } catch (error) {
-      console.error("데이터를 가져오는 중 오류 발생:", error);
+    } catch (err) {
+      if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+        alert('권한이 필요합니다.');
+        navigate("/admin/login");
+      } else {
+        console.log(err);
+      }
     }
   }
+
+  const handleSelectItem = (id) => {
+    setSelectedItems(prevSelected => 
+      prevSelected.includes(id) ? prevSelected.filter(item => item !== id) : [...prevSelected, id]
+    );
+  };
 
   const handleSearch = () => {
     setCurrentPage(1);
@@ -71,11 +88,17 @@ function QnaManagement() {
       return;
     }
     try {
-      const response = await axios.delete(baseUrl + `/question/delete/${selectedIds}`);
-      if (response.status === 200) {
-        alert("삭제가 완료되었습니다.");
-        putSpringData(currentPage, title, category); // 삭제 후 데이터 갱신
-      }
+      await axios({
+        method: "delete",
+        url: baseUrl + "/admin/question",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: selectedItems,
+      });
+      alert("선택된 문의가 삭제되었습니다.");
+      setSelectedItems([]); // 삭제 후 선택 항목 초기화
+      putSpringData(currentPage, title, category); // 데이터 갱신
     } catch (error) {
       console.error("삭제 중 오류 발생:", error);
       alert("삭제 중 오류가 발생했습니다.");
@@ -104,10 +127,14 @@ function QnaManagement() {
         </select>
         <button onClick={handleSearch}>조회</button>
       </div>
+      <div>
+        <button className="delete-button" onClick={handleDelete}>DELETE</button>
+      </div>
 
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>제목</th>
             <th>아이디</th>
             <th>내용</th>
@@ -119,6 +146,11 @@ function QnaManagement() {
         <tbody>
           {data.length > 0 ? data.map((item) => (
             <tr key={item.id}>
+              <td><input
+                  type="checkbox"
+                  checked={selectedItems.includes(item.id)}
+                  onChange={() => handleSelectItem(item.id)}
+                /></td>
               <td>{item.title}</td>
               <td>{item.memId}</td>
               <td>{item.contents}</td>
@@ -128,7 +160,7 @@ function QnaManagement() {
                 {item.answerContents ? (
                   <span>✔ 답변완료</span>
                 ) : (
-                  <button onClick={() => handleClick(item.id)}>답변 등록</button>
+                  <button className="answer-button" onClick={() => handleClick(item.id)}>답변 등록</button>
                 )}
               </td>
             </tr>
@@ -141,8 +173,7 @@ function QnaManagement() {
           <span
             key={index}
             className={currentPage === index + 1 ? "active" : ""}
-            onClick={() => handlePageChange(index + 1)}
-          >
+            onClick={() => handlePageChange(index + 1)}>
             {index + 1}
           </span>
         ))}

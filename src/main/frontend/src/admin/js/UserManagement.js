@@ -3,6 +3,7 @@ import "../css/UserManagement.css";
 import "../css/Common.css";
 import { format } from "date-fns";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function formatTime(dateString) {
   if (!dateString) return "날짜 정보 없음"; // dateString이 null/undefined/빈 문자열일 경우 처리
@@ -18,12 +19,14 @@ function formatTime(dateString) {
 
 const UserManagement = () => {
   const baseUrl = "http://localhost:8080";
+  const navigate = useNavigate();
   const [data, setData] = useState([]); // 현재 페이지 데이터
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
   const [itemsPerPage] = useState(10); // 페이지당 항목 수
   const [searchKeyword, setSearchKeyword] = useState(""); // 검색어
   const [gender, setGender] = useState(""); // 성별 필터
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     putSpringData(currentPage, searchKeyword, gender); // 컴포넌트 로드 시 데이터 요청
@@ -39,9 +42,18 @@ const UserManagement = () => {
 
   async function putSpringData(pageNumber, keyword, selectedGender) {
     try {
+      const params = {
+        page: pageNumber,
+        memName: keyword,
+        gender: selectedGender,
+        size: itemsPerPage
+      };
       const response = await axios.get(
-        `${baseUrl}/admin/member?page=${pageNumber}&size=${itemsPerPage}&memName=${keyword}&gender=${selectedGender}`
-      );
+        `${baseUrl}/admin/member`, {params,
+          headers: {
+              Authorization: `Bearer ${token}`, // 헤더에 토큰 추가
+          },
+      });
       const transformedData = response.data.dtoList
         ? response.data.dtoList.map((item) => {
             return {
@@ -58,7 +70,12 @@ const UserManagement = () => {
       setData(transformedData); // 현재 페이지 데이터 설정
       setTotalPages(response.data.totalPage); // 총 페이지 수 설정
     } catch (err) {
-      console.log(err);
+      if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+        alert('권한이 필요합니다.');
+        navigate("/admin/login");
+      } else {
+        console.log(err);
+      }
     }
   }
 
@@ -122,7 +139,7 @@ const UserManagement = () => {
             전체
           </label>
           
-          <button onClick={handleSearch}>검색</button>
+          <button onClick={handleSearch}>조회</button>
         </div>
       </form>
 

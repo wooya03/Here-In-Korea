@@ -10,15 +10,18 @@
 .search-user input[type="text"] {
   padding: 5px;
   font-size: 16px;
+  height: 40px;
   width: 400px;
 }
 
 .search-user button {
   padding: 5px 10px;
-  background-color: #424e95;
+  background-color: #4a8fa5;
   color: white;
   border: none;
+  border-radius: 4px;
   width: 100px;
+  height: 40px;
   cursor: pointer;
 }
 

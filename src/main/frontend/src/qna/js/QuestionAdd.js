@@ -8,8 +8,6 @@ const QuestionAdd = () => {
     title: '',
     category: '', 
     contents: '',
-    memId: 'user002',
-    memName: '함황여',
     createdDate: new Date().toISOString(),
     modifiedDate: new Date().toISOString()
   });
@@ -48,8 +46,14 @@ const QuestionAdd = () => {
 
     try {
       console.log(questions);
+      const token = localStorage.getItem("token");
       // Spring Boot로 데이터 전송
-      const response = await axios.post('http://localhost:8080/question/write', questions);
+      const response = await axios.post(`http://localhost:8080/question/write`,  questions,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더로 전달
+          },
+        });
       if (response.status === 201) {
         alert('질문이 등록되었습니다!');
         navigate('/question');

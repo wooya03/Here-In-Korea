@@ -4,7 +4,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import Header from "../../global/header/Header";
 import "../css/ReviewWrite.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // axios 추가
+import axios from "axios";
 
 function ReviewWrite() {
   const navigate = useNavigate();
@@ -15,17 +15,42 @@ function ReviewWrite() {
   // 작성 완료 버튼 클릭 핸들러
   const handleReviewSubmit = async () => {
     const editorInstance = editorRef.current.getInstance();
-    const content = editorInstance.getMarkdown(); // 작성한 내용 가져오기
+    const content = editorInstance.getHTML(); // 작성한 내용을 HTML로 가져오기
 
-    // 백엔드로 POST 요청
+    // localStorage에서 토큰과 회원 ID를 가져옵니다
+    const token = localStorage.getItem("token");
+    const memId = localStorage.getItem("memId"); 
+
+    if(!token || !memId){
+      alert("로그인 되어있지 않습니다.");
+      console.log("검증 실패:",{token, memId});
+      return;
+    }
+
+    if (!title || !hashtag || !content ) {
+      alert("모든 항목을 입력해 주세요.");
+      console.log("검증 실패:", { title, hashtag, content });
+      return;
+    }
+
+    const reviewData = {
+      memId: memId, // 서버에서 기대하는 memId
+      reviewTitle: title,
+      reviewTag: hashtag,
+      reviewContent: content,
+      createdDate: new Date().toISOString(), // 작성 시간 추가
+      likeCount: 0, // 좋아요 초기값
+      viewCount: 0, // 조회수 초기값
+    };
+
     try {
-      const response = await axios.post("http://localhost:8080/review", {
-        reviewTitle: title,  // DTO와 필드 이름 매칭
-        reviewTag: hashtag,  // DTO와 필드 이름 매칭
-        reviewContent: content,
-      });      
-      console.log("리뷰 작성 성공:", response.data);
+      const response = await axios.post("http://localhost:8080/review/create", reviewData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // 백틱을 사용하여 `Bearer ${token}`으로 수정
+        },
+      });
 
+      console.log("리뷰 작성 성공:", response.data);
       alert("리뷰가 성공적으로 등록되었습니다.");
       navigate("/review"); // 리뷰 목록 페이지로 이동
     } catch (error) {

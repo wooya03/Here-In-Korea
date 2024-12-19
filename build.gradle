@@ -33,7 +33,7 @@ dependencies {
 	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta" // 쿼리타입(q)을 생성할 때 필요한 라이브러리
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
-
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
 
 	compileOnly 'org.projectlombok:lombok'

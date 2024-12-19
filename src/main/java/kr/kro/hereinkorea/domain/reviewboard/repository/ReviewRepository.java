@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
         
     @Query(
@@ -48,5 +50,4 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
                     "WHERE r.memId.memId = :memId AND " +
                     "r.reviewTitle LIKE CONCAT('%', :reviewTitle, '%')")
     Page<Object[]> getReviewByTitleAndId(@Param("reviewTitle") String reviewTitle, @Param("memId") String memId, Pageable pageable);
-
 }
