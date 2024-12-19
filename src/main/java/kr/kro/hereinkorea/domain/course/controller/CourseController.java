@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/course")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -13,6 +15,20 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
 
     private final CourseService courseService;
+
+    // 코스 전체 조회
+    @GetMapping("")
+    public ResponseEntity<List<CourseDTO>> getAllCourses() {
+        List<CourseDTO> courseList = courseService.getAllCourses();
+        return ResponseEntity.ok(courseList);
+    }
+
+    // 코스 단일 조회
+    @GetMapping("/{id}")
+    public ResponseEntity<CourseDTO> getCourseById(@PathVariable Long id) {
+        CourseDTO course = courseService.getCourseById(id);
+        return ResponseEntity.ok(course);
+    }
 
     // 코스 생성
     @PostMapping("/create")

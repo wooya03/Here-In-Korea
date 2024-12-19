@@ -9,7 +9,9 @@ import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +20,21 @@ public class CourseService {
     private final MemberRepository memberRepository;
     private final CourseMapper courseMapper;
     private final CourseRepository courseRepository;
+
+    // 코스 전체 조회
+    public List<CourseDTO> getAllCourses() {
+        return courseRepository.findAll()
+                .stream()
+                .map(courseMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    // 코스 단일 조회
+    public CourseDTO getCourseById(Long id) {
+        CourseEntity course = courseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("코스를 찾을 수 없습니다: ID=" + id));
+        return courseMapper.toDTO(course);
+    }
 
     // 코스 생성
     public CourseDTO createCourse(CourseDTO courseDTO) {
