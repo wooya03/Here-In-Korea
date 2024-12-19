@@ -94,7 +94,7 @@ const SearchPage = () => {
   };
 
   const handleReviewClick = (id) => {
-    navigate(`/reviews/${id}`);
+    navigate(`/review/${id}`);
   };
 
   return (
