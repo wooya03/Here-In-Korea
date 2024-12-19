@@ -49,9 +49,6 @@ function App() {
         {/* 검색 페이지 */}
         <Route path="/search_page" element={<><Header /><SearchPage /></>} />
 
-        {/* 검색 페이지 */}
-        <Route path="/search_page" element={<><Header /><SearchPage /></>} />
-
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />
         <Route path="/admin/login" element={<><AdminHeader /><AdminLogin /></>} />
@@ -101,7 +98,7 @@ function App() {
 
         {/* 행사 페이지 */}
         <Route path='/festival' element={<><Header /><Festival /></>} />
-        <Route path='/festival/:contentId' element={<><Header /><FestivalDetails /></>} />
+        <Route path='/festival/:id' element={<><Header /><FestivalDetails /></>} />
 
 
       </Routes>

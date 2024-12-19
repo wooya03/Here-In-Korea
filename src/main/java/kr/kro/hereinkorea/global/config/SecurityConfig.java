@@ -61,12 +61,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/festivals/**").permitAll()
                         .requestMatchers("/api/reviews/**").permitAll()
                         .requestMatchers("/api/course/**").permitAll()
-                        .requestMatchers("/api/reviews/**").permitAll()
                         .requestMatchers("/review/**", "/course/**").permitAll()
                         .requestMatchers("/festival","/festival/**").permitAll()
                         .anyRequest().authenticated() // 나머지는 인증 필요
                 )
-
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // JWT 필터 추가
                 .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // 세션 미사용

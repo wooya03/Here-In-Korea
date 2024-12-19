@@ -15,6 +15,8 @@ public interface ReviewSearchRepository extends JpaRepository<ReviewEntity, Long
             "ORDER BY r.reviewId " +
             "LIMIT 4 "
     )
-    List<Object[]> findTop4ByTitleContaining(@Param("reviewTitle")String reviewTitle);
+
+    List<Object[]> findTop4ByReviewTitleContaining(@Param("reviewTitle")String reviewTitle);
+
 
 }
