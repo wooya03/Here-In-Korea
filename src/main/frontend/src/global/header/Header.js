@@ -12,7 +12,6 @@ function Header() {
   const location = useLocation(); // useLocation 추가
   const token = localStorage.getItem("token");
 
-
   useEffect(() => {
     if (isLoggedIn) {
       setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
@@ -41,6 +40,7 @@ function Header() {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     checkLoginStatus();
+    navigate(0);
   };
 
   const handleLoginLogout = () => {
@@ -67,7 +67,7 @@ function Header() {
 
   const handleMoveProfile = () => {
     if (isLoggedIn) {
-      navigate("/profile");
+      navigate("/user/profile");
     }
   };
 
