@@ -1,9 +1,14 @@
 package kr.kro.hereinkorea.domain.member.controller;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 import kr.kro.hereinkorea.domain.member.mapper.MemberMapper;
 import kr.kro.hereinkorea.domain.member.service.MemberService;
+import kr.kro.hereinkorea.global.jwt.enums.JwtType;
 import kr.kro.hereinkorea.global.jwt.properties.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -86,6 +91,56 @@ public class MemberController {
         } else {
             // 아이디가 존재하지 않으면 에러 메시지 반환
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("존재하지 않는 아이디입니다.");
+        }
+    }
+
+    @PostMapping("/loginck")
+    public ResponseEntity<?> loginCheck(@RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            // Authorization 헤더에서 토큰 추출
+            if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("Authorization header is missing or invalid.");
+            }
+
+            String accessToken = authorizationHeader.substring(7); // "Bearer " 이후의 토큰
+
+            try {
+                // Access Token 검증
+                Jws<Claims> claims = jwtUtil.getClaims(accessToken);
+
+                // Access Token이 유효하면 사용자 정보 반환
+                String memId = claims.getBody().getSubject();
+                return ResponseEntity.ok(Collections.singletonMap("message", "Token is valid. User: " + memId));
+            } catch (ExpiredJwtException e) {
+                // Access Token이 만료된 경우, Refresh Token 검증 및 새로운 Access Token 발급
+                String refreshToken = authorizationHeader.substring(7); // 클라이언트가 Refresh Token도 함께 제공한다고 가정
+
+                try {
+                    Jws<Claims> refreshClaims = jwtUtil.getClaims(refreshToken);
+
+                    // Refresh Token 검증 및 새로운 Access Token 발급
+                    if (jwtUtil.isWrongType(refreshClaims, JwtType.REFRESH)) {
+                        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                                .body("Invalid Refresh Token type.");
+                    }
+
+                    String memId = refreshClaims.getBody().getSubject();
+                    String newAccessToken = jwtUtil.generateAccessToken(memId);
+
+                    // 새로운 Access Token 반환
+                    return ResponseEntity.ok(Collections.singletonMap("accessToken", newAccessToken));
+                } catch (JwtException refreshEx) {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                            .body("Refresh Token is invalid or expired.");
+                }
+            } catch (JwtException ex) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("Access Token is invalid or expired.");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while checking login status.");
         }
     }
 

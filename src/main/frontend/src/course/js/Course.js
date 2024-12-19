@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../global/header/Header";
 import "../css/Course.css";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import { useAuth } from "../../global/auth_context/AuthContext";
 
 function Course() {
+  const { isLoggedIn } = useAuth(); //로그인 상태 확인
   const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 6;
+  const navigate = useNavigate(); //Link 보다 이거 이용하는게 편할 거에요
 
   useEffect(() => {
     fetch("/courses") // 백엔드 API 호출
@@ -31,6 +34,17 @@ function Course() {
   const totalPages = Math.ceil(courseData.length / coursesPerPage);
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  const handleCreateCourse = () => {
+    if (!isLoggedIn) {
+      // 로그인되지 않았다면 로그인 페이지로 리디렉션
+      alert("로그인이 필요합니다.")
+      navigate("/user/login");
+    } else {
+      // 로그인된 상태라면 course 등록 페이지로 이동
+      navigate("/course/write");
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -38,9 +52,7 @@ function Course() {
       <Header />
       <div className="course-content">
         <h1 className="course-title">추천 여행 코스</h1>
-        <Link to="/course/write">
-          <button className="course-create-btn">등록</button>
-        </Link>
+          <button className="course-create-btn" onClick={handleCreateCourse}>등록</button>
         <div className="course-list">
           {currentCourses.map((course) => (
             <div key={course.id} className="course-item">
