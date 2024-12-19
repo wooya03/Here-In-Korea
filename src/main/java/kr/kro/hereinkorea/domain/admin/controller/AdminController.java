@@ -1,8 +1,14 @@
 package kr.kro.hereinkorea.domain.admin.controller;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import kr.kro.hereinkorea.domain.admin.service.AdminCourseService;
 import kr.kro.hereinkorea.domain.admin.service.AdminMemberService;
 import kr.kro.hereinkorea.domain.admin.service.AdminQuestionService;
 import kr.kro.hereinkorea.domain.admin.service.AdminReviewService;
+import kr.kro.hereinkorea.domain.course.dto.CourseDTO;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.domain.member.controller.JwtResponse;
@@ -28,21 +34,32 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     @Autowired
+    RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    JwtProperties jwtProperties;
+    @Autowired
     AdminMemberService adminMemberService;
-
     @Autowired
     AdminQuestionService adminQuestionService;
-
     @Autowired
     AdminReviewService adminReviewService;
-
+    @Autowired
+    AdminCourseService adminCourseService;
     @Autowired
     MemberService memberService;
-
-    private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
-
     @Autowired
     private JwtUtil jwtUtil;
+    private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+
+    @DeleteMapping("course")
+    public void deleteCourses(@RequestBody List<Long> courseIds, @RequestHeader("Authorization") String tokenHeader){
+        adminCourseService.deleteCourse(courseIds);
+    }
+    @GetMapping("course")
+    public PageResultDTO<CourseDTO, Object[]> getCourses(String courseTitle, String memId, PageRequestDTO pageRequestDTO, @RequestHeader("Authorization") String tokenHeader){
+        return adminCourseService.getCourse(courseTitle, memId, pageRequestDTO);
+
+    }
 
     @GetMapping("review")
     public PageResultDTO<ReviewDto, Object[]> getReviews(PageRequestDTO pageRequestDTO){

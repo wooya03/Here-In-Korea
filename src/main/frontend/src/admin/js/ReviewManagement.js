@@ -23,7 +23,7 @@ const ReviewManagement = () => {
   const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
   const [itemsPerPage] = useState(10); // 페이지당 항목 수
   const [title, setTitle] = useState(""); // 검색어
-  const [memId, setmemId] = useState(""); // 성별 필터
+  const [memId, setmemId] = useState(""); // 아이디
   const [selectedItems, setSelectedItems] = useState([]); // 선택된 항목들
   const token = localStorage.getItem("token");
 
@@ -81,16 +81,16 @@ const ReviewManagement = () => {
   };
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value); // 검색어 상태 업데이트
+    setTitle(e.target.value); 
   };
 
   const handleIdChange = (e) => {
-    setmemId(e.target.value); // 검색어 상태 업데이트
+    setmemId(e.target.value); 
   };
 
   const handleSearch = () => {
-    setCurrentPage(1); // 검색 후 첫 페이지로 이동
-    putSpringData(1, title, memId); // 검색어 및 성별로 데이터 요청
+    setCurrentPage(1); 
+    putSpringData(1, title, memId);
   };
 
   const handleSelectItem = (id) => {
