@@ -106,7 +106,7 @@ const IdFind = () => {
 
                 {/* 아이디가 출력되면 로그인 및 비밀번호 찾기 버튼 표시 */}
                 {userId && (
-                    <div>
+                    <div className="find_btn_wrap">
                         <button onClick={goToLogin} className="next_btn">
                             로그인
                         </button>

@@ -12,7 +12,7 @@
 
 .form_find_pw {
     width: 500px;
-    height: 200px;
+    height: 300px; /* 높이를 늘려서 이름 입력란 추가 */
     border: 2px solid midnightblue;
     border-radius: 4px;
     text-align: center;
@@ -42,7 +42,24 @@
 
 .content_find_pw_main > .btn_wrap {
     position: relative;
-    width: 10%; /* 버튼을 입력폼 너비에 맞게 확장 */
+    width: 20%; /* 버튼을 입력폼 너비에 맞게 확장 */
     margin-top: 20px; /* 버튼과 입력폼 사이의 간격을 추가 */
     text-align: center; /* 버튼을 가운데 정렬 */
+}
+
+.btn_wrap .next_btn {
+    width: 100%;
+    padding: 8px 16px;
+    margin-top: 20px;
+    background-color: #498ea4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error_message {
+    color: red;
+    font-size: 14px;
+    margin-top: 20px;
 }
