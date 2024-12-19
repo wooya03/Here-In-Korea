@@ -24,14 +24,14 @@ public class CourseController {
     // 코스 수정
     @PutMapping("/{id}")
     public ResponseEntity<CourseDTO> updateCourse(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestBody CourseDTO updatedCourseDTO) {
         return ResponseEntity.ok(courseService.updateCourse(id, updatedCourseDTO));
     }
 
     // 코스 삭제
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCourse(@PathVariable String id) {
         courseService.deleteCourse(id);
         return ResponseEntity.noContent().build();
     }

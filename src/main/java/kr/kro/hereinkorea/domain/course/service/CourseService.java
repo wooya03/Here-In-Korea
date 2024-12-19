@@ -30,7 +30,7 @@ public class CourseService {
     }
 
     // 코스 수정
-    public CourseDTO updateCourse(Long id, CourseDTO updatedCourseDTO) {
+    public CourseDTO updateCourse(String id, CourseDTO updatedCourseDTO) {
         CourseEntity existingCourse = courseRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("코스를 찾을 수 없습니다: ID=" + id));
         MemberEntity existingMember = existingCourse.getMemId();
@@ -41,7 +41,7 @@ public class CourseService {
     }
 
     // 코스 삭제
-    public void deleteCourse(Long id) {
+    public void deleteCourse(String id) {
         if (!courseRepository.existsById(id)) {
             throw new IllegalArgumentException("코스를 찾을 수 없습니다: ID=" + id);
         }
