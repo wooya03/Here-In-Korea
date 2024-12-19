@@ -7,7 +7,6 @@ import Main from './main/Main.js';
 import LoginMain from "./user/js/LoginMain";
 import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
-import CourseMenagement from './admin/js/CourseManagement.js';
 import ReviewManagement from './admin/js/ReviewManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
@@ -32,11 +31,13 @@ import HotelDetails from './hotels/js/HotelsDetails.js';
 import Festival from "./festival/js/Festival";
 import GoogleMaps from "./maps/js/GoogleMaps";
 import FestivalDetails from "./festival/js/FestivalDetails";
+import {AuthProvider} from "./global/auth_context/AuthContext";
 
 
 
 function App() {
   return (
+    <AuthProvider>
     <main>
       <Routes>
         {/* 메인 페이지 */}
@@ -100,11 +101,12 @@ function App() {
 
         {/* 행사 페이지 */}
         <Route path='/festival' element={<><Header /><Festival /></>} />
-        <Route path='/festival/:id' element={<><Header /><FestivalDetails /></>} />
+        <Route path='/festival/:contentId' element={<><Header /><FestivalDetails /></>} />
 
 
       </Routes>
     </main>
+    </AuthProvider>
   );
 }
 
