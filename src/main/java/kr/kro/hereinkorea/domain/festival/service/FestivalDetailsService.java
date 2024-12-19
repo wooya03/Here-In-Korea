@@ -1,15 +1,16 @@
 package kr.kro.hereinkorea.domain.festival.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonpCharacterEscapes;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import jakarta.transaction.Transactional;
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDetailsDTO;
 import kr.kro.hereinkorea.domain.festival.entity.FestivalDetailsEntity;
 import kr.kro.hereinkorea.domain.festival.entity.FestivalEntity;
+import kr.kro.hereinkorea.domain.festival.entity.FestivalImgEntity;
 import kr.kro.hereinkorea.domain.festival.mapper.FestivalMapper;
 import kr.kro.hereinkorea.domain.festival.repository.FestivalDetailsRepository;
+import kr.kro.hereinkorea.domain.festival.repository.FestivalImgRepository;
 import kr.kro.hereinkorea.domain.festival.repository.FestivalRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,25 +18,27 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class FestivalDetailsService {
-
     private final FestivalRepository festivalRepository;
     private final FestivalDetailsRepository festivalDetailsRepository;
+    private final FestivalImgRepository festivalImgRepository;
     private final XmlMapper xmlMapper;
 
     private static final String SERVICE_KEY = "Vzrka/MW4E5Dh3bkH2muvLYWT9BFjjgp1sKVHTbfHKb6Qvku+nS4e4UnV+MQgqlSZR1D00kCcMI5xqtvqwPQtg==";
@@ -196,5 +199,42 @@ public class FestivalDetailsService {
             private String sponsor1tel;
             private String overview;
         }
+    }
+    public FestivalDetailsDTO getFestivalDetails(Long contentId) {
+        // 1. FestivalDetailsEntity 조회
+        Optional<FestivalDetailsEntity> festivalDetailsEntityOpt = festivalDetailsRepository.findByFestivalContentId(contentId);
+        if (!festivalDetailsEntityOpt.isPresent()) {
+            throw new RuntimeException("Festival details not found for ID: " + contentId);
+        }
+        FestivalDetailsEntity festivalDetailsEntity = festivalDetailsEntityOpt.get();
+
+        // 2. FestivalEntity 조회
+        Optional<FestivalEntity> festivalEntityOpt = festivalRepository.findByContentId(contentId);
+        if (!festivalEntityOpt.isPresent()) {
+            throw new RuntimeException("Festival not found for ID: " + contentId);
+        }
+        FestivalEntity festivalEntity = festivalEntityOpt.get();
+
+        // 3. FestivalImgEntity 조회 (left join처럼 처리)
+        Optional<FestivalImgEntity> festivalImgEntityOpt = festivalImgRepository.findByFestivalContentId(contentId);
+        FestivalImgEntity festivalImgEntity = festivalImgEntityOpt.orElse(null);  // 없으면 null 처리
+
+        // 4. FestivalDetailsDTO 생성
+        return FestivalDetailsDTO.builder()
+                .contentid(festivalEntity.getContentId())
+                .title(festivalEntity.getTitle())
+                .addr1(festivalEntity.getAddr1())
+                .addr2(festivalEntity.getAddr2())
+                .tel(festivalEntity.getTel())
+                .firstimage2(festivalImgEntity != null ? festivalImgEntity.getFirstimage2() : null)
+                .sponsor1(festivalDetailsEntity.getSponsor1())
+                .sponsor1tel(festivalDetailsEntity.getSponsor1tel())
+                .eventstartdate(festivalDetailsEntity.getEventstartdate())
+                .eventenddate(festivalDetailsEntity.getEventenddate())
+                .playtime(festivalDetailsEntity.getPlaytime())
+                .eventplace(festivalDetailsEntity.getEventplace())
+                .usetimefestival(festivalDetailsEntity.getUsetimefestival())
+                .overview(festivalDetailsEntity.getOverview())
+                .build();
     }
 }
