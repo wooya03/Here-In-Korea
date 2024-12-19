@@ -110,9 +110,9 @@ const Profile = () => {
                 </section>
                 <nav className="menu">
                     <ul>
-                        <li><a href="#" onClick={() => handleMenuClick('profile')}>내 프로필 보기</a></li>
-                        <li><a href="#" onClick={() => navigate("/user/find/pw")}>비밀번호 변경</a></li>
-                        <li><a href="#" onClick={() => handleMenuClick('myPosts')}>내 게시글 관리</a></li>
+                        <li><a onClick={() => handleMenuClick('profile')}>내 프로필 보기</a></li>
+                        <li><a onClick={() => navigate("/user/find/pw")}>비밀번호 변경</a></li>
+                        <li><a onClick={() => handleMenuClick('myPosts')}>내 게시글 관리</a></li>
                     </ul>
                 </nav>
             </section>
