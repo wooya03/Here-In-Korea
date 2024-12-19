@@ -34,6 +34,16 @@ public class MemberMapper {
 
     }
 
+    public static MemberDTO toDTO(MemberEntity memberEntity){
+        return   MemberDTO.builder()
+                .memId(memberEntity.getMemId())
+                .memName(memberEntity.getMemName())
+                .gender(memberEntity.getGender())
+                .birth(memberEntity.getBirth())
+                .email(memberEntity.getEmail())
+                .build();
+    }
+
     public static MemberEntity joinMember(MemberEntity memberEntity){
         memberEntity.setRole(MemberRole.USER);      //멤버 권한 : USER
         memberEntity.setSignDate(new Date());       //가입 날짜 현재 시간으로 설정
