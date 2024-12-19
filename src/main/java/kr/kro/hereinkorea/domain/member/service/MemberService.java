@@ -31,6 +31,10 @@ public class MemberService {
 
     }
 
+    public void updateMember(MemberEntity memberEntity){
+        memberRepository.save(memberEntity);
+    }
+
     public MemberEntity findByMemId(String memId) {
         return memberRepository.findByMemId(memId).orElseThrow(() -> new NotFoundMemberException());
     }

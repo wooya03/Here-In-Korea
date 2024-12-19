@@ -167,7 +167,7 @@ public class MemberController {
         }
     }
 
-    @PostMapping("/profile")
+    @GetMapping("/profile")
     public ResponseEntity<?> getUserProfile(@RequestHeader("Authorization") String authorizationHeader) {
         try {
             // Authorization 헤더에서 토큰 추출
@@ -205,6 +205,59 @@ public class MemberController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("An error occurred while fetching user profile.");
+        }
+    }
+
+    @PutMapping("/profile")
+    public ResponseEntity<?> updateUserProfile(
+            @RequestHeader("Authorization") String authorizationHeader,
+            @RequestBody MemberDTO updatedProfile) {
+        try {
+            // Authorization 헤더에서 토큰 추출
+            if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("Authorization header is missing or invalid.");
+            }
+
+            String accessToken = authorizationHeader.substring(7); // "Bearer " 이후의 토큰
+
+            try {
+                // Access Token 검증
+                Jws<Claims> claims = jwtUtil.getClaims(accessToken);
+
+                // Access Token이 유효하면 사용자 ID 추출
+                String memId = claims.getBody().getSubject();
+
+                // 사용자 프로필 업데이트 처리
+                Optional<MemberEntity> memberEntityOptional = memberService.findForProfileMemId(memId);
+                if (memberEntityOptional.isPresent()) {
+                    MemberEntity memberEntity = memberEntityOptional.get();
+
+                    // 업데이트할 필드를 설정
+                    memberEntity.setMemName(updatedProfile.getMemName());
+                    memberEntity.setEmail(updatedProfile.getEmail());
+                    memberEntity.setBirth(updatedProfile.getBirth());
+                    memberEntity.setGender(updatedProfile.getGender());
+
+                    // 데이터베이스에 저장
+                    memberService.updateMember(memberEntity);
+
+                    // 업데이트된 사용자 정보 반환
+                    MemberDTO responseDTO = MemberMapper.toDTO(memberEntity);
+                    return ResponseEntity.ok(responseDTO);
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다.");
+                }
+            } catch (ExpiredJwtException e) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("Access Token has expired.");
+            } catch (JwtException e) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("Access Token is invalid.");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while updating user profile: " + e.getMessage());
         }
     }
 
