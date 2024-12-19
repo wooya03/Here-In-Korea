@@ -21,7 +21,11 @@ const Profile = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
+        if(!token){
+            alert("로그인이 필요합니다!")
+            navigate('/');
+        }
+        else if (token) {
             axios.get('http://localhost:8080/user/profile', {
                 headers: {
                     'Content-Type': 'application/json',
