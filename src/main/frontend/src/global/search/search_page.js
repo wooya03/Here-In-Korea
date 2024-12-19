@@ -8,7 +8,6 @@ const SearchPage = () => {
   const [hotels, setHotels] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [festivals, setFestivals] = useState([]);
-  const [courses, setCourses] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
 
   const location = useLocation();
@@ -59,10 +58,6 @@ const SearchPage = () => {
 
       setFestivals(uniqueFestivals);
 
-      // 여행 코스 정보 검색
-      const courseResponse = await axios.get(`http://localhost:8080/api/courses/search?title=${term}`);
-      setCourses(courseResponse.data);
-
       // 리뷰 정보 검색
       const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search5?reviewTitle=${term}`);
       console.log("Review Response:", reviewResponse.data); // 데이터 확인
@@ -96,10 +91,6 @@ const SearchPage = () => {
 
   const handleFestivalClick = (id) => {
     navigate(`/festival/${id}`);
-  };
-
-  const handleCourseClick = (id) => {
-    navigate(`/courses/${id}`);
   };
 
   const handleReviewClick = (id) => {
@@ -187,36 +178,7 @@ const SearchPage = () => {
               ) : (
                 <p>행사 정보가 없습니다.</p>
               )}
-            </div>
-          </div>
-
-          {/* 여행 코스 정보 */}
-          <div className="section courses">
-            <h2>여행 코스 정보</h2>
-            <div className="course-list">
-              {courses.length > 0 ? (
-                courses.map((course, index) => (
-                  <div key={index} className="course-box-item" onClick={() => handleCourseClick(course.id)}>
-                    <div className="course-box">
-                      <img
-                        src={course.imageUrl || `${process.env.PUBLIC_URL}/Image/noimg.png`}
-                        alt={course.title}
-                        className="rounded-image"
-                        width="100%"
-                        height="100%"
-                      />
-                    </div>
-                    <div className="course-info">
-                      <div className="s_course-title">{course.title}</div>
-                      <div className="s_course-tag">{course.location}</div>
-                      <div className="s_course-date">{course.duration}</div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p>여행 코스 정보가 없습니다.</p>
-              )}
-            </div>
+            </div>  
           </div>
 
           {/* 리뷰 정보 */}
