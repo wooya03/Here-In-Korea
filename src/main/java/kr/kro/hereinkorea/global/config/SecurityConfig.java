@@ -55,6 +55,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/main", "/admin/member", "/admin/review", "/admin/question").hasRole("ADMIN") // ADMIN 권한 필요
                         .requestMatchers("/admin/logout").authenticated()
                         .requestMatchers("/hotels/**").permitAll()
+                        .requestMatchers("/question/write").authenticated()
                         .requestMatchers("/question/**").permitAll()
                         .requestMatchers("/api/hotels/**").permitAll()
                         .requestMatchers("/festival","/festival/**").permitAll()
