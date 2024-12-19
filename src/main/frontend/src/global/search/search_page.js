@@ -7,7 +7,7 @@ const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [hotels, setHotels] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [events, setEvents] = useState([]);
+  const [festivals, setFestivals] = useState([]);
   const [courses, setCourses] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
   const [hoveredHotel, setHoveredHotel] = useState(null);
@@ -45,21 +45,21 @@ const SearchPage = () => {
       setHotels(uniqueHotels);
 
       // 행사 정보 검색 (title과 addr1로 검색)
-      const [eventResponseByAddr, eventResponseByTitle] = await Promise.all([
+      const [festivalResponseByAddr, festivalResponseByTitle] = await Promise.all([
         axios.get(`http://localhost:8080/api/festivals/search4?addr1=${term}`),
         axios.get(`http://localhost:8080/api/festivals/search3?title=${term}`)
       ]);
 
-      const combinedEvents = [
-        ...eventResponseByAddr.data,
-        ...eventResponseByTitle.data
+      const combinedFestivals = [
+        ...festivalResponseByAddr.data,
+        ...festivalResponseByTitle.data
       ];
 
-      const uniqueEvents = [
-        ...new Map(combinedEvents.map(event => [event.contentId, event])).values()
+      const uniqueFestivals = [
+        ...new Map(combinedFestivals.map(festival => [festival.contentId, festival])).values()
       ];
 
-      setEvents(uniqueEvents);
+      setFestivals(uniqueFestivals);
 
       // 여행 코스 정보 검색
       const courseResponse = await axios.get(`http://localhost:8080/api/courses/search?title=${term}`);
@@ -90,8 +90,16 @@ const SearchPage = () => {
     navigate(`/hotels/${id}`);
   };
 
-  const handleEventClick = (id) => {
-    navigate(`/events/${id}`);
+  const handleFestivalClick = (id) => {
+    navigate(`/festivals/${id}`);
+  };
+
+  const handleCourseClick = (id) => {
+    navigate(`/courses/${id}`);
+  };
+
+  const handleReviewClick = (id) => {
+    navigate(`/reviews/${id}`);
   };
 
   const handleMouseMove = (e) => {
@@ -150,28 +158,28 @@ const SearchPage = () => {
           </div>
 
           {/* 행사 정보 */}
-          <div className="section events">
+          <div className="section festivals">
             <h2>행사 정보</h2>
             <div className="more-link-container">
               <a href="/festival" className="more-link">#행사 정보 더보기</a>
             </div>
             <div className="course-list">
-              {events.length > 0 ? (
-                events.map((event, index) => (
-                  <div key={index} className="course-box-item" onClick={() => handleEventClick(event.contentId)}>
+              {festivals.length > 0 ? (
+                festivals.map((festival, index) => (
+                  <div key={index} className="course-box-item" onClick={() => handleFestivalClick(festival.contentId)}>
                     <div className="course-box">
                       <img
-                        src={event.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
-                        alt={event.title}
+                        src={festival.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        alt={festival.title}
                         className="rounded-image"
                         width="100%"
                         height="100%"
                       />
                     </div>
                     <div className="course-info">
-                      <div className="s_course-title">{event.title}</div>
-                      <div className="s_course-tag">{event.addr1}</div>
-                      <div className="s_course-date">{event.eventStartDate} - {event.eventEndDate}</div>
+                      <div className="s_course-title">{festival.title}</div>
+                      <div className="s_course-tag">{festival.addr1}</div>
+                      <div className="s_course-date">{festival.eventStartDate} - {festival.eventEndDate}</div>
                     </div>
                   </div>
                 ))
@@ -184,16 +192,13 @@ const SearchPage = () => {
           {/* 여행 코스 정보 */}
           <div className="section courses">
             <h2>여행 코스 정보</h2>
-            <div className="more-link-container">
-              <a href="/courses" className="more-link">#여행 코스 더보기</a>
-            </div>
             <div className="course-list">
               {courses.length > 0 ? (
                 courses.map((course, index) => (
-                  <div key={index} className="course-box-item">
+                  <div key={index} className="course-box-item" onClick={() => handleCourseClick(course.id)}>
                     <div className="course-box">
                       <img
-                        src={course.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        src={course.imageUrl || `${process.env.PUBLIC_URL}/Image/noimg.png`}
                         alt={course.title}
                         className="rounded-image"
                         width="100%"
@@ -202,8 +207,8 @@ const SearchPage = () => {
                     </div>
                     <div className="course-info">
                       <div className="s_course-title">{course.title}</div>
-                      <div className="s_course-tag">{course.addr1}</div>
-                      <div className="s_course-date">{course.modifiedDate}</div>
+                      <div className="s_course-tag">{course.location}</div>
+                      <div className="s_course-date">{course.duration}</div>
                     </div>
                   </div>
                 ))
@@ -216,16 +221,13 @@ const SearchPage = () => {
           {/* 리뷰 정보 */}
           <div className="section reviews">
             <h2>리뷰 정보</h2>
-            <div className="more-link-container">
-              <a href="/reviews" className="more-link">#리뷰 정보 더보기</a>
-            </div>
             <div className="course-list">
               {reviews.length > 0 ? (
                 reviews.map((review, index) => (
-                  <div key={index} className="course-box-item">
+                  <div key={index} className="course-box-item" onClick={() => handleReviewClick(review.id)}>
                     <div className="course-box">
                       <img
-                        src={review.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        src={review.imageUrl || `${process.env.PUBLIC_URL}/Image/noimg.png`}
                         alt={review.title}
                         className="rounded-image"
                         width="100%"
@@ -234,7 +236,7 @@ const SearchPage = () => {
                     </div>
                     <div className="course-info">
                       <div className="s_course-title">{review.title}</div>
-                      <div className="s_course-tag">{review.addr1}</div>
+                      <div className="s_course-tag">{review.location}</div>
                       <div className="s_course-date">{review.date}</div>
                     </div>
                   </div>
