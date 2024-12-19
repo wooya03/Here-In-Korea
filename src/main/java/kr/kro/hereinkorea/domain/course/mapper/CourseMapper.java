@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 @Component
 public class CourseMapper {
 
-    // Entity -> DTO 변환
-    public CourseDTO toDTO(CourseEntity course) {
+      // Entity -> DTO 변환
+      public CourseDTO toDTO(CourseEntity course) {
         return CourseDTO.builder()
-                .courseId(course.getCourseId())
+                .courseId(course.getCourseId()) // Long 타입으로 매핑
                 .courseTitle(course.getCourseTitle())
                 .courseContent(course.getCourseContent())
-                .memId(course.getMemId() != null ? course.getMemId().getMemId() : null) // String 타입
+                .memId(course.getMemId() != null ? course.getMemId().getMemId() : null)
                 .courseTag(course.getCourseTag())
                 .createdDate(course.getCreatedDate())
                 .courseViews(course.getCourseViews())
@@ -28,7 +28,7 @@ public class CourseMapper {
     // DTO -> Entity 변환
     public CourseEntity toEntity(CourseDTO courseDto, MemberEntity member) {
         return CourseEntity.builder()
-                .courseId(courseDto.getCourseId())
+                .courseId(courseDto.getCourseId()) // Long 타입으로 매핑
                 .courseTitle(courseDto.getCourseTitle())
                 .courseContent(courseDto.getCourseContent())
                 .courseTag(courseDto.getCourseTag())

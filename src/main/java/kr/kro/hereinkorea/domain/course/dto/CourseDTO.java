@@ -1,8 +1,9 @@
 package kr.kro.hereinkorea.domain.course.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import kr.kro.hereinkorea.domain.course.entity.CourseImageEntity;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CourseDTO {
 
-    private Long courseId;          // 코스 ID
+    private String courseId;          // 코스 ID
     private String memId;           // 작성자 회원 ID (String 타입)
     private String courseTitle;     // 코스 제목
     private String courseContent;   // 코스 내용

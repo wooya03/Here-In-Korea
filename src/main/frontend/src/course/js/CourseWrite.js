@@ -85,25 +85,30 @@ function CourseWrite() {
     }
   };
 
-  const handleCourseSubmit = () => {
+  const handleCourseSubmit = async () => {
     if (!title || !mainImage) {
       alert("제목과 대표 이미지는 필수 항목입니다.");
       return;
     }
-
+  
     const courseData = {
+      title,
       mainImage,
       courseImages,
       locations,
       courseDescriptions,
       hashtag,
-      title,
     };
-
-    console.log("작성 완료한 데이터:", courseData);
-    localStorage.removeItem("courseDraft");
-    alert("여행 코스가 작성 완료되었습니다!");
-    navigate("/course");
+  
+    try {
+      const response = await axios.post("/course/create", courseData); // 백엔드 API 경로
+      console.log("작성 완료한 데이터:", response.data);
+      alert("여행 코스가 작성 완료되었습니다!");
+      navigate("/course");
+    } catch (error) {
+      console.error("Error submitting course:", error);
+      alert("코스 작성 중 오류가 발생했습니다.");
+    }
   };
 
   return (

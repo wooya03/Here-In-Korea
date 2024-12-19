@@ -14,10 +14,10 @@ public class CourseImageEntity {
     @Column(name = "course_img_id")
     private Long courseImgId; // 코스 이미지 아이디 (PK)
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id", nullable = false)
-    private CourseEntity courseId; // 코스 아이디 (FK)
+    @Column(name = "course_id", nullable = false)
+    private Long courseId; // String 타입으로 변경
 
-    @Column(name="course_ing_url", nullable = false)
+    @Column(name = "course_ing_url", nullable = false)
     private String courseImageUrl; // 이미지 주소
 }
+
