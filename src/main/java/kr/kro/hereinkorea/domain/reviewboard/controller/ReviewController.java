@@ -49,13 +49,14 @@ public class ReviewController {
     @PutMapping("/{id}")
     public ResponseEntity<ReviewDTO> updateReview(
             @PathVariable Long id,
-            @RequestBody ReviewDTO updatedReviewDTO) {
+            @RequestBody ReviewDTO updatedReviewDTO,
+            @RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(reviewService.updateReview(id, updatedReviewDTO));
     }
 
     // 리뷰 삭제
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteReview(@PathVariable Long id, @RequestHeader("Authorization") String token) {
         reviewService.deleteReview(id);
         return ResponseEntity.noContent().build();
     }
