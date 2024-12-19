@@ -2,68 +2,27 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 import TranslateApi from "../translate/Translate_api";
+import { useAuth } from "../auth_context/AuthContext";
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, checkLoginStatus } = useAuth();
   const [guestImage, setGuestImage] = useState(`${process.env.PUBLIC_URL}/Image/guest1.png`);
   const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const navigate = useNavigate();
   const location = useLocation(); // useLocation 추가
 
-  // 로그인 상태를 확인하는 함수
-  const checkLoginStatus = async () => {
-    const accessToken = localStorage.getItem("token");
-    const refreshToken = localStorage.getItem("refreshToken");
-
-    if (!accessToken) {
-      setIsLoggedIn(false);
-      setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`);
-      return;
-    }
-
-    try {
-      // AccessToken 유효성 검사 (예: API 호출)
-      const response = await fetch("http://localhost:8080/user/loginck", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      if (response.ok) {
-        setIsLoggedIn(true);
-        setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
-      } else if (response.status === 401 && refreshToken) {
-        // AccessToken이 만료되었을 경우, RefreshToken으로 재발급
-        const refreshResponse = await fetch("/api/auth/refreshToken", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ refreshToken }),
-        });
-
-        if (refreshResponse.ok) {
-          const data = await refreshResponse.json();
-          localStorage.setItem("token", data.accessToken);
-          setIsLoggedIn(true);
-          setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
-        } else {
-          // RefreshToken도 유효하지 않으면 로그아웃 상태로 변경
-          handleLogout();
-        }
-      } else {
-        handleLogout(); // 다른 오류일 경우 로그아웃 처리
-      }
-    } catch (error) {
-      console.error("로그인 상태 확인 중 오류 발생:", error);
-      handleLogout();
-    }
-  };
 
   useEffect(() => {
-    checkLoginStatus();
-  },[location]);
+    if (isLoggedIn) {
+      setGuestImage(`${process.env.PUBLIC_URL}/Image/user1.png`);
+    } else {
+      setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`);
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    checkLoginStatus();  // 컴포넌트가 마운트될 때마다 로그인 상태 검사
+  }, [location]);
 
   // 검색어 처리
   useEffect(() => {
@@ -80,8 +39,7 @@ function Header() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
-    setIsLoggedIn(false);
-    setGuestImage(`${process.env.PUBLIC_URL}/Image/guest1.png`);
+    checkLoginStatus();
   };
 
   const handleLoginLogout = () => {
