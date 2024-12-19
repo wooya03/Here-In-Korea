@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Profile.css';
 import { useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode'; // JWT 디코딩 라이브러리
-import axios from 'axios'; // axios를 사용하여 API 호출
+import axios from 'axios';
 
 const Profile = () => {
     const [selectedMenu, setSelectedMenu] = useState('profile');
@@ -11,52 +10,55 @@ const Profile = () => {
     const [isEditingDob, setIsEditingDob] = useState(false);
     const [isEditingGender, setIsEditingGender] = useState(false);
 
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [dob, setDob] = useState('');
-    const [gender, setGender] = useState('');
-    const [profileImage, setProfileImage] = useState(`${process.env.PUBLIC_URL}/Image/profile_base_img.jpg`); // 초기 프로필 이미지
+    const [memId, setMemId] = useState('사용자ID');
+    const [memName, setMemName] = useState('사용자 이름');
+    const [gender, setGender] = useState('M'); // 초기값: 'M' 또는 'F'
+    const [birth, setBirth] = useState('1970-01-01');
+    const [email, setEmail] = useState('이메일@aaa.com');
+    const [profileImage, setProfileImage] = useState(`${process.env.PUBLIC_URL}/Image/profile_base_img.jpg`);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('token'); // JWT 토큰 가져오기
+        const token = localStorage.getItem('token');
         if (token) {
-            try {
-                const decodedToken = jwt_decode(token); // 토큰 디코딩
-                const userId = decodedToken.userId; // 사용자 아이디 추출
-
-                // 서버에서 사용자 정보 요청
-                axios.get(`/api/user/${userId}`)
-                    .then(response => {
-                        const user = response.data;
-                        setEmail(user.email);
-                        setName(user.name);
-                        setDob(user.dob);
-                        setGender(user.gender);
-                        setProfileImage(user.profileImage || `${process.env.PUBLIC_URL}/Image/profile_base_img.jpg`); // 프로필 이미지 설정
-                    })
-                    .catch(error => {
-                        console.error("사용자 정보를 불러오는 데 실패했습니다.", error);
-                    });
-            } catch (error) {
-                console.error("토큰 디코딩에 실패했습니다.", error);
-            }
+            axios.get('http://localhost:8080/user/profile', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    const user = response.data;
+                    setMemId(user.memId);
+                    setMemName(user.memName);
+                    setEmail(user.email);
+                    setBirth(user.birth);
+                    setGender(user.gender === 'M' ? 'M' : 'F');
+                    setProfileImage(user.profileImage || `${process.env.PUBLIC_URL}/Image/profile_base_img.jpg`);
+                })
+                .catch(error => {
+                    console.error("프로필 정보를 가져오는 중 오류 발생:", error);
+                });
         }
     }, []);
 
     const toggleEdit = (field) => {
         switch (field) {
             case "email":
+                if (isEditingEmail) saveProfile();
                 setIsEditingEmail(!isEditingEmail);
                 break;
             case "name":
+                if (isEditingName) saveProfile();
                 setIsEditingName(!isEditingName);
                 break;
             case "dob":
+                if (isEditingDob) saveProfile();
                 setIsEditingDob(!isEditingDob);
                 break;
             case "gender":
+                if (isEditingGender) saveProfile();
                 setIsEditingGender(!isEditingGender);
                 break;
             default:
@@ -64,24 +66,55 @@ const Profile = () => {
         }
     };
 
-    // 이미지 파일 변경 핸들러
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result); // 파일을 읽은 후 상태에 저장
-            };
-            reader.readAsDataURL(file); // 이미지 파일을 base64 형식으로 읽음
+            reader.onloadend = () => setProfileImage(reader.result);
+            reader.readAsDataURL(file);
         }
     };
 
-    // 메뉴 클릭 핸들러
-    const handleMenuClick = (menu) => {
-        setSelectedMenu(menu);
+    const validateDate = (date) => {
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        return dateRegex.test(date);
     };
 
-    // 내 게시글 목록 (예시 데이터)
+    const saveProfile = () => {
+        const token = localStorage.getItem('token');
+        if (!validateDate(birth)) {
+            alert("생년월일은 yyyy-MM-dd 형식으로 입력해주세요.");
+            return;
+        }
+
+        const updatedProfile = {
+            memName,
+            email,
+            birth,
+            gender
+        };
+
+        axios.put('http://localhost:8080/user/profile', updatedProfile, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => {
+                alert("프로필이 성공적으로 업데이트되었습니다.");
+                setIsEditingEmail(false);
+                setIsEditingName(false);
+                setIsEditingDob(false);
+                setIsEditingGender(false);
+            })
+            .catch(error => {
+                console.error("프로필 업데이트 실패:", error);
+                alert("프로필 업데이트에 실패했습니다.");
+            });
+    };
+
+    const handleMenuClick = (menu) => setSelectedMenu(menu);
+
     const renderPosts = () => {
         switch (selectedMenu) {
             case 'myPosts':
@@ -117,24 +150,22 @@ const Profile = () => {
 
     return (
         <section className="profile_container">
-            {/* 왼쪽 구역 */}
             <section className="left_section">
                 <section className="profile_image">
                     <img src={profileImage} alt="Profile Image" className="profile_img"/>
-                    {/* 프로필 이미지 우측 하단에 수정 아이콘 */}
                     <label htmlFor="profile-image-upload" className="edit_icon">
                         <img src={`${process.env.PUBLIC_URL}/Image/edit_img.png`} alt="Edit" className="edit_icon_img"/>
                     </label>
                     <input
                         type="file"
                         id="profile-image-upload"
-                        style={{ display: 'none' }} // 기본 파일 입력은 숨김
+                        style={{ display: 'none' }}
                         accept="image/*"
                         onChange={handleImageChange}
                     />
                 </section>
                 <section className="user_id">
-                    <p>사용자아이디</p>
+                    <p>{memId}</p>
                 </section>
                 <nav className="menu">
                     <ul>
@@ -145,12 +176,9 @@ const Profile = () => {
                 </nav>
             </section>
 
-            {/* 오른쪽 구역 */}
             <section className="right_section">
-                {/* 상단 메뉴 */}
                 {selectedMenu === 'profile' ? (
                     <section className="profile_details">
-                        {/* 이메일 */}
                         <section className="detail_item">
                             <label htmlFor="email">이메일</label>
                             {isEditingEmail ? (
@@ -168,43 +196,40 @@ const Profile = () => {
                             </button>
                         </section>
 
-                        {/* 이름 */}
                         <section className="detail_item">
                             <label htmlFor="name">이름</label>
                             {isEditingName ? (
                                 <input
                                     type="text"
                                     id="name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    value={memName}
+                                    onChange={(e) => setMemName(e.target.value)}
                                 />
                             ) : (
-                                <p>{name}</p>
+                                <p>{memName}</p>
                             )}
                             <button className="edit_btn" onClick={() => toggleEdit("name")}>
                                 {isEditingName ? "저장" : "수정"}
                             </button>
                         </section>
 
-                        {/* 생년월일 */}
                         <section className="detail_item">
                             <label htmlFor="dob">생년월일</label>
                             {isEditingDob ? (
                                 <input
                                     type="text"
                                     id="dob"
-                                    value={dob}
-                                    onChange={(e) => setDob(e.target.value)}
+                                    value={birth}
+                                    onChange={(e) => setBirth(e.target.value)}
                                 />
                             ) : (
-                                <p>{dob}</p>
+                                <p>{birth}</p>
                             )}
                             <button className="edit_btn" onClick={() => toggleEdit("dob")}>
                                 {isEditingDob ? "저장" : "수정"}
                             </button>
                         </section>
 
-                        {/* 성별 */}
                         <section className="detail_item">
                             <label htmlFor="gender">성별</label>
                             {isEditingGender ? (
@@ -212,24 +237,24 @@ const Profile = () => {
                                     <label>
                                         <input
                                             type="radio"
-                                            value="남성"
-                                            checked={gender === "남성"}
-                                            onChange={() => setGender("남성")}
+                                            value="M"
+                                            checked={gender === "M"}
+                                            onChange={() => setGender("M")}
                                         />
                                         남성
                                     </label>
                                     <label>
                                         <input
                                             type="radio"
-                                            value="여성"
-                                            checked={gender === "여성"}
-                                            onChange={() => setGender("여성")}
+                                            value="F"
+                                            checked={gender === "F"}
+                                            onChange={() => setGender("F")}
                                         />
                                         여성
                                     </label>
                                 </section>
                             ) : (
-                                <p>{gender}</p>
+                                <p>{gender === "M" ? "남성" : "여성"}</p>
                             )}
                             <button className="edit_btn" onClick={() => toggleEdit("gender")}>
                                 {isEditingGender ? "저장" : "수정"}
@@ -237,7 +262,6 @@ const Profile = () => {
                         </section>
                     </section>
                 ) : (
-                    // 내 게시글 관리 UI
                     renderPosts()
                 )}
             </section>

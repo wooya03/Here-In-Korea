@@ -41,7 +41,6 @@ public class MemberMapper {
                 .gender(memberEntity.getGender())
                 .birth(memberEntity.getBirth())
                 .email(memberEntity.getEmail())
-                .role(memberEntity.getRole())
                 .build();
     }
 

@@ -197,3 +197,19 @@
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+.detail_item>.gender{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+
+.detail_item > .gender > label > input[type="radio"] {
+    transform: scale(0.5); /* 크기를 80%로 축소 */
+    margin-right: 5px; /* 라디오 버튼과 텍스트 사이 간격 */
+    vertical-align: middle;
+}
+
+.detail_item > .gender > label {
+    font-size: 16px; /* 라벨 텍스트 크기 조정 */
+    margin: 0 10px; /* 각 라벨 간격 */
+}
