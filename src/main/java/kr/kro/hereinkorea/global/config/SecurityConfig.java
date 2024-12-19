@@ -61,7 +61,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/festivals/**").permitAll()
                         .requestMatchers("/api/reviews/**").permitAll()
                         .requestMatchers("/api/course/**").permitAll()
+<<<<<<< HEAD
                         .requestMatchers("/reviews/**").permitAll()
+=======
+>>>>>>> f41fef4681a6035791660c2a7acf2545aefa1c6a
                         .requestMatchers("/review/**", "/course/**").permitAll()
                         .requestMatchers("/festival","/festival/**").permitAll()
                         .anyRequest().authenticated() // 나머지는 인증 필요

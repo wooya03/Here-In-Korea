@@ -8,7 +8,6 @@ import LoginMain from "./user/js/LoginMain";
 import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
 import ReviewManagement from './admin/js/ReviewManagement.js';
-import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
@@ -47,8 +46,19 @@ function App() {
             {/* 검색 API */}
             <Route path="/translate" element={<GoogleTranslate />} />
 
+<<<<<<< HEAD
             {/* 검색 페이지 */}
             <Route path="/search_page" element={<><Header /><SearchPage /></>} />
+=======
+        {/* 어드민 페이지 */}
+        <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />
+        <Route path="/admin/login" element={<><AdminHeader /><AdminLogin /></>} />
+        <Route path="/admin/logout" element={<><AdminHeader /><AdminLogout /></>} />
+        <Route path="/admin/user" element={<><AdminHeader /><UserManagement /></>} />
+        <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
+        <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
+        <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
+>>>>>>> f41fef4681a6035791660c2a7acf2545aefa1c6a
 
             {/* 어드민 페이지 */}
             <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />

@@ -1,122 +1,146 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/CourseManagement.css";
 import "../css/Common.css";
+import axios from "axios";
+import { format } from 'date-fns';
+import { useNavigate } from "react-router-dom";
 
-class CourseManagement extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: "",
-      filteredData: [
-        { id: 1, title: "대구 투어!", userId: "user001", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
-        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "user023", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
-        { id: 3, title: "서울 당일치기 코스", userId: "user002", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
-        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "user100", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
-        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "user003", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 6, title: "대전 투어", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 7, title: "김천 여행", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 8, title: "제주도 1박 2일", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 9, title: "오늘 놀기 좋은 경주", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 10, title: "대구 핫플 목록", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-      ],
-      data: [
-        { id: 1, title: "대구 투어!", userId: "user001", courseDate:"2024-04-21 15:44", views: 1400, likes: 2 },
-        { id: 2, title: "누구나 가기 좋은 익산 나들이 코스", userId: "user023", courseDate:"2024-04-21 15:44", views: 130, likes: 5 },
-        { id: 3, title: "서울 당일치기 코스", userId: "user002", courseDate:"2024-04-21 15:44", views: 1800, likes: 3 },
-        { id: 4, title: "청동기 시대로 떠나는 여행", userId: "user100", courseDate:"2024-04-21 15:44", views: 123, likes: 10 },
-        { id: 5, title: "지평선의 고장, 김제의 들녘을 가다", userId: "user003", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 6, title: "대전 투어", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 7, title: "김천 여행", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 8, title: "제주도 1박 2일", userId: "user002", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 9, title: "오늘 놀기 좋은 경주", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-        { id: 10, title: "대구 핫플 목록", userId: "user001", courseDate:"2024-04-21 15:44", views: 2302, likes: 33 },
-      ],
-      selectedItems: [], // 선택된 항목을 저장
-    };
+function formatTime(dateString) {
+  if (!dateString) return "날짜 정보 없음"; 
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    return "잘못된 날짜";
   }
 
-  handleSearchTextChange = (event) => {
-    this.setState({ searchText: event.target.value });
-  };
+  return format(date, "yyyy-MM-dd h:mm:ss a"); 
+}
 
-  handleSearch = () => {
-    const { data, searchText } = this.state;
-    const filtered = data.filter((item) =>
-      item.title.includes(searchText)
-    );
-    this.setState({ filteredData: filtered });
-  };
+const CourseManagement = () => {
+  const baseUrl = "http://localhost:8080";
+    const [data, setData] = useState([]); // 현재 페이지 데이터
+    const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+    const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+    const [itemsPerPage] = useState(10); // 페이지당 항목 수
+    const [selectedItems, setSelectedItems] = useState([]); // 선택된 항목들
+    const [title, setTitle] = useState(""); // 검색어
+    const [memId, setmemId] = useState(""); // 아이디
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+  
+    useEffect(() => {
+      putSpringData(currentPage, title, memId);
+    }, [currentPage, title, memId]);
 
-  handleSelectItem = (id) => {
-    const { selectedItems } = this.state;
-    const isSelected = selectedItems.includes(id);
+    useEffect(() => {
+        // 검색어가 변경될 때마다 첫 페이지로 이동
+        if (title !== "" || memId !== "") {
+          setCurrentPage(1);
+          putSpringData(1, title, memId);
+        }
+      }, [title, memId]);
 
-    if (isSelected) {
-      this.setState({
-        selectedItems: selectedItems.filter(itemId => itemId !== id)
+    async function putSpringData(pageNumber, title, memId) {
+      try {
+        const params = {
+          page: pageNumber,
+          size: itemsPerPage,
+          courseTitle: title,
+          memId: memId
+        };
+
+        const response = await axios.get(baseUrl + "/admin/course", {params,
+          headers: {
+              Authorization: `Bearer ${token}`, // 헤더에 토큰 추가
+          },
       });
-    } else {
-      this.setState({
-        selectedItems: [...selectedItems, id]
-      });
+      const transformedData = response.data.dtoList
+        ? response.data.dtoList.map(item => ({
+            id: item.courseId,
+            userId : item.memId,
+            title: item.courseTitle,
+            createdDate: item.createdDate,
+            courseTag: item.courseTag,
+            views: item.courseViews,
+            likes: item.courseLikes
+          }))
+        : [];
+      setData(transformedData);
+      setTotalPages(response.data.totalPage);
+    } catch (err) {
+      if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+        alert('권한이 필요합니다.');
+        navigate("/admin/login");
+      } else {
+        console.log(err);
+      }
     }
+  }
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
-  handleDelete = () => {
-    const { filteredData, selectedItems } = this.state;
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value); 
+  };
 
+  const handleIdChange = (e) => {
+    setmemId(e.target.value); 
+  };
+
+  const handleSearch = () => {
+    setCurrentPage(1); 
+    putSpringData(1, title, memId); 
+  };
+
+  const handleSelectItem = (id) => {
+    setSelectedItems(prevSelected => 
+      prevSelected.includes(id) ? prevSelected.filter(item => item !== id) : [...prevSelected, id]
+    );
+  };
+
+  const handleDelete = async () => {
     if (selectedItems.length === 0) {
       alert("삭제할 항목을 선택하세요.");
       return;
     }
-
+  
     if (window.confirm("정말 삭제하겠습니까?")) {
-      const updatedData = filteredData.filter(item => !selectedItems.includes(item.id));
-      this.setState({
-        filteredData: updatedData,
-        selectedItems: [] // 삭제 후 선택 항목 초기화
-      });
+      try {
+        await axios({
+          method: "delete",
+          url: baseUrl + "/admin/course",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          data: selectedItems, // 삭제할 리뷰 ID들
+        });
+        alert("선택된 리뷰가 삭제되었습니다.");
+        setSelectedItems([]); // 삭제 후 선택 항목 초기화
+        putSpringData(currentPage); // 데이터 갱신
+      } catch (err) {
+        console.error(err);
+        alert("삭제에 실패했습니다.");
+      }
     }
-  };
-
-  render() {
-    const { filteredData, searchText, selectedItems } = this.state;
+  };  
 
     return (
       <div className="app-container">
         <h1>코스게시판관리</h1>
         <div className="search-course">
-          <input
-            type="text"
-            placeholder="제목 검색"
-            value={searchText}
-            onChange={this.handleSearchTextChange}
-          />
-          <input type="text" placeholder="아이디 검색" />
-          <select>
-            <option value="">지역</option>
-            <option value="서울">서울</option>
-            <option value="부산">부산</option>
-            <option value="대구">대구</option>
-            <option value="인천">인천</option>
-            <option value="광주">광주</option>
-            <option value="대전">대전</option>
-            <option value="울산">울산</option>
-            <option value="세종">세종</option>
-            <option value="경기도">경기도</option>
-            <option value="강원도">강원도</option>
-            <option value="충청북도">충청북도</option>
-            <option value="충청남도">충청남도</option>
-            <option value="전라북도">전라북도</option>
-            <option value="전라남도">전라남도</option>
-            <option value="경상북도">경상북도</option>
-            <option value="경상남도">경상남도</option>
-            <option value="제주도">제주도</option>
-          </select>
-          <button onClick={this.handleSearch}>조회</button>
+        <input
+          type="text"
+          placeholder="게시글 이름"
+          value={title}
+          onChange={handleTitleChange}
+        />
+        <input type="text" placeholder="아이디 검색" value={memId} onChange={handleIdChange}/>
+          <button onClick={handleSearch}>조회</button>
         </div>
 
-        <button className="delete-button" onClick={this.handleDelete}>DELETE</button>
+        <button className="delete-button" onClick={handleDelete}>DELETE</button>
 
         <table>
           <thead>
@@ -125,37 +149,45 @@ class CourseManagement extends Component {
               <th>제목</th>
               <th>아이디</th>
               <th>작성일</th>
+              <th>태그</th>
               <th>조회수</th>
               <th>추천</th>
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((item) => (
+            {data.map((item) => (
               <tr key={item.id}>
                 <td>
                   <input
                     type="checkbox"
                     checked={selectedItems.includes(item.id)}
-                    onChange={() => this.handleSelectItem(item.id)}
+                    onChange={() => handleSelectItem(item.id)}
                   />
                 </td>
                 <td>{item.title}</td>
                 <td>{item.userId}</td>
-                <td>{item.courseDate}</td>
+                <td>{formatTime(item.createdDate)}</td>
+                <td>{item.courseTag}</td>
                 <td>{item.views}</td>
                 <td>{item.likes}</td>
               </tr>
             ))}
           </tbody>
         </table>
-
         <div className="pagination">
-          <span>1</span>
-          <span>2</span>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <span
+            key={index}
+            className={currentPage === index + 1 ? "active" : ""}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </span>
+        ))}
         </div>
       </div>
     );
-  }
 }
+
 
 export default CourseManagement;

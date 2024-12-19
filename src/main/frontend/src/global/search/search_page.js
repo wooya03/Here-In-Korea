@@ -10,8 +10,6 @@ const SearchPage = () => {
   const [festivals, setFestivals] = useState([]);
   const [courses, setCourses] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
-  const [hoveredHotel, setHoveredHotel] = useState(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -44,7 +42,7 @@ const SearchPage = () => {
 
       setHotels(uniqueHotels);
 
-      // 행사 정보 검색 (title과 addr1로 검색)
+      // 행사 정보 검색
       const [festivalResponseByAddr, festivalResponseByTitle] = await Promise.all([
         axios.get(`http://localhost:8080/api/festivals/search4?addr1=${term}`),
         axios.get(`http://localhost:8080/api/festivals/search3?title=${term}`)
@@ -66,15 +64,21 @@ const SearchPage = () => {
       setCourses(courseResponse.data);
 
       // 리뷰 정보 검색
-      const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search?title=${term}`);
-      setReviews(reviewResponse.data);
+      const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search5?reviewTitle=${term}`);
+      console.log("Review Response:", reviewResponse.data); // 데이터 확인
+
+      if (reviewResponse.data && Array.isArray(reviewResponse.data)) {
+        setReviews(reviewResponse.data); // 데이터가 배열이면 상태 업데이트
+        console.log("Updated Reviews:", reviewResponse.data); // 리뷰 상태 업데이트 후 로그 확인
+      } else {
+        setReviews([]); // 데이터를 배열로 받지 않으면 빈 배열로 설정
+      }
 
       // 검색 기록 처리
-      if (searchHistory.length >= 20) {
-        setSearchHistory((prevHistory) => [term, ...prevHistory.slice(0, 19)]);
-      } else {
-        setSearchHistory((prevHistory) => [term, ...prevHistory]);
-      }
+      setSearchHistory((prevHistory) => {
+        const updatedHistory = [term, ...prevHistory];
+        return updatedHistory.length > 20 ? updatedHistory.slice(0, 20) : updatedHistory;
+      });
     } catch (error) {
       console.error("검색 오류", error);
     }
@@ -102,12 +106,8 @@ const SearchPage = () => {
     navigate(`/reviews/${id}`);
   };
 
-  const handleMouseMove = (e) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
   return (
-    <div className="search-page" onMouseMove={handleMouseMove}>
+    <div className="search-page">
       <h1 className="search-results-title">검색결과</h1>
 
       <div className="search-input-container">
@@ -119,7 +119,9 @@ const SearchPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button className="search-page-button" onClick={() => handleSearch()}>검색</button>
+        <button className="search-page-button" onClick={() => handleSearch()}>
+          검색
+        </button>
       </div>
 
       <div className="search-content">
@@ -151,7 +153,6 @@ const SearchPage = () => {
                 <p>숙박 정보가 없습니다.</p>
               )}
             </div>
-            {/* 숙박 정보 더보기 버튼 */}
             <div className="more-link-container">
               <a href="/hotels" className="more-link">#숙박 정보 더보기</a>
             </div>
@@ -222,22 +223,18 @@ const SearchPage = () => {
           <div className="section reviews">
             <h2>리뷰 정보</h2>
             <div className="course-list">
-              {reviews.length > 0 ? (
+              {reviews && reviews.length > 0 ? (
                 reviews.map((review, index) => (
-                  <div key={index} className="course-box-item" onClick={() => handleReviewClick(review.id)}>
+                  <div key={index} className="course-box-item" onClick={() => handleReviewClick(review.reviewId)}>
                     <div className="course-box">
-                      <img
-                        src={review.imageUrl || `${process.env.PUBLIC_URL}/Image/noimg.png`}
-                        alt={review.title}
-                        className="rounded-image"
-                        width="100%"
-                        height="100%"
-                      />
                     </div>
                     <div className="course-info">
-                      <div className="s_course-title">{review.title}</div>
-                      <div className="s_course-tag">{review.location}</div>
-                      <div className="s_course-date">{review.date}</div>
+                      <div className="s_course-title">{review.reviewTitle}</div>
+                      <div className="s_course-tag">{review.reviewTag}</div>
+                      <div className="s_course-date">
+                        {review.createdDate ? new Intl.DateTimeFormat('ko-KR').format(new Date(review.createdDate)) : '날짜 정보 없음'}
+                      </div>
+                      <div className="s_course-likes">👍 {review.reviewLikes} likes</div>
                     </div>
                   </div>
                 ))
