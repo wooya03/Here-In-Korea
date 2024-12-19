@@ -10,6 +10,7 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const navigate = useNavigate();
   const location = useLocation(); // useLocation 추가
+  const token = localStorage.getItem("token");
 
 
   useEffect(() => {
@@ -66,7 +67,7 @@ function Header() {
 
   const handleMoveProfile = () => {
     if (isLoggedIn) {
-      navigate("/user/profile"); // 로그인 상태일 때만 프로필로 이동
+      navigate("/profile");
     }
   };
 
