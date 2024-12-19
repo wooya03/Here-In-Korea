@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Profile.css';
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode'; // JWT 디코딩 라이브러리
+import axios from 'axios'; // axios를 사용하여 API 호출
 
 const Profile = () => {
     const [selectedMenu, setSelectedMenu] = useState('profile');
@@ -9,13 +11,39 @@ const Profile = () => {
     const [isEditingDob, setIsEditingDob] = useState(false);
     const [isEditingGender, setIsEditingGender] = useState(false);
 
-    const [email, setEmail] = useState("user@example.com");
-    const [name, setName] = useState("사용자 이름");
-    const [dob, setDob] = useState("1990-01-01");
-    const [gender, setGender] = useState("남성");
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [dob, setDob] = useState('');
+    const [gender, setGender] = useState('');
     const [profileImage, setProfileImage] = useState(`${process.env.PUBLIC_URL}/Image/profile_base_img.jpg`); // 초기 프로필 이미지
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token'); // JWT 토큰 가져오기
+        if (token) {
+            try {
+                const decodedToken = jwt_decode(token); // 토큰 디코딩
+                const userId = decodedToken.userId; // 사용자 아이디 추출
+
+                // 서버에서 사용자 정보 요청
+                axios.get(`/api/user/${userId}`)
+                    .then(response => {
+                        const user = response.data;
+                        setEmail(user.email);
+                        setName(user.name);
+                        setDob(user.dob);
+                        setGender(user.gender);
+                        setProfileImage(user.profileImage || `${process.env.PUBLIC_URL}/Image/profile_base_img.jpg`); // 프로필 이미지 설정
+                    })
+                    .catch(error => {
+                        console.error("사용자 정보를 불러오는 데 실패했습니다.", error);
+                    });
+            } catch (error) {
+                console.error("토큰 디코딩에 실패했습니다.", error);
+            }
+        }
+    }, []);
 
     const toggleEdit = (field) => {
         switch (field) {

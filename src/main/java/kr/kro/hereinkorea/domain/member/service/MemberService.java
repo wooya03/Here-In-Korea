@@ -35,6 +35,10 @@ public class MemberService {
         return memberRepository.findByMemId(memId).orElseThrow(() -> new NotFoundMemberException());
     }
 
+    public Optional<MemberEntity> findForProfileMemId(String memId) {
+        return memberRepository.findByMemId(memId);
+    }
+
     public String findMemberId(String memName, String email) {
         // 아이디 찾기
         return memberRepository.findMemberId(memName, email).orElse(null);  // 아이디가 존재하지 않으면 null 반환

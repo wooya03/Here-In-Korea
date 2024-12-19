@@ -167,4 +167,45 @@ public class MemberController {
         }
     }
 
+    @PostMapping("/profile")
+    public ResponseEntity<?> getUserProfile(@RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            // Authorization 헤더에서 토큰 추출
+            if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("Authorization header is missing or invalid.");
+            }
+
+            String accessToken = authorizationHeader.substring(7); // "Bearer " 이후의 토큰
+
+            try {
+                // Access Token 검증
+                Jws<Claims> claims = jwtUtil.getClaims(accessToken);
+
+                // Access Token이 유효하면 사용자 정보 반환
+                String memId = claims.getBody().getSubject();
+
+                // 사용자 정보 조회
+                Optional<MemberEntity> memberEntity = memberService.findForProfileMemId(memId);
+
+                if (memberEntity.isPresent()) {
+                    // 사용자 정보가 존재하면 반환
+                    MemberDTO memberDTO = MemberMapper.toDTO(memberEntity.get());
+                    return ResponseEntity.ok(memberDTO);
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다.");
+                }
+            } catch (ExpiredJwtException e) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("Access Token has expired.");
+            } catch (JwtException e) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("Access Token is invalid.");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while fetching user profile.");
+        }
+    }
+
 }
