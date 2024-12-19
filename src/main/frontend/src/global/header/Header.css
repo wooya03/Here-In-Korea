@@ -144,3 +144,14 @@ body, html {
 #google_translate_element {
   position: 1000px;
 }
+
+.login-button button{
+  width: 100%;
+  padding: 10px;
+  background-color: #4a8fa5;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
