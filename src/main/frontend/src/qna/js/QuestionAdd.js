@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/QuestionAdd.css';
@@ -13,7 +13,14 @@ const QuestionAdd = () => {
   });
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
+  useEffect(() => {
+    if (!token) {
+      alert('권한이 필요합니다.');
+      navigate('/user/login');
+    }
+  }, [navigate, token]);
 
   const handleTitleChange = (event) => {
     setQuestions((prev) => ({ ...prev, title: event.target.value }));
@@ -46,7 +53,6 @@ const QuestionAdd = () => {
 
     try {
       console.log(questions);
-      const token = localStorage.getItem("token");
       // Spring Boot로 데이터 전송
       const response = await axios.post(`http://localhost:8080/question/write`,  questions,
         {
@@ -58,9 +64,13 @@ const QuestionAdd = () => {
         alert('질문이 등록되었습니다!');
         navigate('/question');
       }
-    } catch (error) {
-      console.error('질문 등록 중 오류 발생:', error);
-      alert('질문 등록에 실패했습니다.');
+    } catch (err) {
+      if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+        alert('권한이 필요합니다.');
+        navigate("/user/login")
+      } else {
+        console.log(err);
+     }
     }
   };
 

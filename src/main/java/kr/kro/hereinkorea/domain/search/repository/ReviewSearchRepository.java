@@ -11,10 +11,10 @@ public interface ReviewSearchRepository extends JpaRepository<ReviewEntity, Long
 
     @Query(value = "SELECT r " +
             "FROM ReviewEntity r " +
-            "WHERE r.reviewTitle LIKE CONCAT('%', :title, '%') " +
+            "WHERE r.reviewTitle LIKE CONCAT('%', :reviewTitle, '%') " +
             "ORDER BY r.reviewId " +
             "LIMIT 4 "
     )
-    List<Object[]> findTop4ByTitleContaining(@Param("title")String title);
+    List<Object[]> findTop4ByTitleContaining(@Param("reviewTitle")String reviewTitle);
 
 }

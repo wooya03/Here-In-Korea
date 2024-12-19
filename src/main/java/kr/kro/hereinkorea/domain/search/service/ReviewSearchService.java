@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReviewSearchService {
 
-    List<ReviewDTO> searchReviewsByTitle(String title);
+    List<ReviewDTO> searchReviewsByTitle(String reviewTitle);
 
     default ReviewDTO entityToDTO(ReviewEntity review) {
         return ReviewDTO.builder()
@@ -15,7 +15,6 @@ public interface ReviewSearchService {
                 .reviewTitle(review.getReviewTitle())
                 .reviewContent(review.getReviewContent())
                 .reviewTag(review.getReviewTag())
-                .createdDate(review.getCreatedDate())
                 .createdDate(review.getCreatedDate())
                 .reviewViews(review.getReviewViews())
                 .build();
