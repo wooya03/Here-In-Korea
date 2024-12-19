@@ -15,7 +15,7 @@ public class CourseImageEntity {
     private Long courseImgId; // 코스 이미지 아이디 (PK)
 
     @Column(name = "course_id", nullable = false)
-    private String courseId; // String 타입으로 변경
+    private Long courseId; // String 타입으로 변경
 
     @Column(name = "course_ing_url", nullable = false)
     private String courseImageUrl; // 이미지 주소

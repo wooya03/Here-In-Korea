@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class CourseImageDTO {
     private Long courseImgId;
-    private String courseId; // String 타입으로 변경
+    private Long courseId; // String 타입으로 변경
     private String courseImageUrl;
 
     public static CourseImageDTO fromEntity(CourseImageEntity entity) {
@@ -17,14 +17,6 @@ public class CourseImageDTO {
         dto.setCourseId(entity.getCourseId());
         dto.setCourseImageUrl(entity.getCourseImageUrl());
         return dto;
-    }
-
-    public String getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
     }
 
 }

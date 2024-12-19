@@ -19,7 +19,7 @@ public class CourseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
-    private String courseId;
+    private Long courseId;
 
     @Column(name = "course_title", nullable = false)
     private String courseTitle;

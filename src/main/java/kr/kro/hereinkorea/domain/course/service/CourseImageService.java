@@ -34,7 +34,7 @@ public class CourseImageService {
     }
 
     // 코스 이미지 목록 조회
-    public List<CourseImageDTO> getCourseImagesByCourseId(String courseId) {
+    public List<CourseImageDTO> getCourseImagesByCourseId(Long courseId) {
         List<CourseImageEntity> courseImageEntities = courseImageRepository.findAll();
         return courseImageEntities.stream()
                 .filter(entity -> entity.getCourseId().equals(courseId)) // courseId를 String으로 비교

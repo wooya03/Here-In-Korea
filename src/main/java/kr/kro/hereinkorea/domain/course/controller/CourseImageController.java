@@ -25,7 +25,7 @@ public class CourseImageController {
 
     // 코스 이미지 목록 조회 (courseId에 해당하는 이미지들)
     @GetMapping("/{courseId}")
-    public ResponseEntity<List<CourseImageDTO>> getCourseImages(@PathVariable String courseId) {
+    public ResponseEntity<List<CourseImageDTO>> getCourseImages(@PathVariable Long courseId) {
         List<CourseImageDTO> courseImages = courseImageService.getCourseImagesByCourseId(courseId);
         return ResponseEntity.ok(courseImages);
     }
