@@ -51,19 +51,6 @@ dependencies {
 
 	implementation 'org.jsoup:jsoup:1.15.3'
 
-		// MyBatis
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2' // 최신 버전 확인
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	runtimeOnly 'mysql:mysql-connector-java'
-
-	// MapStruct 의존성
-	implementation 'org.mapstruct:mapstruct:1.5.3.Final'  // 최신 버전으로 변경 가능
-
-	// MapStruct Processor 의존성
-	compileOnly 'org.mapstruct:mapstruct-processor:1.5.3.Final'  // 최신 버전으로 변경 가능
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'  // 최신 버전으로 변경 가능
-
-
 }
 
 tasks.named('test') {
