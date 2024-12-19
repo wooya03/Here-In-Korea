@@ -1,0 +1,75 @@
+/* ReviewDetails.css */
+
+.review-detail-container {
+    max-width: 90%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.review-detail-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000000; /* 헤더 색상 */
+    padding-bottom: 10px;
+}
+
+.review-detail-h {
+    display: flex; /* 플렉스박스를 사용해 자식 요소들을 일렬로 배치 */
+    justify-content: space-between; /* 요소 간 간격을 균등하게 배치 */
+    align-items: center; /* 세로 정렬을 중앙에 맞춤 */
+    margin-bottom: 10px;
+}
+
+.review-detail-h p {
+    margin: 0; /* 각 p 태그의 기본 여백 제거 */
+    font-size: 14px; /* 폰트 크기 조정 */
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+}
+
+.review-detail-container hr {
+    margin: 20px 0;
+    border: 0;
+    height: 1px;
+    background: #b9b2b2;
+}
+
+.review-detail-container div {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.review-profile {
+    font-size:20px;
+    font-weight: bold;
+}
+
+.review-detail-content {
+    text-align: center;
+    margin-bottom: 150px;
+}
+
+.review-detail-button {
+    display: flex; /* 플렉스박스를 사용 */
+    justify-content: flex-end; /* 버튼을 오른쪽 끝으로 정렬 */
+    margin-top: 20px; /* 버튼 위에 적절한 여백 추가 */
+}
+/* 버튼 스타일 */
+.review-detail-button button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #0055a5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-detail-button button:hover {
+    background-color: #003f7f;
+}

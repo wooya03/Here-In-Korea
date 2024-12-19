@@ -19,6 +19,7 @@ import QuestionDetails from './qna/js/QuestionDetails.js';
 import AnswerAdd from './qna/js/AnswerAdd.js';
 import Review from './review/js/Review.js';
 import ReviewWrite from './review/js/ReviewWrite.js'
+import ReviewDetails from './review/js/ReviewDetails.js';
 import Course from './course/js/Course.js';
 import CourseWrite from "./course/js/CourseWrite.js";
 import CourseManagement from "./admin/js/CourseManagement.js";
@@ -84,6 +85,7 @@ function App() {
         {/* 리뷰 페이지 */}
         <Route path="/review" element={<><Review /></>} />
         <Route path="/review/write" element={<><ReviewWrite /></>} />
+        <Route path='/review/:id' element={<><ReviewDetails /></>} />
 
         {/* 코스 페이지 */}
         <Route path="/course" element={<><Course /></>} />
