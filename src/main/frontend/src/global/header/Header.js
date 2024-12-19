@@ -10,6 +10,7 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const navigate = useNavigate();
   const location = useLocation(); // useLocation 추가
+  const token = localStorage.getItem("token");
 
 
   useEffect(() => {
@@ -66,7 +67,7 @@ function Header() {
 
   const handleMoveProfile = () => {
     if (isLoggedIn) {
-      navigate("/profile");
+      navigate("/user/profile");
     }
   };
 
@@ -117,7 +118,7 @@ function Header() {
           </div>
           <div className="login-button">
             <button onClick={handleLoginLogout}>
-              {isLoggedIn ? "로그아웃" : "로그인"}
+              {token ? "로그아웃" : "로그인"}
             </button>
           </div>
         </div>
