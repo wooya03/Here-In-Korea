@@ -9,7 +9,6 @@ import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
 import CourseMenagement from './admin/js/CourseManagement.js';
 import ReviewManagement from './admin/js/ReviewManagement.js';
-import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
 import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
@@ -56,7 +55,6 @@ function App() {
         <Route path="/admin/user" element={<><AdminHeader /><UserManagement /></>} />
         <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
         <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
-        <Route path="/admin/comment" element={<><AdminHeader /><CommentManagement /></>} />
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
 
         {/* 로그인 페이지 */}
