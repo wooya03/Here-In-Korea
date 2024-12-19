@@ -1,8 +1,5 @@
 package kr.kro.hereinkorea.domain.search.service;
 
-import kr.kro.hereinkorea.domain.hotels.dto.HotelsDTO;
-import kr.kro.hereinkorea.domain.hotels.entity.HotelsEntity;
-import kr.kro.hereinkorea.domain.hotels.entity.HotelsImgEntity;
 import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
 import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
 import kr.kro.hereinkorea.domain.search.repository.ReviewSearchRepository;
@@ -19,9 +16,9 @@ public class ReviewSearchServiceImpl implements ReviewSearchService{
     private ReviewSearchRepository reviewSearchRepository;
 
     @Override
-    public List<ReviewDTO> searchReviewsByTitle(String title) {
+    public List<ReviewDTO> searchReviewsByTitle(String reviewTitle) {
 
-        List<Object[]> result = reviewSearchRepository.findTop4ByTitleContaining(title);
+        List<Object[]> result = reviewSearchRepository.findTop4ByTitleContaining(reviewTitle);
         List<ReviewDTO> reviewDtoResult = new ArrayList<>();
 
         for (Object[] dto : result) {

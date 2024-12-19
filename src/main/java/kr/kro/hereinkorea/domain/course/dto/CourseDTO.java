@@ -1,6 +1,7 @@
 package kr.kro.hereinkorea.domain.course.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import kr.kro.hereinkorea.domain.course.entity.CourseImageEntity;
 import lombok.*;
 import java.time.LocalDateTime;
 
