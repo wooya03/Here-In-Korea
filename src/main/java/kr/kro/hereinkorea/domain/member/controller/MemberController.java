@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
+import java.util.Optional;
 
 
 @RestController
@@ -91,6 +92,28 @@ public class MemberController {
         } else {
             // 아이디가 존재하지 않으면 에러 메시지 반환
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("존재하지 않는 아이디입니다.");
+        }
+    }
+
+    @PostMapping("/find/pw/request")
+    public ResponseEntity<?> findMemberPassCheck(@RequestBody MemberDTO memberDTO) {
+        // 아이디와 이름이 모두 입력되었는지 확인
+        if (memberDTO.getMemId() == null || memberDTO.getMemName() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("아이디와 이름을 모두 입력해 주세요.");
+        }
+
+        // 회원 정보를 조회
+        Optional<MemberEntity> member = memberService.findByIdAndName(memberDTO.getMemId(), memberDTO.getMemName());
+
+        if (member.isPresent()) {
+            // 회원이 존재하는 경우, 인증 코드 발송 로직 추가
+//            String verificationCode = generateVerificationCode(); // 인증 코드 생성
+//            memberService.sendVerificationCode(member.get(), verificationCode); // 인증 코드 발송
+//
+            return ResponseEntity.ok("인증 코드가 발송되었습니다.");
+        } else {
+            // 아이디 또는 이름이 일치하지 않는 경우
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("아이디 또는 이름이 잘못되었습니다.");
         }
     }
 

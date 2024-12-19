@@ -39,4 +39,8 @@ public class MemberService {
         // 아이디 찾기
         return memberRepository.findMemberId(memName, email).orElse(null);  // 아이디가 존재하지 않으면 null 반환
     }
+
+    public Optional<MemberEntity> findByIdAndName(String memId, String memName) {
+        return memberRepository.findByMemIdAndMemName(memId, memName); // JPA 메서드를 사용하여 조회
+    }
 }
