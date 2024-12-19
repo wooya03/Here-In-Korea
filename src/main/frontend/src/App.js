@@ -19,6 +19,7 @@ import QuestionDetails from './qna/js/QuestionDetails.js';
 import AnswerAdd from './qna/js/AnswerAdd.js';
 import Review from './review/js/Review.js';
 import ReviewWrite from './review/js/ReviewWrite.js'
+import ReviewDetails from './review/js/ReviewDetails.js';
 import Course from './course/js/Course.js';
 import CourseWrite from "./course/js/CourseWrite.js";
 import CourseManagement from "./admin/js/CourseManagement.js";
@@ -46,8 +47,8 @@ function App() {
         {/* 검색 API */}
         <Route path="/translate" element={<GoogleTranslate />} />
 
-        {/* 검색 페이지 */}
-        <Route path="/search_page" element={<><Header /><SearchPage /></>} />
+            {/* 검색 페이지 */}
+            <Route path="/search_page" element={<><Header /><SearchPage /></>} />
 
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />
@@ -57,6 +58,16 @@ function App() {
         <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
         <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
+
+
+            {/* 어드민 페이지 */}
+            <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />
+            <Route path="/admin/login" element={<><AdminHeader /><AdminLogin /></>} />
+            <Route path="/admin/logout" element={<><AdminHeader /><AdminLogout /></>} />
+            <Route path="/admin/user" element={<><AdminHeader /><UserManagement /></>} />
+            <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
+            <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
+            <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
 
         {/* 로그인 페이지 */}
         <Route path="/user/login" element={<><Header /><LoginMain /></>} />
@@ -84,6 +95,7 @@ function App() {
         {/* 리뷰 페이지 */}
         <Route path="/review" element={<><Review /></>} />
         <Route path="/review/write" element={<><ReviewWrite /></>} />
+        <Route path='/review/:id' element={<><ReviewDetails /></>} />
 
         {/* 코스 페이지 */}
         <Route path="/course" element={<><Course /></>} />
@@ -98,7 +110,7 @@ function App() {
 
         {/* 행사 페이지 */}
         <Route path='/festival' element={<><Header /><Festival /></>} />
-        <Route path='/festival/:contentId' element={<><Header /><FestivalDetails /></>} />
+        <Route path='/festival/:id' element={<><Header /><FestivalDetails /></>} />
 
 
       </Routes>

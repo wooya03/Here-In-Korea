@@ -18,7 +18,7 @@ public class ReviewSearchServiceImpl implements ReviewSearchService{
     @Override
     public List<ReviewDTO> searchReviewsByTitle(String reviewTitle) {
 
-        List<Object[]> result = reviewSearchRepository.findTop4ByTitleContaining(reviewTitle);
+        List<Object[]> result = reviewSearchRepository.findTop4ByReviewTitleContaining(reviewTitle);
         List<ReviewDTO> reviewDtoResult = new ArrayList<>();
 
         for (Object[] dto : result) {
@@ -27,4 +27,6 @@ public class ReviewSearchServiceImpl implements ReviewSearchService{
         }
         return reviewDtoResult;
     }
+
+
 }
