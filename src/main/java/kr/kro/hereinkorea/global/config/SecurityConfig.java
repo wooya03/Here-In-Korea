@@ -50,7 +50,7 @@ public class SecurityConfig {
                         .accessDeniedHandler(jwtAccessDeniedHandler) // 403 Forbidden 핸들링
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/login","/user/find/**").permitAll()// 인증 없이 접근 허용
+                        .requestMatchers("/user/login","/user/find/**", "/user/profile","/user/registerauth").permitAll()// 인증 없이 접근 허용
                         .requestMatchers("/admin/login").permitAll()
                         .requestMatchers("/admin/main", "/admin/member", "/admin/review", "/admin/question", "/admin/course").hasRole("ADMIN") // ADMIN 권한 필요
                         .requestMatchers("/admin/logout").authenticated()

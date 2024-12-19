@@ -5,7 +5,7 @@
     padding: 0;
 }
 
-.form_wrap{
+.form_wrap_auth_register{
     width : 40%;
     min-width:500px;
     height: 80%;
@@ -28,6 +28,7 @@
     border-radius: 4px;
     font-size: 16px;
     box-sizing: border-box;
+
 }
 
 .auth_form > input:focus{
@@ -36,11 +37,20 @@
 }
 
 .register_btn_form {
-    width: 70%;
+    width: 100%;
     margin-top: 120px;
-
+    display: flex;
+    justify-content: center;
 }
 
 .register_btn{
-    margin-left: 21%;
+
+    width: 30%;
+    padding: 10px;
+    background-color: #4a8fa5;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
