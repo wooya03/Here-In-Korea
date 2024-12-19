@@ -46,10 +46,8 @@ function App() {
             {/* 검색 API */}
             <Route path="/translate" element={<GoogleTranslate />} />
 
-<<<<<<< HEAD
             {/* 검색 페이지 */}
             <Route path="/search_page" element={<><Header /><SearchPage /></>} />
-=======
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />
         <Route path="/admin/login" element={<><AdminHeader /><AdminLogin /></>} />
@@ -58,7 +56,6 @@ function App() {
         <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
         <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
         <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
->>>>>>> f41fef4681a6035791660c2a7acf2545aefa1c6a
 
             {/* 어드민 페이지 */}
             <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />
@@ -67,7 +64,6 @@ function App() {
             <Route path="/admin/user" element={<><AdminHeader /><UserManagement /></>} />
             <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
             <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
-            <Route path="/admin/comment" element={<><AdminHeader /><CommentManagement /></>} />
             <Route path="/admin/qna" element={<><AdminHeader /><QnaManagement /></>} />
 
             {/* 로그인 페이지 */}
