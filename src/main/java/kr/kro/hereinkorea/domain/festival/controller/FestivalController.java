@@ -1,22 +1,17 @@
 package kr.kro.hereinkorea.domain.festival.controller;
 
 import kr.kro.hereinkorea.domain.festival.dto.FestivalDTO;
+import kr.kro.hereinkorea.domain.festival.dto.FestivalDetailsDTO;
 import kr.kro.hereinkorea.domain.festival.repository.FestivalDetailsRepository;
-import kr.kro.hereinkorea.domain.festival.repository.FestivalImgRepository;
 import kr.kro.hereinkorea.domain.festival.service.FestivalDetailsService;
 import kr.kro.hereinkorea.domain.festival.service.FestivalService;
-import kr.kro.hereinkorea.domain.hotels.dto.HotelsDTO;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/festival")
@@ -25,12 +20,6 @@ import java.util.List;
 public class FestivalController {
     private final FestivalService festivalService;
     private final FestivalDetailsService festivalDetailsService;
-
-//    @GetMapping
-//    public List<FestivalDTO> getFestivals() {
-//        return festivalService.getFestivalsContent();
-//    }
-//}
 
     @GetMapping("/contentadd")
     public String contentAdd() {
@@ -61,5 +50,20 @@ public class FestivalController {
     }
 
     @GetMapping("/{id}")
-    public void getDetailsList(){}
+    public ResponseEntity<FestivalDetailsDTO> getDetailsList(@PathVariable("id") Long contentId) {
+        try {
+            // 서비스에서 데이터를 가져옵니다.
+            FestivalDetailsDTO festivalDetailsDTO = festivalDetailsService.getFestivalDetails(contentId);
+            return ResponseEntity.ok(festivalDetailsDTO);
+        } catch (RuntimeException e) {
+            // RuntimeException이 발생한 경우 404 Not Found 응답을 반환합니다.
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);  // 또는 적절한 메시지를 반환할 수 있습니다.
+        } catch (Exception e) {
+            // 기타 예외가 발생한 경우 500 Internal Server Error 응답을 반환합니다.
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);  // 또는 적절한 메시지를 반환할 수 있습니다.
+        }
+    }
+
 }

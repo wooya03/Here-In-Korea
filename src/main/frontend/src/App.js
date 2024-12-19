@@ -7,7 +7,6 @@ import Main from './main/Main.js';
 import LoginMain from "./user/js/LoginMain";
 import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
-import CourseMenagement from './admin/js/CourseManagement.js';
 import ReviewManagement from './admin/js/ReviewManagement.js';
 import CommentManagement from './admin/js/CommentManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
@@ -99,7 +98,7 @@ function App() {
 
         {/* 행사 페이지 */}
         <Route path='/festival' element={<><Header /><Festival /></>} />
-        <Route path='/festival/:id' element={<><Header /><FestivalDetails /></>} />
+        <Route path='/festival/:contentId' element={<><Header /><FestivalDetails /></>} />
 
 
       </Routes>
