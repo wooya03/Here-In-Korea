@@ -165,12 +165,14 @@
 
 /* 코스 제목 스타일 */
 .s_course-title {
+    padding: 3px 0 3px 0;
     font-size: 16px; /* 제목 글꼴 크기 설정 */
     font-weight: bold; /* 제목 두껍게 설정 */
 }
 
 /* 코스 태그 스타일 */
 .s_course-tag {
+    padding: 5px 0 5px 0;
     color: #777; /* 태그 색상 설정 */
     font-size: 14px; /* 태그 글꼴 크기 설정 */
 }

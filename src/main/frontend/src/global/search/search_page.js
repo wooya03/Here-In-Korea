@@ -8,6 +8,7 @@ const SearchPage = () => {
   const [hotels, setHotels] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [festivals, setFestivals] = useState([]);
+  const [courses, setCourses] = useState([]);  // 코스 정보 상태 추가
   const [searchHistory, setSearchHistory] = useState([]);
 
   const location = useLocation();
@@ -60,13 +61,18 @@ const SearchPage = () => {
 
       // 리뷰 정보 검색
       const reviewResponse = await axios.get(`http://localhost:8080/api/reviews/search5?reviewTitle=${term}`);
-      console.log("Review Response:", reviewResponse.data); // 데이터 확인
-
       if (reviewResponse.data && Array.isArray(reviewResponse.data)) {
-        setReviews(reviewResponse.data); // 데이터가 배열이면 상태 업데이트
-        console.log("Updated Reviews:", reviewResponse.data); // 리뷰 상태 업데이트 후 로그 확인
+        setReviews(reviewResponse.data);
       } else {
-        setReviews([]); // 데이터를 배열로 받지 않으면 빈 배열로 설정
+        setReviews([]);
+      }
+
+      // 코스 정보 검색 (새로운 API 추가)
+      const courseResponse = await axios.get(`http://localhost:8080/api/course/search6?courseTitle=${term}`);
+      if (courseResponse.data && Array.isArray(courseResponse.data)) {
+        setCourses(courseResponse.data);  // 받은 코스 데이터를 상태에 저장
+      } else {
+        setCourses([]);  // 코스 데이터가 없으면 빈 배열로 설정
       }
 
       // 검색 기록 처리
@@ -95,6 +101,10 @@ const SearchPage = () => {
 
   const handleReviewClick = (id) => {
     navigate(`/review/${id}`);
+  };
+
+  const handleCourseClick = (id) => {
+    navigate(`/course/${id}`); // 코스를 클릭하면 해당 코스 페이지로 이동
   };
 
   return (
@@ -178,7 +188,7 @@ const SearchPage = () => {
               ) : (
                 <p>행사 정보가 없습니다.</p>
               )}
-            </div>  
+            </div>
           </div>
 
           {/* 리뷰 정보 */}
@@ -203,6 +213,40 @@ const SearchPage = () => {
               ) : (
                 <p>리뷰 정보가 없습니다.</p>
               )}
+            </div>
+          </div>
+
+          {/* 코스 정보 */}
+          <div className="section courses">
+            <h2>코스 정보</h2>
+            <div className="course-list">
+              {courses.length > 0 ? (
+                courses.map((course, index) => (
+                  <div key={index} className="course-box-item" onClick={() => handleCourseClick(course.contentId)}>
+                    <div className="course-box">
+                      <img
+                        src={course.firstimage2 || `${process.env.PUBLIC_URL}/Image/noimg.png`}
+                        alt={course.title}
+                        className="rounded-image"
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                    <div className="course-info">
+                      <div className="s_course-title">{course.courseTitle}</div>
+                      <div className="s_course-tag">{course.courseContent}</div>
+                      <div className="s_course-date">{course.createdDate}</div>
+                      <div className="s_course-like">{course.courseLikes}</div>
+                      <div className="s_course-view">{course.courseViews}</div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>코스 정보가 없습니다.</p>
+              )}
+            </div>
+            <div className="more-link-container">
+              <a href="/courses" className="more-link">#코스 정보 더보기</a>
             </div>
           </div>
         </div>

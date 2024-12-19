@@ -48,6 +48,9 @@ public class CourseEntity {
     @Column(name = "course_name", nullable = false)
     private String courseName;
 
+    @Column(name = "course_ing_url", nullable = false)
+    private String courseImageUrl; // 이미지 주소
+
     @PrePersist
     public void prePersist() {
         if (this.createdDate == null) {
