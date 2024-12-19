@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Header from "../../global/header/Header";
 import { useNavigate } from "react-router-dom";
+import { Viewer } from "@toast-ui/react-editor";
 
 function formatTime(dateString) {
   if (!dateString) return "날짜 정보 없음"; // dateString이 null/undefined/빈 문자열일 경우 처리
@@ -24,6 +25,7 @@ function ReviewDetails() {
     const [reviewData, setreviewData] = useState(null);
     const { id } = useParams();
     const token = localStorage.getItem("token");
+    const memId = localStorage.getItem("memId");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,7 +37,7 @@ function ReviewDetails() {
                     id: item.reviewId,
                     title: item.reviewTitle,
                     userId: item.memId,
-                    date: item.createdDate,  // 날짜 변환
+                    date: item.createdDate,
                     views: item.reviewViews,
                     likes: item.reviewLikes,
                     reviewContent: item.reviewContent
@@ -48,6 +50,8 @@ function ReviewDetails() {
 
     if (!reviewData) return <p>질문 데이터를 불러오는 중...</p>;
 
+    
+
     const deleteClick = (id) => {
         try {
             axios.delete(baseUrl + `/review/${id}`, {
@@ -58,11 +62,15 @@ function ReviewDetails() {
             alert("리뷰가 삭제되었습니다.");
             navigate('/review')
 
-          } catch (error) {
+            } catch (error) {
             console.error("삭제 중 오류 발생:", error);
             alert("삭제 중 오류가 발생했습니다.");
-          }
-      };
+        }
+    };
+
+    const modifyClick = (id) => {
+        navigate(`/review/modify/${id}`);
+    };
 
     return (
         <div>
@@ -78,10 +86,15 @@ function ReviewDetails() {
                 </div>
                 <hr />
                 <div className="review-detail-content">
-                    {reviewData.reviewContent}
+                    <Viewer initialValue={reviewData.reviewContent} />
                 </div>
                 <div className="review-detail-button">
+                {memId === reviewData.userId && (
+                    <>
+                    <button onClick={() => modifyClick(reviewData.id)}>수정</button>
                     <button onClick={() => deleteClick(reviewData.id)}>삭제</button>
+                    </>
+                )}
                 </div>
             </div>
         </div>

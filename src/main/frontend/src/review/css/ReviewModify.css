@@ -1,0 +1,101 @@
+.review-write-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 300px; /* 전체 양옆에 20px 여백 추가 */
+    background: #f9f9f9;
+  }
+
+  .review-write-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .review-write-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* 임시저장 버튼 스타일 */ 
+  .review-save-btn {
+    position: relative;
+    width: 95px;
+    height: 40px;
+    transform: translateX(1100%);
+    background-color: #6b6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px; /* 글자 크기 조정 */
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+  }
+
+  /* 삭제 버튼 스타일 */
+  .review-cancel-btn {
+    position: relative;
+    width: 95px;
+    height: 40px;
+    transform: translateX(1110%);
+    background-color: #e98181;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px; /* 글자 크기 조정 */
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+  }
+
+  .review-save-btn:hover,
+  .review-cancel-btn:hover {
+    background-color: #ddd;
+  }
+
+  .review-input-group {
+    margin-bottom: 20px;
+  }
+  
+  .review-input-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .review-hashtag-input,
+  .review-title-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .review-editor {
+    margin-bottom: 20px;
+  }
+  
+  .review-submit-btn-container {
+    text-align: center;
+  }
+  
+  .review-submit-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .review-submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
