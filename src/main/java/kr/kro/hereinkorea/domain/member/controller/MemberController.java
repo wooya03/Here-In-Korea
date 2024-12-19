@@ -261,4 +261,31 @@ public class MemberController {
         }
     }
 
+    @PutMapping("/find/pw/update")
+    public ResponseEntity<?> updatePassword(@RequestBody MemberDTO memberDTO) {
+        try {
+            // 사용자 정보 조회 (memId로)
+            Optional<MemberEntity> member = memberService.findForProfileMemId(memberDTO.getMemId());
+            if (member.isPresent()) {
+                MemberEntity memberEntity = member.get();
+
+                // 새로운 비밀번호로 업데이트
+                memberEntity.setMemPass(memberDTO.getMemPass()); // 새로운 비밀번호로 설정
+
+                // 비밀번호 업데이트 처리
+                memberService.updateMember(memberEntity);
+
+                // 비밀번호 변경 완료 메시지 반환
+                return ResponseEntity.ok("비밀번호가 성공적으로 변경되었습니다.");
+            } else {
+                // 사용자가 존재하지 않으면 오류 반환
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다.");
+            }
+        } catch (Exception e) {
+            // 예외 처리
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("비밀번호 변경 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
 }
