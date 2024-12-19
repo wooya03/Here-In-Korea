@@ -18,7 +18,7 @@
 //
 //
 //    @Override
-//    public List<CourseDTO[]> searchCourseByTitle(String courseTitle) {
+//    public List<CourseDTO> searchCourseByTitle(String courseTitle) {
 //
 //        List<Object[]> result = courseSearchRepository.findTop4ByTitleContaining(courseTitle);
 //        List<CourseDTO> courseDtoResult = new ArrayList<>();

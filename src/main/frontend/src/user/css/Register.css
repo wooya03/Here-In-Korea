@@ -68,6 +68,14 @@
 .auth_request_btn > button{
     position: relative;
     margin-top: 10%;
+    width: 100%;
+    padding: 10px;
+    background-color: #4a8fa5;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .name_wrapper {
