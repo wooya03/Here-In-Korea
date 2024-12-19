@@ -16,7 +16,7 @@ const Course = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get("/course"); // 백엔드 엔드포인트 경로 확인
+        const response = await axios.get("http://localhost:8080/course"); // 백엔드 엔드포인트 경로 확인
         setCourseData(response.data); // 서버 응답에 따라 key를 수정
         setLoading(false);
       } catch (error) {
