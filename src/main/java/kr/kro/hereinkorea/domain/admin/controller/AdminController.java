@@ -4,9 +4,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+import kr.kro.hereinkorea.domain.admin.service.AdminCourseService;
 import kr.kro.hereinkorea.domain.admin.service.AdminMemberService;
 import kr.kro.hereinkorea.domain.admin.service.AdminQuestionService;
 import kr.kro.hereinkorea.domain.admin.service.AdminReviewService;
+import kr.kro.hereinkorea.domain.course.dto.CourseDTO;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.domain.member.controller.JwtResponse;
@@ -37,19 +39,16 @@ public class AdminController {
 
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
-
     @Autowired
     JwtProperties jwtProperties;
-
     @Autowired
     AdminMemberService adminMemberService;
-
     @Autowired
     AdminQuestionService adminQuestionService;
-
     @Autowired
     AdminReviewService adminReviewService;
-
+    @Autowired
+    AdminCourseService adminCourseService;
     @Autowired
     MemberService memberService;
 
@@ -58,25 +57,37 @@ public class AdminController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @DeleteMapping("course")
+    public void deleteCourses(@RequestBody List<Long> courseIds, @RequestHeader("Authorization") String tokenHeader){
+        adminCourseService.deleteCourse(courseIds);
+    }
+    @GetMapping("course")
+    public PageResultDTO<CourseDTO, Object[]> getCourses(String courseTitle, String memId, PageRequestDTO pageRequestDTO, @RequestHeader("Authorization") String tokenHeader){
+        return adminCourseService.getCourse(courseTitle, memId, pageRequestDTO);
+
+    }
+
     @DeleteMapping("review")
     public void deleteReviews(@RequestBody List<Long> reviewIds, @RequestHeader("Authorization") String tokenHeader) {
         adminReviewService.deleteReview(reviewIds);
     }
 
     @GetMapping("review")
-    public PageResultDTO<ReviewDTO, Object[]> getReviews(String reviewTitle, String memId, PageRequestDTO pageRequestDTO, @RequestHeader("Authorization") String tokenHeader){
-        return adminReviewService.getReview(reviewTitle, memId, pageRequestDTO);
+    public PageResultDTO<ReviewDTO, Object[]> getReviews(String title, String memId, PageRequestDTO pageRequestDTO){
+        return adminReviewService.getReview(title, memId, pageRequestDTO);
     }
 
     @DeleteMapping("question")
     public void deleteQuestions(@RequestBody List<Long> questionIds, @RequestHeader("Authorization") String tokenHeader){
         adminQuestionService.deleteQuestion(questionIds);
     }
+
     @GetMapping("question")
-    public PageResultDTO<QuestionDTO, Object[]> getQuestions(String title, String category, PageRequestDTO pageRequestDTO, @RequestHeader("Authorization") String tokenHeader){
+    public PageResultDTO<QuestionDTO, Object[]> getQuestions(String title, String category, PageRequestDTO pageRequestDTO){
         return adminQuestionService.getQuestion(title, category, pageRequestDTO);
     }
 
+    // 성별 필터를 추가한 getMembers 메서드
     @GetMapping("/member")
     public ResponseEntity<PageResultDTO<MemberDTO, MemberEntity>> getMembers(
             @RequestParam(value = "memName", required = false) String memName,
@@ -89,7 +100,7 @@ public class AdminController {
     }
 
     @GetMapping("/main")
-    public long getMemberCount(@RequestHeader("Authorization") String tokenHeader){
+    public long getMemberCount(){
         return adminMemberService.getTotalMemberCount();
     }
 
@@ -104,7 +115,6 @@ public class AdminController {
                     String accessToken = jwtUtil.generateAccessToken(memberDTO.getMemId());
                     String refreshToken = jwtUtil.generateRefreshToken(memberDTO.getMemId());
 
-                    String idFromToken = jwtUtil.getUserIdFromToken(accessToken);
                     logger.info("로그인 성공, 토큰 발급: {}", memberDTO.getMemId());
 
                     return ResponseEntity.ok(new JwtResponse(accessToken, refreshToken));
@@ -124,7 +134,6 @@ public class AdminController {
                     .body(new JwtResponse("로그인 중 오류가 발생했습니다: " + e.getMessage(), ""));
         }
     }
-
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestHeader("Authorization") String tokenHeader) {
         System.out.println("받은 Authorization 헤더: " + tokenHeader);  // 헤더 출력
