@@ -3,6 +3,8 @@ package kr.kro.hereinkorea.domain.course.entity;
 import jakarta.persistence.*;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,10 +34,12 @@ public class CourseEntity {
     private LocalDateTime createdDate;
 
     @Column(name = "course_views", nullable = false)
-    private int courseViews = 0;
+    @ColumnDefault("0")
+    private int courseViews;
 
     @Column(name = "course_likes", nullable = false)
-    private int courseLikes = 0;
+    @ColumnDefault("0")
+    private int courseLikes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mem_id", nullable = false)
