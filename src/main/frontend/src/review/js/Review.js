@@ -65,6 +65,10 @@ const Review = () => {
     }
   };
 
+  const detailsClick = (id) => {
+    navigate(`/review/${id}`);
+  };
+
   return (
     <div className="review-app-container">
       <Header />
@@ -90,8 +94,8 @@ const Review = () => {
             {reviews.map((item, index) => (
               <tr key={item.id}>
                 <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
-                <td>{item.title}</td>
-                <td>{item.userId}</td>
+                <td onClick={() => detailsClick(item.id)}>{item.title}</td>
+                <td onClick>{item.userId}</td>
                 <td>{item.date}</td>
                 <td>{item.views}</td>
                 <td>{item.likes}</td>
