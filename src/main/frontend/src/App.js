@@ -9,7 +9,6 @@ import AdminHeader from './admin/js/AdminHeader.js';
 import Header from './global/header/Header.js';
 import ReviewManagement from './admin/js/ReviewManagement.js';
 import QnaManagement from './admin/js/QnaManagement.js';
-import AdminLogout from './admin/js/AdminLogout.js';
 import Register from './user/js/Register.js';
 import SearchPage from "./global/search/search_page";
 import GoogleTranslate from './global/translate/Translate_api.js';
@@ -54,7 +53,6 @@ function App() {
         {/* 어드민 페이지 */}
         <Route path="/admin" element={<><AdminHeader /><AdminMain /></>} />
         <Route path="/admin/login" element={<><AdminHeader /><AdminLogin /></>} />
-        <Route path="/admin/logout" element={<><AdminHeader /><AdminLogout /></>} />
         <Route path="/admin/user" element={<><AdminHeader /><UserManagement /></>} />
         <Route path="/admin/course" element={<><AdminHeader /><CourseManagement /></>} />
         <Route path="/admin/review" element={<><AdminHeader /><ReviewManagement /></>} />
@@ -90,7 +88,7 @@ function App() {
         <Route path='/review/modify/:id' element={<><ReviewModify /></>} />
 
         {/* 코스 페이지 */}
-        <Route path="/course" element={<><Course /></>} />
+        <Route path="/course" element={<><Header /><Course /></>} />
         <Route path="/course/write" element={<><CourseWrite /></>} />
 
         {/* 지도 */}
