@@ -5,6 +5,7 @@ import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
+@RequiredArgsConstructor
 public class AdminMemberService {
-    @Autowired
-    AdminMemberRepository memberRepository;
+    private final AdminMemberRepository memberRepository;
 
     public PageResultDTO<MemberDTO, MemberEntity> getMember(String memName, String gender, PageRequestDTO pageRequestDTO) {
         Sort sort = Sort.by("memId").descending();

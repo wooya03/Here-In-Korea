@@ -1,9 +1,5 @@
 package kr.kro.hereinkorea.domain.admin.controller;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
 import kr.kro.hereinkorea.domain.admin.service.AdminCourseService;
 import kr.kro.hereinkorea.domain.admin.service.AdminMemberService;
 import kr.kro.hereinkorea.domain.admin.service.AdminQuestionService;
@@ -19,13 +15,10 @@ import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
-import kr.kro.hereinkorea.global.jwt.properties.JwtProperties;
 import kr.kro.hereinkorea.global.jwt.properties.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,32 +30,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
 
-    @Autowired
-    RedisTemplate<String, Object> redisTemplate;
-    @Autowired
-    JwtProperties jwtProperties;
-    @Autowired
-    AdminMemberService adminMemberService;
-    @Autowired
-    AdminQuestionService adminQuestionService;
-    @Autowired
-    AdminReviewService adminReviewService;
-    @Autowired
-    AdminCourseService adminCourseService;
-    @Autowired
-    MemberService memberService;
+    private final AdminMemberService adminMemberService;
+    private final AdminQuestionService adminQuestionService;
+    private final AdminReviewService adminReviewService;
+    private final AdminCourseService adminCourseService;
+    private final MemberService memberService;
+    private final JwtUtil jwtUtil;
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-
-    @Autowired
-    private JwtUtil jwtUtil;
 
     @DeleteMapping("course")
     public void deleteCourses(@RequestBody List<Long> courseIds, @RequestHeader("Authorization") String tokenHeader){
         adminCourseService.deleteCourse(courseIds);
     }
     @GetMapping("course")
-    public PageResultDTO<CourseDTO, Object[]> getCourses(String courseTitle, String memId, PageRequestDTO pageRequestDTO, @RequestHeader("Authorization") String tokenHeader){
+    public PageResultDTO<CourseDTO, Object[]> getCourses(@RequestParam("courseTitle") String courseTitle, @RequestParam("memId") String memId, PageRequestDTO pageRequestDTO, @RequestHeader("Authorization") String tokenHeader){
         return adminCourseService.getCourse(courseTitle, memId, pageRequestDTO);
 
     }
@@ -73,7 +55,7 @@ public class AdminController {
     }
 
     @GetMapping("review")
-    public PageResultDTO<ReviewDTO, Object[]> getReviews(String title, String memId, PageRequestDTO pageRequestDTO){
+    public PageResultDTO<ReviewDTO, Object[]> getReviews(@RequestParam("reviewTitle") String title, @RequestParam("memId") String memId, PageRequestDTO pageRequestDTO){
         return adminReviewService.getReview(title, memId, pageRequestDTO);
     }
 
@@ -83,7 +65,7 @@ public class AdminController {
     }
 
     @GetMapping("question")
-    public PageResultDTO<QuestionDTO, Object[]> getQuestions(String title, String category, PageRequestDTO pageRequestDTO){
+    public PageResultDTO<QuestionDTO, Object[]> getQuestions(@RequestParam("title") String title, @RequestParam("category") String category, PageRequestDTO pageRequestDTO){
         return adminQuestionService.getQuestion(title, category, pageRequestDTO);
     }
 
@@ -133,40 +115,5 @@ public class AdminController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new JwtResponse("로그인 중 오류가 발생했습니다: " + e.getMessage(), ""));
         }
-    }
-    @PostMapping("/logout")
-    public ResponseEntity<String> logout(@RequestHeader("Authorization") String tokenHeader) {
-        System.out.println("받은 Authorization 헤더: " + tokenHeader);  // 헤더 출력
-
-        if (tokenHeader == null || !tokenHeader.startsWith("Bearer ")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 올바르지 않습니다.");
-        }
-
-        try {
-            String token = tokenHeader.replace("Bearer ", "");
-            System.out.println("토큰: " + token);  // 토큰 출력
-
-            // JWT 검증 로직
-
-            return ResponseEntity.ok("로그아웃 성공");
-        } catch (Exception e) {
-            System.out.println("오류 발생: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("유효하지 않은 토큰입니다.");
-        }
-    }
-
-
-    public boolean isTokenBlacklisted(String token) {
-        return redisTemplate.hasKey(token);
-    }
-
-    public Jws<Claims> getClaims(String token) {
-        if (isTokenBlacklisted(token)) {
-            throw new JwtException("블랙리스트에 등록된 토큰입니다.");
-        }
-        return Jwts.parserBuilder()
-                .setSigningKey(jwtProperties.getSecretKey())
-                .build()
-                .parseClaimsJws(token);
     }
 }

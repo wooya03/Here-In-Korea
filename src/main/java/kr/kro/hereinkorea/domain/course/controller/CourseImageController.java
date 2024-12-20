@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/course/images")
-@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class CourseImageController {
 

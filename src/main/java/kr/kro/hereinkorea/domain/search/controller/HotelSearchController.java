@@ -10,7 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/hotels")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000") // React 서버 주소
 public class HotelSearchController {
     private final HotelSearchServiceImpl hotelService;
 
