@@ -1,129 +1,93 @@
-
-/* Review 전체 레이아웃 */
-.course-app-container {
-    background-color: #f4f7f9;
-    min-height: 100vh;
+.course-container {
+    padding: 20px;
     font-family: Arial, sans-serif;
-}
-
-.course-title {
-    text-align: center;
-    right: 600px;
+  }
+  
+  .course-title {
     font-size: 24px;
-    color: #003B54;
     margin-bottom: 20px;
-    position: relative;
-}
-
- /* 코스 목록 */
-.course-list {
-    display: grid; /* 그리드 레이아웃 사용 */
-    grid-template-columns: repeat(2, 1fr); /* 가로로 2개의 열 생성 */
-    gap: 20px; /* 카드 간격 */
-    margin: 0 auto; /* 가운데 정렬 */
-    max-width: 1200px; /* 최대 너비 설정 */
-    padding: 20px; /* 여백 추가 */
-}
-
-/* 코스 아이템 */
-.course-item {
-    display: flex;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    transition: transform 0.2s; /* 마우스 오버 효과 */
-}
-
-/* 마우스 오버 시 확대 효과 */
-.course-item:hover {
-    transform: scale(1.02);
-}
-
-/* 코스 이미지 */
-.course-image-placeholder {
-    width: 120px;
-    height: 120px;
-    background-color: aliceblue; /* 회색 사각형 */
-    flex-shrink: 0;
-    margin: 10px; /* 이미지와 텍스트 간격 */
-    border-radius: 6px; /* 이미지 모서리 둥글게 */
-}
-
-/* 코스 상세 */
-.course-details {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1; /* 텍스트 영역 확장 */
-}
-
-/* 제목 스타일 */
-.course-name {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-/* 설명 스타일 */
-.course-description {
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: #555;
-    line-height: 1.4; /* 가독성을 위한 줄 간격 */
-}
-
-/* 정보 스타일 */
-.course-info {
-    font-size: 12px;
-    color: #777;
-}
-
-   /* 등록 버튼 스타일 */
-.course-create-btn {
-    position: relative;
-    width: 95px;
-    height: 40px;
-    transform: translateX(1510%);
+  }
+  
+  .course-create-btn {
+    margin-bottom: 20px;
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 13px; /* 글자 크기 조정 */
-    transition: background-color 0.3s;
-    margin-bottom: 20px;
   }
-
-  /* 페이지 네이션 버튼 스타일 */
-  .pagination-btn {
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 0 5px;
-    font-size: 14px;
-    background-color: #f4f4f4;
-    color: #333;
+  
+  .course-create-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .course-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .course-card {
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .course-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .course-details {
+    padding: 15px;
+  }
+  
+  .course-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .course-tag {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  .course-date,
+  .course-stats {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .pagination-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
   }
   
   .pagination-btn.active {
     background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
+    color: white;
   }
   
   .pagination-btn:hover {
     background-color: #0056b3;
-    color: #fff;
+    color: white;
   }
   
-  .pagination-btn:disabled {
-    background-color: #e9ecef;
-    color: #6c757d;
-    cursor: not-allowed;
-  }
