@@ -11,7 +11,6 @@ import kr.kro.hereinkorea.domain.member.service.MemberService;
 import kr.kro.hereinkorea.global.jwt.enums.JwtType;
 import kr.kro.hereinkorea.global.jwt.properties.JwtUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
