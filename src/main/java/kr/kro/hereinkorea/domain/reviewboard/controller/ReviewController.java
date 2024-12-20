@@ -1,13 +1,10 @@
 package kr.kro.hereinkorea.domain.reviewboard.controller;
 
-import kr.kro.hereinkorea.domain.course.dto.CourseDTO;
-import kr.kro.hereinkorea.domain.qna.question.dto.QuestionDTO;
 import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
 import kr.kro.hereinkorea.domain.reviewboard.service.ReviewService;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -3,7 +3,6 @@ package kr.kro.hereinkorea.domain.course.mapper;
 import kr.kro.hereinkorea.domain.course.dto.CourseDTO;
 import kr.kro.hereinkorea.domain.course.entity.CourseEntity;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
-import org.springframework.stereotype.Component;
 
 public class CourseMapper {
 
