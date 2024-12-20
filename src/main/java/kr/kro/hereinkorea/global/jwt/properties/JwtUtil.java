@@ -80,7 +80,7 @@ public class JwtUtil {
 
         MemberDTO memberDTO = memberRepository
                 .findByMemId(memId)
-                .map(memberEntity -> MemberMapper.createDTO(memberEntity))
+                .map(memberEntity -> MemberMapper.entityToDTO(memberEntity))
                 .orElseThrow(() -> NotFoundMemberException.EXCEPTION
                 );
 

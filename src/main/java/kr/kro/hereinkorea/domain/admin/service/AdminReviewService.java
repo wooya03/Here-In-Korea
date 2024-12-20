@@ -6,9 +6,7 @@ import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
 import kr.kro.hereinkorea.domain.reviewboard.repository.ReviewRepository;
 import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
 import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
-import lombok.extern.java.Log;
-import org.aspectj.weaver.IntMap;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,10 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AdminReviewService {
 
-    @Autowired
-    ReviewRepository reviewRepository;
+    private final ReviewRepository reviewRepository;
     public PageResultDTO<ReviewDTO, Object[]> getReview(String reviewTitle, String memId, PageRequestDTO pageRequestDTO) {
         Pageable pageable = pageRequestDTO.getPageable(Sort.by("id").descending());
 
@@ -31,7 +29,7 @@ public class AdminReviewService {
             if(memId == null || memId.trim().isEmpty() ){
                 result = reviewRepository.getReviewCount(pageable);
             } else {
-                result = reviewRepository.getReviewById(memId, pageable);
+                result = reviewRepository.getReviewByMemId(memId, pageable);
             }
         } else {
             if(memId == null || memId.trim().isEmpty()){

@@ -26,14 +26,16 @@ function QnaManagement() {
     putSpringData(currentPage, title, category);
   }, [currentPage, title, category]);
 
-  async function putSpringData(pageNumber, titleFilter, categoryFilter) {
+  async function putSpringData(pageNumber, title, category) {
     try {
       const params = {
         page: pageNumber,
-        size: itemsPerPage
+        size: itemsPerPage,
+        title: title,
+        category: category
+
+
       };
-      if (titleFilter) params.title = titleFilter;
-      if (categoryFilter) params.category = categoryFilter;
 
       const response = await axios.get(baseUrl + "/admin/question", {params,
         headers: {

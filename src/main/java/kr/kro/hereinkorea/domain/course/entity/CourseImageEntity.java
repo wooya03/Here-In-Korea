@@ -11,10 +11,9 @@ import lombok.Setter;
 public class CourseImageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course_img_id")
     private Long courseImgId; // 코스 이미지 아이디 (PK)
 
-    @Column(name = "course_id", nullable = false)
+    @Column(nullable = false)
     private Long courseId; // String 타입으로 변경
 
     @Column(name = "course_ing_url", nullable = false)

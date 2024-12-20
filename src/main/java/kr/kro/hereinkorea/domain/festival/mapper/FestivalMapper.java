@@ -24,7 +24,7 @@ public class FestivalMapper {
                 .build();
     }
 
-    public static FestivalDTO entityToDto(FestivalEntity festivalEntity){
+    public static FestivalDTO entityToDTO(FestivalEntity festivalEntity){
         return FestivalDTO.builder()
                 .contentId(festivalEntity.getContentId())
                 .contentTypeId(festivalEntity.getContentTypeId())
@@ -64,7 +64,7 @@ public class FestivalMapper {
                 .build();
     }
 
-    public static FestivalDetailsDTO entityToDto(FestivalDetailsEntity entity){
+    public static FestivalDetailsDTO entityToDTO(FestivalDetailsEntity entity){
         return FestivalDetailsDTO.builder()
                 .id(entity.getId())
                 .contentid(entity.getFestival().getContentId())

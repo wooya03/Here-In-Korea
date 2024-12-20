@@ -1,10 +1,8 @@
 package kr.kro.hereinkorea.domain.course.service;
 
 import kr.kro.hereinkorea.domain.course.dto.CourseImageDTO;
-import kr.kro.hereinkorea.domain.course.entity.CourseEntity;
 import kr.kro.hereinkorea.domain.course.entity.CourseImageEntity;
 import kr.kro.hereinkorea.domain.course.repository.CourseImageRepository;
-import kr.kro.hereinkorea.domain.course.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,7 @@ public class CourseImageService {
         courseImageEntity.setCourseId(courseImageDTO.getCourseId());
         courseImageEntity.setCourseImageUrl(courseImageDTO.getCourseImageUrl());
         courseImageEntity = courseImageRepository.save(courseImageEntity);
-        return CourseImageDTO.fromEntity(courseImageEntity);
+        return CourseImageDTO.entityToDTO(courseImageEntity);
     }
 
     // 코스 이미지 목록 조회
@@ -38,7 +36,7 @@ public class CourseImageService {
         List<CourseImageEntity> courseImageEntities = courseImageRepository.findAll();
         return courseImageEntities.stream()
                 .filter(entity -> entity.getCourseId().equals(courseId)) // courseId를 String으로 비교
-                .map(CourseImageDTO::fromEntity)
+                .map(CourseImageDTO::entityToDTO)
                 .collect(Collectors.toList());
     }
 

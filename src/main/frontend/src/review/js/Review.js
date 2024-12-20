@@ -7,24 +7,25 @@ import {useAuth} from "../../global/auth_context/AuthContext";
 
 const Review = () => {
   const { isLoggedIn } = useAuth(); // 로그인 상태 확인
-  const [searchText, setSearchText] = useState("");  // 검색 텍스트 상태
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
-  const [itemsPerPage] = useState(5);  // 한 페이지에 표시할 아이템 수
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+  const [itemsPerPage] = useState(10);  // 한 페이지에 표시할 아이템 수
   const [reviews, setReviews] = useState([]);  // 리뷰 목록 상태
-  const [totalPages, setTotalPages] = useState(0);  // 총 페이지 수 상태
   const navigate = useNavigate(); //여기도 Link 보다는 navigate사용 하죠
 
-  // 리뷰 데이터를 백엔드에서 가져오는 함수
-  const fetchReviews = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/review", {
-        params: {
-          page: currentPage - 1,   // 페이지 번호는 0부터 시작
-          size: itemsPerPage,      // 페이지 크기
-          sortBy: 'createdDate'    // 정렬 기준
-        }
-      });
 
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  // 리뷰 데이터를 백엔드에서 가져오는 함수
+  async function fetchReviews (pageNumber) {
+    try {
+      const params = {
+        page: pageNumber,
+        size: itemsPerPage
+      };
+      const response = await axios.get("http://localhost:8080/review", {params});
       const transformedData = response.data.dtoList
         ? response.data.dtoList.map((item) => ({
             id: item.reviewId,
@@ -35,24 +36,17 @@ const Review = () => {
             likes: item.reviewLikes,
         }))
         : [];
-
       setReviews(transformedData);
-      setTotalPages(response.data.totalPages); // totalPages 값을 설정
     } catch (error) {
       console.error("리뷰 데이터 가져오기 실패:", error);
-      // 서버 오류 또는 요청 오류에 대한 처리
     }
   };
-
-  // 컴포넌트가 마운트되면 리뷰 데이터를 가져옵니다.
-  useEffect(() => {
-    fetchReviews();
-  }, [currentPage]); // currentPage가 변경될 때마다 fetchReviews 함수가 호출되도록 설정
 
   // 페이지 변경 함수
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
 
   const handleCreateReview = () => {
     if (!isLoggedIn) {
@@ -104,16 +98,14 @@ const Review = () => {
           </tbody>
         </table>
 
-        {/* 페이지네이션 버튼 */}
-        <div className="pagination">
-          {[...Array(totalPages).keys()].map((num) => (
-            <button
-              key={num + 1}
-              onClick={() => handlePageChange(num + 1)}
-              className={currentPage === num + 1 ? "active" : ""}
-            >
-              {num + 1}
-            </button>
+          <div className="pagination">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <span
+              key={index}
+              className={currentPage === index + 1 ? "active" : ""}
+              onClick={() => handlePageChange(index + 1)}>
+              {index + 1}
+            </span>
           ))}
         </div>
       </div>

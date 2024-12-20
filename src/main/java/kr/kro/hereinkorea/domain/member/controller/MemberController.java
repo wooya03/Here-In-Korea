@@ -10,7 +10,7 @@ import kr.kro.hereinkorea.domain.member.mapper.MemberMapper;
 import kr.kro.hereinkorea.domain.member.service.MemberService;
 import kr.kro.hereinkorea.global.jwt.enums.JwtType;
 import kr.kro.hereinkorea.global.jwt.properties.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,19 +23,18 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class MemberController {
-    @Autowired
-    private  MemberService memberService;
+    private final MemberService memberService;
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/registerauth")
     public ResponseEntity<String> registerMember(@RequestBody MemberDTO memberDTO) {
         try {
-            MemberEntity memberEntity = MemberMapper.createEntity(memberDTO);
+            MemberEntity memberEntity = MemberMapper.dtoToEntity(memberDTO);
 
             // 서비스 로직을 통해 저장
             memberService.joinMember(memberEntity);

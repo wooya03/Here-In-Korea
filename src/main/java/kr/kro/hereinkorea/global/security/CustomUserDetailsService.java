@@ -17,7 +17,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String memId) throws UsernameNotFoundException {
         MemberDTO memberDTO = memberRepository.findByMemId(memId)
-                .map(MemberMapper::createDTO)
+                .map(MemberMapper::entityToDTO)
                 .orElseThrow(() -> NotFoundMemberException.EXCEPTION);
         return CustomUserDetails.create(memberDTO);
     }
