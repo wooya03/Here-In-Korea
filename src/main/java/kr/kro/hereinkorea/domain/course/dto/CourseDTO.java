@@ -21,4 +21,5 @@ public class CourseDTO {
     private int courseViews = 0;    // 조회수 기본값
     private int courseLikes = 0;    // 좋아요 기본값
     private String courseName;      // 코스명
+    private String courseImgUrl;
 }
