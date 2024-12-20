@@ -18,8 +18,8 @@ public class CourseDTO {
     private String courseContent;   // 코스 내용
     private String courseTag;       // 코스 태그
     private LocalDateTime createdDate; // 생성 날짜
-    private int courseViews = 0;    // 조회수 기본값
-    private int courseLikes = 0;    // 좋아요 기본값
+    private int courseViews;    // 조회수 기본값
+    private int courseLikes;    // 좋아요 기본값
     private String courseName;      // 코스명
     private String courseImgUrl;
 }

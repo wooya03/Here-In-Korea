@@ -4,11 +4,10 @@ import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
 import kr.kro.hereinkorea.domain.member.Entity.enums.MemberRole;
 import kr.kro.hereinkorea.domain.member.dto.MemberDTO;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class MemberMapper {
-    public static MemberEntity createEntity(MemberDTO memberDTO){
+    public static MemberEntity dtoToEntity(MemberDTO memberDTO){
         return   MemberEntity.builder()
                 .memId(memberDTO.getMemId())
                 .memPass(memberDTO.getMemPass())
@@ -21,7 +20,7 @@ public class MemberMapper {
     }
 
 
-    public static MemberDTO createDTO(MemberEntity memberEntity){
+    public static MemberDTO entityToDTO(MemberEntity memberEntity){
         return   MemberDTO.builder()
                 .memId(memberEntity.getMemId())
                 .memPass(memberEntity.getMemPass())

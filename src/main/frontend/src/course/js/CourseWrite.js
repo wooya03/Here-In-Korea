@@ -93,17 +93,19 @@ function CourseWrite() {
     }
   
     const courseData = {
-      title,
-      mainImage,
-      courseImages,
-      locations,
-      courseDescriptions,
-      hashtag,
+      memId: "testUser", // 예제 작성자 ID
+      courseTitle: title,
+      courseTag: hashtag,
+      courseImgUrl: mainImage,
+      courseImages: courseImages.map((image, index) => ({
+        courseImageUrl: image,
+        location: locations[index],
+        description: courseDescriptions[index],
+      })),
     };
   
     try {
-      const response = await axios.post("/course/create", courseData); // 백엔드 API 경로
-      console.log("작성 완료한 데이터:", response.data);
+      const response = await axios.post("http://localhost:8080/course/create", courseData); // 백엔드 API 경로
       alert("여행 코스가 작성 완료되었습니다!");
       navigate("/course");
     } catch (error) {
@@ -111,6 +113,7 @@ function CourseWrite() {
       alert("코스 작성 중 오류가 발생했습니다.");
     }
   };
+  
 
   return (
     <div className="course-write-header">

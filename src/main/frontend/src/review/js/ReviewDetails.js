@@ -54,11 +54,7 @@ function ReviewDetails() {
 
     const deleteClick = (id) => {
         try {
-            axios.delete(baseUrl + `/review/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-            });
+            axios.delete(baseUrl + `/review/${id}`);
             alert("리뷰가 삭제되었습니다.");
             navigate('/review')
 

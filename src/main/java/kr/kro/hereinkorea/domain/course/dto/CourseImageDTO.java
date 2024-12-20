@@ -11,7 +11,7 @@ public class CourseImageDTO {
     private Long courseId; // String 타입으로 변경
     private String courseImageUrl;
 
-    public static CourseImageDTO fromEntity(CourseImageEntity entity) {
+    public static CourseImageDTO entityToDTO(CourseImageEntity entity) {
         CourseImageDTO dto = new CourseImageDTO();
         dto.setCourseImgId(entity.getCourseImgId());
         dto.setCourseId(entity.getCourseId());

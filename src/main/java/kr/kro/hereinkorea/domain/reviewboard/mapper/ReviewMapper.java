@@ -1,22 +1,20 @@
 package kr.kro.hereinkorea.domain.reviewboard.mapper;
 
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
-import org.springframework.stereotype.Component;
 import kr.kro.hereinkorea.domain.reviewboard.dto.ReviewDTO;
 import kr.kro.hereinkorea.domain.reviewboard.entity.ReviewEntity;
 
 import java.time.LocalDateTime;
 
-@Component
 public class ReviewMapper {
 
     // Entity -> DTO 변환
-    public ReviewDTO toDTO(ReviewEntity review) {
+    public static ReviewDTO entityToDTO(ReviewEntity review, MemberEntity member) {
         return ReviewDTO.builder()
                 .reviewId(review.getReviewId())
                 .reviewTitle(review.getReviewTitle())
                 .reviewContent(review.getReviewContent())
-                .memId(review.getMemId() != null ? review.getMemId().getMemId() : null) // String 타입
+                .memId(member.getMemId())
                 .reviewTag(review.getReviewTag())
                 .createdDate(review.getCreatedDate())
                 .reviewViews(review.getReviewViews())
@@ -25,7 +23,8 @@ public class ReviewMapper {
     }
 
     // DTO -> Entity 변환
-    public ReviewEntity toEntity(ReviewDTO reviewDto, MemberEntity member) {
+    public static ReviewEntity dtoToEntity(ReviewDTO reviewDto) {
+        MemberEntity member = MemberEntity.builder().memId(reviewDto.getMemId()).build();
         return ReviewEntity.builder()
                 .reviewId(reviewDto.getReviewId())
                 .reviewTitle(reviewDto.getReviewTitle())

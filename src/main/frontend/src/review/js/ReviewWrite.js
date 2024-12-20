@@ -16,6 +16,7 @@ function ReviewWrite() {
   const handleReviewSubmit = async () => {
     const editorInstance = editorRef.current.getInstance();
     const content = editorInstance.getHTML(); // 작성한 내용을 HTML로 가져오기
+    const baseUrl = "http://localhost:8080";
 
     // localStorage에서 토큰과 회원 ID를 가져옵니다
     const token = localStorage.getItem("token");
@@ -38,17 +39,12 @@ function ReviewWrite() {
       reviewTitle: title,
       reviewTag: hashtag,
       reviewContent: content,
-      createdDate: new Date().toISOString(), // 작성 시간 추가
       likeCount: 0, // 좋아요 초기값
       viewCount: 0, // 조회수 초기값
     };
 
     try {
-      const response = await axios.post("http://localhost:8080/review/create", reviewData, {
-        headers: {
-          Authorization: `Bearer ${token}`, // 백틱을 사용하여 `Bearer ${token}`으로 수정
-        },
-      });
+      const response = await axios.post(baseUrl + `/review/create`, reviewData);
 
       console.log("리뷰 작성 성공:", response.data);
       alert("리뷰가 성공적으로 등록되었습니다.");

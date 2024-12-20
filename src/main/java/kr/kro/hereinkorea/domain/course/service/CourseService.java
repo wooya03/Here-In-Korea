@@ -4,46 +4,51 @@ import kr.kro.hereinkorea.domain.course.dto.CourseDTO;
 import kr.kro.hereinkorea.domain.course.entity.CourseEntity;
 import kr.kro.hereinkorea.domain.course.mapper.CourseMapper;
 import kr.kro.hereinkorea.domain.course.repository.CourseRepository;
-import kr.kro.hereinkorea.domain.member.repository.MemberRepository;
 import kr.kro.hereinkorea.domain.member.Entity.MemberEntity;
+import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
+import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CourseService {
 
-    private final MemberRepository memberRepository;
-    private final CourseMapper courseMapper;
+    CourseMapper courseMapper;
     private final CourseRepository courseRepository;
 
     // 코스 전체 조회
-    public List<CourseDTO> getAllCourses() {
-        return courseRepository.findAll()
-                .stream()
-                .map(courseMapper::toDTO)
-                .collect(Collectors.toList());
+    public PageResultDTO getAllCourses(PageRequestDTO requestDTO) {
+        Pageable pageable = requestDTO.getPageable(Sort.by("id").descending());
+
+        Page<Object[]> result = courseRepository.getCourseCount(pageable);
+
+        return new PageResultDTO<CourseDTO, Object[]>(result,
+                en -> CourseMapper.entityToDTO((CourseEntity) en[0], (MemberEntity) en[1])
+        );
     }
 
     // 코스 단일 조회
     public CourseDTO getCourseById(Long id) {
         CourseEntity course = courseRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("코스를 찾을 수 없습니다: ID=" + id));
-        return courseMapper.toDTO(course);
+        MemberEntity member = MemberEntity.builder().memId(course.getMemId().getMemId()).build();
+        return courseMapper.entityToDTO(course,member);
     }
 
     // 코스 생성
     public CourseDTO createCourse(CourseDTO courseDTO) {
-        MemberEntity member = memberRepository.findById(courseDTO.getMemId())
-                .orElseThrow(() -> new IllegalArgumentException("회원 ID가 유효하지 않습니다."));
+        if(courseDTO.getMemId().isEmpty()){
+            new IllegalArgumentException("회원 ID가 유효하지 않습니다.");
+        }
 
-        CourseEntity courseEntity = courseMapper.toEntity(courseDTO, member);
+        MemberEntity memberEntity = MemberEntity.builder().memId(courseDTO.getMemId()).build();
+        CourseEntity courseEntity = courseMapper.dtoToEntity(courseDTO);
         CourseEntity savedEntity = courseRepository.save(courseEntity);
-        return courseMapper.toDTO(savedEntity);
+        return CourseMapper.entityToDTO(savedEntity, memberEntity);
     }
 
     // 코스 수정
@@ -51,10 +56,9 @@ public class CourseService {
         CourseEntity existingCourse = courseRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("코스를 찾을 수 없습니다: ID=" + id));
         MemberEntity existingMember = existingCourse.getMemId();
-        CourseEntity updatedCourse = courseMapper.toEntity(updatedCourseDTO, existingMember);
+        CourseEntity updatedCourse = courseMapper.dtoToEntity(updatedCourseDTO);
         updatedCourse.setCourseId(existingCourse.getCourseId());
-        updatedCourse.setCreatedDate(existingCourse.getCreatedDate());
-        return courseMapper.toDTO(courseRepository.save(updatedCourse));
+        return courseMapper.entityToDTO(courseRepository.save(updatedCourse), existingMember);
     }
 
     // 코스 삭제

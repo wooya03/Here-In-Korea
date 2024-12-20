@@ -2,25 +2,21 @@ package kr.kro.hereinkorea.domain.course.controller;
 
 import kr.kro.hereinkorea.domain.course.dto.CourseDTO;
 import kr.kro.hereinkorea.domain.course.service.CourseService;
+import kr.kro.hereinkorea.global.common.dto.PageRequestDTO;
+import kr.kro.hereinkorea.global.common.dto.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/course")
-@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class CourseController {
 
     private final CourseService courseService;
-
-    // 코스 전체 조회
-    @GetMapping("")
-    public ResponseEntity<List<CourseDTO>> getAllCourses() {
-        List<CourseDTO> courseList = courseService.getAllCourses();
-        return ResponseEntity.ok(courseList);
+    @GetMapping()
+    public PageResultDTO<CourseDTO, Object[]> getAllCourses(PageRequestDTO requestDTO){
+        return courseService.getAllCourses(requestDTO);
     }
 
     // 코스 단일 조회

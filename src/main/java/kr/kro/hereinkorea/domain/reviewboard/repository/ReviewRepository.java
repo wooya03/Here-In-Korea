@@ -7,10 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
-        
+
+    @Query("SELECT r, m " +
+            "FROM ReviewEntity r " +
+            "LEFT JOIN r.memId m " +
+            "WHERE r.reviewId = :id ")
+    Object getReviewById(@Param("id") Long id);
+
     @Query(
             value = "SELECT r, m " +
                     "FROM ReviewEntity r " +
@@ -27,7 +31,7 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
             countQuery = "SELECT COUNT(r) " +
                     "FROM ReviewEntity r " +
                     "WHERE r.memId.memId = :memId")
-    Page<Object[]> getReviewById(@Param("memId") String memId, Pageable pageable);
+    Page<Object[]> getReviewByMemId(@Param("memId") String memId, Pageable pageable);
 
     @Query(
             value = "SELECT r, m " +
